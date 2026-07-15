@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Barloworld Equipment — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:32px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--coral); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.wf-note { background:var(--coral-bg); border:1px solid rgba(232,68,26,0.15); border-radius:10px; padding:14px 20px; margin-top:16px; font-size:13.5px; color:var(--coral); font-weight:700; line-height:1.6; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Heavy Equipment &amp; Earthmoving</div>
+  <h1>Barloworld <span>Equipment</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R20bn</div><div class="hs-sub">estimated annual SA</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R460m&ndash;R1.14bn</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R46m&ndash;R114m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+<div class="page">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">Barloworld Equipment operates at the intersection of technical complexity and commercial scale — the authorised Caterpillar dealer for southern Africa, managing a frontline of field technicians, parts counter staff, rental coordinators and sales representatives whose knowledge and behavioural consistency determines the performance of a ~R20bn revenue engine. The challenge isn&#8217;t capability — it&#8217;s consistency. A field technician who gets the diagnosis right 80% of the time still generates repeat call-outs, warranty complications and customer trust erosion 20% of the time. A parts counter rep who mis-picks once a week still costs the business more than most training programmes save in a year. At this scale, the margin between excellent frontline execution and average frontline execution is measured in hundreds of millions of rands annually.<br><br>Digemy is built for exactly this environment. Its mobile-first, spaced-repetition microlearning platform reaches people where traditional training cannot — on site, between jobs, at the counter — reinforcing the right technical knowledge, SOPs and commercial habits at the moment they&#8217;re needed. Where a classroom course is forgotten within days, Digemy&#8217;s methodology drives retention of over 154% improvement, measurable engagement 60 times higher than conventional e-learning, and ramp times 70% faster for new hires. For Barloworld Equipment, that translates directly into better first-time fix rates, higher parts accuracy, stronger rental utilisation and fewer warranty rejections — all without adding headcount or taking technicians off-site.</div>
+    <div class="killer">&#8220;In earthmoving, the real cost of a knowledge gap isn&#8217;t a wrong answer in a quiz — it&#8217;s a machine sitting idle on site, a warranty claim rejected, or a R15m customer who never comes back.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy targets the behaviour-driven leakages across parts counter accuracy, field service first-time fix discipline, rental fleet management, warranty documentation and sales configuration — deploying spaced-repetition microlearning directly to every frontline role on mobile, reinforcing the right knowledge at the right moment without pulling people off the floor or off-site.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Field Technicians / Artisans</td><td>First-time fix failure, diagnostic accuracy, safety compliance on site</td></tr>
+        <tr><td>Parts Counter Representatives</td><td>Parts identification accuracy, mis-picks, pricing errors, customer service</td></tr>
+        <tr><td>Service Advisors</td><td>Job card accuracy, customer communication, upsell of preventive services</td></tr>
+        <tr><td>Rental Coordinators</td><td>Fleet utilisation knowledge, rental extension conversion, handover compliance</td></tr>
+        <tr><td>Sales Representatives</td><td>Product configuration accuracy, finance product knowledge, competitive positioning</td></tr>
+        <tr><td>Workshop Supervisors</td><td>Job scheduling discipline, SOP adherence, quality control at sign-off</td></tr>
+        <tr><td>Warranty &amp; Claims Administrators</td><td>Warranty claim accuracy, documentation compliance, rejection avoidance</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="wf-note">&#128101; Estimated frontline workforce: 3,500&ndash;5,000 operationally active staff across SA branches, field service teams and parts operations — the majority mobile or branch-based, with limited access to traditional classroom training.</div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Parts Counter Accuracy &amp; Mis-Pick Failure</td><td>0.5%&ndash;1.0%</td><td>R100m</td><td>R200m</td><td class="rec">R10m&ndash;R20m</td></tr>
+        <tr><td>Field Service First-Time Fix Failure</td><td>0.5%&ndash;1.5%</td><td>R100m</td><td>R300m</td><td class="rec">R10m&ndash;R30m</td></tr>
+        <tr><td>Rental Fleet Underutilisation &amp; Poor Extension Conversion</td><td>0.5%&ndash;1.0%</td><td>R100m</td><td>R200m</td><td class="rec">R10m&ndash;R20m</td></tr>
+        <tr><td>Warranty Claim Rejection &amp; Documentation Failure</td><td>0.3%&ndash;0.7%</td><td>R60m</td><td>R140m</td><td class="rec">R6m&ndash;R14m</td></tr>
+        <tr><td>Sales Configuration Errors &amp; Missed Ancillary Revenue</td><td>0.5%&ndash;1.5%</td><td>R100m</td><td>R300m</td><td class="rec">R10m&ndash;R30m</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R460m</td><td>R1.14bn</td><td class="rec">R46m&ndash;R114m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+    <div class="lc">
+      <div class="lc-top">
+        <div>
+          <div class="lc-num">Leakage 01</div>
+          <div class="lc-title">Parts Counter Accuracy &amp; Mis-Pick Failure</div>
+          <div class="lc-body">When parts counter staff misidentify a component, quote the wrong part number or fulfil the wrong item, the cost cascades — machine downtime extends, a re-delivery is needed, customer trust erodes and the margin on the original transaction is consumed by the correction. On high-value Cat parts, a single mis-pick can cost more than an entire day of counter sales.</div>
+        </div>
+        <div class="lc-stats">
+          <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0%</span></div>
+          <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R100m&ndash;R200m</span></div>
+          <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R10m&ndash;R20m</span></div>
+        </div>
+      </div>
+      <div class="tag t-eff"><span class="dot"></span>Effects</div>
+      <div class="eff-txt">Incorrect part deliveries; Extended machine downtime; Re-delivery costs; Warranty claim complications; Customer attrition to competitors; Counter staff confidence erosion</div>
+      <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+      <div class="dig-txt">Reinforces parts identification knowledge, SIS navigation habits, supersession awareness and counter verification routines — so the right part leaves the counter the first time, every time.</div>
+    </div>
+
+    <div class="lc">
+      <div class="lc-top">
+        <div>
+          <div class="lc-num">Leakage 02</div>
+          <div class="lc-title">Field Service First-Time Fix Failure</div>
+          <div class="lc-body">A field technician who cannot diagnose correctly on the first visit — or who lacks the parts knowledge to carry the right components to site — triggers a return visit that costs Barloworld Equipment in travel, labour, customer goodwill and machine revenue loss on the client&#8217;s side. In mining, every hour of downtime carries a cost the client can quantify exactly — and will.</div>
+        </div>
+        <div class="lc-stats">
+          <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.5%</span></div>
+          <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R100m&ndash;R300m</span></div>
+          <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R10m&ndash;R30m</span></div>
+        </div>
+      </div>
+      <div class="tag t-eff"><span class="dot"></span>Effects</div>
+      <div class="eff-txt">Repeat site visits; Escalated repair costs; Customer downtime liability; SLA penalty exposure; Technician credibility loss; Reduced field service margin</div>
+      <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+      <div class="dig-txt">Delivers Cat model-specific fault diagnosis micro-learning, pre-job checklists, parts preparation habits and technical reference reinforcement — reducing repeat visits and improving first-time fix rates across the field team.</div>
+    </div>
+
+    <div class="lc">
+      <div class="lc-top">
+        <div>
+          <div class="lc-num">Leakage 03</div>
+          <div class="lc-title">Rental Fleet Underutilisation &amp; Poor Extension Conversion</div>
+          <div class="lc-body">Rental coordinators who don&#8217;t proactively manage fleet availability, miss extension conversations with active clients, or fail to communicate idle fleet to the sales team leave revenue sitting in the yard. A Cat machine not earning is a depreciating asset — and every idle day is margin that cannot be recovered.</div>
+        </div>
+        <div class="lc-stats">
+          <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0%</span></div>
+          <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R100m&ndash;R200m</span></div>
+          <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R10m&ndash;R20m</span></div>
+        </div>
+      </div>
+      <div class="tag t-eff"><span class="dot"></span>Effects</div>
+      <div class="eff-txt">Idle fleet days; Missed rental extensions; Poor machine handover compliance; Underreported fleet availability; Lost short-term project business</div>
+      <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+      <div class="dig-txt">Builds rental extension conversation habits, fleet visibility routines, handover compliance SOPs and project pipeline awareness — converting idle machines into revenue through behavioural consistency.</div>
+    </div>
+
+    <div class="lc">
+      <div class="lc-top">
+        <div>
+          <div class="lc-num">Leakage 04</div>
+          <div class="lc-title">Warranty Claim Rejection &amp; Documentation Failure</div>
+          <div class="lc-body">Warranty claims rejected by Caterpillar due to poor documentation, incorrect failure codes, or missed procedures represent pure revenue loss — costs already incurred by Barloworld Equipment that are never recovered. With the volume of warranty transactions across the SA dealer network, even a modest rejection rate compounds into significant annual write-offs.</div>
+        </div>
+        <div class="lc-stats">
+          <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.3%&ndash;0.7%</span></div>
+          <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R60m&ndash;R140m</span></div>
+          <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R6m&ndash;R14m</span></div>
+        </div>
+      </div>
+      <div class="tag t-eff"><span class="dot"></span>Effects</div>
+      <div class="eff-txt">Unrecovered repair costs; Claim write-offs; Caterpillar dealer scorecard penalties; Technician rework; Compliance audit exposure</div>
+      <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+      <div class="dig-txt">Reinforces warranty procedure knowledge, failure code selection habits, documentation discipline and claim submission SOPs — ensuring the right information is captured at the point of service, not reconstructed after rejection.</div>
+    </div>
+
+    <div class="lc">
+      <div class="lc-top">
+        <div>
+          <div class="lc-num">Leakage 05</div>
+          <div class="lc-title">Sales Configuration Errors &amp; Missed Ancillary Revenue</div>
+          <div class="lc-body">Sales reps who misconfigure a machine order, miss a bundling opportunity, or fail to position Caterpillar Financial Products and extended warranties leave significant margin on the table. On a R10m&ndash;R15m machine transaction, ancillary revenue from finance, insurance and service agreements can represent 15&ndash;25% of total deal value — most of which requires confident, informed frontline execution to close.</div>
+        </div>
+        <div class="lc-stats">
+          <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.5%</span></div>
+          <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R100m&ndash;R300m</span></div>
+          <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R10m&ndash;R30m</span></div>
+        </div>
+      </div>
+      <div class="tag t-eff"><span class="dot"></span>Effects</div>
+      <div class="eff-txt">Missed finance attachment rates; Under-sold service agreements; Configuration rework costs; Customer expectation mismatches post-delivery; Reduced deal profitability</div>
+      <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+      <div class="dig-txt">Builds product configuration confidence, ancillary product knowledge, finance positioning scripts and deal-bundling habits — ensuring every sales interaction captures the full value of the Caterpillar ecosystem.</div>
+    </div>
+
+</div>
+</div>
+
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R460m&ndash;R1.14bn</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R46m&ndash;R114m per year</span></div>
+  </div>
+  <p>Using a ~R20bn SA revenue base, the five Barloworld Equipment leakage areas could represent approximately <strong>R460m&ndash;R1.14bn</strong> in annual operational leakage. If Digemy recovers just 10% through improved frontline knowledge and behavioural consistency, the potential recovered value is <strong>R46m&ndash;R114m per year</strong> — achieved by upskilling the people already on the floor, without adding a single headcount.</p>
+</div>
+
+<div class="page">
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">By identifying the exact skills gap relating to each leakage area, <strong style="color:var(--navy);font-weight:800;">Digemy creates skills matrices that map each operational gap to the business impact</strong>, with a clear roadmap of how to solve it &mdash; using data-led knowledge management to solve the problems costing you millions every year.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Parts Counter Representatives &nbsp;&middot;&nbsp; Leakage 01 &mdash; Parts Counter Accuracy &amp; Mis-Pick Failure</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Parts Counter Representatives</td></tr>
+        <tr><td>Weak SIS navigation — can't locate correct part number quickly</td><td>Incorrect part quoted or picked — triggers costly return and re-delivery cycle</td><td>SIS navigation micro-scenarios and part-lookup drills delivered as daily reinforcement</td></tr>
+        <tr><td>Unfamiliarity with Cat part supersessions and cross-references</td><td>Obsolete part number ordered — delays fulfilment and exposes customer to downtime risk</td><td>Supersession awareness cards and cross-reference knowledge pushed per model update</td></tr>
+        <tr><td>Insufficient Cat model range knowledge to guide customer inquiry accurately</td><td>Wrong application recommended — customer returns the part and trust in counter erodes</td><td>Model-specific application knowledge modules per product family</td></tr>
+        <tr><td>Poor counter verification habits — doesn't confirm part against job card before dispatch</td><td>Mis-picks leave the building undetected — discovered only when machine doesn't fix</td><td>Counter verification SOPs embedded as pre-dispatch habit micro-prompts</td></tr>
+        <tr><td>No upsell awareness of related consumables or service kits</td><td>Customer completes job and returns for additional parts — double handling, lost efficiency</td><td>Related-parts bundling prompts and service kit awareness delivered at counter level</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">
+    <p><strong>Digemy&#8217;s Skills Matrix is not a training catalogue — it&#8217;s a living map of operational risk.</strong> For Barloworld Equipment, this means taking the five identified leakage areas and translating them into precise, role-specific knowledge gaps that are measurable, trackable and solvable through Digemy&#8217;s spaced-repetition methodology.</p>
+    <br>
+    <p>Each role in the Barloworld Equipment frontline — from field technician to parts counter rep to rental coordinator — is mapped against the exact knowledge deficits that drive their contribution to operational leakage. The Skills Matrix then becomes the engine for a targeted content deployment plan: the right micro-lessons, pushed at the right frequency, to the right people, on their mobile devices — whether they&#8217;re at a branch counter in Johannesburg or on a mining site in Limpopo.</p>
+    <br>
+    <p><strong>What makes Digemy&#8217;s Skills Matrix commercially powerful for a business like Barloworld Equipment</strong> is the linkage between learning activity and business outcome. It&#8217;s not enough to know that a technician completed a module — the matrix tracks whether first-time fix rates improved, whether warranty rejection rates declined, whether parts counter accuracy metrics shifted. This gives L&amp;D and operational leadership a shared dashboard that speaks the language of revenue, not just completion rates.</p>
+    <br>
+    <p>For a dealer operation of this technical complexity and geographic spread, the Skills Matrix also serves as the foundation for onboarding acceleration — compressing the ramp time for new artisans, counter staff and sales reps from months to weeks, with the FLM Academy benchmark of <strong>70% faster ramp time</strong> as the target baseline.</p>
+  </div>
+</div>
+</div>
+
+<div class="footer">digemy.com &mdash; Barloworld Equipment South Africa &mdash; Operational Optimisation Report</div>
+</body>
+</html>
