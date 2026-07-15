@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Meridian Group — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">SOUTH AFRICA &middot; FIELD MARKETING &amp; MERCHANDISING SERVICES</div>
+  <h1 style="margin-bottom:32px;">Meridian <span>Group</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R1.3bn</div><div class="hs-sub">Est. merchandising billings</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R69m&ndash;R123m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R6.9m&ndash;R12.3m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Meridian Group's 6,000-strong merchandiser force is the operational backbone connecting FMCG brands to retail shelf performance — but knowledge decay between training cycles quietly erodes execution quality across every store, every day. When merchandisers misread planograms, miss promotional windows, or skip OSA protocols, clients see it in their audit scores before Meridian sees it on a dashboard. Digemy's spaced reinforcement platform keeps every merchandiser current, compliant, and commercially effective — at scale, on their phone, between store visits.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;Six thousand merchandisers all execute at the speed of their last training session. In FMCG, that&#8217;s a knowledge decay problem hiding inside your KPI reports.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy reduces new-hire ramp time by up to 70%, compressing the productivity drag that comes with Meridian&#8217;s high annual replacement volume. Spaced reinforcement on planogram, OSA, and promotional standards turns compliance from a lagging KPI into a proactively managed outcome — protecting client contracts and reducing churn exposure.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Field Merchandiser</td><td>Planogram non-compliance, out-of-stock misidentification, incorrect stock rotation</td></tr>
+        <tr><td>Promotional Brand Activator</td><td>Incorrect POS setup, missed promotional mechanics, poor product knowledge during demos</td></tr>
+        <tr><td>Senior Merchandiser / Team Leader</td><td>Inadequate coaching of junior team, missed KPI escalation, poor store relationship management</td></tr>
+        <tr><td>Category Specialist Merchandiser</td><td>Planogram reset errors, incorrect category adjacencies, compliance gaps on complex resets</td></tr>
+        <tr><td>Field Supervisor / Area Manager</td><td>Inconsistent audit methodology, incomplete corrective action, delayed client reporting</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Meridian Group manages approximately 6,000 merchandisers deployed across South African retail banners including Shoprite Checkers, Pick n Pay, Woolworths, Spar, and independent trade. The field force operates across all nine provinces and serves a portfolio of major FMCG clients. Turnover in the SA merchandising sector typically runs at 25&ndash;35% per annum, implying 1,500&ndash;2,100 replacement hires annually — each entering a knowledge gap before their first solo store visit. All revenue and headcount figures are estimated and inferred; the Meridian Group website was inaccessible at time of report generation.</div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Planogram &amp; OSA Compliance Failures</td><td>1&ndash;2% of est. R1.3bn service revenue at risk from KPI failures</td><td>R13.0m</td><td>R26.0m</td><td class="rec">R1.3m&ndash;R2.6m</td></tr>
+        <tr><td>NPD &amp; Promotional Launch Execution Gaps</td><td>20&ndash;35% effectiveness shortfall on est. R65m NPD campaign base</td><td>R13.0m</td><td>R22.8m</td><td class="rec">R1.3m&ndash;R2.3m</td></tr>
+        <tr><td>Merchandiser Turnover &amp; Ramp-Time Drag</td><td>30% turnover (1,800 replacements), 8-week ramp at 50% productivity + recruitment costs</td><td>R30.0m</td><td>R42.0m</td><td class="rec">R3.0m&ndash;R4.2m</td></tr>
+        <tr><td>Promotional Window Execution Failures</td><td>0.5&ndash;1% of est. R1.3bn service revenue affected by promotional timing errors</td><td>R6.5m</td><td>R13.0m</td><td class="rec">R0.65m&ndash;R1.3m</td></tr>
+        <tr><td>SLA Non-Compliance &amp; Client Churn Exposure</td><td>0.5&ndash;1.5% of est. R1.3bn service revenue at risk from SLA breaches</td><td>R6.5m</td><td>R19.5m</td><td class="rec">R0.65m&ndash;R1.95m</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R69.0m</td><td>R123.3m</td><td class="rec">R6.9m&ndash;R12.4m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Planogram &amp; OSA Compliance Failures</div>
+        <div class="lc-body">When merchandisers can&#8217;t accurately read and execute planograms across multiple client briefs, shelf compliance drops — and FMCG clients notice on their next audit report. Misidentified out-of-stocks and incorrect facing counts compound into systemic KPI failure across hundreds of stores simultaneously.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;2%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R13m&ndash;R26m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.3m&ndash;R2.6m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Client KPI scores deteriorate, triggering formal reviews and scope reductions. Repeated compliance failures create a reputational risk that accelerates contract churn — often before Meridian&#8217;s internal reporting identifies the pattern.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy deploys planogram and OSA micro-modules directly to merchandisers&#8217; phones, reinforced through spaced repetition tied to client brief schedules — so knowledge is current when compliance is measured, not just when training happens.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">NPD &amp; Promotional Launch Execution Gaps</div>
+        <div class="lc-body">FMCG brands pay a premium for first-to-shelf execution on new product launches and promotional activations — and the first six weeks are critical. Merchandisers who haven&#8217;t absorbed the launch brief misplace POS material, sequence distribution incorrectly, and forfeit the early adoption window that determines NPD success.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">20%&ndash;35% shortfall</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R13m&ndash;R23m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.3m&ndash;R2.3m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Brands absorb the cost of failed launches through lost distribution and early mark-downs, then attribute execution failure to Meridian&#8217;s field force quality. This directly threatens renewal of high-value campaign contracts.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy can push a launch brief as a structured learning module to all 6,000 merchandisers within hours of go-live — with comprehension checkpoints before the first store visit, ensuring day-one execution matches the brief every time.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Merchandiser Turnover &amp; Ramp-Time Productivity Drag</div>
+        <div class="lc-body">SA&#8217;s merchandising sector sees 25&ndash;35% annual staff turnover. At Meridian&#8217;s scale, that means replacing 1,500&ndash;2,100 merchandisers every year — each entering an 8-week ramp period at roughly half the productivity of a tenured peer. The cumulative output gap, compounded by recruitment costs, is the single largest knowledge-related cost in the operation.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Turnover Rate</span><span class="sp-v">25%&ndash;35% p.a.</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R30m&ndash;R42m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R3.0m&ndash;R4.2m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">New hires on poorly designed training programmes take 8&ndash;12 weeks to reach minimum viable performance, during which client-facing KPIs suffer and team leaders carry a disproportionate supervisory burden that degrades their own output.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy compresses ramp time by up to 70% through structured onboarding journeys that deploy before the first store visit — replacing classroom days with mobile-first micro-learning that new hires can complete between induction sessions.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Promotional Window Execution Failures</div>
+        <div class="lc-body">Promotional periods are time-bounded — a missed setup window means a lost uplift week that cannot be recovered. Merchandisers who don&#8217;t understand promotional hierarchies, price mechanics, or activation deadlines execute late, partially, or incorrectly — turning high-value campaign periods into liability events.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R6.5m&ndash;R13m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.65m&ndash;R1.3m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">FMCG clients receive post-campaign reports showing below-target activation compliance, prompting performance reviews and scope renegotiations. Repeat failures erode trust faster than any sales conversation can rebuild it.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy&#8217;s campaign-linked modules deploy promotional briefs with built-in deadline awareness — quizzing merchandisers on setup requirements and timing before activation day, not after the window has passed.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">SLA Non-Compliance &amp; Client Churn Exposure</div>
+        <div class="lc-body">Meridian&#8217;s contracts are performance-linked — client SLAs typically include minimum compliance scores, call coverage targets, and data accuracy thresholds. A field force operating below knowledge standard creates systemic SLA exposure that accumulates quietly until a quarterly review forces a renegotiation or a competitor wins the pitch.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R6.5m&ndash;R19.5m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.65m&ndash;R1.95m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">SLA breaches trigger formal remedy periods and, in high-value contracts, financial penalties. Repeated underperformance accelerates competitor displacement — field marketing is a relationship business where trust is won slowly and lost quickly.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy&#8217;s analytics dashboard gives Meridian&#8217;s operations team real-time visibility of knowledge gaps by team, region, and client — turning compliance risk from a lagging indicator into something that can be actioned before the next client review.</div>
+  </div>
+
+</div>
+</div>
+
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R69m&ndash;R123m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R6.9m&ndash;R12.3m per year</span></div>
+  </div>
+  <p>Meridian Group&#8217;s 6,000 merchandisers are simultaneously its core product and its most significant operational risk. <strong>The dominant leakage driver is turnover-related ramp drag</strong> — accounting for R30m&ndash;R42m annually — followed by planogram and OSA compliance failures that directly threaten client contract values. A 10% improvement in field knowledge performance across these five areas returns R6.9m&ndash;R12.3m per year: a return that pays for a world-class learning platform many times over while protecting the contract base that underpins everything else.</p>
+</div>
+
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">Meridian&#8217;s merchandisers navigate a complex compliance landscape across multiple retail banners and dozens of concurrent FMCG client briefs — the margin for knowledge gaps is thin and the consequences are visible on every audit report. The matrix below maps the most commercially critical knowledge gaps against their business impact and the targeted Digemy intervention.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Primary focus: Merchandiser &amp; Senior Merchandiser roles &nbsp;&middot;&nbsp; Leakages 01, 02 &amp; 03</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Field Merchandiser &mdash; Planogram &amp; OSA Compliance</td></tr>
+        <tr><td>Unable to accurately read or interpret multi-client planograms</td><td>Wrong facing counts and incorrect product placement trigger client audit failures and KPI demerits</td><td>Visual planogram micro-modules with photo-match quizzes deployed per client brief, refreshed each reset cycle</td></tr>
+        <tr><td>OSA identification and classification errors</td><td>Unresolved out-of-stocks persist across visit cycles, directly reducing client FMCG sales and triggering SLA reviews</td><td>OSA decision-tree modules with scenario-based practice ensure correct identification and reporting on every store call</td></tr>
+        <tr><td>Incorrect FIFO/FEFO stock rotation on shelf</td><td>Near-expiry product on front shelf drives write-offs, retailer complaints, and brand reputation damage</td><td>Stock rotation principles delivered as short reinforcement bursts with practical scenario checks before store visits</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Promotional Brand Activator &mdash; Launch &amp; Promotional Execution</td></tr>
+        <tr><td>Insufficient knowledge of new product brief before activation</td><td>Incorrect POS placement and sequencing in first six weeks forfeits critical NPD adoption window for client brands</td><td>Launch brief modules pushed to activators 48 hours before go-live, with completion gating field deployment sign-off</td></tr>
+        <tr><td>Poor understanding of promotional pricing mechanics</td><td>Incorrect shelf price tickets and promotional labels create retailer disputes and compliance failures on audited lines</td><td>Promotional mechanics modules per client, updated each trade cycle, with price-check scenario drills built in</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Senior Merchandiser / Team Leader &mdash; Ramp &amp; Coaching Quality</td></tr>
+        <tr><td>Inconsistent onboarding approach for new hires</td><td>Ramp time extends beyond 8 weeks when induction is unstructured — compounding productivity drag across high-turnover cohorts</td><td>Digemy onboarding journey standardises new-hire learning across all regions, replacing inconsistent buddy-system approaches</td></tr>
+        <tr><td>Unable to identify and escalate compliance risk in real time</td><td>KPI failures accumulate until client review — when intervention is already too late to prevent formal remedy processes</td><td>Digemy&#8217;s team analytics give team leaders visibility of knowledge gaps before they translate into missed KPIs</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Digemy maps every competency a Meridian merchandiser requires — <strong>planogram reading and execution, OSA identification protocols, stock rotation standards, promotional setup mechanics, POS placement, reporting app accuracy, client brand standards, and retailer relationship etiquette</strong> — against each individual&#8217;s demonstrated knowledge level in real time. Field managers and regional supervisors see exactly where their teams are underperforming before a client audit exposes the gap, enabling targeted reinforcement that protects SLA scores, accelerates new-hire ramp time, and ensures every one of Meridian&#8217;s 6,000 merchandisers walks into their next store with the knowledge the brief demands.</div>
+</div>
+
+</div>
+
+<div class="footer">digemy.com &mdash; Meridian Group &mdash; Operational Optimisation Report</div>
+</body>
+</html>
