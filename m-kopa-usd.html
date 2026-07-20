@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>M-Kopa — Digemy Operational Optimisation Report (USD)</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026 &middot; USD</div>
+  </div>
+  <div class="eyebrow">SOUTH AFRICA &middot; DIGITAL ASSET FINANCE</div>
+  <h1 style="margin-bottom:32px;">M-Kopa <span>Digital Credit</span></h1>
+  <div class="hero-stats">
+    <div class="hs">
+      <div class="hs-label">Revenue Base</div>
+      <div class="hs-val">~$54m</div>
+      <div class="hs-sub">estimated SA financing portfolio (USD @ ~R18.50/$1)</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Total Addressable Leakage</div>
+      <div class="hs-val p">$2.3m&ndash;$4.3m</div>
+      <div class="hs-sub">estimated annually</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Recovery @ 10%</div>
+      <div class="hs-val g">$232k&ndash;$432k</div>
+      <div class="hs-sub">potential per year</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ═══ SECTION 1: WHY DIGEMY ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>M-Kopa's business model is built on a simple but fragile promise: put the right device in the hands of the right customer, and the repayments follow. That promise breaks the moment a Direct Sales Agent mis-qualifies a customer, skips the activation walkthrough, or fails to explain the USSD payment process clearly. Digemy's spaced reinforcement platform converts one-time field training into daily knowledge discipline — embedding the qualification rigour, onboarding precision, and collections coaching that M-Kopa's credit model depends on but can't audit at scale.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;If your agent doesn't know how to qualify a customer, your credit model doesn't matter — the loss is already baked in before the device leaves their hands.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy helps companies like M-Kopa reduce agent-driven credit losses by reinforcing qualification standards, activation coaching, and payment-process scripting through daily microlearning. Manager accountability dashboards make field team knowledge gaps visible in real time — turning credit quality from a lagging indicator into a leading one.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 2: FRONTLINE WORKFORCE ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Direct Sales Agent (DSA)</td><td>Customer mis-qualification, KYC errors, incomplete product explanation</td></tr>
+        <tr><td>Field Collections Agent</td><td>Inconsistent payment coaching, poor escalation judgment, weak re-engagement scripting</td></tr>
+        <tr><td>Retail Partner In-Store Agent</td><td>Product knowledge gaps, missed upsell, incorrect device setup guidance</td></tr>
+        <tr><td>DSA Team Leader / Area Manager</td><td>Inadequate coaching of agents, failure to flag underperformers before credit losses accumulate</td></tr>
+        <tr><td>Customer Activation Specialist</td><td>Incomplete onboarding walkthrough, poor first-30-day engagement, high early dropout</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> M-Kopa South Africa is estimated to operate with approximately 1,500&ndash;3,000 Direct Sales Agents and field staff across urban and peri-urban markets, supplemented by retail partner networks. All workforce figures are estimated based on publicly available information and industry benchmarks; M-Kopa has not disclosed SA-specific headcount.</div>
+</div>
+
+<!-- ═══ SECTION 3: WHERE LOSS HAPPENS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead>
+        <tr>
+          <th>Leakage Area</th>
+          <th>Assumption</th>
+          <th>Annual Low</th>
+          <th>Annual High</th>
+          <th>Recovery @10%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Agent Sales Quality &amp; Customer Mis-qualification</td>
+          <td>1.5%&ndash;2.5% of est. ~$54m SA financing portfolio</td>
+          <td>$810k</td>
+          <td>$1.35m</td>
+          <td class="rec">$81k&ndash;$135k</td>
+        </tr>
+        <tr>
+          <td>First 30-Day Activation &amp; Engagement Dropout</td>
+          <td>0.8%&ndash;1.5% of est. ~$54m SA financing portfolio</td>
+          <td>$430k</td>
+          <td>$810k</td>
+          <td class="rec">$43k&ndash;$81k</td>
+        </tr>
+        <tr>
+          <td>Collections Coaching Failure &amp; Missed Payment Guidance</td>
+          <td>1.0%&ndash;2.0% of est. ~$54m SA financing portfolio</td>
+          <td>$540k</td>
+          <td>$1.08m</td>
+          <td class="rec">$54k&ndash;$108k</td>
+        </tr>
+        <tr>
+          <td>Cross-Sell &amp; Product Upsell Conversion Loss</td>
+          <td>0.5%&ndash;1.0% of est. ~$54m SA financing portfolio</td>
+          <td>$270k</td>
+          <td>$540k</td>
+          <td class="rec">$27k&ndash;$54k</td>
+        </tr>
+        <tr>
+          <td>Agent Fraud &amp; KYC Documentation Errors</td>
+          <td>0.5%&ndash;1.0% of est. ~$54m SA financing portfolio</td>
+          <td>$270k</td>
+          <td>$540k</td>
+          <td class="rec">$27k&ndash;$54k</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL</td>
+          <td>&mdash;</td>
+          <td>$2.3m</td>
+          <td>$4.3m</td>
+          <td class="rec">$232k&ndash;$432k</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ SECTION 4: TOP 5 LEAKAGE CARDS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- CARD 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Agent Sales Quality &amp; Customer Mis-qualification</div>
+        <div class="lc-body">M-Kopa's PAYG model is a credit decision disguised as a sales transaction — every device disbursed carries repayment risk. When DSAs apply inconsistent qualification criteria, losses are systemic and invisible until the defaults surface weeks later in the credit book.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.5%&ndash;2.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$0.81m&ndash;$1.35m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$81k&ndash;$135k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Mis-qualified accounts inflate the early default rate, erode the unit economics M-Kopa's funding model depends on, and generate collections cost on accounts that should never have been approved. Every ineligible customer is a device lost and a funder relationship strained.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy reinforces affordability assessment frameworks, income-verification decision trees, and red-flag identification daily — turning qualification compliance from a training event into an embedded field habit.</div>
+  </div>
+
+  <!-- CARD 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">First 30-Day Activation &amp; Engagement Dropout</div>
+        <div class="lc-body">A customer who doesn't activate their device and begin using data within the first month rarely recovers — payment motivation collapses when the product isn't embedded in daily life. This window is where agent coaching either pays off or costs the business dearly.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.8%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$430k&ndash;$810k</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$43k&ndash;$81k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Low early engagement correlates directly with first-payment default — once a device is locked, recovery costs spike and agent time is consumed by avoidable escalations that erode field productivity.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy embeds step-by-step activation coaching into DSA post-sale behaviour, reinforcing the onboarding walkthrough that converts a new customer into a paying, engaged one within the critical first 30 days.</div>
+  </div>
+
+  <!-- CARD 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Collections Coaching Failure &amp; Missed Payment Guidance</div>
+        <div class="lc-body">Most M-Kopa customers are first-time credit users — how to pay, when to pay, and how to avoid device lock is knowledge that agents must deliver precisely and consistently. Unclear payment guidance is the leading cause of preventable delinquency in PAYG portfolios.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.0%&ndash;2.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$540k&ndash;$1.1m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$54k&ndash;$108k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Preventable delinquency accumulates fast — a missed first payment more than doubles the probability of eventual default, driving up collections cost and reducing the net portfolio yield M-Kopa reports to debt funders.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy locks in payment-coaching scripts through spaced repetition, ensuring every customer leaves the sale with a clear, consistent understanding of their payment obligations and the USSD process that underpins them.</div>
+  </div>
+
+  <!-- CARD 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Cross-Sell &amp; Product Upsell Conversion Loss</div>
+        <div class="lc-body">M-Kopa's portfolio extends beyond smartphones to Smart TVs, solar products, and financial services — but DSAs focused on device volume rarely pitch the broader suite. The upgrade conversation is the highest-margin moment in the customer lifecycle, and it's being left on the table.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$270k&ndash;$540k</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$27k&ndash;$54k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Missed cross-sell moments mean M-Kopa acquires customers once and monetises them once, when the model is designed for lifetime value accumulation across multiple product cycles and repeat financing relationships.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy reinforces product knowledge and upsell conversation frameworks through bite-sized daily modules, making the cross-sell pitch a natural part of every agent interaction rather than an afterthought.</div>
+  </div>
+
+  <!-- CARD 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Agent Fraud &amp; KYC Documentation Errors</div>
+        <div class="lc-body">In high-volume field distribution, fraudulent applications — ghost customers, falsified IDs, inflated income claims — are a known risk that scales with agent headcount and sales pressure. Inadequate KYC training creates the gaps that bad actors exploit with predictable regularity.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$270k&ndash;$540k</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$27k&ndash;$54k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Fraud losses are hard to recover and harder to detect — by the time a fraudulent account defaults, the device is gone and the agent is often unreachable. Prevention through consistent KYC discipline is the only effective control mechanism at field scale.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy's compliance modules reinforce KYC verification steps and fraud red-flag identification through spaced repetition, ensuring documentation standards are applied consistently across a geographically dispersed field force.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- ═══ VALUE SUMMARY — OUTSIDE .page ═══ -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">$2.3m&ndash;$4.3m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">$232k&ndash;$432k per year</span></div>
+  </div>
+  <p>M-Kopa's South African growth depends on a field force that simultaneously makes credit decisions, delivers product onboarding, coaches payment behaviour, and manages customer relationships — all without a branch, a manager in the room, or a second chance to get it right. <strong>Without structured knowledge reinforcement, operational leakage accumulates silently in the credit loss ratio, the collections cost line, and the lifetime value of every customer who was never properly onboarded.</strong> Digemy closes the gap between what agents are trained to do and what they actually do at the moment of truth — turning field knowledge into a measurable, improvable operational asset.</p>
+</div>
+
+<!-- ═══ KG MATRIX + SKILLS MATRIX — second .page block ═══ -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">M-Kopa's operational risk is concentrated at the point of customer acquisition and early lifecycle management, where agent knowledge gaps translate directly into credit losses and customer dropout. The matrix below maps critical knowledge deficits within the DSA and collections workforce to their downstream financial impact and the Digemy interventions that address them.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Direct Sales Agent &nbsp;&middot;&nbsp; Leakage 01 &mdash; Agent Sales Quality &amp; Customer Mis-qualification</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead>
+        <tr>
+          <th style="width:34%">Knowledge Gap</th>
+          <th style="width:33%">Business Impact</th>
+          <th style="width:33%">Digemy Solution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Direct Sales Agent (DSA)</td></tr>
+        <tr>
+          <td>Incomplete affordability assessment — income verification not applied consistently</td>
+          <td>Customers approved beyond repayment capacity; early default rate inflates credit loss ratio</td>
+          <td>Spaced reinforcement of qualification framework and income-verification decision tree with scenario-based drills</td>
+        </tr>
+        <tr>
+          <td>KYC document verification checklist not followed at point of application</td>
+          <td>Fraudulent or incomplete applications processed; write-off risk with no recovery mechanism</td>
+          <td>Daily compliance micro-drills on KYC steps, document authenticity checks, and red-flag identification</td>
+        </tr>
+        <tr>
+          <td>Weak product value articulation during the sales conversation</td>
+          <td>Customer doesn't perceive device value; payment motivation is low from day one of the credit term</td>
+          <td>Product knowledge modules reinforcing value-benefit language and objection-handling scripts that drive commitment</td>
+        </tr>
+        <tr>
+          <td>USSD payment walkthrough skipped or delivered inconsistently</td>
+          <td>First payment missed due to process confusion; preventable delinquency baked in at point of sale</td>
+          <td>Step-by-step payment-coaching scripts embedded in onboarding reinforcement loops with manager dashboard tracking</td>
+        </tr>
+        <tr>
+          <td>No post-sale activation follow-up protocol applied</td>
+          <td>Customer doesn't activate device; disengages within first two weeks; defaults before day 30</td>
+          <td>Activation milestone prompts and follow-up behaviour reinforced via Digemy manager accountability dashboard</td>
+        </tr>
+        <tr class="role-hdr"><td colspan="3">Role: Field Collections Agent</td></tr>
+        <tr>
+          <td>Unclear escalation criteria for delinquent accounts</td>
+          <td>Low-value escalations consume supervisor time while genuine credit risks go undetected until too late</td>
+          <td>Decision-tree reinforcement on escalation thresholds, recovery prioritisation, and account triage protocols</td>
+        </tr>
+        <tr>
+          <td>Inconsistent payment reminder scripting across the collections team</td>
+          <td>Customer confusion and disputes extend resolution timelines; collections cost per recovered rand increases</td>
+          <td>Standardised reminder and re-engagement scripts delivered through spaced repetition with call quality benchmarking</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Digemy's Skills Matrix for M-Kopa South Africa spans three operational capability clusters: <strong>Customer Qualification &amp; Credit Discipline</strong> (affordability assessment, KYC rigour, fraud identification), <strong>Activation &amp; Onboarding Excellence</strong> (device setup, USSD payment coaching, first 30-day engagement), and <strong>Collections &amp; Lifecycle Management</strong> (delinquency scripting, escalation judgment, cross-sell conversion). Each cluster maps specific agent knowledge competencies to measurable credit and operational outcomes — qualification accuracy, 30-day activation rate, first-payment success, and portfolio yield — giving M-Kopa's field leadership real-time visibility into where knowledge gaps are driving the credit metrics that matter most to funders and the board.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; M-Kopa South Africa &mdash; Operational Optimisation Report</div>
+</body>
+</html>
