@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AFGRI — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:32px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--coral); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+.wf-note { margin-top:16px; background:rgba(155,140,245,0.07); border:1px solid rgba(155,140,245,0.2); border-radius:10px; padding:14px 20px; font-size:13px; color:var(--muted); line-height:1.7; }
+.wf-note strong { color:var(--navy); font-weight:800; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Agri-Business &amp; Agricultural Services</div>
+  <h1>AFGRI <span>Group</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R15bn</div><div class="hs-sub">estimated annual (SA)</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R412.5m&ndash;R1.05bn</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R41.25m&ndash;R105m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">AFGRI Group sits at the intersection of food security, agricultural productivity and rural economic development in South Africa — and its commercial performance depends on the quality of knowledge deployed daily by thousands of frontline workers who operate silos, advise farmers on inputs and credit, and service John Deere equipment through the most pressure-intense moments of the agricultural calendar. When a silo operator misapplies a grading standard, an agri retail consultant recommends the wrong crop protection product, or an equipment technician misdiagnoses a fault during harvest, the losses are immediate, cascading and often invisible on any standard P&amp;L. <strong style="color:var(--navy);">AFGRI doesn&#8217;t have a recruitment problem or a product problem — it has a knowledge consistency problem that compounds across 250+ silos, hundreds of retail points and a national equipment dealership network.</strong>
+    <br><br>
+    Digemy is built for exactly this operating environment. Its spaced repetition microlearning platform closes the gap between what frontline workers are trained to know and what they actually apply under pressure — by embedding knowledge in short, role-specific modules that are reinforced over time, tracked for completion and tied directly to the operational behaviours that protect and grow revenue. The FLM Academy case study demonstrated what this looks like at scale: a 60&times; increase in engagement, a 154% improvement in knowledge retention and a 70% reduction in ramp time for new hires — outcomes that translate directly into fewer grading errors at AFGRI silos, better input recommendations at agri retail counters and faster competence ramp for seasonal workers joining at peak intake.</div>
+    <div class="killer">&#8220;In agri-business, a frontline advisor who gets the recommendation wrong doesn&#8217;t just lose a sale &mdash; they damage the farmer&#8217;s season, and with it, years of trust that took decades to build.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy targets behaviour-driven leakages across agri retail advisory accuracy, silo and grain-handling compliance, equipment diagnostic discipline, financial services product knowledge and new-hire ramp time — using its unique combination of training technology, proven methodologies and real-world frameworks to reduce these leakages FAST, by increasing retention, application and accountability across every frontline role.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Silo Operators / Grain Intake Staff</td><td>Grading accuracy, receiving protocols, fumigation compliance, safety SOPs</td></tr>
+        <tr><td>Agri Retail Consultants / Counter Staff</td><td>Crop input recommendation accuracy, product knowledge, upsell and cross-sell discipline</td></tr>
+        <tr><td>Equipment Workshop Technicians</td><td>Diagnostic accuracy, service procedure compliance, parts identification, warranty administration</td></tr>
+        <tr><td>Field Service Agents / Precision Agri Advisors</td><td>On-farm advice quality, technology adoption, farmer engagement consistency</td></tr>
+        <tr><td>Financial Services Consultants</td><td>Product compliance, loan assessment accuracy, farmer financial literacy guidance</td></tr>
+        <tr><td>Agri Retail Store Managers / Supervisors</td><td>Team coaching, SOP adherence, seasonal campaign execution, stock management</td></tr>
+        <tr><td>Food Production / QC Staff (Gromark)</td><td>Milling process adherence, quality control discipline, food safety protocol compliance</td></tr>
+        <tr><td>Yard &amp; Dispatch Operators (Silos)</td><td>Load accuracy, dispatch coordination, stock reconciliation, documentation compliance</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="wf-note"><strong>Frontline Workforce Estimate:</strong> AFGRI employs approximately 5,000–7,000 frontline and operational staff across its South African agri retail, grain handling, equipment, financial services and food production divisions. This estimate excludes corporate and head office functions and is derived from store/silo/dealership network size and industry benchmarking. The Digemy opportunity is focused on this operational layer.</div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Agri Retail Advisory &amp; Sales Conversion Failure</td><td>1.0%&ndash;2.0%</td><td>R150m</td><td>R300m</td><td class="rec">R15m&ndash;R30m</td></tr>
+        <tr><td>Silo Receiving, Grading &amp; Compliance Errors</td><td>0.5%&ndash;1.5%</td><td>R75m</td><td>R225m</td><td class="rec">R7.5m&ndash;R22.5m</td></tr>
+        <tr><td>Equipment Service &amp; Diagnostic Failure</td><td>0.5%&ndash;1.5%</td><td>R75m</td><td>R225m</td><td class="rec">R7.5m&ndash;R22.5m</td></tr>
+        <tr><td>Financial Services Compliance &amp; Conversion Gaps</td><td>0.5%&ndash;1.0%</td><td>R75m</td><td>R150m</td><td class="rec">R7.5m&ndash;R15m</td></tr>
+        <tr><td>New-Hire Ramp Time &amp; Seasonal Competence Gaps</td><td>0.5%&ndash;1.5%</td><td>R37.5m est.</td><td>R150m</td><td class="rec">R3.75m&ndash;R15m</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R412.5m</td><td>R1.05bn</td><td class="rec">R41.25m&ndash;R105m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Agri Retail Advisory &amp; Sales Conversion Failure</div>
+        <div class="lc-body">AFGRI&#8217;s agri retail business competes on advice quality as much as product availability. When consultants can&#8217;t accurately diagnose crop stress symptoms, recommend the right input combination or explain the agronomic rationale, farmers migrate to competitors — taking their entire season&#8217;s spend with them.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.0%&ndash;2.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R150m&ndash;R300m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R15m&ndash;R30m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Reduced basket value per farmer visit; Missed upsell and cross-sell on complementary inputs; Farmer defection to competitor input suppliers; Lower loyalty and repeat purchase rates; Suboptimal crop protection recommendations increasing farmer risk</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Builds crop-by-crop product knowledge cards, input recommendation decision trees, seasonal campaign briefings and upsell prompts — delivered before peak planting seasons so every consultant arrives at the counter fully prepared.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Silo Receiving, Grading &amp; Compliance Errors</div>
+        <div class="lc-body">AFGRI&#8217;s silo network handles millions of tonnes of grain annually. When intake operators apply incorrect grading standards, miss moisture or contamination thresholds, or skip fumigation protocols, the result is grain quality degradation, incorrect farmer payments, regulatory non-compliance and silo throughput bottlenecks.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R75m&ndash;R225m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R7.5m&ndash;R22.5m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Incorrect farmer payments and disputes; Grain quality downgrades; Regulatory penalty exposure; Fumigation non-compliance; Bottlenecks at peak intake; Reputational damage with commercial grain buyers</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Reinforces grading standards, intake SOPs, moisture and contamination thresholds, fumigation schedules and documentation discipline — delivered as role-specific micro-modules refreshed before each intake season.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Equipment Service &amp; Diagnostic Failure</div>
+        <div class="lc-body">AFGRI Equipment technicians service John Deere machinery at the most critical moments of the agricultural calendar. When a technician misdiagnoses a fault, skips a service step or can&#8217;t confidently navigate diagnostic systems, the resulting machine downtime can cost a farmer their entire harvest window — destroying AFGRI&#8217;s service brand and contract renewal rates.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R75m&ndash;R225m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R7.5m&ndash;R22.5m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Extended machine downtime during harvest; Repeat call-outs on unresolved faults; Parts misidentification and incorrect orders; Warranty claim errors; Reduced service contract renewals; Farmer trust erosion</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Embeds equipment diagnostic sequences, service procedure micro-modules, parts identification tools and warranty administration knowledge — keeping technicians sharp on each model and update without pulling them off the workshop floor.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Financial Services Compliance &amp; Conversion Gaps</div>
+        <div class="lc-body">AFGRI Financial Services consultants operate at the intersection of agricultural and financial complexity. When consultants misapply product criteria, miscommunicate loan terms, or fail to identify cross-sell opportunities between production finance and crop insurance, AFGRI loses conversion value and exposes itself to compliance risk.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R75m&ndash;R150m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R7.5m&ndash;R15m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Missed cross-sell between production finance and insurance; Loan assessment errors increasing default risk; Compliance breaches in credit advice; Farmer dissatisfaction from miscommunicated terms; Conversion below potential</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Reinforces financial product knowledge, compliance obligations, cross-sell triggers, application assessment discipline and farmer communication scripts — so every consultant can advise with accuracy and confidence.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">New-Hire Ramp Time &amp; Seasonal Competence Gaps</div>
+        <div class="lc-body">AFGRI&#8217;s seasonal intake of staff — silo operators, agri retail assistants and harvest-period technicians — means thousands of workers begin operating in high-stakes environments before reaching competence. Each week spent below the performance line during planting and harvest seasons represents direct, unrecovered revenue and operational risk.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R37.5m&ndash;R150m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R3.75m&ndash;R15m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Extended time-to-competence for seasonal staff; Errors during peak intake and planting windows; Supervisory overload covering for under-prepared hires; Inconsistent customer and farmer experience; Compliance incidents during onboarding window</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Compresses onboarding ramp time through spaced repetition micro-learning — delivering role-specific knowledge on silo protocols, retail product ranges and service procedures before and during the first 90 days, with retention reinforced through data-tracked repetition cycles.</div>
+  </div>
+
+</div>
+
+</div><!-- end .page -->
+
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R412.5m&ndash;R1.05bn</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R41.25m&ndash;R105m per year</span></div>
+  </div>
+  <p>Using a ~R15bn South African revenue base, the five AFGRI leakage areas could represent approximately <strong>R412.5m&ndash;R1.05bn</strong> in annual leakage across agri retail advisory failure, silo compliance errors, equipment service gaps, financial services conversion losses and seasonal ramp inefficiency. If Digemy helps recover just 10% through improved frontline knowledge consistency, the potential recovered value is approximately <strong>R41.25m&ndash;R105m per year</strong> &mdash; without expanding a single silo, store or dealership.</p>
+</div>
+
+<div class="page" style="padding-top:0;">
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">By identifying the exact skills gap relating to each leakage area, <strong style="color:var(--navy);font-weight:800;">Digemy creates skills matrices that map each operational gap to the business impact</strong>, with a clear roadmap of how to solve it &mdash; using data-led knowledge management to solve the problems costing you millions every year.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Agri Retail Consultants &nbsp;&middot;&nbsp; Leakage 01 &mdash; Advisory &amp; Sales Conversion Failure</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Agri Retail Consultants / Counter Staff</td></tr>
+        <tr><td>Cannot accurately diagnose crop stress symptoms or pest identification</td><td>Wrong input recommendation — farmer crop loss and trust erosion</td><td>Crop diagnosis micro-scenarios with visual symptom identification cards</td></tr>
+        <tr><td>Weak knowledge of product range, active ingredients and compatibility</td><td>Missed recommendations and potential phytotoxicity risk for farmers</td><td>Product range knowledge cards refreshed per seasonal crop protection catalogue</td></tr>
+        <tr><td>Doesn&#8217;t proactively cross-sell complementary inputs or technology products</td><td>Basket value below potential — single-product purchases missed</td><td>Cross-sell prompt modules tied to common input purchase combinations</td></tr>
+        <tr><td>Poor awareness of seasonal promotions, rebate structures and bulk offers</td><td>Farmers not converting on promotions — revenue and margin missed</td><td>Weekly promotional reinforcement pushed before each seasonal campaign</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Silo Operators / Grain Intake Staff</td></tr>
+        <tr><td>Inconsistent application of grading standards and moisture thresholds</td><td>Incorrect farmer payments, grain downgrading, regulatory exposure</td><td>Grading standards micro-modules refreshed before each intake season</td></tr>
+        <tr><td>Fumigation protocol gaps — incorrect dosing, timing or documentation</td><td>Grain quality loss, non-compliance penalties, buyer contract risk</td><td>Fumigation SOP micro-drills with documented completion tracking</td></tr>
+        <tr><td>Weak receiving documentation and reconciliation discipline</td><td>Stock discrepancies, farmer disputes and audit exposure</td><td>Receiving checklist reinforcement and documentation discipline nudges</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Equipment Workshop Technicians</td></tr>
+        <tr><td>Incomplete diagnostic sequences on new model updates</td><td>Misdiagnosis leading to repeat call-out and extended machine downtime</td><td>Model-specific diagnostic sequence micro-modules tied to service bulletins</td></tr>
+        <tr><td>Parts misidentification causing incorrect orders and delays</td><td>Workshop delays and farmer frustration during peak harvest windows</td><td>Parts identification visual knowledge cards per equipment category</td></tr>
+        <tr><td>Warranty claim documentation errors</td><td>Rejected warranty claims — direct cost absorption by AFGRI Equipment</td><td>Warranty administration process reinforcement with compliance tracking</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">
+    <p>The Digemy Skills Matrix for AFGRI would be structured across four primary operational domains: <strong>Grain Management &amp; Silo Operations</strong>, <strong>Agri Retail Advisory</strong>, <strong>Equipment Services</strong> and <strong>Financial Services Compliance</strong>. Within each domain, Digemy maps the specific knowledge competencies required per role, the current gap severity, the leakage consequence of that gap, and the micro-learning intervention designed to close it — tracked via Digemy&#8217;s completion and retention analytics so managers can see exactly which teams are at risk and where the knowledge is not yet sticking.</p>
+    <p style="margin-top:16px;">For AFGRI, the highest-priority matrix entries would centre on silo intake grading accuracy (where errors create direct payment and regulatory consequences), agri retail crop input recommendation confidence (where advice quality is the primary competitive differentiator), and equipment diagnostic sequencing (where technician errors during harvest create cascading losses for both AFGRI and the farming customers it serves). The Skills Matrix becomes AFGRI&#8217;s single source of truth on <strong>where its frontline knowledge is strong, where it is fragile, and what it costs when it fails</strong>.</p>
+  </div>
+</div>
+</div>
+
+<div class="footer">digemy.com &mdash; AFGRI Group South Africa &mdash; Operational Optimisation Report</div>
+</body>
+</html>
