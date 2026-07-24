@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Bryte Insurance — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Commercial Insurance</div>
+  <h1 style="margin-bottom:32px;">Bryte <span>Insurance</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R5bn</div><div class="hs-sub">GWP, estimated</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R195m&ndash;R370m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R19.5m&ndash;R37m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ═══ SECTION 1: WHY DIGEMY ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>In commercial insurance, technical profit lives or dies on the daily decisions of claims handlers, underwriters, and broker managers &mdash; and knowledge gaps at these touchpoints are invisible until they surface in the loss ratio. Bryte&rsquo;s broker-distributed, multi-class portfolio creates compound exposure to mispricing, over-settlement, and placement errors that tighten margins silently. Digemy&rsquo;s spaced reinforcement platform targets exactly these failure points &mdash; building the operational knowledge that keeps loss ratios tight and broker confidence high.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;In commercial insurance, every gap in claims knowledge is a gap in the loss ratio &mdash; it just takes a policy term to show up.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy delivers 154% knowledge retention improvement and 70% faster ramp time with companies in comparable financial services environments. For Bryte, targeted reinforcement across claims assessment, underwriting accuracy, and broker relationship management translates directly to tighter loss ratios, stronger placement quality, and first-year retention rates that reflect the calibre of your book &mdash; not gaps in your training.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 2: FRONTLINE WORKFORCE ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Claims Handler / Assessor</td><td>Fraud detection gaps, over-settlement, TCF (Treating Customers Fairly) non-compliance</td></tr>
+        <tr><td>Commercial Underwriter</td><td>Risk mis-pricing, adverse selection, inadequate exposure assessment by class</td></tr>
+        <tr><td>Broker Relationship Manager</td><td>Product knowledge gaps, low quote-to-bind conversion, wrong placements</td></tr>
+        <tr><td>Risk Surveyor / Engineer</td><td>Inaccurate risk grading, underinsurance gaps, loss prevention failures</td></tr>
+        <tr><td>Client Service Consultant</td><td>TCF compliance failures, complaint escalation, poor policy explanation</td></tr>
+        <tr><td>Technical Claims Specialist</td><td>Complex claims errors, E&amp;O exposure, reinsurance recovery failures</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Bryte Insurance employs approximately 600&ndash;800 staff in South Africa (est.), with operational and client-facing roles &mdash; across claims, underwriting, broker management, and risk engineering &mdash; accounting for an estimated 400&ndash;550 of that total. All workforce and financial figures are estimated; Bryte&rsquo;s website was inaccessible during report preparation and have been inferred from public market data.</div>
+</div>
+
+<!-- ═══ SECTION 3: WHERE LOSS HAPPENS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Claims Leakage &amp; Fraud</td><td>2%&ndash;4% of claims base (est. R3.5bn; 70% loss ratio on GWP)</td><td>R70m</td><td>R140m</td><td class="rec">R7m&ndash;R14m</td></tr>
+        <tr><td>Underwriting Pricing Errors</td><td>1%&ndash;2% of GWP (Gross Written Premium, est. R5bn) from mis-rated risk</td><td>R50m</td><td>R100m</td><td class="rec">R5m&ndash;R10m</td></tr>
+        <tr><td>First-Year Policy Lapse</td><td>Knowledge-gap share (est. 25%) of 15%&ndash;20% first-yr lapse on NAPI (new annual premium income, est. R1.1bn)</td><td>R40m</td><td>R55m</td><td class="rec">R4m&ndash;R5.5m</td></tr>
+        <tr><td>Broker Placement Quality Gaps</td><td>0.5%&ndash;1% of GWP &mdash; wrong placements &amp; E&amp;O exposure</td><td>R25m</td><td>R50m</td><td class="rec">R2.5m&ndash;R5m</td></tr>
+        <tr><td>Regulatory Compliance Failures</td><td>Est. FSCA TCF + POPIA annual regulatory risk; non-GWP-derived</td><td>R10m</td><td>R25m</td><td class="rec">R1m&ndash;R2.5m</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R195m</td><td>R370m</td><td class="rec">R19.5m&ndash;R37m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ SECTION 4: TOP 5 LEAKAGE CARDS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- CARD 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Claims Leakage &amp; Fraud Detection Gaps</div>
+        <div class="lc-body">Commercial claims in South Africa carry material fraud exposure &mdash; from inflated property losses to staged liability events &mdash; and under-trained assessors consistently miss the signals. When handlers lack deep policy wording and exclusion knowledge, incorrect settlements follow, inflating loss ratios and generating errors-and-omissions risk.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">2%&ndash;4% claims base</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R70m&ndash;R140m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R7m&ndash;R14m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Loss ratios inflate, IBNR (incurred but not reported) reserves are miscalculated, and technical profit erodes quarter by quarter. Fraudulent claims that go unchallenged set precedents that attract repeat exposure across the book.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Spaced reinforcement on fraud indicators, policy exclusion scenarios, and settlement authority protocols &mdash; with Digemy&rsquo;s manager dashboards tracking each handler&rsquo;s knowledge confidence in real time.</div>
+  </div>
+
+  <!-- CARD 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Underwriting Accuracy &amp; Adverse Selection</div>
+        <div class="lc-body">Mis-rated commercial risks &mdash; through incomplete exposure data, wrong class assignment, or inadequate survey findings &mdash; produce under-priced policies that only reveal themselves at claim. Bryte&rsquo;s multi-class portfolio amplifies this exposure across property, engineering, liability, and motor fleet lines.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;2% of GWP</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R50m&ndash;R100m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R5m&ndash;R10m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Adverse loss ratios by class erode technical profit and create reinsurance recovery shortfalls on large losses. The portfolio gradually skews toward under-performing risks that are structurally difficult to correct mid-term.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Weekly underwriting scenario drills by class of business, KPI-linked to loss ratio targets &mdash; with Digemy&rsquo;s analytics surfacing knowledge gaps before they become pricing errors on the next renewal.</div>
+  </div>
+
+  <!-- CARD 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">First-Year Policy Lapse &amp; New Business Attrition</div>
+        <div class="lc-body">Commercial policies that lapse in year one deliver acquisition cost with no return &mdash; and in a broker-intermediated model, poor onboarding and product understanding at point of sale is a primary driver. Brokers who can&rsquo;t fully articulate the product&rsquo;s value struggle to retain clients when renewal pressure hits.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">First-Year Lapse Rate</span><span class="sp-v">15%&ndash;20%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R40m&ndash;R55m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R4m&ndash;R5.5m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">New business GWP erodes faster than the book grows, customer acquisition cost inflates, and broker relationships weaken through repeated placement-and-lapse cycles. First-year lapse disproportionately damages profitability given upfront commission and underwriting spend.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Structured onboarding reinforcement for both internal account teams and broker-facing channels &mdash; ensuring product value is internalised before the first renewal conversation begins.</div>
+  </div>
+
+  <!-- CARD 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Broker Knowledge Gaps &amp; Placement Quality</div>
+        <div class="lc-body">Bryte&rsquo;s distribution runs through a large broker network, and the quality of placement decisions depends directly on how well brokers understand the product range. Knowledge gaps produce wrong covers, inadequate limits, and missed specialty placements &mdash; increasing E&amp;O exposure and reducing Bryte&rsquo;s competitive positioning at quote stage.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1% of GWP</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R25m&ndash;R50m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R2.5m&ndash;R5m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Incorrect placements generate dispute costs, errors-and-omissions claims, and damaged broker relationships. Specialist products are under-distributed because brokers lack the confidence to recommend them over standard market alternatives.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Broker-targeted product knowledge modules deployed via Digemy &mdash; with completion tracking and gap assessments that give Bryte&rsquo;s broker management team real-time visibility into placement readiness across the network.</div>
+  </div>
+
+  <!-- CARD 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Regulatory Compliance &amp; TCF Failures</div>
+        <div class="lc-body">FSCA&rsquo;s Treating Customers Fairly (TCF) framework places direct accountability on insurers for how policies are explained, sold, and administered &mdash; and non-compliance stems almost entirely from knowledge gaps in client-facing teams. POPIA obligations compound the regulatory risk for firms handling large volumes of commercial client data.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Regulatory Exposure</span><span class="sp-v">Est. R10m&ndash;R25m</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R10m&ndash;R25m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1m&ndash;R2.5m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Regulatory fines, licence conditions, mandatory remediation programmes, and reputational damage in a market where broker trust depends on clean compliance records. TCF failures are increasingly enforced through named-entity action by the FSCA.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Compliance microlearning modules with audit-ready completion records &mdash; ensuring every client-facing role can demonstrate TCF and POPIA competency to the FSCA, not just awareness.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- ═══ VALUE SUMMARY — OUTSIDE .page ═══ -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R195m&ndash;R370m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R19.5m&ndash;R37m per year</span></div>
+  </div>
+  <p>Bryte&rsquo;s operational leakage is concentrated in three mutually reinforcing failure points: claims handlers who settle too fast, underwriters who price too low, and broker managers who convert too little. Companies operating comparable commercial insurance portfolios with Digemy have seen measurable recovery from year one &mdash; closing knowledge gaps that otherwise compound into premium erosion, inflated loss ratios, and regulatory exposure. <strong>The opportunity for Bryte isn&rsquo;t a training programme &mdash; it&rsquo;s a margin recovery strategy.</strong></p>
+</div>
+
+<!-- ═══ KG MATRIX + SKILLS MATRIX ═══ -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">Across Bryte&rsquo;s operational teams, knowledge gaps translate directly into technical underperformance &mdash; misread claims, mis-priced risks, and missed placements that only surface in the reporting cycle. The matrix below maps critical gaps to business impact and Digemy&rsquo;s reinforcement solution, starting with the claims and underwriting roles that sit at the front line of loss ratio control.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Focus: Claims Handler &nbsp;&middot;&nbsp; Leakage 01 &mdash; Claims Leakage &amp; Fraud Detection</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Claims Handler / Assessor</td></tr>
+        <tr><td>Fraud indicator recognition across commercial claim types</td><td>Missed signals lead to inflated settlements, eroding technical profit and attracting repeat fraudulent exposure across the book</td><td>Spaced fraud scenario simulations with manager escalation alerts and performance benchmarking via Digemy</td></tr>
+        <tr><td>Policy wording, exclusion, and condition knowledge</td><td>Incorrect claim acceptance or rejection creates E&amp;O exposure and TCF compliance risk with direct FSCA implications</td><td>Bite-sized policy module library by product class, with post-claim knowledge gap assessments built into the workflow</td></tr>
+        <tr><td>Settlement negotiation with external loss adjusters</td><td>Over-reliance on adjuster valuations inflates LAE (Loss Adjustment Expense) and final settlement costs without challenge</td><td>Negotiation scenario drills with tracked calibration outcomes and performance benchmarking against Digemy&rsquo;s cohort data</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Commercial Underwriter</td></tr>
+        <tr><td>Risk categorisation and class-of-business assignment</td><td>Mis-assigned class codes produce under-priced policies that generate adverse loss ratios, difficult to correct mid-term</td><td>Weekly class-of-business scenario drills linked to live portfolio KPIs via Digemy&rsquo;s analytics layer and manager dashboard</td></tr>
+        <tr><td>Reinsurance trigger thresholds and treaty structure</td><td>Knowledge gaps on treaty terms cause recovery failures on large losses, exposing Bryte to unexpected net retained loss</td><td>Treaty structure reinforcement modules with scenario-based escalation exercises and periodic competency checks</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Digemy&rsquo;s skills matrix for Bryte would map competency requirements across four core operational roles &mdash; <strong>Claims Handler, Commercial Underwriter, Broker Relationship Manager, and Risk Surveyor</strong> &mdash; against a structured curriculum covering policy knowledge, fraud awareness, TCF compliance, risk assessment methodology, and negotiation skills. Each role&rsquo;s learning path is reinforced through spaced repetition at defined intervals, with manager dashboards surfacing confidence gaps before they become performance gaps in the combined ratio. For Bryte&rsquo;s leadership, this delivers what the traditional LMS never could: <strong>a real-time view of operational knowledge readiness across the teams that drive technical profitability.</strong></div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Bryte Insurance &mdash; Operational Optimisation Report</div>
+</body>
+</html>
