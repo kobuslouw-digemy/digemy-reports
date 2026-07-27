@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MIWay Insurance — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Direct Short-Term Insurance</div>
+  <h1 style="margin-bottom:32px;">MIWay <span>Insurance.</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R5bn</div><div class="hs-sub">Gross Written Premiums</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R170m&ndash;R305m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R17m&ndash;R30m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- SECTION 1: WHY DIGEMY -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>MIWay's entire revenue model runs through people on phones — telesales consultants converting quotes, retention agents defending the in-force book, claims handlers protecting the loss ratio. At the scale of a direct insurer processing thousands of calls daily, knowledge decay is not an occasional risk; it is a structural operational drain that compounds quietly across every shift. Digemy's spaced reinforcement model keeps frontline capability current, compliant, and conversion-ready — without pulling agents off the floor.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;In direct insurance, your product is the conversation. Every fumbled objection, every winnable policy that lapses, every non-compliant disclosure is a training failure dressed up as a business outcome.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy's reinforcement cadences deliver 3&ndash;5 minute knowledge bursts tied to MIWay's highest-leakage moments &mdash; the telesales pitch, the cancellation call, the claims assessment. With an estimated 2,500&ndash;3,500 frontline agents and a ~R5bn GWP base, even marginal improvements in conversion, retention, and claims accuracy recover multiples of any training investment in the first year.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: FRONTLINE WORKFORCE -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Telesales Consultant (Inbound)</td><td>Conversion rate decay, product knowledge gaps on live quotes</td></tr>
+        <tr><td>Telesales Consultant (Outbound)</td><td>Script non-compliance, objection handling failure on cold pipeline</td></tr>
+        <tr><td>Retention Agent</td><td>Lapse prevention failure, inability to counter cancellation triggers</td></tr>
+        <tr><td>Claims Handler</td><td>Coverage assessment errors, over-settlement risk, FSCA complaints</td></tr>
+        <tr><td>Customer Service Agent</td><td>Policy accuracy failures, first-call resolution breakdown</td></tr>
+        <tr><td>Collections Agent</td><td>Payment arrangement compliance, tone and regulatory adherence</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> MIWay employs an estimated 2,500&ndash;3,500 frontline call centre staff across sales, retention, claims, and service functions &mdash; all operating in a high-volume, knowledge-sensitive environment where daily performance directly determines premium income, lapse rates, and regulatory standing.</div>
+</div>
+
+<!-- SECTION 3: WHERE LOSS HAPPENS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Sales Conversion Decay</td><td>1&ndash;1.5% of ~R5bn GWP (telesales premium base)</td><td>R50m</td><td>R75m</td><td class="rec">R5m&ndash;R8m</td></tr>
+        <tr><td>Lapse &amp; Retention Failure</td><td>1&ndash;2% of ~R5bn GWP (in-force premium base)</td><td>R50m</td><td>R100m</td><td class="rec">R5m&ndash;R10m</td></tr>
+        <tr><td>Claims Handling Leakage</td><td>0.6&ndash;0.9% of ~R3.25bn net claims incurred</td><td>R20m</td><td>R30m</td><td class="rec">R2m&ndash;R3m</td></tr>
+        <tr><td>FAIS &amp; Compliance Exposure</td><td>0.5&ndash;1% of ~R5bn GWP as regulatory &amp; remediation risk</td><td>R25m</td><td>R50m</td><td class="rec">R2.5m&ndash;R5m</td></tr>
+        <tr><td>Cross-sell Capability Gap</td><td>0.5&ndash;1% of ~R5bn GWP on bundling uplift potential</td><td>R25m</td><td>R50m</td><td class="rec">R2.5m&ndash;R5m</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R170m</td><td>R305m</td><td class="rec">R17m&ndash;R30m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SECTION 4: TOP 5 LEAKAGE CARDS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- Leakage 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Sales Conversion Decay</div>
+        <div class="lc-body">Telesales consultants operating with incomplete or outdated product knowledge fail to close winnable quotes. In a direct model where every inbound call is a live selling opportunity, even a marginal drop in close rate compounds across hundreds of agents daily.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;1.5% of GWP</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R50m&ndash;R75m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R5m&ndash;R8m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Declining close rates inflate cost-per-acquisition as unconverted leads accumulate. Consultant confidence erodes over time, creating a self-reinforcing cycle of lower conversion and lower product knowledge engagement.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Weekly product and objection-handling micro-modules &mdash; 3&ndash;5 minutes, mobile-first &mdash; keep telesales consultants sharp on MIWay's value propositions and competitive differentiators at exactly the moment they matter.</div>
+  </div>
+
+  <!-- Leakage 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Lapse &amp; Retention Failure</div>
+        <div class="lc-body">Retention agents who cannot credibly counter price sensitivity, competitive offers, or affordability concerns allow policies to lapse that could have been saved. With each lapse reducing in-force premium immediately, the cost is direct and non-recoverable without expensive reacquisition.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;2% of GWP</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R50m&ndash;R100m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R5m&ndash;R10m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Rising lapse rates erode the in-force book, inflate new-business acquisition costs to offset lost premium, and depress NPS as customers feel underserved at the most critical interaction point in the policy lifecycle.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Retention scripting, competitor counter-argument modules, and affordability restructuring training delivered in reinforced weekly cadences &mdash; equipping agents to win the cancellation conversation before it becomes a lost policy.</div>
+  </div>
+
+  <!-- Leakage 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Claims Handling Leakage</div>
+        <div class="lc-body">Claims handlers who misapply policy terms, settle prematurely, or miscalculate entitlements expose MIWay to over-settlement costs and FSCA complaints simultaneously. At the volume of a direct insurer, small per-claim errors aggregate into a measurable loss ratio impact.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.6%&ndash;1% of claims</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R20m&ndash;R30m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R2m&ndash;R3m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Over-settlement inflates the loss ratio, complaint volumes trigger regulatory scrutiny, and inconsistent assessment quality undermines customer trust in the claims experience &mdash; MIWay's highest-stakes brand moment.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Targeted micro-learning on policy wording, claims assessment protocols, and dispute handling &mdash; reinforced monthly to stay aligned with product changes, regulatory updates, and lessons from actual complaints data.</div>
+  </div>
+
+  <!-- Leakage 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">FAIS &amp; Compliance Exposure</div>
+        <div class="lc-body">In a telesales environment, FAIS compliance is entirely dependent on what agents say on the phone &mdash; disclosure obligations, needs analysis scripting, and complaints handling. Gaps here carry both direct regulatory penalty risk and material remediation cost.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1% of GWP</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R25m&ndash;R50m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R2.5m&ndash;R5m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Non-compliant disclosures invite FSCA investigations and remediation payouts. Enforcement risk is amplified by MIWay's high call volumes &mdash; a systemic scripting gap affects thousands of interactions before it is identified.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Compliance learning tracks embed disclosure obligations, needs analysis scripting, and complaints handling as non-negotiable reinforced knowledge &mdash; keeping every agent audit-ready on every call, every day.</div>
+  </div>
+
+  <!-- Leakage 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Cross-sell Capability Gap</div>
+        <div class="lc-body">MIWay's multi-product portfolio &mdash; car, home, life, and business cover &mdash; offers significant bundling revenue potential that frontline agents routinely fail to activate through lack of product awareness or absence of structured cross-sell scripting in the flow of a call.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1% of GWP</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R25m&ndash;R50m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R2.5m&ndash;R5m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Single-product policies that could become multi-product bundles represent direct premium uplift foregone &mdash; compounded by lower retention rates among unbundled customers who have less financial commitment to the MIWay relationship.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Cross-sell opportunity modules &mdash; product suite overviews, bundling scripting, and trigger-moment training &mdash; delivered in short reinforced sprints that convert product awareness into habitual call-floor practice.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- VALUE SUMMARY — OUTSIDE .page -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R170m&ndash;R305m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R17m&ndash;R30m per year</span></div>
+  </div>
+  <p>MIWay's leakage is not a product problem or a pricing problem &mdash; it is a <strong>knowledge-at-the-moment-of-performance problem.</strong> Across five compounding areas &mdash; conversion, retention, claims, compliance, and cross-sell &mdash; an estimated R170m&ndash;R305m leaves the business annually through gaps that spaced reinforcement directly addresses. A 10% recovery represents R17m&ndash;R30m per year, generated not by headcount additions or system overhauls, but by frontline people performing better on calls they are already having every single day.</p>
+</div>
+
+<!-- KG MATRIX + SKILLS MATRIX -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The matrix below maps the knowledge gaps driving MIWay's single largest leakage area &mdash; retention failure &mdash; at the role level most directly exposed. Each gap traces a clear line from agent knowledge shortfall to measurable business impact, and to the specific Digemy intervention that closes it.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Retention Agent &nbsp;&middot;&nbsp; Leakage 02 &mdash; Lapse &amp; Retention Failure</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Retention Agent</td></tr>
+        <tr><td>Cannot anchor product value against price objections in real time</td><td>Winnable policies lapse; reacquisition cost rises to replace lost in-force premium</td><td>Weekly objection-handling micro-modules reinforced against live call-script scenarios</td></tr>
+        <tr><td>Unaware of affordability restructuring options (excess adjustment, payment deferral)</td><td>Customer cancels when a restructured policy would have retained them at lower cost</td><td>Product flexibility training reinforced monthly, triggered by cancellation queue entry</td></tr>
+        <tr><td>Outdated competitor comparison knowledge</td><td>Unable to defend MIWay's value proposition against competitor offers cited on the call</td><td>Competitive intelligence micro-lessons updated quarterly in spaced repetition cadence</td></tr>
+        <tr><td>No structured cross-sell or bundling pitch in the retention conversation</td><td>Retained customers stay single-product; lifetime value and policy stickiness remain low</td><td>Cross-sell scripting modules integrated directly into the retention learning path</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">A Digemy Skills Matrix for MIWay maps competency coverage across six frontline roles &mdash; inbound telesales, outbound telesales, retention, claims, customer service, and collections &mdash; against the five knowledge domains most directly linked to revenue and regulatory risk: <strong>product knowledge, compliance scripting, objection handling, claims assessment accuracy, and cross-sell activation.</strong> The matrix gives MIWay's training function a live operational dashboard: which agents are current, which are drifting, and where reinforcement cadences need to be intensified &mdash; replacing the once-a-year snapshot with a continuous performance signal tied directly to rand outcomes.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; MIWay Insurance &mdash; Operational Optimisation Report</div>
+</body>
+</html>
