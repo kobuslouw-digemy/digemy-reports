@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Astron Energy Forecourt — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Forecourt Operations Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">SOUTH AFRICA &middot; PETROLEUM RETAIL</div>
+  <h1 style="margin-bottom:32px;">Astron Energy <span>Forecourt Operations</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R18bn</div><div class="hs-sub">est. retail &amp; forecourt operations</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R250m&ndash;R500m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R25m&ndash;R50m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Astron Energy&#8217;s 850+ retail sites process millions of customer interactions every year &#8212; but the forecourt is not simply a pump; it is a revenue-generating customer moment that most operational teams are under-equipped to fully capitalise on. High turnover, inconsistent training, and absent knowledge reinforcement mean that grade conversion, loyalty activation, and store pull-through are left to chance on every shift. Digemy builds the operational knowledge infrastructure that turns each forecourt interaction from a transaction into a margin moment &#8212; consistently, across every site and every shift.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;Your forecourt team processes more customer revenue decisions in a morning shift than most sales reps handle in a week &#8212; the gap between good and great is never the fuel; it&#8217;s always the person at the pump.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Companies like Astron Energy typically recover 10%+ of identified leakage within 12 months of Digemy deployment. Against R250m&#8211;R500m in annual forecourt-specific leakage, a 10% recovery rate represents R25m&#8211;R50m per year &#8212; unlocked not by adding headcount, but by ensuring the existing team consistently knows what to do and why it matters at every pump interaction.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Forecourt Attendant</td><td>Grade conversion, vehicle check protocols, loyalty enrolment &amp; service standards</td></tr>
+        <tr><td>Shift Supervisor</td><td>Team activation discipline, promotional briefing execution &amp; real-time standard enforcement</td></tr>
+        <tr><td>Site Manager / Dealer Operator</td><td>Coaching cadence, operational KPI ownership &amp; brand compliance</td></tr>
+        <tr><td>Convenience Store Cashier</td><td>In-store cross-sell, promotion activation &amp; pump-to-store conversion</td></tr>
+        <tr><td>Car Wash &amp; Ancillary Operator</td><td>Upsell bundling, service package knowledge &amp; throughput quality</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Across Astron Energy&#8217;s 850+ retail sites, the forecourt operational workforce is estimated at 6,000&#8211;10,000 personnel &#8212; including company-operated and dealer-run sites. Forecourt attendant roles carry the highest turnover rate in the network, with average tenure under 18 months at many sites, creating a persistent and compounding knowledge decay problem that periodic induction alone cannot solve.</div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead>
+        <tr>
+          <th>Leakage Area</th>
+          <th>Assumption</th>
+          <th>Annual Low</th>
+          <th>Annual High</th>
+          <th>Recovery @10%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Premium Grade Conversion Gap</td>
+          <td>0.5&#8211;1% of retail fuel revenue not realised due to absent grade upgrade conversations (est. R15bn fuel sub-base)</td>
+          <td>R75m</td>
+          <td>R150m</td>
+          <td class="rec">R7.5m&ndash;R15m</td>
+        </tr>
+        <tr>
+          <td>Customer Retention Loss (Service Quality)</td>
+          <td>0.4&#8211;0.8% of retail fuel revenue lost annually to competitor migration driven by below-standard service (est. R15bn fuel sub-base)</td>
+          <td>R60m</td>
+          <td>R120m</td>
+          <td class="rec">R6m&ndash;R12m</td>
+        </tr>
+        <tr>
+          <td>Loyalty Programme Under-activation</td>
+          <td>0.3&#8211;0.6% of retail fuel revenue in lower repeat-visit frequency from under-enrolled loyalty base (est. R15bn fuel sub-base)</td>
+          <td>R45m</td>
+          <td>R90m</td>
+          <td class="rec">R4.5m&ndash;R9m</td>
+        </tr>
+        <tr>
+          <td>Convenience Store Cross-sell Failure</td>
+          <td>3&#8211;6% of convenience store revenue not captured due to absent attendant-to-store activation (est. R1.5bn store sub-base)</td>
+          <td>R45m</td>
+          <td>R90m</td>
+          <td class="rec">R4.5m&ndash;R9m</td>
+        </tr>
+        <tr>
+          <td>Lubricants &amp; Car Care Upsell Failure</td>
+          <td>5&#8211;10% of forecourt lubricants &amp; accessories revenue not activated due to absent vehicle check protocols (est. R500m sub-base)</td>
+          <td>R25m</td>
+          <td>R50m</td>
+          <td class="rec">R2.5m&ndash;R5m</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL</td>
+          <td>&mdash;</td>
+          <td>R250m</td>
+          <td>R500m</td>
+          <td class="rec">R25m&ndash;R50m</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Premium Grade Conversion Gap</div>
+        <div class="lc-body">In regulated SA fuel pricing, per-litre margins are thin &#8212; which makes grade mix one of the few levers a forecourt operator can actually move. Attendants who cannot articulate why a vehicle benefits from 95 octane or Quartech diesel never make the ask, and the customer leaves on the grade they arrived with.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R75m&ndash;R150m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R7.5m&ndash;R15m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Grade mix stays at the low end across tens of millions of annual transactions, suppressing per-litre margin across the network. Without a practised upgrade conversation, attendants default to filling whatever the customer requests &#8212; the Quartech diesel premium positioning never reaches the customer who could benefit from it.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Spaced micromodules on grade specifications, vehicle suitability, natural upgrade triggers, and two-sentence objection responses ensure attendants have the language and the confidence to make the ask &#8212; every shift, not just after the last training day. Site manager dashboards track grade mix improvement by site week-on-week.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Customer Retention Loss (Service Quality Decay)</div>
+        <div class="lc-body">In a market where competitor fuel stations are often metres apart, customer site loyalty is thin and entirely service-driven. Attendants who skip the vehicle check offer, fail to greet the customer, or rush the interaction actively push repeat business toward the nearest competitor &#8212; one poor experience at a time.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.4%&ndash;0.8%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R60m&ndash;R120m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R6m&ndash;R12m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Even a 0.4% annual loss of regular customers across 850 sites compounds into structural site-level share loss &#8212; customers who leave rarely return. Poor service creates negative word-of-mouth in community-linked retail environments where personal recommendation drives site preference.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Service standard reinforcement through short scenario-based modules, embedded in shift routines, keeps customer engagement habits sharp without pulling attendants off the floor for lengthy briefings. Knowledge decay &#8212; which sets in within weeks of induction &#8212; is countered by continuous low-effort reinforcement that sites managers can track by individual.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Loyalty Programme Under-activation</div>
+        <div class="lc-body">Astron Energy&#8217;s loyalty programme is a strategic retention asset &#8212; but its value is only realised when forecourt teams consistently enrol, scan, and activate customers at the pump. An attendant who doesn&#8217;t offer the card, explain the benefit, or scan at point of sale leaves the programme&#8217;s return on the forecourt every single shift.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.3%&ndash;0.6%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R45m&ndash;R90m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R4.5m&ndash;R9m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Under-enrolled customers visit less frequently, spend less per visit on average, and defect to competitor sites far more easily. The programme infrastructure cost is incurred regardless &#8212; the return is lost to low activation rates that compound with every shift change and new hire.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Loyalty enrolment scripts, benefit articulation, and scan-at-pump protocols are delivered as a standing reinforcement track &#8212; ensuring every new attendant and every returning hire maintains activation discipline without depending on a manager to remind them before each shift.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Convenience Store Cross-sell Failure</div>
+        <div class="lc-body">The pump-to-store journey is one of fuel retail&#8217;s most proven margin levers &#8212; customers who enter the convenience store after fuelling spend significantly more than walk-in customers. Attendants who don&#8217;t prompt the transition, mention the daily special, or link fuelling to a store offer leave this uplift unrealised on every transaction.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">3%&ndash;6%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R45m&ndash;R90m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R4.5m&ndash;R9m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Convenience store revenue consistently under-performs relative to forecourt traffic volumes. Promotional investment in daily specials and meal deals goes largely unrecouped because the message never reaches the customer at the pump &#8212; the highest-traffic moment in the site&#8217;s day.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Weekly promotion briefings delivered to attendants via mobile &#8212; covering current in-store specials, meal deals, and bundle offers &#8212; ensure the pump interaction consistently drives store traffic. Site managers confirm promotion knowledge before the shift starts, not after it&#8217;s over.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Lubricants &amp; Car Care Upsell Failure</div>
+        <div class="lc-body">The vehicle check is one of the forecourt&#8217;s most underleveraged customer moments &#8212; oil level, screen wash, wiper condition, and tyre pressure are all observable triggers for a product recommendation. Attendants who skip the check or lack the knowledge to recommend Havoline or car care products miss the upsell entirely and lose the sale to a workshop or supermarket down the road.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">5%&ndash;10%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R25m&ndash;R50m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R2.5m&ndash;R5m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Lubricant and accessories revenue stays below its potential at site level as customers make ad hoc purchases elsewhere. Skipped vehicle checks also create a service liability exposure &#8212; customers who later report undisclosed issues can reflect poorly on the site and on the Astron Energy brand.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Short vehicle check protocol modules with embedded product recommendation scripts ensure attendants know exactly what to look for, which Havoline product to suggest for a given top-up need, and how to frame the recommendation in under 20 seconds. Consistent behaviour across shifts drives compounding upsell revenue.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Forecourt Operations Leakage</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R250m&ndash;R500m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R25m&ndash;R50m per year</span></div>
+  </div>
+  <p>Across grade conversion, service quality, loyalty activation, convenience store pull-through, and lubricant upsell, Astron Energy&#8217;s forecourt-specific knowledge-driven leakage is estimated at <strong>R250m&#8211;R500m annually</strong>. Every one of these losses originates from the same root cause: operational teams who are not consistently equipped with the right knowledge at the right time. A Digemy deployment recovering 10% of that range delivers <strong>R25m&#8211;R50m per year</strong> &#8212; from the workforce Astron Energy already has, on the sites already operating.</p>
+</div>
+
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">Forecourt attendants are asked to make nuanced product recommendations, handle customer objections, and activate loyalty programmes &#8212; all within a 90-second pump interaction. The knowledge required to do this confidently is specific, perishable, and rarely reinforced beyond initial induction. The matrix below maps the critical gaps for Forecourt Attendants against Leakage 01: Premium Grade Conversion.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Forecourt Attendant &nbsp;&middot;&nbsp; Leakage 01 &mdash; Premium Grade Conversion Gap</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead>
+        <tr>
+          <th style="width:34%">Knowledge Gap</th>
+          <th style="width:33%">Business Impact</th>
+          <th style="width:33%">Digemy Solution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Forecourt Attendant</td></tr>
+        <tr>
+          <td>Premium petrol grade specifications and vehicle compatibility (when does a vehicle benefit from 95 vs 93 octane?)</td>
+          <td>Attendant cannot justify the upgrade recommendation; customer defaults to regular grade and the conversation never starts</td>
+          <td>Grade specification micromodules with vehicle suitability quick-reference, reinforced every two weeks</td>
+        </tr>
+        <tr>
+          <td>Quartech diesel value proposition &#8212; cleaning cycle, injector protection, and efficiency benefit narrative</td>
+          <td>Diesel upsell opportunities missed entirely; Quartech&#8217;s premium positioning never reaches the customer who could benefit most</td>
+          <td>Quartech product benefit modules in plain customer language, linked to diesel shift checklists</td>
+        </tr>
+        <tr>
+          <td>How to initiate the grade upgrade conversation naturally within the fuelling interaction without feeling pushy</td>
+          <td>The 30-second window to make the ask passes without an attempt; attendant waits for the customer to bring it up</td>
+          <td>Conversational trigger scripts practised via scenario-based micromodules and shift observation feedback</td>
+        </tr>
+        <tr>
+          <td>Common customer objections to premium grades (&#8220;it costs more&#8221;, &#8220;my car doesn&#8217;t need it&#8221;, &#8220;I always use 93&#8221;)</td>
+          <td>Attendant backs down immediately or says &#8220;it&#8217;s up to you&#8221; &#8212; deal lost on the objection, not the product</td>
+          <td>Two or three practised responses per objection type, reinforced with spaced recall checks until automatic</td>
+        </tr>
+        <tr>
+          <td>Link between grade choice and engine performance, service intervals, and long-term vehicle cost</td>
+          <td>No compelling longer-term narrative to offer; conversation stays on pump price rather than vehicle value</td>
+          <td>One-minute vehicle benefit explainer modules that give attendants a relatable story, not a technical specification</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">The forecourt attendant role is deceptively knowledge-intensive &#8212; fuel grade specs, product recommendations, loyalty mechanics, promotional offers, vehicle check protocols, service standards, and customer objection handling all need to be accessible within a pump interaction that lasts under two minutes. This is not a role where annual induction is sufficient; it is a role where <strong>knowledge needs to be live, verified, and continuously reinforced</strong>. Digemy&#8217;s skills matrix maps verified competency against each of these requirements by site, by shift, and by individual &#8212; giving site managers and Astron Energy&#8217;s retail leadership a real-time view of where forecourt readiness is holding and where it is decaying, before that decay shows up in the margin numbers.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Astron Energy Forecourt Operations &mdash; Operational Optimisation Report</div>
+</body>
+</html>
