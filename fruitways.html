@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Fruitways — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">SOUTH AFRICA &middot; FRESH PRODUCE &amp; DECIDUOUS FRUIT</div>
+  <h1 style="margin-bottom:32px;">Fruitways <span>Leakage Report</span></h1>
+  <div class="hero-stats">
+    <div class="hs">
+      <div class="hs-label">Revenue Base</div>
+      <div class="hs-val">~R1.2bn</div>
+      <div class="hs-sub">est. fresh produce revenue</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Total Addressable Leakage</div>
+      <div class="hs-val p">R24m&ndash;R40m</div>
+      <div class="hs-sub">estimated annually</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Recovery @ 10%</div>
+      <div class="hs-val g">R2.4m&ndash;R4.0m</div>
+      <div class="hs-sub">potential per year</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- SECTION 1: WHY DIGEMY -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Fruitways operates a high-stakes supply chain where every grading call, cold chain decision, and compliance step is a margin event. Export market standards are unforgiving &mdash; a knowledge gap at the packhouse floor or compliance desk translates directly into quality claims, shipment rejections, and downgraded grower returns. Digemy replaces seasonal re-induction cycles with spaced reinforcement learning that keeps critical protocols retained and applied by every operator, every season.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;In fresh produce, a knowledge gap doesn&#8217;t stay on the floor &mdash; it ships in the box.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy links spaced reinforcement training directly to pack-out rate, quality deduction, and cold chain compliance KPIs &mdash; giving operations managers a live view of which roles are under-prepared before the export window opens. With a 154% knowledge retention improvement and 70% faster seasonal ramp-up, companies like Fruitways can protect export margins from day one of every packing season.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: FRONTLINE WORKFORCE -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Packhouse Grader / Sorter</td><td>Inconsistent application of export class specifications and defect tolerances by destination market</td></tr>
+        <tr><td>Packline Supervisor</td><td>Pack-out rate optimisation failures; insufficient oversight of spec compliance under throughput pressure</td></tr>
+        <tr><td>Cold Store Operator</td><td>Pre-cooling protocol adherence; temperature deviation during storage causing premature ripening</td></tr>
+        <tr><td>Harvest / Orchard Supervisor</td><td>Maturity index assessment errors leading to export-grade fruit failing destination arrival tests</td></tr>
+        <tr><td>Post-Harvest Technician</td><td>Incorrect fungicide / wax / SmartFresh application rates creating MRL exceedances or treatment failures</td></tr>
+        <tr><td>Export Documentation Coordinator</td><td>Phytosanitary certification errors and protocol gaps triggering shipment holds or port-of-entry rejections</td></tr>
+        <tr><td>Logistics / Transport Coordinator</td><td>Cold chain continuity breaks during road transport to port; non-compliance with reefer temperature logs</td></tr>
+        <tr><td>Quality Control Inspector</td><td>Outdated knowledge of retailer-specific codes and grading standards causing preventable non-conformances</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Fruitways employs an estimated 400&ndash;600 permanent operational staff across its Western Cape packhouses, cold stores, and logistics operations, swelling to 1,200&ndash;1,800 during peak deciduous fruit packing season (December&ndash;May). The seasonal ramp-up dynamic &mdash; onboarding hundreds of packhouse workers in a compressed window &mdash; creates acute knowledge consistency risk that directly impacts export pack-out rates and quality claim exposure.</div>
+</div>
+
+<!-- SECTION 3: WHERE LOSS HAPPENS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead>
+        <tr>
+          <th>Leakage Area</th>
+          <th>Assumption</th>
+          <th>Annual Low</th>
+          <th>Annual High</th>
+          <th>Recovery @10%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Pack-out Rate &amp; Grading Failures</td>
+          <td>0.8%&ndash;1.5% of ~R750m export revenue sub-base lost to preventable downgrading errors</td>
+          <td>R6.0m</td>
+          <td>R11.0m</td>
+          <td class="rec">R600k&ndash;R1.1m</td>
+        </tr>
+        <tr>
+          <td>Cold Chain Management Failures</td>
+          <td>0.5%&ndash;1.0% of ~R750m export revenue sub-base lost via quality claims and destination rejections</td>
+          <td>R4.0m</td>
+          <td>R7.5m</td>
+          <td class="rec">R400k&ndash;R750k</td>
+        </tr>
+        <tr>
+          <td>Phytosanitary &amp; Export Compliance</td>
+          <td>0.5%&ndash;0.8% of ~R750m export revenue sub-base lost via shipment holds, re-routing, and documentation failures</td>
+          <td>R4.0m</td>
+          <td>R6.0m</td>
+          <td class="rec">R400k&ndash;R600k</td>
+        </tr>
+        <tr>
+          <td>Harvest Maturity Protocol Failures</td>
+          <td>0.8%&ndash;1.2% of ~R750m export revenue sub-base lost through maturity non-conformances and arrival test failures</td>
+          <td>R6.0m</td>
+          <td>R9.0m</td>
+          <td class="rec">R600k&ndash;R900k</td>
+        </tr>
+        <tr>
+          <td>Post-Harvest Treatment Non-Compliance</td>
+          <td>0.5%&ndash;0.8% of ~R750m export revenue sub-base lost via MRL exceedances, treatment failures, and shelf-life claims</td>
+          <td>R4.0m</td>
+          <td>R6.0m</td>
+          <td class="rec">R400k&ndash;R600k</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL</td>
+          <td>&mdash;</td>
+          <td>R24.0m</td>
+          <td>R39.5m</td>
+          <td class="rec">R2.4m&ndash;R4.0m</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SECTION 4: TOP 5 LEAKAGE CARDS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- Leakage 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Pack-out Rate &amp; Grading Failures</div>
+        <div class="lc-body">Packhouse graders working under high-throughput pressure make inconsistent specification calls &mdash; accepting fruit that will fail destination inspection or rejecting export-grade fruit to the local market. Destination-specific classification standards differ across the EU, UK, and Middle East, yet knowledge of those differences is rarely reinforced beyond initial induction.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.8%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R6.0m&ndash;R11.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R600k&ndash;R1.1m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Preventable downgrades from Class 1 to Class 2 or local market pricing reduce revenue-per-carton by R40&ndash;R70 on affected fruit. Accumulated grading errors also erode buyer confidence and generate recurring quality deductions from established export accounts.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy delivers destination-coded defect tolerance modules to packhouse graders on a spaced schedule, reinforcing class thresholds and appearance standards across different retailer and market codes. Manager dashboards flag graders with low retention scores before they rotate onto high-value export lines.</div>
+  </div>
+
+  <!-- Leakage 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Cold Chain Management Failures</div>
+        <div class="lc-body">Improper pre-cooling, temperature deviations during storage, and cold chain breaks in road transport cause premature ripening and quality failures at destination &mdash; triggering importer claims and price deductions. Cold store operators and logistics coordinators frequently lack current knowledge of target temperature ranges by cultivar and destination protocol.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R4.0m&ndash;R7.5m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R400k&ndash;R750k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Quality claims settled at destination cost significantly more than prevention; rejected consignments or renegotiated prices erode margin on entire pallet loads. Repeat cold chain failures damage importer relationships and put market allocations at risk.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy keeps cold store and transport operational teams current on protocol updates, with role-specific learning paths ensuring everyone from pre-cooling operators to logistics dispatchers holds the same critical knowledge. KPI dashboards enable operations managers to link training completion directly to cold chain incident rates.</div>
+  </div>
+
+  <!-- Leakage 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Phytosanitary &amp; Export Compliance Failures</div>
+        <div class="lc-body">South African fresh produce exports operate under strict phytosanitary agreements with destination markets; errors in pest management records, certification paperwork, or fumigation protocols can trigger port holds, re-routing, or outright rejection at the point of entry. Documentation coordinators and compliance staff often rely on institutional memory rather than verified, current protocol knowledge.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;0.8%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R4.0m&ndash;R6.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R400k&ndash;R600k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">A single shipment hold costs far more in logistics, re-routing fees, and lost opportunity than the documentation gap that caused it. Repeated non-compliance with destination-market phytosanitary protocols can result in market access suspension &mdash; a catastrophic risk for an export-dependent business.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy maps phytosanitary and certification requirements to specific compliance roles, delivering targeted protocol modules that are refreshed when regulatory requirements change. Completion and assessment data gives compliance managers audit-ready evidence of due diligence at every level.</div>
+  </div>
+
+  <!-- Leakage 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Harvest Maturity Protocol Failures</div>
+        <div class="lc-body">Harvesting at incorrect maturity indices &mdash; driven by commercial pressure or inconsistent application of maturity testing by harvest supervisors &mdash; produces fruit that fails destination arrival tests or declines prematurely in cold storage. With multiple harvest crews working simultaneously across diverse cultivars, knowledge consistency is near-impossible without a structured reinforcement system.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.8%&ndash;1.2%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R6.0m&ndash;R9.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R600k&ndash;R900k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Immature or over-mature fruit shipped to export markets generates transit quality failures, customer complaints, and return claims that reduce grower payouts and erode buyer trust. Maturity failures are among the hardest quality failures to recover from commercially once the season has closed.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy deploys cultivar-specific maturity assessment modules to harvest supervisors and quality inspectors at season start, reinforcing starch, pressure, and brix targets through photo-based scenario quizzes. Spaced follow-up nudges keep critical thresholds top of mind throughout the full harvest window.</div>
+  </div>
+
+  <!-- Leakage 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Post-Harvest Treatment Non-Compliance</div>
+        <div class="lc-body">Incorrect application rates, timing, or chemical mixing of post-harvest treatments &mdash; fungicides, wax coatings, SmartFresh &mdash; creates MRL exceedances or treatment failures that compromise shelf life and trigger destination-market rejections. Packline technicians on high-volume lines frequently work from habit rather than verified current knowledge, especially during seasonal ramp-up.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;0.8%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R4.0m&ndash;R6.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R400k&ndash;R600k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">MRL exceedances can trigger regulatory action, product withdrawals, and permanent loss of retailer codes &mdash; the hardest-to-reverse export market consequence. Treatment failures that reduce shelf life generate downstream quality claims even without a formal residue breach.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy delivers post-harvest treatment protocol modules linked to specific registered products and destination-market requirements, with role-specific assessment ensuring every technician can demonstrate application competency. Manager dashboards surface knowledge gaps before they manifest as treatment errors on the packline.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- VALUE SUMMARY — OUTSIDE .page -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R24.0m&ndash;R39.5m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R2.4m&ndash;R4.0m per year</span></div>
+  </div>
+  <p>Fruitways&#8217; operational leakage is concentrated in the gap between what export specifications require and what operational teams reliably know and apply under seasonal pressure. <strong>R24m&ndash;R40m</strong> in annual leakage flows from five preventable knowledge-gap failure points &mdash; grading inconsistency, cold chain mismanagement, compliance errors, maturity protocol deviations, and post-harvest treatment failures. Recovering just 10% of that leakage through Digemy&#8217;s spaced reinforcement platform delivers <strong>R2.4m&ndash;R4.0m</strong> in protected annual revenue &mdash; a compelling return on a platform investment that also accelerates seasonal onboarding, reduces quality claim exposure, and builds a defensible compliance audit trail.</p>
+</div>
+
+<!-- KG MATRIX + SKILLS MATRIX — second .page block -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">Fruitways&#8217; margin sits at the intersection of biology and compliance &mdash; every grading call, maturity assessment, and chemical application is simultaneously a quality decision and a financial one. The matrix below maps the critical knowledge gaps within the top-impact leakage area against concrete business outcomes and targeted Digemy solutions.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Packhouse Grader / Sorter &nbsp;&middot;&nbsp; Leakage 01 &mdash; Pack-out Rate &amp; Grading Failures</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead>
+        <tr>
+          <th style="width:34%">Knowledge Gap</th>
+          <th style="width:33%">Business Impact</th>
+          <th style="width:33%">Digemy Solution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Packhouse Grader / Sorter</td></tr>
+        <tr>
+          <td>Inconsistent application of Class 1 vs Class 2 defect tolerances across EU, UK, and Middle East destination markets</td>
+          <td>Preventable downgrades reduce revenue-per-carton by R40&ndash;R70 on affected fruit; export-grade fruit lost to local market pricing</td>
+          <td>Destination-coded defect tolerance modules refreshed at each season spec update; quizzes confirm grader-level retention before line assignment</td>
+        </tr>
+        <tr>
+          <td>Insufficient knowledge of new cultivar appearance standards and handling requirements</td>
+          <td>New variety fruit graded against incorrect benchmarks, generating preventable rejections or export failures at destination arrival</td>
+          <td>Cultivar-specific grading modules deployed at variety introduction and reinforced weekly throughout the export season</td>
+        </tr>
+        <tr>
+          <td>Limited understanding of how individual grading decisions accumulate into shipment-level quality claim risk</td>
+          <td>Packhouse absorbs financial liability for destination market deductions that single graders could have prevented</td>
+          <td>Scenario-based microlearning showing how individual grading calls translate to pallet-level financial impact and buyer confidence</td>
+        </tr>
+        <tr>
+          <td>Outdated knowledge of retailer-specific quality codes, packaging tolerances, and presentation standards</td>
+          <td>Retailer code non-conformances trigger full pallet rejections and risk permanent suspension from high-value retail accounts</td>
+          <td>Retailer-linked protocol modules updated seasonally and pushed to packline staff by assigned market code prior to shipment runs</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">A structured Digemy Skills Matrix for Fruitways would map critical protocol knowledge &mdash; export class specifications, cold chain procedures, maturity indices, phytosanitary compliance, and post-harvest treatment protocols &mdash; against every operational role from packhouse grader and cold store operator to harvest supervisor and export documentation coordinator. <strong>Operations managers gain a live, role-by-role view of knowledge health across permanent and seasonal workforce</strong>, enabling targeted remediation before the export window opens and margin-at-risk becomes margin-lost. As seasonal headcount scales from 600 to 1,800 in the December&ndash;May peak, the Skills Matrix becomes the single most powerful tool for maintaining quality consistency at scale &mdash; turning knowledge management from a compliance exercise into a measurable revenue protection strategy.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Fruitways &mdash; Operational Optimisation Report</div>
+</body>
+</html>
