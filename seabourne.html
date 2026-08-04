@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Seabourne Logistics — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">SOUTH AFRICA &middot; LOGISTICS &amp; 3PL</div>
+  <h1 style="margin-bottom:32px;">Seabourne <span>Logistics</span></h1>
+  <div class="hero-stats">
+    <div class="hs">
+      <div class="hs-label">Revenue Base</div>
+      <div class="hs-val">~R350m</div>
+      <div class="hs-sub">estimated annual SA revenue</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Total Addressable Leakage</div>
+      <div class="hs-val p">R12.1m&ndash;R24.2m</div>
+      <div class="hs-sub">estimated annually</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Recovery @ 10%</div>
+      <div class="hs-val g">R1.2m&ndash;R2.4m</div>
+      <div class="hs-sub">potential per year</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ═══ SECTION 1: WHY DIGEMY ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Seabourne operates six specialist divisions &mdash; courier, warehousing, freight, e-fulfilment, customs, and mail &mdash; each staffed by operational teams whose service quality is only as strong as what they can recall under pressure. When delivery agents misroute, customs agents misclassify tariffs, or warehouse staff bypass SOP on a busy peak shift, the cost appears as a re-delivery invoice, a demurrage charge, or a departed client. Digemy closes the gap between what operational teams are trained on and what they actually retain &mdash; using spaced reinforcement built for logistics operations that cannot afford to forget.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;In logistics, what your operational team doesn&#8217;t know shows up on your P&amp;L &mdash; as redeliveries, demurrage charges, and departed clients.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy has helped companies like Seabourne achieve a 154% improvement in knowledge retention and 70% faster operational ramp &mdash; with manager accountability dashboards that surface knowledge gaps before they become SLA failures or compliance penalties. KPI-linked microlearning modules mean that courier adherence rates, pick accuracy, and customs compliance can all be traced directly to specific knowledge outcomes, giving leadership a measurable line from training activity to operational performance.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 2: FRONTLINE WORKFORCE ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Courier Driver / Delivery Agent</td><td>Route optimisation, address resolution, client SLA adherence</td></tr>
+        <tr><td>Warehouse Operative (Pick/Pack)</td><td>Pick accuracy, WMS protocol compliance, damage prevention</td></tr>
+        <tr><td>Customs &amp; Freight Agent</td><td>HS code classification, documentation accuracy, SARS compliance</td></tr>
+        <tr><td>Customer Service Agent (Key Accounts)</td><td>Quoting accuracy, SLA knowledge, escalation management</td></tr>
+        <tr><td>E-Fulfilment Specialist</td><td>Order management, platform protocols, exception handling</td></tr>
+        <tr><td>Operations Manager (Branch)</td><td>Process compliance, KPI tracking, team accountability</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Seabourne's operational footprint spans approximately 100&ndash;150 frontline and operational staff across its 22,000&nbsp;m&sup2; Kempton Park hub, Cape Town branch, and Nelspruit office, with employee headcount growing at approximately 20% per year. Each of the six service divisions carries distinct and rapidly evolving knowledge requirements &mdash; from customs tariff changes to client-specific SLA parameters &mdash; making sustained knowledge retention a material operational risk at every level of the business.</div>
+</div>
+
+<!-- ═══ SECTION 3: WHERE LOSS HAPPENS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead>
+        <tr>
+          <th>Leakage Area</th>
+          <th>Assumption</th>
+          <th>Annual Low</th>
+          <th>Annual High</th>
+          <th>Recovery @10%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Courier SLA &amp; Redelivery Failures</td>
+          <td>5&ndash;10% of ~R120m courier revenue</td>
+          <td>R6.00m</td>
+          <td>R12.00m</td>
+          <td class="rec">R600k&ndash;R1.20m</td>
+        </tr>
+        <tr>
+          <td>Freight Quote Errors &amp; Rate Leakage</td>
+          <td>1.5&ndash;3% of ~R100m freight revenue</td>
+          <td>R1.50m</td>
+          <td>R3.00m</td>
+          <td class="rec">R150k&ndash;R300k</td>
+        </tr>
+        <tr>
+          <td>Customs &amp; Compliance Penalties</td>
+          <td>8&ndash;16% of ~R18m customs revenue</td>
+          <td>R1.44m</td>
+          <td>R2.88m</td>
+          <td class="rec">R144k&ndash;R288k</td>
+        </tr>
+        <tr>
+          <td>Warehouse Pick/Pack Errors &amp; Shrinkage</td>
+          <td>2&ndash;4% of ~R70m warehouse revenue</td>
+          <td>R1.40m</td>
+          <td>R2.80m</td>
+          <td class="rec">R140k&ndash;R280k</td>
+        </tr>
+        <tr>
+          <td>E-Fulfilment SLA Failures</td>
+          <td>5&ndash;10% of ~R35m e-fulfilment revenue</td>
+          <td>R1.75m</td>
+          <td>R3.50m</td>
+          <td class="rec">R175k&ndash;R350k</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL</td>
+          <td>&mdash;</td>
+          <td>R12.09m</td>
+          <td>R24.18m</td>
+          <td class="rec">R1.21m&ndash;R2.42m</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ SECTION 4: TOP 5 LEAKAGE CARDS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- Card 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Courier SLA &amp; Redelivery Failures</div>
+        <div class="lc-body">Across ~1.6 million annual parcel movements, even a modest failed first-time delivery rate represents material redelivery cost &mdash; driven by route misjudgement, address verification gaps, and incomplete SLA knowledge. When drivers operate on decayed or outdated delivery protocols, Seabourne absorbs the redelivery cost while the client absorbs the service failure.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">5%&ndash;10%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R6.0m&ndash;R12.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R600k&ndash;R1.2m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Failed deliveries generate direct redelivery costs, SLA breach penalties, and client credit claims. Repeat failures erode Seabourne&#8217;s positioning as a preferred carrier in the automotive aftermarket and Cape wine sectors &mdash; verticals where on-time performance is a contractual baseline.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Spaced reinforcement modules on route protocols, address resolution workflows, and client-specific delivery requirements ensure that operational knowledge stays current and retrievable at the moment it&#8217;s needed. Manager dashboards surface delivery knowledge gaps by team and branch before they convert into redelivery invoices.</div>
+  </div>
+
+  <!-- Card 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Freight Quote Errors &amp; Rate Leakage</div>
+        <div class="lc-body">Underpriced shipments, misapplied surcharges, and rate card errors are a persistent revenue drain in freight operations, driven by staff lacking current knowledge of tariff structures, fuel levies, and client contract specifics. A R50 miscalculation per consignment compounds rapidly at Seabourne&#8217;s volume across road, air, and sea freight.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.5%&ndash;3%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.5m&ndash;R3.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R150k&ndash;R300k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Underpriced freight erodes margins directly; incorrect surcharges generate client disputes, credit notes, and relationship damage in key accounts. In Seabourne&#8217;s automotive and technology verticals &mdash; where clients are sophisticated buyers &mdash; rate errors signal operational immaturity that competitors exploit.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Regular knowledge nudges on tariff structures, fuel surcharge policies, and client-specific rate agreements keep freight staff current &mdash; without relying on annual refresher training that depreciates within weeks. Assessment-linked modules identify individual knowledge gaps before they become quote errors or credit notes.</div>
+  </div>
+
+  <!-- Card 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Customs &amp; Compliance Penalties</div>
+        <div class="lc-body">Customs misclassification, documentation gaps, and regulatory non-compliance generate demurrage charges, re-clearance costs, and cargo detentions that directly impact client SLAs. As both a customs services provider and freight forwarder operating across multiple trade corridors, HS code accuracy and documentation completeness are foundational to Seabourne&#8217;s service contract.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">8%&ndash;16%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.44m&ndash;R2.88m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R144k&ndash;R288k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Customs delays compound into demurrage fees, urgent re-routing costs, and client SLA penalties &mdash; with reputational damage that is especially acute in the automotive sector where component lead times leave zero buffer. A single tariff misclassification on a high-value shipment can cost multiples of the original service fee.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Targeted microlearning on HS code accuracy, SARS documentation requirements, and trade-corridor compliance ensures customs agents retain what is current &mdash; not just what was taught at onboarding. Spaced retrieval practice maintains accuracy between regulatory updates, reducing detention exposure and penalty risk.</div>
+  </div>
+
+  <!-- Card 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Warehouse Pick/Pack Errors &amp; Shrinkage</div>
+        <div class="lc-body">In a 22,000&nbsp;m&sup2; 3PL facility processing over 85,000 tonnes annually, pick errors and inventory shrinkage compound rapidly &mdash; especially during high-volume periods when speed pressure overrides SOP adherence. Knowledge gaps around WMS protocols, fragile cargo handling, and stock reconciliation are a direct driver of rework cycles, client chargebacks, and inventory write-offs.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">2%&ndash;4%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.4m&ndash;R2.8m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R140k&ndash;R280k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Pick errors generate rework cycles, client chargebacks, and inventory write-offs; shrinkage creates discrepancies that undermine client trust and audit readiness in a contractual 3PL environment where accountability is baked into the SLA. At 13,500-pallet capacity, a 1% accuracy improvement is commercially material.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Role-specific knowledge modules on WMS procedures, inventory protocols, and handling standards &mdash; reinforced at spaced intervals &mdash; build the procedural retention that keeps error rates low even during peak throughput. Assessment data gives warehouse managers a real-time view of which operatives need intervention before errors occur.</div>
+  </div>
+
+  <!-- Card 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">E-Fulfilment SLA Failures</div>
+        <div class="lc-body">E-commerce fulfilment is a fast-growing division for Seabourne, where order accuracy, platform knowledge, and exception-handling speed are directly linked to client SLA compliance and contract renewal. Operational teams working on outdated platform protocols create order errors, missed dispatch windows, and escalation loops that are disproportionately costly to resolve.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">5%&ndash;10%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.75m&ndash;R3.50m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R175k&ndash;R350k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">E-fulfilment errors trigger client escalations, SLA penalties, and churn risk &mdash; particularly damaging in a segment where Seabourne competes on service precision against larger automated operators. A single high-volume client SLA breach can reverse months of margin contribution in this division.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Rapid-deployment microlearning covering platform changes, exception protocols, and client SLA parameters ensures e-fulfilment teams remain current as the division scales. Knowledge-gap tracking via Digemy&#8217;s manager dashboards surfaces lagging team members before errors compound into escalations or client exits.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- ═══ VALUE SUMMARY — OUTSIDE .page ═══ -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R12.1m&ndash;R24.2m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R1.2m&ndash;R2.4m per year</span></div>
+  </div>
+  <p>Across six service divisions, Seabourne faces knowledge-driven leakage that is structurally embedded in the operational model &mdash; courier SLA failures, customs misclassifications, freight rate errors, warehouse inaccuracies, and e-fulfilment gaps each represent a distinct knowledge failure with a measurable cost. <strong>At a conservative 10% recovery rate, the Digemy platform creates R1.2m&ndash;R2.4m in recoverable value per year</strong> &mdash; with the most immediate opportunity in the courier division, where redelivery costs are directly traceable to operational knowledge gaps. Seabourne&#8217;s own three-year plan explicitly identifies people upskilling as a core strategic pillar; Digemy provides the mechanism to make that investment measurable, permanent, and tied to the KPIs that matter.</p>
+</div>
+
+<!-- ═══ KG MATRIX + SKILLS MATRIX — second .page block ═══ -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The matrix below maps the knowledge gaps most directly linked to Seabourne&#8217;s two highest-value leakage areas: courier SLA failures and customs compliance penalties. Each gap is traceable to a specific operational role, a quantifiable business impact, and a targeted Digemy intervention.</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead>
+        <tr>
+          <th style="width:34%">Knowledge Gap</th>
+          <th style="width:33%">Business Impact</th>
+          <th style="width:33%">Digemy Solution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Courier Driver / Delivery Agent &mdash; Leakage 01: Courier SLA &amp; Redelivery Failures</td></tr>
+        <tr>
+          <td>Route optimisation tools and address verification protocols</td>
+          <td>Failed first-time deliveries generate redelivery costs and SLA breach penalties across 1.6m+ annual parcel movements</td>
+          <td>Spaced reinforcement modules on routing tools, address escalation workflows, and delivery exception handling &mdash; building durable recall at daily touchpoints</td>
+        </tr>
+        <tr>
+          <td>Client-specific SLA parameters and delivery window requirements</td>
+          <td>SLA breaches in automotive aftermarket and wine verticals generate penalty invoices and erode preferred-carrier status</td>
+          <td>Client-specific knowledge playbooks via mobile micro-learning; spaced retrieval builds recall before client-facing interaction</td>
+        </tr>
+        <tr>
+          <td>Package classification and fragile-cargo handling procedures</td>
+          <td>Transit damage generates client chargebacks and undermines the 3PL trust relationship</td>
+          <td>Visual micro-learning on handling categories and packaging standards, reinforced through manager accountability dashboards</td>
+        </tr>
+        <tr class="role-hdr"><td colspan="3">Customs &amp; Freight Agent &mdash; Leakage 03: Customs &amp; Compliance Penalties</td></tr>
+        <tr>
+          <td>HS code classification accuracy across Seabourne&#8217;s active commodity mix</td>
+          <td>Misclassification causes SARS detentions, tariff penalties, and costly re-clearance across multiple trade corridors</td>
+          <td>Scenario-based HS code modules tied to Seabourne&#8217;s commodity profile, with spaced assessment to maintain accuracy between regulatory updates</td>
+        </tr>
+        <tr>
+          <td>Import/export documentation requirements by trade corridor</td>
+          <td>Documentation gaps trigger SARS holds, demurrage charges, and client SLA breaches that compound into relationship damage</td>
+          <td>Corridor-specific compliance modules updated as regulations evolve &mdash; ensuring agents carry current knowledge, not just onboarding-era learning</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Seabourne&#8217;s six-division model demands a workforce where knowledge doesn&#8217;t decay between training cycles &mdash; from courier drivers retaining current route protocols to customs agents holding accurate HS code knowledge as SARS regulations evolve. <strong>Digemy&#8217;s Skills Matrix maps the competency architecture across each operational role</strong>, linking individual knowledge profiles to the SLA metrics and client KPIs they directly influence &mdash; whether that&#8217;s first-time delivery rate, pick accuracy, or customs clearance speed. Integrated with Seabourne&#8217;s manager accountability framework and Microsoft Power Platform environment, Digemy surfaces knowledge gaps before they become demurrage charges, redeliveries, or e-fulfilment escalations &mdash; turning people upskilling from a cost line into a measurable, auditable operational lever.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Seabourne Logistics &mdash; Operational Optimisation Report</div>
+</body>
+</html>
