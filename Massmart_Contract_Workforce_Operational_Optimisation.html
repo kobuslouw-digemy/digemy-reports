@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Massmart — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Retail &amp; Wholesale</div>
+  <h1 style="margin-bottom:32px;">Massmart <span>Contract Workforce</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R40bn</div><div class="hs-sub">Makro, Game &amp; Builders (post-restructure)</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R227m&ndash;R418m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R22.7m&ndash;R41.8m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- SECTION 1: WHY DIGEMY -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Massmart's 20,000–30,000 contract and temp workers are its most operationally exposed population — cycling through Makro, Game, and Builders at scale with minimal structured knowledge transfer. Every undertrained worker on the floor represents dual risk: regulatory exposure under Section 198 of the LRA, and a live conversion gap in high-value categories. Companies like Massmart use Digemy to close that gap at speed, deploying targeted reinforcement learning that is measurable, auditable, and built for high-turnover workforces.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;An untrained temp isn&#8217;t a cost-saving measure &mdash; they&#8217;re a compliance liability and a conversion drain wearing the same name badge.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy&#8217;s spaced reinforcement platform gets contract workers to compliance and category proficiency in days, not weeks &mdash; while manager dashboards make knowledge gaps visible before they become CCMA claims or lost sales. Every completion is time-stamped and auditable, creating a defensible training record per worker across the full contract lifecycle.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: FRONTLINE WORKFORCE -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>General Floor Assistant</td><td>Sales conversion, loss-prevention compliance</td></tr>
+        <tr><td>Seasonal Sales Consultant (Electronics / Appliances)</td><td>Product knowledge gaps, returns, upsell failure</td></tr>
+        <tr><td>Checkout Operator / Cashier</td><td>Transaction accuracy, fraud exposure, LRA compliance</td></tr>
+        <tr><td>Receiving &amp; Warehouse Clerk</td><td>Stock-control procedures, OHSA compliance, shrinkage</td></tr>
+        <tr><td>Builders Trade Counter Advisor</td><td>Technical product advice, returns, customer trust</td></tr>
+        <tr><td>Liquor Department Assistant</td><td>Age-verification compliance, stock integrity</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Massmart&#8217;s contract and temp workforce is estimated at 20,000&ndash;30,000 across 400+ South African stores, cycling at approximately 200% per year. Sharp intake spikes at Black Friday, December festive, and back-to-school periods concentrate the highest knowledge-gap risk at the highest-revenue trading moments. These workers represent the majority of direct customer-facing and stock-handling touchpoints across Makro, Game, and Builders Warehouse.</div>
+</div>
+
+<!-- SECTION 3: WHERE LOSS HAPPENS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Sales Conversion Gap</td><td>1&ndash;1.5% shortfall on ~R4.9bn temp-covered floor sales (Makro GM + Game)</td><td>R49m</td><td>R74m</td><td class="rec">R4.9m&ndash;R7.4m</td></tr>
+        <tr><td>LRA / Section 198 Compliance Exposure</td><td>3&ndash;5% deeming dispute incidence on 20k&ndash;30k workforce @ R25k&ndash;R40k avg resolution cost</td><td>R15m</td><td>R60m</td><td class="rec">R1.5m&ndash;R6.0m</td></tr>
+        <tr><td>Shrinkage &mdash; Contract Workforce Contribution</td><td>30&ndash;40% of est. R210m internal shrinkage attributable to undertrained contract staff</td><td>R63m</td><td>R84m</td><td class="rec">R6.3m&ndash;R8.4m</td></tr>
+        <tr><td>Peak Season Productivity Collapse</td><td>1&ndash;2% conversion loss on ~R6bn peak-period revenue (BF + festive temp intake)</td><td>R60m</td><td>R120m</td><td class="rec">R6.0m&ndash;R12.0m</td></tr>
+        <tr><td>CX Failure &amp; Returns (Electronics / Appliances)</td><td>0.5&ndash;1% incremental return rate on ~R8bn electronics sub-base (Game + Makro)</td><td>R40m</td><td>R80m</td><td class="rec">R4.0m&ndash;R8.0m</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R227m</td><td>R418m</td><td class="rec">R22.7m&ndash;R41.8m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SECTION 4: TOP 5 LEAKAGE CARDS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- LEAKAGE 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Sales Conversion Gap &mdash; High-Consideration Categories</div>
+        <div class="lc-body">Temp staff placed in electronics, appliances, and general merchandise without product training consistently underperform permanent staff on conversion. On ~R4.9bn of temp-covered floor sales across Makro and Game, a 1&ndash;1.5% conversion gap represents material, largely unmeasured revenue loss.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R49m&ndash;R74m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R4.9m&ndash;R7.4m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Operational teams without structured product knowledge can&#8217;t handle objections or close upsell opportunities. Customers leave without converting or purchase at lower basket value &mdash; margin loss that compounds across thousands of daily interactions.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Bite-sized, category-specific modules &mdash; delivered mobile-first and spaced over the first two weeks &mdash; close the product knowledge gap before it costs a sale. Manager dashboards flag readiness gaps by team before temps hit the floor.</div>
+  </div>
+
+  <!-- LEAKAGE 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">LRA / Section 198 Compliance Exposure</div>
+        <div class="lc-body">Under the LRA&#8217;s deeming provisions, a temp placed for more than three months can be deemed a permanent employee. Without documented, structured compliance training across 20,000&ndash;30,000 contract workers, CCMA claims and legal resolution costs escalate rapidly &mdash; and a single contested case can trigger group exposure across a shift team.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Dispute Incidence</span><span class="sp-v">3%&ndash;5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R15m&ndash;R60m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.5m&ndash;R6.0m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Undocumented placement durations and untrained TES providers expose Massmart to deeming claims, CCMA conciliation costs, and potential retrospective benefit obligations. Legal and reputational risk accumulates silently at scale.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy deploys compliance tracks across both client and TES, generating a time-stamped, auditable training record per worker. This demonstrates due diligence to the CCMA and Labour Court &mdash; and flags at-risk workers before the three-month threshold is breached.</div>
+  </div>
+
+  <!-- LEAKAGE 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Shrinkage &mdash; Contract Workforce Contribution</div>
+        <div class="lc-body">Internal shrinkage in large-format retail runs at approximately 1.5% of sales &mdash; roughly R600m for Massmart at this revenue base. Studies consistently show 30&ndash;40% of internal shrinkage is attributable to contract and temp staff who lack structured training in receiving protocols, stock-handling procedures, and loss prevention.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">30%&ndash;40% internal</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R63m&ndash;R84m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R6.3m&ndash;R8.4m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Poorly trained receiving clerks allow short-deliveries to pass undetected. Inadequate loss-prevention awareness across the warehouse floor enables high-value product misappropriation that often goes unattributed for weeks.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Role-specific receiving, stockroom, and loss-prevention modules deployed at onboarding &mdash; and reinforced through spaced repetition &mdash; create measurable, documented procedure adherence across the full contract workforce from day one.</div>
+  </div>
+
+  <!-- LEAKAGE 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Peak Season Productivity Collapse</div>
+        <div class="lc-body">Black Friday and December festive collectively account for approximately 15% of annual revenue &mdash; around R6bn. Massmart absorbs 3,000&ndash;5,000 additional temp workers during these windows, who are consistently the least-prepared operational staff at the highest-value trading moments of the year.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Peak Revenue at Risk</span><span class="sp-v">~R6bn</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R60m&ndash;R120m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R6.0m&ndash;R12.0m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Checkout delays, incorrect product guidance, and floor confusion peak precisely when customer footfall is at its highest &mdash; turning the most commercially critical period into the highest-risk service event of the year.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy&#8217;s rapid onboarding tracks get seasonal temps floor-ready in under a week, with spaced check-ins during the peak window to sustain retention and surface knowledge decay in real time &mdash; before it costs a sale.</div>
+  </div>
+
+  <!-- LEAKAGE 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">CX Failure &amp; Returns &mdash; Electronics &amp; Appliances</div>
+        <div class="lc-body">Incorrect product advice from undertrained temp staff in high-value categories drives avoidable returns &mdash; the most expensive outcome in retail. On Game and Makro&#8217;s combined ~R8bn electronics and appliances sub-base, an incremental 0.5&ndash;1% return rate attributable to knowledge gaps represents a significant margin hit that largely goes unmeasured.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Incremental Return Rate</span><span class="sp-v">0.5%&ndash;1%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R40m&ndash;R80m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R4.0m&ndash;R8.0m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Returns erode margin twice: refund processing and restocking costs, plus the customer defection to a competitor on the next purchase. High-value category trust, once lost, is rarely recovered at store level.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Product-specific reinforcement for electronics and appliances reduces incorrect advice at point of sale. Return-rate impact is tracked through Digemy&#8217;s KPI-linked reporting, giving management a measurable, reviewable ROI signal per category.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- VALUE SUMMARY — OUTSIDE .page -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R227m&ndash;R418m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R22.7m&ndash;R41.8m per year</span></div>
+  </div>
+  <p>Massmart&#8217;s contract workforce is the engine of daily operations &mdash; but without structured knowledge reinforcement, that engine leaks at every shift change. <strong>Companies like Massmart use Digemy to turn high-rotation, hard-to-train workforces into a measurable competitive advantage</strong>, replacing orientation chaos with auditable onboarding, real-time compliance tracking, and category expertise that holds from Black Friday to Easter &mdash; with a documented ROI at every management review.</p>
+</div>
+
+<!-- KG MATRIX + SKILLS MATRIX -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The matrix below maps the critical knowledge gaps driving Leakage 01 &mdash; Sales Conversion Gap &mdash; to their direct business impact and the specific Digemy intervention. The Seasonal Sales Consultant role is the highest-leverage entry point: it sits at the intersection of product complexity, temp turnover, and peak-period risk.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Seasonal Sales Consultant (Electronics / Appliances) &nbsp;&middot;&nbsp; Leakage 01 &mdash; Sales Conversion Gap</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Seasonal Sales Consultant (Electronics / Appliances)</td></tr>
+        <tr><td>Product feature knowledge below brand-differentiation threshold</td><td>Customer defaults to price comparison; conversion lost to online or competitor</td><td>Bite-sized brand modules per SKU category, delivered pre-shift during the first ramp week</td></tr>
+        <tr><td>No structured upsell pathway (warranties, accessories, trade-up)</td><td>Average basket value 15&ndash;20% below trained-staff benchmarks in high-margin categories</td><td>Scenario-based upsell modules reinforced by manager coaching prompts in the Digemy dashboard</td></tr>
+        <tr><td>Returns handling and wrong-product guidance</td><td>Incremental return rate in electronics drives margin loss and customer defection</td><td>Returns-scenario training embedded in onboarding, with knowledge-check before floor sign-off</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: General Floor Assistant</td></tr>
+        <tr><td>Section 198 / LRA placement compliance awareness</td><td>Mutual deeming risk for worker and employer at the three-month mark</td><td>Automated compliance nudges aligned to placement milestones, with auditable completion log</td></tr>
+        <tr><td>Loss-prevention protocols for high-value stock areas</td><td>Shrinkage events from procedural ignorance rather than intent, largely undetected</td><td>Scenario-based loss-prevention training with documented completion records per worker</td></tr>
+        <tr><td>OHSA emergency procedures for warehouse-adjacent roles</td><td>Incident liability and COID exposure elevated during high-rotation periods</td><td>OHSA compliance module deployed at onboarding, with spaced reinforcement and time-stamped sign-off</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Digemy structures Massmart&#8217;s contract workforce enablement across four tracks: <strong>Compliance &amp; Legal Readiness</strong> (Section 198, OHSA, age-verification, loss prevention), <strong>Product &amp; Category Knowledge</strong> (electronics, appliances, home improvement, liquor), <strong>Customer Experience &amp; Conversion</strong> (objection handling, upsell, returns management), and <strong>Operational Procedures</strong> (receiving, stockroom, checkout accuracy). Each track is modular, mobile-first, and time-stamped &mdash; providing an auditable readiness record per worker that protects Massmart operationally while delivering a measurable, management-reportable ROI at every review cycle.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Massmart &mdash; Operational Optimisation Report</div>
+</body>
+</html>
