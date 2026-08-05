@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Polyoak Packaging Group — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Rigid Plastic Packaging Manufacturing</div>
+  <h1 style="margin-bottom:32px;">Polyoak <span>Packaging Group</span></h1>
+  <div class="hero-stats">
+    <div class="hs">
+      <div class="hs-label">Revenue Base</div>
+      <div class="hs-val">~R5.5bn</div>
+      <div class="hs-sub">estimated annual revenue</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Total Addressable Leakage</div>
+      <div class="hs-val p">R102m&ndash;R191m</div>
+      <div class="hs-sub">estimated annually</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Recovery @ 10%</div>
+      <div class="hs-val g">R10m&ndash;R19m</div>
+      <div class="hs-sub">potential per year</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ═══ SECTION 1: WHY DIGEMY ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Polyoak has built one of South Africa&rsquo;s most credible in-house L&amp;D platforms &mdash; a dedicated Business School, merSETA accreditation since 2008, and the country&rsquo;s first QCTO-certified trade test centre for plastic machine setters. The gap isn&rsquo;t training investment; it&rsquo;s what happens on the floor between sessions, when process parameters drift, food safety protocols fade, and quality deviations accumulate shift by shift. Companies like Polyoak &mdash; operating simultaneously across dairy, beverage, food, and industrial packaging &mdash; carry outsized exposure when knowledge decays faster than the training calendar can address it.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;Training gets people certified. Spaced reinforcement is what keeps resin out of the scrap bin.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy links every learning module directly to Polyoak&rsquo;s operational KPIs &mdash; scrap rates, machine downtime, LTIFR, and quality rejection metrics &mdash; so manager accountability dashboards surface knowledge decay before it becomes a line-stoppage or a customer penalty. With FLM Academy benchmarks showing 154% knowledge retention improvement and 70% faster ramp time, Digemy transforms what Polyoak&rsquo;s Business School delivers into what the floor actually sustains.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 2: FRONTLINE WORKFORCE ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Moulding Machine Setter</td><td>Process parameter drift, excess scrap, cycle time variance</td></tr>
+        <tr><td>Machine Operator</td><td>Quality adherence, start-up procedure compliance</td></tr>
+        <tr><td>Quality Control Inspector</td><td>Non-conformance identification, GMP and hygiene protocols</td></tr>
+        <tr><td>Maintenance Technician</td><td>Fault diagnosis, preventive maintenance discipline</td></tr>
+        <tr><td>Shift Supervisor / Team Leader</td><td>Safety enforcement, production throughput management</td></tr>
+        <tr><td>Warehouse &amp; Logistics Operator</td><td>Stock handling accuracy, damage prevention, dispatch errors</td></tr>
+        <tr><td>Technical Sales Representative</td><td>Multi-division product portfolio expertise, specification accuracy</td></tr>
+        <tr><td>Health &amp; Safety Officer</td><td>OHSA compliance, chemical handling, incident investigation</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Polyoak employs in excess of 2,000 people across manufacturing facilities in South Africa, Namibia, and Zimbabwe &mdash; with primary operations concentrated across 5 South African sites including Diep River (Cape Town) and Roodekop (Gauteng). The frontline operational team &mdash; machine setters, operators, quality inspectors, maintenance technicians, and warehouse staff &mdash; is estimated at 1,500&ndash;1,700 people, representing Digemy&rsquo;s primary engagement population.</div>
+</div>
+
+<!-- ═══ SECTION 3: WHERE LOSS HAPPENS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead>
+        <tr>
+          <th>Leakage Area</th>
+          <th>Assumption</th>
+          <th>Annual Low</th>
+          <th>Annual High</th>
+          <th>Recovery @10%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Moulding Process &amp; Scrap Losses</td>
+          <td>0.5%&ndash;1.0% of total revenue (R5.5bn)</td>
+          <td>R27.5m</td>
+          <td>R55.0m</td>
+          <td class="rec">R2.75m&ndash;R5.50m</td>
+        </tr>
+        <tr>
+          <td>Machine Downtime / Maintenance Gaps</td>
+          <td>0.4%&ndash;0.8% of total revenue (R5.5bn)</td>
+          <td>R22.0m</td>
+          <td>R44.0m</td>
+          <td class="rec">R2.20m&ndash;R4.40m</td>
+        </tr>
+        <tr>
+          <td>Quality &amp; Food Safety Non-Conformances</td>
+          <td>0.3%&ndash;0.6% of total revenue (R5.5bn)</td>
+          <td>R16.5m</td>
+          <td>R33.0m</td>
+          <td class="rec">R1.65m&ndash;R3.30m</td>
+        </tr>
+        <tr>
+          <td>H&amp;S Incidents &amp; Compliance Costs</td>
+          <td>Multi-site operations; 2,000+ employees; direct &amp; indirect incident costs</td>
+          <td>R8.0m</td>
+          <td>R15.0m</td>
+          <td class="rec">R0.80m&ndash;R1.50m</td>
+        </tr>
+        <tr>
+          <td>Sales &amp; Portfolio Knowledge Gaps</td>
+          <td>0.5%&ndash;0.8% of total revenue (R5.5bn)</td>
+          <td>R27.5m</td>
+          <td>R44.0m</td>
+          <td class="rec">R2.75m&ndash;R4.40m</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL</td>
+          <td>&mdash;</td>
+          <td>R101.5m</td>
+          <td>R191.0m</td>
+          <td class="rec">R10.15m&ndash;R19.10m</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ SECTION 4: TOP 5 LEAKAGE CARDS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- Card 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Moulding Process &amp; Scrap Losses</div>
+        <div class="lc-body">Across Polyoak&rsquo;s blow, injection, compression, and thermoforming lines, machine setters control the process parameters that determine yield, cycle time, and material consumption. Knowledge decay between training sessions is the primary driver of avoidable scrap &mdash; and at Polyoak&rsquo;s production volumes, even a fraction of a percent in excess resin waste compounds into significant annual cost.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R27.5m&ndash;R55.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R2.75m&ndash;R5.50m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Uncontrolled process drift produces off-spec parts that fail at QC, consuming materials that cannot be fully recovered. Resin trial runs to re-establish stable conditions extend downtime and delay production commitments &mdash; adding direct cost to every affected run.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Role-specific spaced reinforcement modules keep machine setters fluent in the exact process parameters, start-up sequences, and deviation triggers relevant to their assigned lines. Assessed weekly and linked to scrap KPIs, Digemy creates a direct, visible connection between setter knowledge and yield performance.</div>
+  </div>
+
+  <!-- Card 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Machine Downtime &mdash; Maintenance Knowledge Gaps</div>
+        <div class="lc-body">Moulding equipment is capital-intensive and many fault conditions are operator-recoverable &mdash; if the team recognises them early. Breakdowns that escalate to specialist engineers are frequently caused by gaps in preventive maintenance discipline and fault-recognition knowledge at the operator and technician level.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.4%&ndash;0.8%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R22.0m&ndash;R44.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R2.20m&ndash;R4.40m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Unplanned stoppages delay customer orders, force costly expedited production runs, and impose emergency repair costs that dwarf the price of the knowledge gap that caused them. Repeated downtime from the same fault patterns signals a retention problem, not a technical one.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Machine-specific fault recognition and PM schedule modules reinforced on a spaced cadence ensure technicians retain actionable knowledge between formal maintenance sessions. Manager dashboards flag teams where PM knowledge is trending down before it shows up as a breakdown on the floor.</div>
+  </div>
+
+  <!-- Card 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Quality &amp; Food Safety Non-Conformances</div>
+        <div class="lc-body">Polyoak produces primary food, dairy, and beverage packaging under stringent GMP and food contact requirements &mdash; supplying blue-chip FMCG customers who enforce strict supplier quality standards. Protocol adherence depends on frontline inspectors and line operators who must apply food safety knowledge correctly on every shift, not just on the day of their last training.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.3%&ndash;0.6%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R16.5m&ndash;R33.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.65m&ndash;R3.30m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Quality failures trigger customer penalties, product holds, and repeat audit findings &mdash; each carrying both direct cost and reputational risk with accounts that represent significant revenue. A single non-conformance in a food contact line can cascade into a full production halt.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Daily bite-sized GMP and food safety modules ensure inspectors and line operators maintain certified-level knowledge every day &mdash; with manager accountability dashboards that surface individuals or sites trending toward decay before an audit or customer complaint does.</div>
+  </div>
+
+  <!-- Card 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">H&amp;S Incidents &amp; Compliance Cost</div>
+        <div class="lc-body">Polyoak&rsquo;s multi-site operations &mdash; spanning hot-melt plastics, chemical processing, and high-throughput warehouse environments &mdash; create a significant H&amp;S compliance obligation under OHSA. With 2,000+ employees across South Africa, Namibia, and Zimbabwe, knowledge decay in safety protocols is a structural risk that annual refresher sessions cannot adequately address.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">Multi-site est.</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R8.0m&ndash;R15.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.80m&ndash;R1.50m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">LTIFR increases drive insurance premium escalation and DoL scrutiny &mdash; both imposing costs well beyond the incident itself. Corrective action after an H&amp;S failure is always more expensive than prevention, and always less defensible to the workforce.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Micro-reinforcement of PPE protocols, MSDS handling, machine-specific lockout/tagout, and emergency procedures on a daily cadence drives measurable LTIFR reduction &mdash; with site-level dashboards that let H&amp;S managers act before incidents occur, not after.</div>
+  </div>
+
+  <!-- Card 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Sales &amp; Product Portfolio Knowledge Gaps</div>
+        <div class="lc-body">Polyoak&rsquo;s commercial teams represent eight or more specialist divisions &mdash; from Dairypack and Polypet to African Closures, Contan, and Visconti &mdash; each with distinct materials science, application expertise, and sustainability positioning. Reps who can&rsquo;t navigate the full portfolio confidently default to narrower selling conversations, leaving cross-division revenue on the table.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;0.8%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R27.5m&ndash;R44.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R2.75m&ndash;R4.40m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Missed cross-division opportunities, longer sales cycles, and price concessions to customers who sense technical uncertainty all compound quietly but consistently across a commercial team of this size. New product and sustainability messaging also fails to land when it isn&rsquo;t reinforced beyond the launch briefing.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Structured product knowledge reinforcement across Polyoak&rsquo;s full divisional portfolio ensures every account manager stays fluent &mdash; from technical specifications to sustainability positioning &mdash; embedded at the cadence the business demands, not the cadence the training calendar allows.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- ═══ VALUE SUMMARY — OUTSIDE .page ═══ -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R101.5m&ndash;R191.0m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R10.15m&ndash;R19.10m per year</span></div>
+  </div>
+  <p>Polyoak has made a meaningful commitment to building a learning culture &mdash; one that few manufacturers in Southern Africa can match. The opportunity Digemy addresses is the gap between that commitment and what measurably sticks: across its process, quality, safety, maintenance, and commercial functions, knowledge decay is quietly costing an estimated <strong>R101.5m&ndash;R191.0m per year</strong> in preventable losses. Closing even 10% of that gap &mdash; <strong>R10.15m&ndash;R19.10m annually</strong> &mdash; delivers a return on a Digemy engagement that is immediate, measurable, and directly tied to the KPIs Polyoak&rsquo;s plant managers and division heads already track.</p>
+</div>
+
+<!-- ═══ KG MATRIX + SKILLS MATRIX — second .page block ═══ -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The matrix below maps knowledge gap exposure within Polyoak&rsquo;s most critical operational role &mdash; the Moulding Machine Setter &mdash; against the primary leakage driver of process-related scrap and yield loss. These gaps represent the consistent pattern of performance variance that emerges when technical training isn&rsquo;t reinforced between sessions.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Moulding Machine Setter &nbsp;&middot;&nbsp; Leakage 01 &mdash; Moulding Process &amp; Scrap Losses</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead>
+        <tr>
+          <th style="width:34%">Knowledge Gap</th>
+          <th style="width:33%">Business Impact</th>
+          <th style="width:33%">Digemy Solution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Moulding Machine Setter</td></tr>
+        <tr>
+          <td>Incorrect machine start-up sequence</td>
+          <td>Resin waste and quality rejects during stabilisation; extended downtime before first-pass yield is achieved</td>
+          <td>Sequential SOP modules reinforced weekly; assessed before each shift start</td>
+        </tr>
+        <tr>
+          <td>Poor cycle time optimisation knowledge</td>
+          <td>Underperformance vs. machine capability; missed tonnage targets and downstream capacity shortfalls</td>
+          <td>Cycle time and output benchmark modules embedded in daily learning paths, tied to shift KPIs</td>
+        </tr>
+        <tr>
+          <td>Inability to identify off-spec moulding early</td>
+          <td>Defective parts reaching QC as rejects &mdash; triggering rework, material write-off, and customer delivery risk</td>
+          <td>Visual defect recognition training with scenario-based daily reinforcement and photographic assessment cards</td>
+        </tr>
+        <tr>
+          <td>Inconsistent changeover procedures across shifts</td>
+          <td>Inter-shift quality variance, production disputes, and planning unreliability in multi-shift operations</td>
+          <td>Standardised changeover SOP reinforcement ensuring cross-shift consistency; deviations flagged to supervisors via dashboard</td>
+        </tr>
+        <tr>
+          <td>Limited understanding of resin lot variation</td>
+          <td>Incorrect parameter adjustment when resin properties change between lots &mdash; causing scrap spikes that are slow to diagnose</td>
+          <td>Material science fundamentals reinforced via spaced repetition; material lot-change events trigger a targeted knowledge refresh</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Polyoak&rsquo;s eight specialist divisions &mdash; each with distinct material, application, and quality knowledge requirements &mdash; demand a mapped skills framework, not a uniform training register. A <strong>Digemy Skills Matrix</strong> aligns verified competency profiles to every critical role: from moulding machine setters and quality inspectors to technical sales representatives and H&amp;S officers across all sites. Integrated with the Polyoak Business School&rsquo;s existing curriculum, Digemy replaces completion-based reporting with <strong>real-time, KPI-linked competency visibility</strong> &mdash; giving division heads and plant managers the insight to act before knowledge gaps become operational failures.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Polyoak Packaging Group &mdash; Operational Optimisation Report</div>
+</body>
+</html>
