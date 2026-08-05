@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Polyoak Business School — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO — wordmark plain white, no span. h1 style="margin-bottom:32px". NO hero-rev div. -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Corporate Learning &amp; Development</div>
+  <h1 style="margin-bottom:32px;">Polyoak <span>Business School</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R5.7bn</div><div class="hs-sub">Polyoak Packaging Group</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R20m&ndash;R46m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R2m&ndash;R4.6m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- SECTION 1: WHY DIGEMY -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Polyoak Business School has built accredited, technically rigorous training capability across five manufacturing campuses — but classroom delivery without spaced reinforcement means the knowledge trainers invest in decays within weeks of session completion. Companies like Polyoak Business School use Digemy to convert one-time training events into continuous knowledge performance, embedding critical SOPs and technical mastery into daily workflows. Digemy gives training managers real-time visibility into knowledge gaps before they manifest as production defects, safety incidents, or SETA non-compliance.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;If your trainers can&#8217;t prove retention happened, the machine already knows before management does.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy links each training module directly to production quality KPIs, giving Polyoak Business School&#8217;s facilitators a closed-loop system where manager accountability dashboards and automated reinforcement cycles replace repeat training sessions. The result is faster apprentice ramp times, measurable knowledge uplift across all sites, and merSETA-compliant digital records — all from a single platform.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: FRONTLINE WORKFORCE -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Internal Technical Trainer / Facilitator</td><td>Knowledge delivery without retention tracking; high repeat-training burden across moulding, extrusion, and packaging lines</td></tr>
+        <tr><td>Assessor &amp; Moderator (merSETA / QCTO)</td><td>Assessment integrity risk from paper-based registers; non-compliant documentation exposing SETA grant recovery</td></tr>
+        <tr><td>Apprenticeship Programme Coordinator</td><td>Poor learner progression visibility; high repeat-assessment rates and extended time-to-certification</td></tr>
+        <tr><td>On-the-Job Production Coach</td><td>Inconsistent coaching standards across 5+ manufacturing sites; no central content governance or version control</td></tr>
+        <tr><td>Training Administrator</td><td>Manual scheduling, paper registers, and compliance documentation overhead consuming 20–30% of trainer productive time</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Polyoak Business School is estimated to operate with 25–40 internal trainers, assessors, and programme coordinators across five manufacturing campuses — including the Diep River trade test centre — serving a workforce of 2,000+ employees across apprenticeship cohorts, machine operators, and technical production staff. Trainer-to-learner ratios in accredited plastics manufacturing programmes are typically 1:15 to 1:25, placing significant reinforcement load on a small facilitation team.</div>
+</div>
+
+<!-- SECTION 3: WHERE LOSS HAPPENS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>SOP Knowledge Decay → Production Defects</td><td>Training-attributable quality failure at 0.3%–0.7% of COGS (~R3.7bn)</td><td>R11.1m</td><td>R25.9m</td><td class="rec">R1.11m&ndash;R2.59m</td></tr>
+        <tr><td>Repeat &amp; Remedial Training</td><td>20%–40% of ~R10m annual training spend absorbed by content re-delivery</td><td>R2m</td><td>R4m</td><td class="rec">R200k&ndash;R400k</td></tr>
+        <tr><td>SETA Grant Forfeitures</td><td>40%–70% of ~R4m discretionary grant entitlement forfeited through non-digital, non-traceable delivery</td><td>R1.6m</td><td>R2.8m</td><td class="rec">R160k&ndash;R280k</td></tr>
+        <tr><td>Trainer Capacity Waste</td><td>20%–30% of ~R11.4m trainer cost pool (30 trainers × R380k avg) consumed by avoidable admin and manual processes</td><td>R2.28m</td><td>R3.42m</td><td class="rec">R228k&ndash;R342k</td></tr>
+        <tr><td>Safety Incidents from Knowledge Gaps</td><td>15–25 training-attributable incidents/year across 5+ high-risk manufacturing sites @ R200k–R400k per incident</td><td>R3m</td><td>R10m</td><td class="rec">R300k&ndash;R1m</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R19.98m</td><td>R46.12m</td><td class="rec">R1.99m&ndash;R4.61m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SECTION 4: TOP 5 LEAKAGE CARDS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- LC 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">SOP Knowledge Decay &rarr; Production Quality Defects</div>
+        <div class="lc-body">Machine operators trained in classroom settings typically retain less than 20% of technical SOPs within 30 days without reinforcement — directly increasing scrap, rework, and off-spec output on high-speed thermoformed and blow-moulded lines. Without a structured reinforcement loop, trainers have no visibility into who has forgotten what until defects appear on the production floor.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.3%&ndash;0.7% of COGS</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R11.1m&ndash;R25.9m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.1m&ndash;R2.6m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Elevated scrap rates on thermoformed and injection-moulded lines, increased customer complaints from off-spec packaging, and higher raw material waste erode margin on every production run across all divisions.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Spaced reinforcement modules embedded into daily machine-start routines ensure operators retain SOP mastery between shifts, with manager dashboards flagging knowledge decay before it reaches the production floor.</div>
+  </div>
+
+  <!-- LC 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Repeat &amp; Remedial Training Cost</div>
+        <div class="lc-body">Without digital retention tracking, trainers have no way to identify which operators need reinforcement — defaulting to blanket re-training events that consume budget, floor time, and facilitator capacity that should be invested in new programme development. An estimated 20–40% of Polyoak Business School&#8217;s annual training spend is recycled through repeat content delivery.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">20%&ndash;40% of training spend</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R2m&ndash;R4m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R200k&ndash;R400k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Trainers are pulled into repeat delivery cycles rather than designing new qualifications or upskilling programmes, reducing the Business School&#8217;s capacity to add accredited offerings or extend its SETA scope.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Automated reinforcement and performance evaluations replace blanket re-training with targeted, data-driven interventions — freeing facilitators to focus on high-value programme design and apprenticeship quality.</div>
+  </div>
+
+  <!-- LC 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">SETA Grant Forfeitures</div>
+        <div class="lc-body">merSETA mandatory and discretionary grants are conditional on compliant, traceable training delivery — but paper-based attendance registers and inconsistent documentation put an estimated R1.6m–R2.8m in annual grant entitlements at direct risk of forfeiture or audit clawback.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">40%&ndash;70% of grant entitlement</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.6m&ndash;R2.8m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R160k&ndash;R280k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Non-digital training records expose Polyoak to SETA audit risk, reduce grant recovery rates from both mandatory and discretionary pools, and weaken the B-BBEE skills development scorecard position at group level.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Every Digemy session generates a timestamped, auditable digital record — providing merSETA-ready compliance documentation and maximising grant recovery while strengthening B-BBEE skills development scoring.</div>
+  </div>
+
+  <!-- LC 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Trainer Capacity Waste</div>
+        <div class="lc-body">Internal trainers at Polyoak Business School spend an estimated 20–30% of productive time on manual scheduling, paper registers, assessment administration, and content printing — all tasks that a digital learning platform eliminates, recovering capacity for facilitation and coaching quality.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">20%&ndash;30% of trainer capacity</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R2.28m&ndash;R3.42m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R228k&ndash;R342k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Administrative overhead limits programme reach, delays new qualification rollouts across campuses, and reduces the quality of facilitation time available for technically complex machine-setter and apprenticeship content.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy&#8217;s manager accountability dashboard, automated scheduling, and digital assessment tools reclaim 20–30% of trainer time for high-value facilitation, on-the-job coaching, and multi-site programme standardisation.</div>
+  </div>
+
+  <!-- LC 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Safety Incidents from Knowledge Gaps</div>
+        <div class="lc-body">In a high-speed plastics manufacturing environment operating injection moulding, thermoforming, and blow-moulding equipment across 5+ sites, operators who don&#8217;t consistently retain safety SOPs and machine-specific risk protocols create preventable incident exposure at scale.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">15&ndash;25 incidents/year</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R3m&ndash;R10m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R300k&ndash;R1m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Lost-time injuries, COID Act claims, and OHS regulatory non-compliance carry direct financial costs as well as production disruption and reputational impact across Polyoak&#8217;s multi-site, multi-division operations.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Safety-critical content delivered through spaced reinforcement ensures operators across all sites maintain consistent recall of risk protocols — with real-time knowledge gap visibility for line managers and safety officers before incidents occur.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- VALUE SUMMARY — OUTSIDE .page -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R19.98m&ndash;R46.12m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R1.99m&ndash;R4.61m per year</span></div>
+  </div>
+  <p>Polyoak Business School&#8217;s facilitators deliver accredited, technically rigorous programmes across five manufacturing campuses — but without spaced reinforcement, the knowledge these trainers invest in doesn&#8217;t compound. <strong>Companies like Polyoak that shift to Digemy</strong> convert their existing training infrastructure into a continuous performance engine: reducing production scrap, maximising SETA grant recovery, freeing trainer capacity, and recovering R1.99m–R4.61m in annual value — without adding headcount or rebuilding curriculum.</p>
+</div>
+
+<!-- KG MATRIX + SKILLS MATRIX — second .page block -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The matrix below maps the critical knowledge gaps at facilitator level against production business impact and Digemy&#8217;s platform solution — focused on the highest-risk leakage area: SOP knowledge decay driving quality defects across Polyoak&#8217;s manufacturing lines.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Internal Technical Trainer / Facilitator &nbsp;&middot;&nbsp; Leakage 01 &mdash; SOP Knowledge Decay &rarr; Production Quality Defects</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Internal Technical Trainer / Facilitator</td></tr>
+        <tr>
+          <td>No systematic method to track operator retention between training sessions</td>
+          <td>Machine operators revert to pre-training habits within 30 days; scrap rates increase on thermoforming and moulding lines</td>
+          <td>Spaced reinforcement modules auto-delivered at shift start; knowledge scores visible to trainers in real time</td>
+        </tr>
+        <tr>
+          <td>Training content inconsistent across 5 campuses — no central content governance</td>
+          <td>Different sites apply different SOP interpretations, producing quality variation across Dairypack, Polypet, and Blowpack divisions</td>
+          <td>Centralised Digemy content library with version control deployed simultaneously to all sites from a single admin console</td>
+        </tr>
+        <tr>
+          <td>Paper-based post-assessments measure attendance, not application-level mastery</td>
+          <td>Operators &quot;pass&quot; training but cannot apply knowledge under production conditions — quality failures only discovered on the floor</td>
+          <td>Adaptive micro-assessments at 7, 14, and 30-day intervals measure actual retention and flag skill-level gaps by individual</td>
+        </tr>
+        <tr>
+          <td>No real-time visibility for line managers on operator knowledge readiness</td>
+          <td>Production supervisors have no early warning system for knowledge decay — defects are reactive, not preventable</td>
+          <td>Manager accountability dashboards provide live knowledge scores per operator, enabling intervention before quality impact</td>
+        </tr>
+        <tr>
+          <td>Assessors lack digital tools to moderate at scale across multiple campuses</td>
+          <td>Moderation bottlenecks delay certification; apprentices stall in qualification pipeline and productive output is deferred</td>
+          <td>Digital assessment bank and automated moderation workflow reduce certification cycle time and QCTO submission turnaround</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Digemy&#8217;s skills matrix for Polyoak Business School maps the full capability set required from each training role — from technical facilitation and merSETA assessment to production coaching and digital learning design — across all five campuses. <strong>For a multi-site internal business school, the platform provides training managers with a live view of facilitator competency gaps alongside learner knowledge scores</strong>, enabling targeted development of the trainers themselves, not just the learners they serve. Where Polyoak&#8217;s facilitators currently operate in relative isolation across campuses, Digemy creates a connected learning network — standardising content, sharing best practices, and giving the Head of Training a single accountability dashboard for compliance performance, knowledge scores, and programme effectiveness across the entire Polyoak Packaging Group.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Polyoak Business School &mdash; Operational Optimisation Report</div>
+</body>
+</html>
