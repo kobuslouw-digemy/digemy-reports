@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ERMCO-ECI — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">United States &middot; Electrical Equipment Manufacturing</div>
+  <h1 style="margin-bottom:32px;">ERMCO-ECI <span>Operational ROI</span></h1>
+  <div class="hero-stats">
+    <div class="hs">
+      <div class="hs-label">Revenue Base</div>
+      <div class="hs-val">~$750M</div>
+      <div class="hs-sub">consolidated transformer &amp; power solutions (est.)</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Total Addressable Leakage</div>
+      <div class="hs-val p">$10.6M&ndash;$22.9M</div>
+      <div class="hs-sub">estimated annually</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Recovery @ 10%</div>
+      <div class="hs-val g">$1.1M&ndash;$2.3M</div>
+      <div class="hs-sub">potential per year</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ═══ SECTION 1: WHY DIGEMY ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>ERMCO-ECI manufactures the infrastructure that keeps North America powered &mdash; but in a business where 650,000 transformers ship annually across utility, renewable, and industrial markets, the gap between what operational teams are trained on and what they reliably apply creates measurable quality, compliance, and commercial risk. Rapid facility expansion in Arizona and Wisconsin, a major DOE efficiency standard transition, and record production volumes demand that every production technician, application engineer, and account manager carries current, verified knowledge at all times. Digemy&rsquo;s spaced reinforcement platform turns one-off technical training into demonstrable operational performance &mdash; closing the gap between classroom instruction and floor-level execution.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;When you manufacture the infrastructure that powers America&rsquo;s grid, an undertrained workforce isn&rsquo;t a people problem &mdash; it&rsquo;s an engineering risk.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Companies like ERMCO-ECI deploy Digemy to link knowledge reinforcement directly to production quality metrics, OSHA compliance rates, and new-hire ramp speed. Manager accountability dashboards and spaced learning nudges ensure that DOE specification updates, new transformer product lines, and safety protocol changes are retained and applied &mdash; not just attended. Measurable improvements in defect rate, ramp time, and sales conversion are typically realised within the first six months of deployment.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 2: FRONTLINE WORKFORCE ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Production / Assembly Technicians</td><td>Rework from core-winding, oil-fill, and testing specification gaps</td></tr>
+        <tr><td>Quality Control Inspectors</td><td>DOE compliance and test acceptance criteria failures</td></tr>
+        <tr><td>Maintenance Technicians</td><td>Equipment downtime from NFPA 70B and LOTO protocol gaps</td></tr>
+        <tr><td>Field Application Engineers</td><td>Incorrect technical guidance at utility customer installation sites</td></tr>
+        <tr><td>Technical Sales / Account Managers</td><td>Lost contracts from product spec and DOE compliance knowledge gaps</td></tr>
+        <tr><td>Supply Chain &amp; Procurement</td><td>Material specification errors causing production line stoppages</td></tr>
+        <tr><td>New Hire / Expansion Onboarding</td><td>Slow productivity ramp at Arizona, Wisconsin, and North Carolina facilities</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> ERMCO-ECI and its affiliates &mdash; ECI-Greeneville, ECI-Bristol, ERMCO-GridBridge, Power Partners, Pioneer Transformers, and V&amp;F Transformer &mdash; employ 3,500+ team members across North America, with an estimated 1,000&ndash;1,500 on the flagship Dyersburg, Tennessee campus. Ongoing facility expansions in Waddell (Arizona) and Bristol (Wisconsin) signal significant new headcount growth through 2026&ndash;2027, amplifying the operational impact of scalable, technology-enabled knowledge delivery.</div>
+</div>
+
+<!-- ═══ SECTION 3: WHERE LOSS HAPPENS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Production Rework &amp; Defect Waste</td><td>0.5&ndash;1.0% of $750M manufacturing revenue base</td><td>$3,750,000</td><td>$7,500,000</td><td class="rec">$375,000&ndash;$750,000</td></tr>
+        <tr><td>Technical Sales Knowledge Loss</td><td>0.5&ndash;1.0% of $525M utility &amp; commercial sales base</td><td>$2,600,000</td><td>$5,250,000</td><td class="rec">$260,000&ndash;$525,000</td></tr>
+        <tr><td>New Hire Ramp Productivity Loss</td><td>~500 new hires/yr &times; 4&ndash;6 weeks @ $65k avg fully loaded</td><td>$2,000,000</td><td>$4,500,000</td><td class="rec">$200,000&ndash;$450,000</td></tr>
+        <tr><td>DOE Compliance &amp; Spec Failures</td><td>0.5&ndash;1.5% of ~$225M new DOE-regulated production base</td><td>$1,100,000</td><td>$3,400,000</td><td class="rec">$110,000&ndash;$340,000</td></tr>
+        <tr><td>Workplace Safety &amp; OSHA Exposure</td><td>0.5&ndash;1.0% of ~$230M estimated annual labor cost base</td><td>$1,150,000</td><td>$2,300,000</td><td class="rec">$115,000&ndash;$230,000</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>$10,600,000</td><td>$22,950,000</td><td class="rec">$1,060,000&ndash;$2,295,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ SECTION 4: TOP 5 LEAKAGE CARDS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- Card 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Production Rework &amp; Defect Waste</div>
+        <div class="lc-body">With 650,000+ transformers produced annually, even minor knowledge gaps in core-winding, oil-fill, or final testing protocols translate directly into rework costs and warranty claims. Transformer manufacturing is zero-tolerance &mdash; a mis-specified unit reaching a utility grid creates reputational and financial consequences that far exceed the cost of the unit itself.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$3.75M&ndash;$7.5M</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$375k&ndash;$750k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Quality escapes and rework cycles drive material waste, overtime costs, and expedited shipping charges that compound quickly at ERMCO-ECI&rsquo;s production volumes. Downstream warranty claims and utility customer service credits amplify the financial cost of each defective unit.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy delivers spaced reinforcement on assembly, oil-fill, and testing protocols embedded into daily workflow &mdash; not reliant on annual refreshers. Manager dashboards flag knowledge decay in real time before it reaches the production floor.</div>
+  </div>
+
+  <!-- Card 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Technical Sales &amp; Application Knowledge Loss</div>
+        <div class="lc-body">ERMCO-ECI&rsquo;s account managers and application engineers are the commercial interface with utility, renewable, and industrial customers &mdash; and the specification process is increasingly technical with DOE 2025+ efficiency requirements and smart-grid integration needs. Knowledge gaps in customer-facing roles mean ERMCO-ECI risks losing tenders to more technically confident competitors.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$2.6M&ndash;$5.25M</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$260k&ndash;$525k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Lost utility tenders and misspecified products result in change orders, project delays, and weakened customer relationships &mdash; threatening ERMCO-ECI&rsquo;s &ldquo;Most Valued Partner&rdquo; positioning. Technical sales losses are rarely captured in CRM data but are consistently driven by product knowledge confidence gaps.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy ensures account managers and application engineers retain full product specification knowledge, DOE compliance parameters, and competitive positioning &mdash; ready for any customer question without falling back on spec sheets. KPI-linked modules connect commercial knowledge directly to pipeline performance.</div>
+  </div>
+
+  <!-- Card 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">New Hire Ramp &amp; Expansion Productivity Loss</div>
+        <div class="lc-body">ERMCO-ECI is simultaneously opening facilities in Arizona and Wisconsin while sustaining record production volumes in Dyersburg &mdash; requiring hundreds of new hires to reach full productive output quickly. In transformer manufacturing, where each role demands precise technical knowledge, slow ramp translates directly to production shortfalls against a record-demand backlog.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">4&ndash;6 wks/hire</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$2.0M&ndash;$4.5M</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$200k&ndash;$450k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Undertrained new hires on complex production lines create quality risk, safety exposure, and supervisor overhead that extends across the ramp period. With facilities scaling rapidly, slow ramp across hundreds of team members creates a compounding, material production cost.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy&rsquo;s onboarding acceleration modules compress ramp time for production technicians, quality inspectors, and logistics staff with verified knowledge delivery in the first 30&ndash;90 days when retention risk is highest. Comparable manufacturing deployments show up to 70% faster ramp to full productivity.</div>
+  </div>
+
+  <!-- Card 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">DOE Compliance &amp; Specification Knowledge Gaps</div>
+        <div class="lc-body">The DOE&rsquo;s updated efficiency standards for distribution transformers, effective 2025&ndash;2026, have fundamentally changed core-and-coil specifications across ERMCO-ECI&rsquo;s product range. Operators, engineers, and sales teams not continuously updated on these changes risk producing, specifying, or quoting non-compliant units &mdash; a growing regulatory and reputational exposure.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$1.1M&ndash;$3.4M</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$110k&ndash;$340k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Non-compliant transformer shipments trigger utility customer penalties, DOE enforcement risk, and costly field retrofits &mdash; directly threatening ERMCO-ECI&rsquo;s preferred-vendor standing with safety-conscious utility operators. Specification changes also create missed cross-sell opportunities when teams are not current on updated product capabilities.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy delivers real-time specification and regulatory update modules to production teams, engineers, and account managers &mdash; ensuring DOE compliance knowledge is verified and current across all 3,500+ team members. Compliance modules can be updated centrally and pushed across all facilities within 24 hours of any specification change.</div>
+  </div>
+
+  <!-- Card 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Workplace Safety &amp; OSHA Exposure</div>
+        <div class="lc-body">Transformer manufacturing involves daily exposure to high-voltage testing, hot dielectric oil handling, heavy crane operations, and industrial press machinery &mdash; all of which carry OSHA-reportable risk when safety protocols are not rigorously retained. ERMCO-ECI&rsquo;s industry-leading safety record is a core brand differentiator and a condition of its utility customer contracts.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$1.15M&ndash;$2.3M</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$115k&ndash;$230k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">OSHA violations, workers&rsquo; compensation claims, and lost-time incidents carry direct financial costs and threaten ERMCO-ECI&rsquo;s preferred-vendor standing with safety-conscious utility operators. A single high-profile incident at a flagship facility can affect contract renewals and insurance premiums across the business.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy&rsquo;s safety modules deliver spaced reinforcement on LOTO, hot-oil handling, crane signal protocols, and NFPA 70B procedures &mdash; assessed rather than attendance-tracked. Manager dashboards provide real-time safety knowledge compliance visibility at facility level, enabling proactive intervention before incidents occur.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- ═══ VALUE SUMMARY — OUTSIDE .page ═══ -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">$10.6M&ndash;$22.9M</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">$1.1M&ndash;$2.3M per year</span></div>
+  </div>
+  <p>For ERMCO-ECI &mdash; manufacturing 650,000+ transformers annually and scaling rapidly across six North American facilities &mdash; the gap between what operational teams are trained on and what they reliably apply costs an estimated <strong>$10.6M&ndash;$22.9M each year</strong> in avoidable rework, commercial friction, ramp delay, and compliance exposure. <strong>Digemy closes this gap</strong> with spaced reinforcement, verified knowledge assessments, and manager dashboards that connect learning directly to production performance KPIs. At a 10% recovery rate, the platform represents a <strong>$1.1M&ndash;$2.3M annual performance opportunity</strong> &mdash; generated not through new capital expenditure, but by ensuring 3,500+ team members carry verified, current knowledge into every shift, every customer interaction, and every compliance checkpoint.</p>
+</div>
+
+<!-- ═══ KG MATRIX + SKILLS MATRIX — second .page block ═══ -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">ERMCO-ECI&rsquo;s production and commercial operations are only as reliable as the knowledge carried by each team member across its six North American facilities. The matrix below maps the critical knowledge gaps driving the highest leakage area &mdash; production quality &mdash; to their business impact and the Digemy solution, illustrating where spaced reinforcement delivers the most immediate operational return.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Production / Assembly Technicians &nbsp;&middot;&nbsp; Leakage 01 &mdash; Production Rework &amp; Defect Waste</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Production / Assembly Technicians</td></tr>
+        <tr><td>Core-and-coil winding specification variance by product type</td><td>Defective units entering QC pipeline, material waste, rework cycles at scale</td><td>Spaced reinforcement of winding specs by product type and DOE standard tier</td></tr>
+        <tr><td>Oil-fill volume, contamination, and temperature protocols</td><td>Dielectric failure risk in the field, warranty claims, utility customer rejections</td><td>Daily micro-assessments on oil handling, fill specification, and contamination thresholds</td></tr>
+        <tr><td>Final testing procedure sequence and acceptance criteria</td><td>Non-compliant units shipped, DOE penalty exposure, customer contract risk</td><td>Assessment-locked testing procedure modules; verified completion required before sign-off</td></tr>
+        <tr><td>DOE 2025+ efficiency specification changes across product lines</td><td>Non-compliant product produced on legacy specs, potential recall and field retrofit costs</td><td>Real-time spec update modules pushed centrally to floor teams within 24 hours of change</td></tr>
+        <tr><td>LOTO and high-voltage safety protocols for testing environments</td><td>OSHA violations, lost-time incidents, crane and press accident risk</td><td>Safety module library with verified assessment completion tracking, not attendance records</td></tr>
+        <tr><td>New product introduction specifications for expanded transformer range</td><td>Incorrect assembly on new product types, quality escapes at new expansion facilities</td><td>Structured new product ramp learning paths with manager progress visibility</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Digemy would deploy across four core skill domains for ERMCO-ECI&rsquo;s 3,500+ operational team members: <strong>production technical knowledge</strong> (assembly specifications, oil-fill protocols, testing procedures); <strong>regulatory and compliance knowledge</strong> (DOE 2025+ efficiency standards, NFPA 70B, OSHA safety protocols); <strong>commercial product knowledge</strong> (product specifications, DOE compliance parameters, and competitive positioning for account managers and application engineers); and <strong>new-hire acceleration</strong> (structured 30&ndash;90 day ramp pathways for expanding facilities in Arizona, Wisconsin, and North Carolina). Each domain links directly to measurable KPIs &mdash; defect rate, ramp time, safety incident frequency, and sales conversion &mdash; giving ERMCO-ECI leadership real-time knowledge performance visibility across every facility and function. Skills are updated centrally and pushed to the floor within 24 hours, ensuring no specification change, DOE update, or new product introduction creates a knowledge gap before it becomes a quality or compliance cost.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; ERMCO-ECI &mdash; Operational Optimisation Report</div>
+</body>
+</html>
