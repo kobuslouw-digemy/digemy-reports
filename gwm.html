@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>GWM South Africa — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Automotive &amp; Vehicle Distribution</div>
+  <h1 style="margin-bottom:32px;">GWM South <span>Africa</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R10bn</div><div class="hs-sub">estimated wholesale vehicle revenue</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R312m&ndash;R510m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R31m&ndash;R51m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- SECTION 1: WHY DIGEMY -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>GWM South Africa posted the strongest growth of any top-ten automaker in 2025 &mdash; a 43.7% surge that pushed it to 6th nationally &mdash; yet that trajectory rests on a dealer network of 90+ outlets selling four distinct brands across wildly different market segments. The deal is made or lost in the showroom, and when product knowledge, F&amp;I confidence and aftersales skills decay faster than training cycles refresh them, growth momentum quietly haemorrhages revenue. Digemy turns every spare minute in a busy dealership into a reinforcement moment &mdash; keeping brand knowledge sharp, conversion skills active and new-model launches landing at full speed.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;Selling four brands across 90 dealerships isn&#8217;t a distribution challenge &mdash; it&#8217;s a knowledge management problem.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>FLM Academy achieved a 60&times; engagement increase, 154% knowledge retention improvement and 70% faster ramp time using Digemy. Deployed across GWM South Africa&#8217;s dealer network, spaced-reinforcement microlearning accelerates model knowledge, F&amp;I product confidence and warranty compliance &mdash; converting dealer competency directly into measurable revenue recovery.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: FRONTLINE WORKFORCE -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Vehicle Sales Executive</td><td>Product knowledge gaps across HAVAL, P-Series, TANK &amp; ORA; weak objection handling and cross-brand consultative selling</td></tr>
+        <tr><td>Finance &amp; Insurance Manager</td><td>Low F&amp;I product penetration; NCA compliance risk in finance and insurance conversations</td></tr>
+        <tr><td>Service Advisor</td><td>Underselling maintenance plans and accessories; insufficient customer retention behaviours at point of service</td></tr>
+        <tr><td>Vehicle Technician</td><td>Warranty repair errors on new models; diagnostic knowledge gaps when Tank 300, ORA 03 and new P-Series variants arrive</td></tr>
+        <tr><td>Fleet Sales Executive</td><td>Weak commercial needs analysis; slow uptake of P-Series and new POER fleet-specific configurations</td></tr>
+        <tr><td>Parts Counter Sales</td><td>Low accessories attach rate; misidentification errors on HAVAL and TANK parts leading to warranty and rework costs</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> GWM South Africa&#8217;s 90+ franchised dealerships are estimated to employ 1,500&ndash;2,000 frontline sales, F&amp;I, aftersales and parts personnel across the network, supported by a GWM SA head office team of approximately 200&ndash;400 in operations, training, brand management and technical support. Each dealership typically carries 5&ndash;8 sales consultants, 1&ndash;2 F&amp;I managers, and a service and parts team of 8&ndash;15 people.</div>
+</div>
+
+<!-- SECTION 3: WHERE LOSS HAPPENS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Sales Conversion Failure</td><td>1%&ndash;1.5% of ~R10bn wholesale vehicle revenue lost to poor product knowledge and objection handling</td><td>R100m</td><td>R150m</td><td class="rec">R10m&ndash;R15m</td></tr>
+        <tr><td>F&amp;I Product Underperformance</td><td>5%&ndash;10% shortfall vs. benchmark penetration rates on R1.2bn estimated F&amp;I revenue pool (12% of vehicle revenue)</td><td>R60m</td><td>R120m</td><td class="rec">R6m&ndash;R12m</td></tr>
+        <tr><td>Aftersales &amp; Workshop Revenue Leakage</td><td>3%&ndash;5% of R1.5bn estimated aftersales revenue (service + parts at 15% of vehicle revenue)</td><td>R45m</td><td>R75m</td><td class="rec">R4.5m&ndash;R7.5m</td></tr>
+        <tr><td>New Model Launch Knowledge Gap</td><td>20%&ndash;30% shortfall of R400m estimated annual new-model revenue potential (Tank 300, ORA 03, P-Series variants)</td><td>R80m</td><td>R120m</td><td class="rec">R8m&ndash;R12m</td></tr>
+        <tr><td>Warranty &amp; Compliance Errors</td><td>15%&ndash;25% of R180m estimated warranty claim exposure (1.8% of vehicle revenue) driven by procedural knowledge failure</td><td>R27m</td><td>R45m</td><td class="rec">R2.7m&ndash;R4.5m</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R312m</td><td>R510m</td><td class="rec">R31.2m&ndash;R51m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SECTION 4: TOP 5 LEAKAGE CARDS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- Leakage 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Sales Conversion Failure</div>
+        <div class="lc-body">GWM&#8217;s four-brand portfolio demands that sales executives hold deep, current knowledge across HAVAL SUVs, P-Series bakkies, TANK off-roaders and ORA EVs simultaneously. When product knowledge is shallow or outdated, consultants retreat to price rather than value &mdash; and the deal walks out the door to a Suzuki, Toyota or Chery competitor.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R100m&ndash;R150m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R10m&ndash;R15m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Conversion rates drop when consultants can&#8217;t confidently articulate brand differentiation across four model families. Customers who leave to &#8220;think about it&#8221; overwhelmingly purchase elsewhere within 72 hours.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy&#8217;s spaced-reinforcement microlearning keeps HAVAL, TANK, ORA and P-Series product specs, competitor comparisons and objection-handling scripts active in memory &mdash; so every consultant walks the showroom floor ready to close.</div>
+  </div>
+
+  <!-- Leakage 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">F&amp;I Product Underperformance</div>
+        <div class="lc-body">Finance and insurance is one of the highest-margin revenue streams in any dealership, yet low F&amp;I product knowledge leads to tepid needs-analysis conversations and poor penetration of service plans, extended warranties and payment protection products. Across 90+ GWM outlets the cumulative shortfall is substantial.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">5%&ndash;10%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R60m&ndash;R120m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R6m&ndash;R12m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Underconfident F&amp;I managers skip products they can&#8217;t explain fluently, leaving per-deal revenue on the table. NCA compliance gaps also expose GWM SA to regulatory risk on every finance transaction.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy reinforces F&amp;I product scripts, NCA compliance rules and needs-analysis frameworks in daily two-minute bursts &mdash; building the confident fluency that turns every F&amp;I desk conversation into a complete and compliant sale.</div>
+  </div>
+
+  <!-- Leakage 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Aftersales &amp; Workshop Revenue Leakage</div>
+        <div class="lc-body">Service advisors and parts counter staff are GWM SA&#8217;s highest-frequency customer touchpoints, yet inadequate training leads to missed upsell opportunities on maintenance plans, genuine accessories and value-added services &mdash; while low customer retention behaviours accelerate defection to independent workshops after warranty expiry.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">3%&ndash;5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R45m&ndash;R75m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R4.5m&ndash;R7.5m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Customers who defect to independent service providers represent not just lost service revenue but lost future vehicle sales &mdash; the relationship is severed at the point of lowest effort for the customer. Parts mis-identification also drives rework costs and customer dissatisfaction.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy builds service upsell confidence, maintenance plan knowledge and customer retention frameworks into the daily workflow of every service advisor and parts counter team member across the GWM dealer network.</div>
+  </div>
+
+  <!-- Leakage 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">New Model Launch Knowledge Gap</div>
+        <div class="lc-body">GWM SA&#8217;s growth strategy is product-led &mdash; the Tank 300 turbodiesel, ORA 03 EV and incoming P-Series PHEV are each a critical revenue lever. But every launch that arrives in showrooms before dealer knowledge catches up costs weeks of half-hearted customer conversations, missed pre-orders and slow ramp to peak monthly volumes.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">20%&ndash;30%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R80m&ndash;R120m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R8m&ndash;R12m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Slow knowledge ramp translates directly to slow sales ramp &mdash; each week below full launch velocity represents thousands of rand in delayed revenue per model. EVs and PHEVs carry particular risk when consultants can&#8217;t confidently address range, charging and TCO questions.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy deploys model-launch microlearning campaigns weeks before vehicles arrive on the floor &mdash; so every consultant across all 90+ GWM outlets is product-ready on day one of availability.</div>
+  </div>
+
+  <!-- Leakage 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Warranty &amp; Compliance Errors</div>
+        <div class="lc-body">Incorrect warranty repairs &mdash; driven by insufficient procedural knowledge, especially on newer TANK and ORA platforms &mdash; result in rejected warranty claims, rework costs and GWM SA absorbing losses that should be recoverable. Compliance gaps in service documentation compound the financial exposure.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">15%&ndash;25%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R27m&ndash;R45m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R2.7m&ndash;R4.5m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Rejected warranty claims and rework not only cost money directly &mdash; they damage customer trust and extend vehicle downtime, which drives defection and negative word-of-mouth in a brand still building its South African credibility.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy embeds warranty procedure checklists, technical compliance knowledge and model-specific service protocols into the daily workflow of every GWM-certified technician &mdash; reducing claim errors and rework at source.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- VALUE SUMMARY — OUTSIDE .page -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R312m&ndash;R510m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R31m&ndash;R51m per year</span></div>
+  </div>
+  <p>GWM South Africa&#8217;s remarkable 2025 growth trajectory creates a compounding risk: the faster the dealer network expands its brand and model portfolio, the wider the knowledge gap between what the product can do and what the frontline can articulate. An estimated <strong>R312m&ndash;R510m in annual revenue is leaking</strong> across five preventable failure points &mdash; sales conversion, F&amp;I penetration, aftersales capture, new-model ramp speed and warranty compliance. A structured microlearning intervention targeting GWM SA&#8217;s 1,500&ndash;2,000 frontline dealer personnel could recover <strong>R31m&ndash;R51m per year</strong> at a modest 10% improvement &mdash; and position the brand firmly in the top five by 2026.</p>
+</div>
+
+<!-- KG MATRIX + SKILLS MATRIX — second .page block -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">GWM South Africa&#8217;s frontline dealer teams carry the full weight of a four-brand customer experience &mdash; yet training events are infrequent, product cycles are accelerating and knowledge decay sets in fast. The matrix below maps the critical knowledge gaps driving Leakage 01, the highest-impact failure point across the dealer network.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Vehicle Sales Executive &nbsp;&middot;&nbsp; Leakage 01 &mdash; Sales Conversion Failure</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Vehicle Sales Executive</td></tr>
+        <tr><td>Inability to differentiate HAVAL, TANK, ORA and P-Series across overlapping customer segments</td><td>Customers receive generic pitches; brand confusion drives showroom walk-outs and competitor purchases</td><td>Spaced microlearning drills on brand architecture, model USPs and competitor comparisons, refreshed at every model update</td></tr>
+        <tr><td>Weak objection handling on Chinese-brand perception, resale value and parts availability</td><td>Price discounting used as a shortcut to close, compressing GWM SA&#8217;s already-competitive margins</td><td>Scenario-based learning modules that practise live objection responses across the most common GWM-specific pushbacks</td></tr>
+        <tr><td>Insufficient EV and PHEV knowledge (ORA 03, P-Series PHEV)</td><td>Missed EV sales when customers ask about range, charging infrastructure or total cost of ownership and receive unconvincing answers</td><td>EV-specific knowledge paths on range anxiety, charging networks, government incentives and TCO comparisons with ICE alternatives</td></tr>
+        <tr><td>Poor consultative needs-analysis skills across fleet and retail customer types</td><td>Fleet enquiries handled as retail deals; fleet customers receive incorrect specifications and defect before purchase</td><td>Customer-type segmentation training with distinct needs-analysis scripts for retail, fleet, leisure off-road and commercial bakkie buyers</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Finance &amp; Insurance Manager</td></tr>
+        <tr><td>Limited knowledge of GWM Motor Finance products, service plans and extended warranty features</td><td>F&amp;I managers skip products they cannot explain, leaving per-deal revenue consistently below benchmark</td><td>F&amp;I product knowledge paths with real-world objection scenarios, penetration benchmarks and compliance checkpoints built in</td></tr>
+        <tr><td>NCA and FAIS compliance gaps in finance and insurance disclosure</td><td>Regulatory exposure on every transaction; non-compliant deals risk claw-backs, fines and reputational damage to GWM SA</td><td>Compliance microlearning with scenario-based assessments that simulate NCA disclosure requirements and FAIS obligations</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">A GWM South Africa Skills Matrix built on Digemy would map every frontline role across the dealer network &mdash; Sales Executive, F&amp;I Manager, Service Advisor, Vehicle Technician, Fleet Sales and Parts Counter &mdash; against the competencies that directly drive revenue: <strong>brand and product knowledge</strong> (across HAVAL, TANK, ORA and P-Series), <strong>consultative selling and objection handling</strong>, <strong>F&amp;I product fluency and NCA compliance</strong>, <strong>aftersales upsell and retention behaviours</strong>, and <strong>warranty and technical procedure accuracy</strong>. Each competency would carry a spaced-reinforcement learning path, real-time knowledge-score tracking and dealer-level performance benchmarking &mdash; giving GWM SA&#8217;s training team line-of-sight visibility into which outlets, which roles and which model gaps are costing the most revenue at any given moment.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; GWM South Africa &mdash; Operational Optimisation Report</div>
+</body>
+</html>
