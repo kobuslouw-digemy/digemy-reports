@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Evohealth — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Pharmaceutical Manufacturing &amp; Distribution</div>
+  <h1 style="margin-bottom:32px;">Evohealth <span>Pharmaceutical Network</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">R280m</div><div class="hs-sub">estimated, private company</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R9.5m&ndash;R19.4m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R0.95m&ndash;R1.94m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Evohealth manufactures and distributes across pharmaceuticals, medical devices, and consumer health lines to more than 300 public healthcare institutions and 1,500 retail pharmacies, which means every rep, warehouse operator, and QC technician represents a wider and more technical portfolio than most single-category competitors. That breadth is a commercial strength, but it multiplies the number of knowledge gaps that can quietly cost formulary placements, batch releases, and repeat orders. Digemy gives Evohealth's existing training function a way to keep every one of those roles current without slowing the pace of new product launches.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;Every rep who can't answer a pharmacist's second question is a formulary Evohealth just lost to someone who could.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy layers spaced-repetition refreshers onto Evohealth's existing induction and product-training material, closing the gap between what's launched and what the field actually retains. Retention data lets the training team see which SKUs, depots, or rep cohorts need reinforcement before a launch quarter closes &mdash; turning training from a once-off event into a measurable, ongoing recovery lever.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Medical &amp; Pharmacy Sales Representatives</td><td>Inconsistent clinical/product positioning across a broad multi-category portfolio</td></tr>
+        <tr><td>Warehouse &amp; Distribution Operators</td><td>GDP compliance lapses, mis-picks, cold-chain handling errors</td></tr>
+        <tr><td>Production &amp; Manufacturing Line Operators</td><td>Process deviations and batch consistency risk under cGMP</td></tr>
+        <tr><td>Quality Assurance &amp; QC Technicians</td><td>Documentation gaps delaying or blocking batch release</td></tr>
+        <tr><td>Order Desk &amp; Customer Service Agents</td><td>Order processing errors and backorder mismanagement</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Evohealth's frontline complement &mdash; field sales reps, warehouse and distribution staff, production operators, QA technicians, and order desk agents &mdash; is estimated at 120&ndash;180 employees across its Gauteng manufacturing and distribution footprint. This is the population against which the leakage points below are modelled.</div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Sales Rep Knowledge Gaps</td><td>1.0%&ndash;2.0% of R165m field sales revenue</td><td>R1.65m</td><td>R3.3m</td><td class="rec">R165k&ndash;R330k</td></tr>
+        <tr><td>Warehouse &amp; GDP Errors</td><td>0.5%&ndash;1.2% of R280m distribution throughput</td><td>R1.4m</td><td>R3.36m</td><td class="rec">R140k&ndash;R336k</td></tr>
+        <tr><td>QA/QC Documentation Gaps</td><td>1.0%&ndash;2.0% of R95m manufacturing output</td><td>R0.95m</td><td>R1.9m</td><td class="rec">R95k&ndash;R190k</td></tr>
+        <tr><td>Order Desk Mismanagement</td><td>0.5%&ndash;1.5% of R210m order-desk revenue</td><td>R1.05m</td><td>R3.15m</td><td class="rec">R105k&ndash;R315k</td></tr>
+        <tr><td>NPD Launch Adoption Shortfall</td><td>20%&ndash;35% of R22m NPD revenue potential</td><td>R4.4m</td><td>R7.7m</td><td class="rec">R440k&ndash;R770k</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R9.45m</td><td>R19.41m</td><td class="rec">R945k&ndash;R1.94m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Sales Rep Clinical &amp; Product Knowledge Gaps</div>
+        <div class="lc-body">Evohealth's field team sells across pharmaceuticals, devices, and consumer health lines, and pharmacists and hospital buyers routinely test reps on cross-category detail. When a rep can't answer confidently, the account defaults to a single-category competitor it already trusts &mdash; a switch that's rarely reversed inside the same financial year.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.0%&ndash;2.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.65m&ndash;R3.3m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R165k&ndash;R330k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Formulary and shelf-space decisions go to competitors with narrower but more confidently pitched ranges. Reps spend follow-up visits re-earning trust instead of opening new accounts, extending sales cycles across the affected territory.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy refreshes product and clinical knowledge on a spaced schedule tied to Evohealth's actual SKU calendar, so reps stay sharp on the full portfolio rather than whatever they last revised. Managers get visibility into which reps or regions are due for reinforcement before the next call cycle.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Warehouse &amp; GDP Compliance Errors</div>
+        <div class="lc-body">Good Distribution Practice governs temperature control, batch traceability, and pick accuracy across Evohealth's warehouse operation, and a single mis-pick or cold-chain lapse can write off stock or trigger a compliance query. Turnover and shift patterns mean procedure knowledge decays faster than annual refreshers can catch.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.2%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.4m&ndash;R3.36m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R140k&ndash;R336k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Mis-picked or mishandled stock gets written off, returned, or held for investigation, and repeat compliance queries slow down SAHPRA and client audits. Each incident also pulls a supervisor off the floor to investigate.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy keeps GDP and pick-accuracy protocols live through short, recurring checks rather than a once-a-year refresher, so procedure knowledge doesn't quietly lapse between audits. New starters reach full competence faster because their training follows the same spaced schedule as tenured staff.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">QA/QC Documentation &amp; Deviation Gaps</div>
+        <div class="lc-body">Batch release depends on QC documentation being complete and consistent the first time; any deviation triggers rework, delayed release, or in the worst case a rejected batch. Evohealth's cGMP and SAHPRA obligations leave little room for a technician working from memory rather than current protocol.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.0%&ndash;2.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R0.95m&ndash;R1.9m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R95k&ndash;R190k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Delayed batch release pushes stock availability dates out, which cascades into missed pharmacy and tender delivery windows. Rework and re-testing also consume QC capacity that should be clearing the next batch in the queue.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy locks in documentation and deviation-handling protocols through spaced recall rather than a single onboarding session, so technicians retain the exact steps regulators expect. Evohealth's QA lead gets a clear view of where knowledge is fading before it shows up in an audit finding.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Order Desk &amp; Backorder Mismanagement</div>
+        <div class="lc-body">Order desk agents are the last checkpoint before an order ships, and errors in quantity, substitution, or backorder communication push pharmacies toward a supplier that gets it right the first time. Independent pharmacies in particular have low tolerance for repeated fulfilment friction.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.05m&ndash;R3.15m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R105k&ndash;R315k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Incorrect or delayed orders generate credit notes, re-deliveries, and frustrated calls that eat agent capacity. Pharmacies that experience repeated errors quietly shift a growing share of their order volume elsewhere.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy keeps order-processing and backorder-communication procedures fresh through regular spaced practice, cutting the error rate that drives churn. Evohealth can track which agents or product categories generate the most order errors and target reinforcement there.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">New Product Launch Adoption Shortfall</div>
+        <div class="lc-body">Each new SKU Evohealth launches carries a revenue potential the field team is expected to convert within the first few quarters, but reps trained only at launch briefing forget positioning detail well before that window closes. The shortfall shows up as an underperforming launch rather than a visible failure.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">20%&ndash;35%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R4.4m&ndash;R7.7m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R440k&ndash;R770k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">New products miss their adoption curve, tying up working capital in slow-moving stock and pushing back the payback period on registration and manufacturing investment. Sales leadership often only spots the shortfall once a launch has already stalled.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy extends launch training past the initial briefing with spaced reinforcement through the critical adoption window, keeping positioning current as reps move on to the next launch. Retention data flags underperforming reps or regions early enough to intervene before the launch window closes.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R9.45m&ndash;R19.41m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R945k&ndash;R1.94m per year</span></div>
+  </div>
+  <p>Across these five leakage points, Evohealth is losing an estimated R9.45m&ndash;R19.41m a year to gaps that surface as lost formulary placements, written-off stock, delayed batch release, order churn, and underperforming product launches &mdash; not as a single visible failure. Recovering even 10% of that, through Digemy's spaced-repetition layer on top of Evohealth's existing training and induction material, returns <strong>R945k&ndash;R1.94m annually</strong> without adding headcount or slowing the pace of new launches.</p>
+</div>
+
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The table below maps where product, compliance, and process knowledge most often decays across Evohealth's frontline roles, translating each gap into its commercial impact and the Digemy intervention that closes it.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Medical &amp; Pharmacy Sales Representatives &nbsp;&middot;&nbsp; Leakage 01 &mdash; Sales Rep Clinical &amp; Product Knowledge Gaps</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Medical &amp; Pharmacy Sales Representatives</td></tr>
+        <tr><td>Cross-category clinical detail (device + pharma + supplement lines) not retained past initial product training</td><td>Pharmacist or hospital buyer loses confidence, defaults to a single-category competitor</td><td>Spaced refreshers cover the full portfolio on a rolling schedule tied to the SKU calendar</td></tr>
+        <tr><td>New SKU positioning fades within weeks of the launch briefing</td><td>Launch underperforms its adoption target, slow-moving stock ties up capital</td><td>Launch-specific spaced reinforcement carried through the adoption window</td></tr>
+        <tr><td>Formulary and tender objection-handling not reinforced after initial onboarding</td><td>Lost formulary placements to more confidently pitched single-category rivals</td><td>Scenario-based recall drills refreshed ahead of tender cycles</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Warehouse &amp; Distribution Operators</td></tr>
+        <tr><td>GDP and cold-chain handling steps drift after initial induction</td><td>Stock write-offs, returns, and compliance queries from mishandled batches</td><td>Short, recurring GDP checks maintain protocol accuracy year-round</td></tr>
+        <tr><td>Pick-accuracy procedures not reinforced between annual refreshers</td><td>Mis-picks trigger re-deliveries, credit notes, and audit findings</td><td>Spaced pick-accuracy drills matched to shift patterns and turnover</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Digemy's Skills Matrix gives Evohealth's training team &mdash; not Digemy &mdash; ownership of what "competent" looks like for each frontline role, mapped against the actual knowledge gaps identified above. It sits alongside existing induction and SOP material as a retention layer, surfacing exactly which reps, depots, or shifts need reinforcement before a launch, audit, or tender cycle rather than after a gap has already cost a placement or a batch.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Evohealth &mdash; Operational Optimisation Report</div>
+</body>
+</html>
