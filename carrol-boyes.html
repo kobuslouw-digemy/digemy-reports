@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Carrol Boyes — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Luxury Homeware &amp; Functional Art Retail</div>
+  <h1 style="margin-bottom:32px;">Carrol Boyes <span>Operational Optimisation</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R330m</div><div class="hs-sub">estimated annual turnover</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R12.5m&ndash;R19.1m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R1.2m&ndash;R1.9m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- SECTION 1: WHY DIGEMY -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Carrol Boyes is a brand that lives or dies by its story — but across 24 stores and a nationwide wholesale network, the quality of that storytelling is only as strong as the consultant standing in front of the customer. When product knowledge is inconsistent, new collections sit untouched while consultants default to familiar best-sellers, corporate gifting proposals fall flat, and premium pricing becomes harder to justify. Digemy closes the gap between what consultants are trained on and what they actually retain and apply on the floor.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;In a brand built on storytelling, the moment your consultant can&#8217;t tell the story, you don&#8217;t just lose the sale &mdash; you lose the brand.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy embeds product and brand knowledge through spaced reinforcement, ensuring every consultant — in-store, corporate, or wholesale — can articulate the design heritage, new collection narratives, and gifting value proposition with consistency. The result: higher average basket values, faster new collection adoption, and a brand experience that matches the premium price point.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: FRONTLINE WORKFORCE -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Store Consultant / Brand Ambassador</td><td>Inconsistent product storytelling, missed upsells, inability to justify premium pricing</td></tr>
+        <tr><td>Corporate &amp; Gifting Sales Consultant</td><td>Incomplete catalogue mastery leading to weak proposals and lost B2B gifting orders</td></tr>
+        <tr><td>Trade Partner Account Manager</td><td>Inadequate brand training for stockists resulting in poor shelf presentation and brand dilution</td></tr>
+        <tr><td>Production &amp; Assembly Operator</td><td>SOP knowledge gaps causing quality defects, rework, and material wastage at Limpopo plant</td></tr>
+        <tr><td>E-Commerce &amp; Fulfilment Team</td><td>Product misidentification driving incorrect dispatches, returns, and customer experience failure</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Carrol Boyes employs an estimated 400–600 people across its 24 bespoke SA stores, Limpopo manufacturing plant (historically 350 factory staff), Cape Town head office, and corporate gifting and wholesale teams. Store-facing consultants represent the highest-volume knowledge risk given direct customer interaction across a premium, story-driven product range of 1,000+ SKUs.</div>
+</div>
+
+<!-- SECTION 3: WHERE LOSS HAPPENS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>In-Store Conversion &amp; Upsell Failure</td><td>1%–1.5% of ~R200m SA retail store base</td><td>R2.0m</td><td>R3.0m</td><td class="rec">R200k–R300k</td></tr>
+        <tr><td>Corporate &amp; Gifting Sales Underperformance</td><td>1.5%–2.5% of ~R80m corporate gifting &amp; wholesale base</td><td>R1.2m</td><td>R2.0m</td><td class="rec">R120k–R200k</td></tr>
+        <tr><td>Trade Partner Knowledge Gaps</td><td>1%–2% of ~R80m wholesale/stockist base</td><td>R0.8m</td><td>R1.6m</td><td class="rec">R80k–R160k</td></tr>
+        <tr><td>New Collection Adoption Failure</td><td>25%–35% of ~R30m estimated new collection revenue potential unrealised</td><td>R7.5m</td><td>R10.5m</td><td class="rec">R750k–R1.05m</td></tr>
+        <tr><td>Product Returns &amp; After-Care Complaints</td><td>0.5%–1% of ~R200m SA retail base lost to avoidable returns from care/use knowledge gaps</td><td>R1.0m</td><td>R2.0m</td><td class="rec">R100k–R200k</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R12.5m</td><td>R19.1m</td><td class="rec">R1.25m&ndash;R1.91m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SECTION 4: TOP 5 LEAKAGE CARDS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- Leakage 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">New Collection Adoption Failure</div>
+        <div class="lc-body">Carrol Boyes launches multiple collections annually across 1,000+ SKUs, yet consultants overwhelmingly default to familiar best-sellers when engaging customers. New products sit at low velocity not because of demand failure, but because the people selling them don't know the design narrative well enough to champion them.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">25%&ndash;35%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R7.5m&ndash;R10.5m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R750k&ndash;R1.05m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">New collections underperform against launch targets, generating margin pressure and excess inventory. Design and production investment in new lines yields diminishing returns when the sales team can't convert awareness into purchase.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy delivers pre-launch microlearning on new collection narratives — design intent, material story, occasion positioning — so consultants arrive on launch day ready to sell with confidence. Spaced reinforcement ensures new product knowledge sticks beyond the first two weeks.</div>
+  </div>
+
+  <!-- Leakage 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">In-Store Conversion &amp; Upsell Failure</div>
+        <div class="lc-body">Carrol Boyes is a considered purchase — customers enter stores curious, not always decided. A consultant who can link products to lifestyle, occasion, or the brand's design heritage converts browsers into buyers and single items into curated sets. Without that depth, average basket value stays low and premium pricing becomes hard to defend.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R2.0m&ndash;R3.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R200k&ndash;R300k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Lower conversion rates, smaller average baskets, and customers lost to competitors who present a more compelling value story. Premium positioning erodes when consultants can't substantiate the price point with product knowledge.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy reinforces brand story modules, product category knowledge, and occasion-based selling techniques through bite-sized daily learning, ensuring consultant confidence stays high across the full product range — not just the top 20 sellers.</div>
+  </div>
+
+  <!-- Leakage 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Corporate &amp; Gifting Sales Underperformance</div>
+        <div class="lc-body">Corporate gifting is a high-value channel where a single order can represent R50,000–R500,000. Consultants who don't know the full catalogue — or can't build a compelling bespoke gifting proposal — lose deals to competitors who can. Incomplete knowledge of product pairings, customisation options, and volume pricing undermines the pitch.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.5%&ndash;2.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.2m&ndash;R2.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R120k&ndash;R200k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Lost corporate accounts, lower average deal values, and missed repeat gifting cycles from companies who would otherwise purchase annually. B2B clients who receive weak proposals don't return.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy builds catalogue mastery and consultative selling skills through role-specific learning paths for corporate gifting teams — covering product pairing logic, occasion mapping, and high-value proposal framing. Knowledge gaps that cost deals get closed before the next pitch.</div>
+  </div>
+
+  <!-- Leakage 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Trade Partner &amp; Stockist Knowledge Gaps</div>
+        <div class="lc-body">Carrol Boyes products are stocked in 27+ countries across major retail partners including Bloomingdale's and David Jones. When trade partner staff can't articulate the brand story or differentiate Carrol Boyes from adjacent homeware brands, products are merchandised poorly, sales velocity drops, and reorder rates suffer.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;2%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R0.8m&ndash;R1.6m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R80k&ndash;R160k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Underperforming stockist locations reduce wholesale reorder frequency and weaken the brand's premium positioning in multi-brand retail environments. Without brand knowledge, trade partners default to selling on price rather than design story.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy deploys lightweight brand ambassador modules for trade partner staff — accessible on any device — covering design heritage, collection stories, and brand differentiation in under 10 minutes per session. Consistent brand knowledge drives consistent sell-through across the wholesale network.</div>
+  </div>
+
+  <!-- Leakage 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Product Returns &amp; After-Care Knowledge Failure</div>
+        <div class="lc-body">Carrol Boyes products span multiple materials — pewter, stainless steel, ceramic, glass, leather — each with specific care, use, and compatibility requirements. When consultants fail to communicate this at point of sale, customers experience product failure or misuse, generating avoidable returns, warranty claims, and reputational damage to a brand built on quality.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.0m&ndash;R2.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R100k&ndash;R200k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Avoidable returns generate stock writeoffs, reverse logistics costs, and negative reviews that undermine brand trust. Repeat gifting customers who receive items that tarnish or break prematurely are unlikely to return.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy embeds material-specific after-care and compatibility knowledge into onboarding and ongoing reinforcement cycles, ensuring every consultant understands what to communicate at the point of sale — reducing returns and protecting the brand's quality promise.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- VALUE SUMMARY — OUTSIDE .page -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R12.5m&ndash;R19.1m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R1.25m&ndash;R1.91m per year</span></div>
+  </div>
+  <p>Carrol Boyes has built one of South Africa's most recognisable luxury homeware brands on the strength of design, craftsmanship, and storytelling — but that brand promise is delivered, or lost, at the consultant level. <strong>The dominant leakage driver is new collection adoption failure</strong>, where knowledge gaps between launch and the selling floor leave R7.5m–R10.5m in collection revenue potential unrealised annually. Digemy's spaced reinforcement model gives every consultant — in 24 stores, across corporate gifting, and throughout the trade partner network — the product depth and brand confidence to convert at premium, champion new collections from day one, and protect the quality reputation the brand has spent 35 years building.</p>
+</div>
+
+<!-- KG MATRIX + SKILLS MATRIX -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The matrix below maps the specific knowledge gaps driving Carrol Boyes' largest leakage area — New Collection Adoption Failure — as experienced by Store Consultants and Brand Ambassadors across the 24-store retail network. Each gap represents a measurable break in the chain between product launch investment and in-store revenue realisation.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Store Consultant / Brand Ambassador &nbsp;&middot;&nbsp; Leakage 01 &mdash; New Collection Adoption Failure</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Store Consultant / Brand Ambassador</td></tr>
+        <tr>
+          <td>Unable to articulate the design intent and inspiration behind new collection pieces</td>
+          <td>Customers receive no compelling reason to buy unfamiliar new items; new collection velocity stays low post-launch</td>
+          <td>Pre-launch microlearning modules covering designer narrative, inspiration references, and storytelling prompts for each new collection</td>
+        </tr>
+        <tr>
+          <td>Cannot link new products to customer occasion, lifestyle, or gifting need</td>
+          <td>Consultants default to recommending known best-sellers; new products fail to capture occasion-driven purchase moments</td>
+          <td>Occasion-mapping drills reinforced through spaced repetition, ensuring consultants can match any new product to a relevant customer need</td>
+        </tr>
+        <tr>
+          <td>Unclear on how new products differ from existing range and what they replace or complement</td>
+          <td>Consultants can't build cross-sell baskets with new items, limiting average basket value growth from new collections</td>
+          <td>Product differentiation and complementary pairing modules that map new SKUs to existing range logic, building consultant confidence in mixed-basket selling</td>
+        </tr>
+        <tr>
+          <td>Limited knowledge of material properties and care instructions for new product categories</td>
+          <td>Customers experience post-purchase dissatisfaction when products are misused, driving returns and reputational risk</td>
+          <td>Material and after-care knowledge embedded in launch training, with periodic reinforcement checks to ensure retention beyond the first two weeks</td>
+        </tr>
+        <tr>
+          <td>No structured approach to registering customer interest and building anticipation before launch</td>
+          <td>Launch day traffic is unpredictable; high-value collectors who would purchase immediately are not engaged in advance</td>
+          <td>Pre-launch customer engagement playbooks reinforced through Digemy, equipping consultants to build a prospect list and communicate launch exclusivity before stock arrives on the floor</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">For Carrol Boyes, Digemy would deploy a role-stratified skills matrix across three primary workforce segments. <strong>Store Consultants</strong> are mapped against brand storytelling, new collection adoption, occasion-based selling, and after-care product knowledge — with competency benchmarks set per collection cycle. <strong>Corporate and Gifting Sales Consultants</strong> carry a separate skills path covering catalogue mastery, proposal construction, volume pricing logic, and bespoke gifting consultation. <strong>Trade Partner Account Managers</strong> are equipped with brand ambassador modules that enable them to train stockist staff on design heritage, product differentiation, and in-store presentation standards. Digemy's manager dashboard gives commercial leadership real-time visibility into knowledge gaps by store, role, and collection — turning a subjective sense of consultant readiness into a measurable, manageable operational metric.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Carrol Boyes &mdash; Operational Optimisation Report</div>
+</body>
+</html>
