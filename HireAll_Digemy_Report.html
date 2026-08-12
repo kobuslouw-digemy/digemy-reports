@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>HireAll — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Tool &amp; Equipment Hire</div>
+  <h1 style="margin-bottom:32px;">HireAll <span>Revenue Optimisation</span></h1>
+  <div class="hero-stats">
+    <div class="hs">
+      <div class="hs-label">Revenue Base</div>
+      <div class="hs-val">~R150m</div>
+      <div class="hs-sub">hire revenue, inferred &mdash; multi-branch SA operator</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Total Addressable Leakage</div>
+      <div class="hs-val p">R4.7m&ndash;R11.5m</div>
+      <div class="hs-sub">estimated annually</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Recovery @ 10%</div>
+      <div class="hs-val g">R470k&ndash;R1.15m</div>
+      <div class="hs-sub">potential per year</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ═══ SECTION 1: WHY DIGEMY ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>HireAll&#8217;s growth depends entirely on what happens at the hire desk &mdash; consultants who can&#8217;t quickly identify the right tool, communicate its value, and upsell with confidence leave money on the counter with every transaction. In a market where every equipment rental competitor carries similar stock at similar prices, the knowledge and CX quality of the person behind the counter is the only real differentiator. Digemy&#8217;s spaced reinforcement platform builds and sustains the product expertise, sales technique, and service standards that turn HireAll&#8217;s hire desk into a consistent revenue engine.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;In tool hire, your desk consultant has 90 seconds to understand the customer&#8217;s job, recommend the right kit, and close the hire &mdash; when they don&#8217;t know the range, you lose the transaction, the margin, and the return visit.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy&#8217;s proof-of-concept with FLM Academy delivered a 60&times; engagement increase, 154% knowledge retention improvement, and 70% faster ramp time. Applied to HireAll&#8217;s hire desk consultants and field sales teams, these gains convert directly into higher transaction values, fewer wrong-tool returns, and customers who come back because the experience matched the product.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 2: FRONTLINE WORKFORCE ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Hire Desk Consultant</td><td>Wrong-tool recommendations; missed upsell of accessories, protection plans &amp; consumables</td></tr>
+        <tr><td>Customer Service / Booking Agent</td><td>Inaccurate phone quotes; poor booking conversion; unresolved complaints driving churn</td></tr>
+        <tr><td>Delivery &amp; Collection Driver</td><td>Equipment condition misrepresentation; poor CX at point of delivery; damage not documented</td></tr>
+        <tr><td>Branch / Depot Manager</td><td>Inconsistent service standards; failure to coach desk staff on product and sales technique</td></tr>
+        <tr><td>Field Sales Representative</td><td>Inability to articulate value to contractors and construction accounts; missed tender opportunities</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> HireAll&#8217;s customer-facing operational headcount is estimated at 80&ndash;200 employees across hire desks, call centres, delivery teams, depot management, and field sales &mdash; figures inferred from publicly available benchmarks, as the company&#8217;s website was inaccessible during research. Each role is a direct CX and revenue touchpoint where knowledge gaps translate immediately into lost hire value or customer attrition.</div>
+</div>
+
+<!-- ═══ SECTION 3: WHERE LOSS HAPPENS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead>
+        <tr>
+          <th>Leakage Area</th>
+          <th>Assumption</th>
+          <th>Annual Low</th>
+          <th>Annual High</th>
+          <th>Recovery @10%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Hire Desk Upsell &amp; Cross-Sell Failures</td>
+          <td>30&ndash;40% of transactions miss a legitimate upsell (accessories, consumables, protection plan); avg missed value R150&ndash;R300 per missed opportunity; ~15,000 annual transactions</td>
+          <td>R675,000</td>
+          <td>R1,800,000</td>
+          <td class="rec">R68k&ndash;R180k</td>
+        </tr>
+        <tr>
+          <td>Wrong Tool Recommendations &amp; Returns</td>
+          <td>8&ndash;12% of transactions result in wrong-tool hire; avg revenue impact R500&ndash;R1,200 per incident (lost hire days, return handling, re-hire admin)</td>
+          <td>R600,000</td>
+          <td>R2,160,000</td>
+          <td class="rec">R60k&ndash;R216k</td>
+        </tr>
+        <tr>
+          <td>Customer Churn from Poor CX</td>
+          <td>1&ndash;2% of ~R150m hire revenue eroded annually by service-quality-driven attrition from returning customers who switch to a competitor</td>
+          <td>R1,500,000</td>
+          <td>R3,000,000</td>
+          <td class="rec">R150k&ndash;R300k</td>
+        </tr>
+        <tr>
+          <td>Unrecovered Equipment Damage</td>
+          <td>3&ndash;5% of hire transactions result in unrecovered damage costs; avg unrecovered amount R800&ndash;R2,000 per incident; ~15,000 annual transactions</td>
+          <td>R360,000</td>
+          <td>R1,500,000</td>
+          <td class="rec">R36k&ndash;R150k</td>
+        </tr>
+        <tr>
+          <td>Corporate &amp; Contractor Account Penetration</td>
+          <td>0.5&ndash;1.5% of ~R150m revenue in contractor and construction accounts at risk or underdeveloped due to sales knowledge gaps</td>
+          <td>R750,000</td>
+          <td>R2,250,000</td>
+          <td class="rec">R75k&ndash;R225k</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL</td>
+          <td>&mdash;</td>
+          <td>R3,885,000</td>
+          <td>R10,710,000</td>
+          <td class="rec">R389k&ndash;R1.07m</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ SECTION 4: TOP 5 LEAKAGE CARDS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- LC 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Hire Desk Upsell &amp; Cross-Sell Failures</div>
+        <div class="lc-body">Desk consultants who don&#8217;t know the full product range &mdash; which accessories pair with which tools, which consumables are required, when a protection plan makes sense &mdash; default to completing the basic transaction rather than building a complete solution for the customer. At 15,000 transactions per year, even a modest uplift in upsell conversion materially compounds across the portfolio.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Missed Upsell Rate</span><span class="sp-v">30%&ndash;40%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R675k&ndash;R1.8m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R68k&ndash;R180k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Transaction values stay at the floor rather than the ceiling, compressing margin per hire. Customers who needed accessories leave without them &mdash; return to get them from a competitor &mdash; and sometimes don&#8217;t come back at all. Protection plan attachment rates stay chronically low, increasing unrecovered damage exposure.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy reinforces product pairing knowledge, consultative questioning technique, and protection plan presentation through spaced repetition modules &mdash; so consultants don&#8217;t just know the catalogue, they know how to use it to build a higher-value hire for every customer.</div>
+  </div>
+
+  <!-- LC 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Wrong Tool Recommendations &amp; Revenue-Destroying Returns</div>
+        <div class="lc-body">When a consultant recommends the wrong equipment for a customer&#8217;s job &mdash; underpowered, incompatible, or simply the wrong category &mdash; the hire ends early, generates a return trip, and often requires a re-hire of the correct item. Each incident burns margin, consumes staff time, and hands the customer a story they&#8217;ll tell other contractors.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Wrong-Tool Hire Rate</span><span class="sp-v">8%&ndash;12%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R600k&ndash;R2.16m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R60k&ndash;R216k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Return and re-hire admin consumes hire desk capacity that should be serving new customers. Equipment is returned early and sits idle while the replacement hire is processed, compressing asset utilisation. NPS scores drop with every wrong recommendation that the customer has to fix themselves.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy builds deep equipment knowledge through scenario-based application modules &mdash; consultants practice matching tool specifications to real job scenarios, reducing wrong-tool hires by keeping application knowledge sharp and constantly refreshed across the full range.</div>
+  </div>
+
+  <!-- LC 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Customer Churn from Poor Service Knowledge</div>
+        <div class="lc-body">Tool hire is a repeat-purchase business &mdash; contractors, builders, and tradespeople hire regularly and consolidate with one or two trusted suppliers. When the desk experience is uninformed, slow, or inconsistent, returning customers don&#8217;t complain; they quietly ring the competitor next time. In a market with multiple alternatives, CX quality is the stickiest retention lever HireAll controls.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Revenue at Risk (CX churn)</span><span class="sp-v">1%&ndash;2%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.5m&ndash;R3.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R150k&ndash;R300k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Lost returning customers represent the highest-margin revenue &mdash; no acquisition cost, established credit terms, predictable booking patterns. Each defection is largely invisible until the booking history is reviewed and the customer is already entrenched with a competitor.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy embeds consistent CX standards &mdash; greeting, needs assessment, professional recommendation, closing &mdash; as reinforced habits across all hire desk and customer service staff, so every interaction delivers the confidence and speed that converts a first-time hirer into a returning account.</div>
+  </div>
+
+  <!-- LC 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Unrecovered Equipment Damage</div>
+        <div class="lc-body">Hire desk consultants and drivers who haven&#8217;t been rigorously trained on damage inspection standards &mdash; what to document, how to document it, and how to have the damage conversation with a customer &mdash; routinely fail to recover legitimate repair costs. This erodes equipment value, inflates maintenance costs, and subsidises customers who return equipment in worse condition than they received it.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Unrecovered Damage Rate</span><span class="sp-v">3%&ndash;5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R360k&ndash;R1.5m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R36k&ndash;R150k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Fleet maintenance budgets absorb costs that should be charged to the hirer. Equipment availability falls as damaged assets sit awaiting repair rather than generating hire revenue. Staff avoid difficult damage conversations because they lack the training and process confidence to handle disputes professionally.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy deploys damage inspection and recovery process modules with scenario-based practice, building the confidence and procedural consistency that ensures staff identify, document, and recover damage costs accurately &mdash; on every return, at every branch.</div>
+  </div>
+
+  <!-- LC 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Corporate &amp; Contractor Account Penetration</div>
+        <div class="lc-body">Construction companies, property developers, and large contractors represent HireAll&#8217;s highest-value recurring customers &mdash; multi-item hires, extended durations, predictable demand. Field sales reps and desk staff who lack the knowledge to speak a contractor&#8217;s language, understand project timelines, and propose account terms lose these high-value relationships to competitors with more informed sales teams.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Revenue at Risk (contractor base)</span><span class="sp-v">0.5%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R750k&ndash;R2.25m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R75k&ndash;R225k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Contractor accounts that could be locked in as preferred supplier relationships remain transactional &mdash; bid out every job to whoever answers the phone first. Field sales time is wasted on visits that don&#8217;t convert because the rep can&#8217;t speak credibly to project-stage equipment requirements or fleet availability.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy reinforces contractor sales methodology through modules covering project-phase equipment planning, account-opening value articulation, and objection handling &mdash; giving field reps and senior desk staff the knowledge to open and retain the accounts that deliver disproportionate hire revenue.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- ═══ VALUE SUMMARY — OUTSIDE .page ═══ -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R3.9m&ndash;R10.7m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R389k&ndash;R1.07m per year</span></div>
+  </div>
+  <p>HireAll&#8217;s revenue is won and lost at the hire desk &mdash; in the 90-second window where a consultant either builds a complete, confident solution or defaults to the minimum transaction. Across five quantifiable leakage areas &mdash; from upsell failures and wrong-tool returns to CX-driven churn and unrecovered damage &mdash; the business absorbs an estimated <strong>R3.9m&ndash;R10.7m in annual preventable losses</strong>. At a 10% recovery rate, Digemy&#8217;s reinforcement platform represents <strong>R389k&ndash;R1.07m in recoverable value per year</strong> &mdash; while building the product knowledge and CX consistency that turn one-time hirers into returning accounts.</p>
+</div>
+
+<!-- ═══ KG MATRIX + SKILLS MATRIX ═══ -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The hire desk consultant is HireAll&#8217;s primary revenue lever &mdash; every upsell missed, every wrong tool recommended, and every CX failure that drives a customer to a competitor originates at this interaction. The matrix below maps the specific knowledge gaps driving Leakage 01 and the compounding commercial consequences when those gaps go unreinforced.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Hire Desk Consultant &nbsp;&middot;&nbsp; Leakage 01 &mdash; Hire Desk Upsell &amp; Cross-Sell Failures</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead>
+        <tr>
+          <th style="width:34%">Knowledge Gap</th>
+          <th style="width:33%">Business Impact</th>
+          <th style="width:33%">Digemy Solution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Hire Desk Consultant</td></tr>
+        <tr>
+          <td>Product range depth &mdash; tool specifications, applications, and capacity across all hire categories</td>
+          <td>Consultants default to the tool the customer names rather than the tool the job requires, missing upsell to higher-spec equipment and associated accessories</td>
+          <td>Category-by-category product knowledge modules with spaced retrieval, ensuring consultants retain full-range familiarity across all hire inventory</td>
+        </tr>
+        <tr>
+          <td>Consultative needs assessment &mdash; asking the right questions about the customer&#8217;s job before recommending equipment</td>
+          <td>Without discovery questions, consultants can&#8217;t surface accessory needs, consumable requirements, or protection plan relevance &mdash; leaving transaction value on the counter</td>
+          <td>Scenario-based consultative selling exercises reinforced through Digemy, building the habit of needs-first recommendation before every hire</td>
+        </tr>
+        <tr>
+          <td>Protection plan and damage waiver presentation &mdash; when, why, and how to recommend it confidently</td>
+          <td>Low protection plan attachment rates expose HireAll to unrecovered damage costs and limit the upsell revenue available on every transaction</td>
+          <td>Protection plan modules with objection-handling scripts and spaced reinforcement, ensuring consistent confident presentation across all desk staff</td>
+        </tr>
+        <tr>
+          <td>Competitor differentiation &mdash; how HireAll&#8217;s range, service, and availability justifies the hire over cheaper alternatives</td>
+          <td>Consultants cave on price objections because they can&#8217;t articulate value &mdash; losing hires to competitors or unnecessarily discounting to close</td>
+          <td>Value articulation and objection-handling modules reinforced monthly, keeping staff confident and consistent when price comparisons arise</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">A targeted Digemy skills matrix for HireAll would span five critical knowledge domains: <strong>product range mastery</strong> (tool specifications, applications, pairing logic across all hire categories), <strong>consultative sales and upsell technique</strong> (needs assessment, solution-building, protection plan presentation, objection handling), <strong>damage inspection and recovery process</strong> (pre-hire condition documentation, return assessment, damage conversation standards), <strong>CX and service standards</strong> (greeting, speed, consistency, complaint resolution that builds repeat business), and <strong>contractor and corporate account sales</strong> (project-phase equipment planning, account-opening conversations, tender awareness). Each domain maps to a specific frontline role &mdash; from the hire desk consultant who controls the transaction moment to the field sales rep who builds the contractor relationships that deliver HireAll&#8217;s most valuable recurring revenue. With spaced reinforcement running continuously, HireAll&#8217;s operational teams would maintain measurably higher knowledge retention across every revenue-driving skill &mdash; converting knowledge gaps that currently compress margin and drive churn into a consistent, compounding competitive advantage.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; HireAll &mdash; Operational Optimisation Report</div>
+</body>
+</html>
