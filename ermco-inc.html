@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ERMCO, Inc. — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">USA &middot; Electrical, Systems &amp; Automation Contracting</div>
+  <h1 style="margin-bottom:32px;">ERMCO <span>Inc.</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~$330M</div><div class="hs-sub">2024 fiscal year</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">$7.4M&ndash;$16.3M</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">$741K&ndash;$1.6M</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ═══ SECTION 1: WHY DIGEMY ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>ERMCO&#8217;s 36% revenue surge in 2024 means hundreds of new field workers &mdash; apprentices, journeymen, low-voltage techs &mdash; carrying knowledge gaps into live capital projects before formal training closes the loop. Every failed inspection, rework cycle, and OSHA recordable is a margin cost that compounds across dozens of simultaneous project sites. Digemy delivers spaced reinforcement to the field the moment it matters &mdash; role-specific, verifiable, and fast enough to keep pace with ERMCO&#8217;s growth.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;The job site doesn&#8217;t grade on a curve &mdash; every code miss and rework hour shows up on the invoice.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy converts knowledge transfer from a one-time event into a continuous operational system. For ERMCO&#8217;s electricians, foremen, and systems technicians, that means faster ramp for new hires, fewer costly inspection failures, and a field team that stays current on rapidly evolving technology platforms &mdash; all without pulling crews off billable work.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 2: FRONTLINE WORKFORCE ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Journeymen Electricians</td><td>NEC code compliance &amp; installation quality across multi-state, multi-sector projects</td></tr>
+        <tr><td>Apprentice Electricians</td><td>Ramp time, safety knowledge depth &amp; fundamental code competency during 60&ndash;120 day onboarding</td></tr>
+        <tr><td>Low-Voltage Technicians</td><td>Technology currency &amp; systems integration accuracy across AV, access control &amp; mass notification</td></tr>
+        <tr><td>Building Automation Technicians</td><td>Rapidly evolving BAS &amp; controls platform knowledge; integration spec compliance</td></tr>
+        <tr><td>Project Foremen</td><td>Safety leadership, scope control &amp; crew accountability across high-complexity project environments</td></tr>
+        <tr><td>Account &amp; Project Managers</td><td>Specification comprehension, change order accuracy &amp; client-facing compliance knowledge</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> ERMCO&#8217;s field workforce is estimated at 700&ndash;900 workers based on 2024 revenue of ~$330M and typical electrical contractor labor productivity ratios. The company&#8217;s 36% revenue increase in a single year implies a large incoming cohort of new field staff &mdash; estimated at 150&ndash;200 new hires in 2024 &mdash; creating a sustained and significant onboarding knowledge challenge across all active project sites.</div>
+</div>
+
+<!-- ═══ SECTION 3: WHERE LOSS HAPPENS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Field Rework &amp; Installation Defects</td><td>1.0%&ndash;2.0% of project revenue (~$280M sub-base)</td><td>$2.8M</td><td>$5.6M</td><td class="rec">$280K&ndash;$560K</td></tr>
+        <tr><td>New Hire &amp; Apprentice Ramp Loss</td><td>~200 new field hires/yr; $7.5K&ndash;$13.5K avg. productivity shortfall each</td><td>$1.5M</td><td>$2.7M</td><td class="rec">$150K&ndash;$270K</td></tr>
+        <tr><td>Code &amp; Spec Compliance Failures</td><td>0.5%&ndash;1.5% of project revenue (~$280M sub-base)</td><td>$1.4M</td><td>$4.2M</td><td class="rec">$140K&ndash;$420K</td></tr>
+        <tr><td>Safety Incident &amp; OSHA Exposure</td><td>~18 recordables/yr at $40K&ndash;$100K avg. incident cost</td><td>$720K</td><td>$1.8M</td><td class="rec">$72K&ndash;$180K</td></tr>
+        <tr><td>Technology Knowledge Currency Gap</td><td>1.5%&ndash;3.0% of technology project revenue (~$66M sub-base)</td><td>$990K</td><td>$1.98M</td><td class="rec">$99K&ndash;$198K</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>$7.41M</td><td>$16.28M</td><td class="rec">$741K&ndash;$1.63M</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ SECTION 4: TOP 5 LEAKAGE CARDS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- Card 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Field Rework &amp; Installation Defects</div>
+        <div class="lc-body">With crews simultaneously running capital projects across sports venues, healthcare facilities, and data centres, installation errors &mdash; incorrect conduit routing, spec deviations, failed rough-in &mdash; trigger inspection failures and rework loops that eat directly into project margin. Knowledge gaps around NEC updates, local jurisdiction amendments, and manufacturer installation requirements are the primary cause.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.0%&ndash;2.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$2.8M&ndash;$5.6M</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$280K&ndash;$560K</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Rework costs compound across parallel active sites &mdash; a single failed inspection on a large data centre or healthcare project can cost $50K&ndash;$200K in direct labour and delay penalties. Inspectors cite repeat errors tied to knowledge currency gaps, not technical incompetence.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy delivers code update modules and manufacturer spec summaries directly to the relevant trade role &mdash; timed to project phase, not training calendar. Spaced reinforcement ensures NEC changes and jurisdiction-specific rules are retained, not forgotten between inductions.</div>
+  </div>
+
+  <!-- Card 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">New Hire &amp; Apprentice Ramp Loss</div>
+        <div class="lc-body">ERMCO&#8217;s 36% revenue growth in 2024 required a large cohort of new field hires and apprentice promotions &mdash; each carrying a productivity deficit during their ramp period. At ~200 new field staff annually, even a modest shortfall in early-stage output represents significant unbilled or reworked hours across the project portfolio.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Per New Hire</span><span class="sp-v">$7.5K&ndash;$13.5K</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$1.5M&ndash;$2.7M</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$150K&ndash;$270K</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">New hires typically produce at 65&ndash;80% of journeyman productivity for 60&ndash;120 days, requiring supervisory overhead that pulls foremen away from scope management. Mistakes made during ramp are disproportionately expensive in complex, multi-trade project environments.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy compresses ramp time with structured pre-site onboarding modules covering site-specific safety, code fundamentals, and ERMCO SOPs. The FLM Academy benchmark: <strong>70% faster ramp time</strong> for frontline staff trained on the Digemy platform.</div>
+  </div>
+
+  <!-- Card 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Code &amp; Spec Compliance Failures</div>
+        <div class="lc-body">NEC code editions update on three-year cycles, but local jurisdiction adoption is irregular &mdash; meaning the compliance landscape ERMCO electricians navigate varies project by project and state by state. Without a reliable mechanism to push relevant code changes to the right role at the right time, compliance gaps expose ERMCO to inspection failures, rework, and permit delays on active projects.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$1.4M&ndash;$4.2M</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$140K&ndash;$420K</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Failed inspections on commercial and healthcare projects generate direct rework costs and delay penalties that compound with tight construction schedules. Compliance errors escalate when crews rotate between jurisdictions mid-project without jurisdiction-specific briefing.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy maps code update content to role and jurisdiction &mdash; not a broadcast to everyone, but targeted delivery to the crew on that specific project. Foremen receive inspection readiness reinforcement; journeymen receive jurisdiction-specific amendment modules before site work begins.</div>
+  </div>
+
+  <!-- Card 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Safety Incident &amp; OSHA Exposure</div>
+        <div class="lc-body">ERMCO&#8217;s safety culture is a competitive differentiator &mdash; but at $330M in revenue across dozens of active sites, even an industry-leading safety record carries material exposure. OSHA recordable incidents generate direct costs (incident response, workers&#8217; compensation, regulatory risk) and indirect costs (project delay, insurance uplift) that compound across the portfolio.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Incidents Modelled</span><span class="sp-v">~18/yr</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$720K&ndash;$1.8M</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$72K&ndash;$180K</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">A single serious OSHA recordable incident can cost $40K&ndash;$200K in direct and indirect costs, excluding litigation exposure. Safety knowledge gaps compound in fast-growth hiring cycles when new field workers lack reinforcement of site-specific hazard protocols and lockout/tagout procedures.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy delivers daily safety micro-reinforcements &mdash; not annual certification, but habit-forming daily prompts tied to the specific hazards of each work environment. The result is a field team that doesn&#8217;t just know safety procedures; they practise them automatically.</div>
+  </div>
+
+  <!-- Card 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Technology Knowledge Currency Gap</div>
+        <div class="lc-body">Data centres, building automation systems, AV and mass notification, EV charging infrastructure &mdash; ERMCO&#8217;s fastest-growing and highest-margin segments require continuous upskilling as platform specifications, firmware requirements, and integration standards evolve rapidly. A technician trained 18 months ago may lack critical knowledge for today&#8217;s deployment.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.5%&ndash;3.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$990K&ndash;$1.98M</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$99K&ndash;$198K</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Technology installation errors on data centre and BAS projects are expensive to rectify post-commissioning and frequently trigger warranty disputes with clients. Technicians who cannot confidently navigate integration specifications create scope risk on ERMCO&#8217;s highest-value work.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy builds skills tracks for each technology category &mdash; BAS, low-voltage, EV infrastructure, data centre &mdash; with content versioned to current platform releases and delivered at the point of need, by role, before each project phase begins.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- ═══ VALUE SUMMARY — OUTSIDE .page ═══ -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">$7.4M&ndash;$16.3M</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">$741K&ndash;$1.6M per year</span></div>
+  </div>
+  <p>Across five operational risk vectors, ERMCO&#8217;s knowledge-gap-driven leakage is conservatively estimated at <strong>$7.4M to $16.3M annually</strong> &mdash; driven primarily by the scale of concurrent project delivery and the pace of workforce growth in 2024. A 10% improvement in knowledge retention and application across these areas represents <strong>$741K to $1.6M in recoverable value per year</strong>. Digemy&#8217;s spaced-reinforcement model is purpose-built for exactly this operating profile: distributed field teams, rapid headcount growth, and technology-intensive work that demands continuous upskilling at the point of need.</p>
+</div>
+
+<!-- ═══ KG MATRIX + SKILLS MATRIX ═══ -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">ERMCO operates across six high-complexity market sectors simultaneously, with field teams navigating evolving code requirements, manufacturer specifications, and technology platforms on every project. The matrix below maps the primary knowledge gaps driving operational leakage for the journeymen electrician role &mdash; ERMCO&#8217;s largest and most critical field trade category.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Journeymen Electrician &nbsp;&middot;&nbsp; Leakage 01 &mdash; Field Rework &amp; Installation Defects</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Journeymen Electrician</td></tr>
+        <tr><td>NEC edition &amp; local jurisdiction code updates</td><td>Incorrect installations triggering failed inspections and rework at $50K&ndash;$200K per event</td><td>Daily role-specific code update modules pushed to the journeyman&#8217;s device before the affected project phase begins</td></tr>
+        <tr><td>Manufacturer installation specifications for new equipment categories</td><td>Non-compliant installation causing warranty voids, callback costs, and re-inspection delays</td><td>Just-in-time product spec modules embedded in the project workflow; spaced reinforcement ensures retention beyond first read</td></tr>
+        <tr><td>Project design document &amp; drawing interpretation</td><td>Scope creep, change order disputes, and rework from misread or outdated drawings</td><td>Visual comprehension modules with checkpoint quizzes before major installation milestones</td></tr>
+        <tr><td>Quality self-inspection standards &amp; sign-off protocols</td><td>Callbacks and re-inspection costs that erode project margin and damage repeat-client relationships</td><td>Inspection checklist reinforcement modules delivered before sign-off, not once annually in a training room</td></tr>
+        <tr><td>Multi-jurisdiction compliance variation between project states</td><td>Compliance errors when crews rotate between jurisdictions mid-project without role-specific briefing</td><td>Jurisdiction-specific code briefings pushed to the relevant crew as a project-start condition, not a generalised training event</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Digemy structures the ERMCO skills matrix across four capability tracks: <strong>NEC &amp; Local Code Currency</strong> (jurisdictionally mapped code update modules for journeymen and apprentices, versioned to active project locations); <strong>Installation Standards &amp; Product Specs</strong> (manufacturer-specific installation requirements for all equipment categories across ERMCO&#8217;s active project types, refreshed as product lines evolve); <strong>Safety &amp; OSHA Compliance</strong> (daily micro-reinforcements replacing annual recertification as the primary knowledge retention mechanism for site-specific hazards and lockout/tagout protocols); and <strong>Technology Systems Fluency</strong> (continuously updated skills tracks for BAS, data centre, AV, and EV infrastructure &mdash; versioned to current platform releases and delivered role by role). All four tracks are measurable, reportable to operations leadership, and deployable at scale without pulling crews off billable work.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; ERMCO, Inc. &mdash; Operational Optimisation Report</div>
+</body>
+</html>
