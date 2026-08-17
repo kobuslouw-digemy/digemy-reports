@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Rohloff Group — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">SOUTH AFRICA &middot; QSR FRANCHISING</div>
+  <h1 style="margin-bottom:32px;">Rohloff Group <span>Operational Optimisation</span></h1>
+  <div class="hero-stats">
+    <div class="hs">
+      <div class="hs-label">Revenue Base</div>
+      <div class="hs-val">~R1.2bn</div>
+      <div class="hs-sub">est. ~100 KFC franchise stores</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Total Addressable Leakage</div>
+      <div class="hs-val p">R40m&ndash;R66m</div>
+      <div class="hs-sub">estimated annually</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Recovery @ 10%</div>
+      <div class="hs-val g">R4.0m&ndash;R6.6m</div>
+      <div class="hs-sub">potential per year</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ═══ SECTION 1: WHY DIGEMY ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Rohloff Group runs 100+ KFC stores across three provinces on culture and consistent brand execution — but at scale, knowledge decay between training sessions silently erodes upsell rates, CHAMPS scores, and margin on every shift. Digemy eliminates that gap with daily microlearning and manager dashboards that keep brand standards embedded in every crew member, across every store — not just in training week.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;A franchise that wins Franchise Partner of the Year can't afford to lose the same margin on the same knowledge gaps every single shift.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy embeds learning into daily store operations via 5-minute microlearning modules on upselling, portioning, CHAMPS readiness, and new-store onboarding — with manager dashboards that surface knowledge gaps before they become audit failures. Rohloff's FLM Academy benchmark: 60&times; engagement increase, 154% retention improvement, 70% faster time-to-competence for new staff.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 2: FRONTLINE WORKFORCE ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Restaurant General Manager (RGM)</td><td>P&amp;L accountability, CHAMPS compliance, new store opening readiness</td></tr>
+        <tr><td>Assistant Restaurant Manager (ARM)</td><td>Shift execution standards, team coaching, waste management</td></tr>
+        <tr><td>Shift Supervisor / Team Leader</td><td>SOP adherence, hourly throughput targets, food safety enforcement</td></tr>
+        <tr><td>Crew Member (Food Prep &amp; Service)</td><td>Portioning accuracy, product quality, suggestive selling compliance</td></tr>
+        <tr><td>Drive-Thru Operator</td><td>Order accuracy, speed-of-service targets, digital handoff execution</td></tr>
+        <tr><td>Delivery Coordinator</td><td>Third-party platform accuracy, packaging standards, handoff quality</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Approximately 2,500–3,500 frontline staff across 100+ stores (average 25–35 crew and management per store), plus an estimated 50–80 RSC staff at the Somerset West support centre. Rapid expansion — with 6 new stores opened in a single quarter — means onboarding volume is structurally elevated and ramp-time risk is growing.</div>
+</div>
+
+<!-- ═══ SECTION 3: WHERE LOSS HAPPENS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead>
+        <tr>
+          <th>Leakage Area</th>
+          <th>Assumption</th>
+          <th>Annual Low</th>
+          <th>Annual High</th>
+          <th>Recovery @10%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Upsell &amp; Combo Conversion Failure</td>
+          <td>1.5%–2.5% of R1.2bn store revenue base</td>
+          <td>R18.0m</td>
+          <td>R30.0m</td>
+          <td class="rec">R1.8m–R3.0m</td>
+        </tr>
+        <tr>
+          <td>Food Waste / Portioning Errors</td>
+          <td>0.7%–1.2% of R1.2bn store revenue base</td>
+          <td>R8.4m</td>
+          <td>R14.4m</td>
+          <td class="rec">R0.8m–R1.4m</td>
+        </tr>
+        <tr>
+          <td>New Store Ramp-Up Underperformance</td>
+          <td>8 new stores &times; 12.5%–25% revenue shortfall &times; 6-month ramp period</td>
+          <td>R6.0m</td>
+          <td>R10.0m</td>
+          <td class="rec">R0.6m–R1.0m</td>
+        </tr>
+        <tr>
+          <td>CHAMPS Compliance Failures</td>
+          <td>0.3%–0.5% of R1.2bn (brand audit remediation &amp; re-audit cost)</td>
+          <td>R3.6m</td>
+          <td>R6.0m</td>
+          <td class="rec">R0.4m–R0.6m</td>
+        </tr>
+        <tr>
+          <td>Team Turnover Cost (training-attributable)</td>
+          <td>2,800 staff &times; 70% turnover &times; 25% training-preventable &times; R8k–R12k per exit</td>
+          <td>R4.0m</td>
+          <td>R6.0m</td>
+          <td class="rec">R0.4m–R0.6m</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL</td>
+          <td>&mdash;</td>
+          <td>R40.0m</td>
+          <td>R66.4m</td>
+          <td class="rec">R4.0m–R6.6m</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ SECTION 4: TOP 5 LEAKAGE CARDS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- LC 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Upsell &amp; Combo Conversion Failure</div>
+        <div class="lc-body">Crew who haven't internalised suggestive selling leave R8–R15 of transaction value unclaimed with every interaction. Across 100 stores and millions of annual transactions, missed upsells compound into the single largest recoverable revenue gap in the business.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.5%&ndash;2.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R18m&ndash;R30m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.8m&ndash;R3.0m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Basket values sit below brand benchmark, promotional attachment rates underperform, and the investment in digital kiosks is undermined when crew can't reinforce the upsell face-to-face. Average transaction yield drifts below comparable franchise groups.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Spaced reinforcement on suggestive selling scripts, combo call-outs, and digital kiosk bridge training — delivered in daily 5-minute modules with manager accountability dashboards that flag stores where attachment rates are slipping.</div>
+  </div>
+
+  <!-- LC 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Food Waste from Portioning &amp; Production Errors</div>
+        <div class="lc-body">Inaccurate portioning inflates COGS and produces inconsistent product quality across stores. Overproduction during peak hours generates discard waste that directly erodes margin on every shift — a training failure often misread as a supply chain problem.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.7%&ndash;1.2%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R8.4m&ndash;R14.4m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.8m&ndash;R1.4m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">COGS drift above target store by store, brand auditors flag product inconsistency across locations, and waste reporting data obscures the real root cause — knowledge decay between induction and the daily reality of a busy lunch rush.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Visual portioning standards and waste-control SOPs embedded via microlearning — reinforced daily so crew retain correct prep procedures even under peak throughput pressure, with supervisor check-ins triggered automatically at 30-day intervals.</div>
+  </div>
+
+  <!-- LC 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">New Store Ramp-Up Underperformance</div>
+        <div class="lc-body">Each new Rohloff store takes 4–8 months to reach full throughput as crew master service flows, menu knowledge, and system processes. With 8+ new stores opening per year and a stated ambition to double the estate, slow ramp is a structural and compounding drag on revenue.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">15%&ndash;25% shortfall</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R6.0m&ndash;R10.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.6m&ndash;R1.0m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">New store RGMs absorb disproportionate coaching time re-training crew from scratch, early guest experience scores underperform brand benchmarks, and the support burden flows back onto the RSC team in Somerset West.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Pre-opening learning journeys and structured 90-day new store induction paths compress ramp time materially — Digemy's benchmark with FLM Academy: 70% faster time-to-competence, applied here to every Rohloff new-store opening.</div>
+  </div>
+
+  <!-- LC 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">CHAMPS Compliance Failures</div>
+        <div class="lc-body">Yum! Brands holds franchisees to rigorous CHAMPS standards across Cleanliness, Hospitality, Accuracy, Maintenance, Product quality, and Speed. Knowledge gaps in frontline execution trigger audit failures, remediation costs, and — at scale — brand relationship risk that no franchise can afford to ignore.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.3%&ndash;0.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R3.6m&ndash;R6.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.4m&ndash;R0.6m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Below-threshold CHAMPS scores trigger re-audits and RSC escalations, consuming management time better spent on growth. Guest trust erodes in affected stores, and the hard-won Franchise Partner of the Year reputation is exposed to store-level inconsistency.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Role-specific CHAMPS modules — delivered on spaced repetition schedules — ensure standards stay embedded between audit cycles rather than surfacing as a last-minute recall exercise in the week before an inspector arrives.</div>
+  </div>
+
+  <!-- LC 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Team Turnover Cost (Training-Attributable)</div>
+        <div class="lc-body">QSR turnover typically runs at 60–90% annually. For Rohloff's ~2,800-strong frontline, that translates to nearly 2,000 exits per year — a quarter of which are preventable with stronger onboarding, early-tenure engagement, and visible career progression tools.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">25% of turnover cost</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R4.0m&ndash;R6.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.4m&ndash;R0.6m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Replacement recruitment, induction costs, and performance ramp consume management bandwidth and inflate per-head cost. Sustained knowledge gaps in new starters drive quality inconsistency and depress CHAMPS scores during the critical first 60 days of tenure.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Structured 30-60-90 day onboarding paths with automated check-in nudges and manager visibility dashboards reduce early-tenure exits — turning Rohloff's culture-led employer brand into a measurable retention advantage backed by data.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- ═══ VALUE SUMMARY — OUTSIDE .page ═══ -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R40m&ndash;R66m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R4.0m&ndash;R6.6m per year</span></div>
+  </div>
+  <p>Rohloff Group's frontline is its brand. Across 100 KFC stores, the gap between what crew know and what the Yum! brand demands is being filled with reactive training and costly remediation — each of which carries a recoverable price tag. <strong>Digemy closes that gap proactively:</strong> structured learning journeys, spaced reinforcement, and manager accountability dashboards mean every crew member, in every store, retains what they need to execute the Rohloff standard — every shift, not just in audit week.</p>
+</div>
+
+<!-- ═══ KG MATRIX + SKILLS MATRIX ═══ -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The matrix below maps the specific knowledge gaps driving Rohloff's largest leakage area to their business impact and Digemy solution. With each new store opening bringing a fresh cohort of crew, these gaps are not one-time onboarding failures — they are recurring structural costs embedded in every induction cycle.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Crew Member (Food Prep &amp; Service) &nbsp;&middot;&nbsp; Leakage 01 &mdash; Upsell &amp; Combo Conversion Failure</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead>
+        <tr>
+          <th style="width:34%">Knowledge Gap</th>
+          <th style="width:33%">Business Impact</th>
+          <th style="width:33%">Digemy Solution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Crew Member — Counter &amp; Drive-Thru</td></tr>
+        <tr>
+          <td>Suggestive selling technique not internalised after induction</td>
+          <td>Basket value falls below benchmark; promotional attachment rates underperform across high-volume sessions</td>
+          <td>Daily 3-minute upsell script reinforcement with scenario nudges — spaced over 60 days until the behaviour is habitual</td>
+        </tr>
+        <tr>
+          <td>Incomplete knowledge of new LTOs and premium menu items</td>
+          <td>Crew can't describe or recommend new products confidently; customers default to base-price orders</td>
+          <td>New menu launch modules deployed to all crew 2 weeks pre-release — ensuring product knowledge is live before the campaign goes up</td>
+        </tr>
+        <tr>
+          <td>Digital kiosk vs. crew handoff gap</td>
+          <td>Customers who begin ordering at kiosk receive inconsistent face-to-face service completion; upsell opportunity is lost at handoff</td>
+          <td>Kiosk integration module trains crew to enhance, not replace, self-service — capturing the upsell the kiosk can't close</td>
+        </tr>
+        <tr>
+          <td>Combo call-out compliance drops under peak pressure</td>
+          <td>Mandatory combo prompts skipped during lunch and dinner rushes — the highest-yield windows of every trading day</td>
+          <td>Spaced reinforcement embeds combo call-out as automatic behaviour; peak-hours simulation nudges keep compliance high under pressure</td>
+        </tr>
+        <tr class="role-hdr"><td colspan="3">Role: Shift Supervisor — Floor &amp; Drive-Thru</td></tr>
+        <tr>
+          <td>Coaching skills insufficient to reinforce selling behaviour in real time</td>
+          <td>Supervisors observe missed upsells but lack the language and tools to coach crew on the spot without disrupting service flow</td>
+          <td>Supervisor coaching micro-tracks deliver in-shift feedback frameworks — turning floor observation into rapid, structured performance correction</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Digemy's skills matrix for Rohloff Group spans three role bands — <strong>Crew, Shift Supervisor, and Restaurant General Manager</strong> — each with a distinct, sequenced learning path. Crew tracks cover product knowledge, upselling, food safety, portioning standards, and CHAMPS readiness. Supervisor tracks address shift management, real-time coaching, waste reporting, and audit preparation. RGM tracks focus on P&amp;L literacy, talent development, Yum! brand compliance, and new store opening execution. Every track runs on spaced repetition cadences calibrated to the 60-day forgetting curve — ensuring knowledge is retained and applied in daily operations, not merely passed in an annual induction and forgotten by the next quarter.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Rohloff Group &mdash; Operational Optimisation Report</div>
+</body>
+</html>
