@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>The Magnum Ice Cream Company — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Ice Cream Manufacturing &amp; Distribution</div>
+  <h1 style="margin-bottom:32px;">The Magnum Ice Cream Company <span>South Africa</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Production Value</div><div class="hs-val">~R300m</div><div class="hs-sub">Lordsview factory output, per annum</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R9.0m&ndash;R19.5m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R0.9m&ndash;R1.95m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Magnum built its training backbone inside Unilever — skills matrices, WSP submissions, compliance calendars, all inherited. Since separating in December 2025, the team has focused on keeping that compliance engine running while a 170-person frontline across the Lordsview factory, Sandton and Durban learns to operate as its own company. The gap isn't compliance — it's everyday capability: the cold-chain discipline, changeover accuracy and onboarding speed that don't show up on an audit but show up in spoilage, rework and ramp time.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;Every missed freezer check is a tonne of ice cream that never reaches a shelf.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy layers spaced-repetition reinforcement on top of Magnum's existing skills matrix — nothing is rebuilt, nothing is replaced. Cold-chain protocols, changeover steps and role-specific onboarding become 1&ndash;2 minute daily recaps, sent via QR code or WhatsApp, so the frontline retains what compliance training already covers instead of forgetting it between sessions. Every completion also auto-feeds WSP and B-BBEE reporting, turning existing training spend into evidence rather than paperwork.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Machine Operators</td><td>Calibration errors across SKU changeovers (minis vs. impulses), missed process steps</td></tr>
+        <tr><td>Cold Storage &amp; Warehouse Staff</td><td>Temperature discipline lapses, incorrect stock rotation, spoilage and melt loss</td></tr>
+        <tr><td>Route Drivers &amp; Distribution</td><td>Cold chain handling in transit, delivery and pick errors</td></tr>
+        <tr><td>Sales Reps &amp; Supervisors</td><td>Inconsistent product knowledge post-separation, weak on-shelf execution</td></tr>
+        <tr><td>Quality &amp; Compliance Officers</td><td>Documentation gaps in legacy Unilever-inherited systems, WSP/B-BBEE evidence gaps</td></tr>
+        <tr><td>Maintenance Engineers</td><td>Fault diagnosis delays, preventative maintenance lapses</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> ~170 employees across the Lordsview factory (production, cold storage, quality, maintenance) and commercial/support staff in Sandton and Umhlanga, Durban, running a 24-hour, multi-shift production cycle.</div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Cold Storage &amp; Temperature Discipline</td><td>1%&ndash;2% of R300m production value</td><td>R3.0m</td><td>R6.0m</td><td class="rec">R300k&ndash;R600k</td></tr>
+        <tr><td>SKU Changeover &amp; Calibration Errors</td><td>0.5%&ndash;1% of R300m production value</td><td>R1.5m</td><td>R3.0m</td><td class="rec">R150k&ndash;R300k</td></tr>
+        <tr><td>New Hire Ramp &amp; Onboarding Backlog</td><td>0.5%&ndash;1.5% of R300m production value</td><td>R1.5m</td><td>R4.5m</td><td class="rec">R150k&ndash;R450k</td></tr>
+        <tr><td>Multi-Shift Knowledge Consistency</td><td>0.5%&ndash;1% of R300m production value</td><td>R1.5m</td><td>R3.0m</td><td class="rec">R150k&ndash;R300k</td></tr>
+        <tr><td>Frontline Engagement &amp; Compliance Reporting</td><td>0.5%&ndash;1% of R300m production value</td><td>R1.5m</td><td>R3.0m</td><td class="rec">R150k&ndash;R300k</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R9.0m</td><td>R19.5m</td><td class="rec">R0.9m&ndash;R1.95m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Cold Storage &amp; Temperature Discipline</div>
+        <div class="lc-body">Spoilage and melt loss trace back to human process, not equipment: missed freezer checks, slow reaction to temperature drift, and inconsistent handling during changeovers. In a cold-chain business, this is the single biggest lever on the floor.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;2%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R3.0m&ndash;R6.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R300k&ndash;R600k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Product write-offs, wasted raw material and energy, and inconsistent quality reaching retail — all invisible until stock reconciliation.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Daily micro-recaps on temperature thresholds and freezer discipline, reinforced until the behaviour is automatic — not a once-off induction module that fades within weeks.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">SKU Changeover &amp; Calibration Errors</div>
+        <div class="lc-body">Different SKUs (minis vs. impulses) need different machine parameters. Operators who don't fully retain the calibration steps for every changeover cause line stoppages, off-spec product and rework.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.5m&ndash;R3.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R150k&ndash;R300k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Line downtime during changeovers, off-spec batches, and repeated re-training on the same calibration steps every time a new SKU cycle starts.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Scenario-based recaps tied to each SKU family, triggered ahead of scheduled changeovers so the right steps are top of mind before the line stops, not after.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">New Hire Ramp &amp; Onboarding Backlog</div>
+        <div class="lc-body">Job descriptions and skills matrices inherited from Unilever are still being validated against how Magnum actually runs today. New hires are trained against content that may not fully match current process, slowing ramp and raising early-tenure error rates.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.5m&ndash;R4.5m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R150k&ndash;R450k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Slower time-to-competence for new operators, higher supervisor time spent on manual correction, and inconsistent onboarding across shifts and sites.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Existing SOPs, skills matrices and recorded training sessions convert into short, role-specific microlearning frameworks — cutting build time from months to days and ramp time by up to 30%.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Multi-Shift Knowledge Consistency</div>
+        <div class="lc-body">The factory runs 24 hours across multiple shifts. Without a shared, reinforced knowledge base, each shift develops its own shortcuts and workarounds — some safe, some not — with no easy way for supervisors to see where the gaps are.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.5m&ndash;R3.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R150k&ndash;R300k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Process drift between shifts, inconsistent quality outcomes depending on who's on the line, and no shared visibility into which shift needs support.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">One reinforced knowledge base across all shifts, with manager dashboards showing exactly where each team and each individual sits on retention and accuracy.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Frontline Engagement &amp; Compliance Reporting</div>
+        <div class="lc-body">Frontline staff who joined under Unilever are still building an identity around the new, standalone Magnum. Low engagement in that transition compounds every other gap on this list — and manual completion tracking makes WSP and B-BBEE reporting harder than it needs to be.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.5m&ndash;R3.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R150k&ndash;R300k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Lower training uptake, manual chasing of completion records, and missed opportunity to reinforce a new company culture through daily touchpoints.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Gamified, white-labelled learning under the Magnum brand — with automated WSP-ready completion records and B-BBEE-aligned reporting built in, not bolted on.</div>
+  </div>
+
+</div>
+</div>
+
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R9.0m&ndash;R19.5m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R0.9m&ndash;R1.95m per year</span></div>
+  </div>
+  <p>Magnum's compliance training is solid — the opportunity sits in capacity building, the everyday reinforcement that keeps 170 people across three sites and multiple shifts consistent on cold-chain discipline, changeovers and onboarding. <strong>A R150,000 annual platform investment set against R0.9m&ndash;R1.95m in conservative recovery is a straightforward case</strong>, before factoring in the reduced ramp time and turnover savings already modelled separately for the frontline team.</p>
+</div>
+
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The matrix below maps specific knowledge gaps to their operational impact and how Digemy closes them — starting with the two roles most exposed to the leakage areas above.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Machine Operators &nbsp;&middot;&nbsp; Leakage 02 &mdash; SKU Changeover &amp; Calibration Errors</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Machine Operators</td></tr>
+        <tr><td>Calibration parameters for minis vs. impulses not consistently retained</td><td>Line stoppages, off-spec product, repeated rework on changeover</td><td>Scenario-based recap triggered ahead of each SKU changeover, reinforced until retained</td></tr>
+        <tr><td>Cold storage temperature protocol steps forgotten between checks</td><td>Spoilage, melt loss, inconsistent product quality</td><td>Daily 1&ndash;2 minute reinforcement on temperature thresholds and escalation steps</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Quality &amp; Compliance Officers</td></tr>
+        <tr><td>Legacy Unilever documentation standards not yet fully mapped to Magnum's current process</td><td>Audit and WSP evidence gaps, manual reconciliation effort</td><td>Baseline evaluation scorecards that track documentation accuracy over time, feeding straight into WSP reporting</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Digemy doesn't replace Magnum's existing skills matrix or in-house training function — it makes the matrix work harder. Every skill already identified for a role becomes a short, reinforced microlearning framework, with baseline and ongoing evaluation scorecards showing exactly where knowledge is holding and where it's slipping. As Magnum finishes validating its post-separation job descriptions, Digemy scales alongside that work rather than ahead of it, giving the training team a live view of capability across the Lordsview factory, Sandton and Durban without adding to their workload.</div>
+</div>
+
+</div>
+
+<div class="footer">digemy.com &mdash; The Magnum Ice Cream Company &mdash; Operational Optimisation Report</div>
+</body>
+</html>
