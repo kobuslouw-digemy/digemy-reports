@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Verimark — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Retail &amp; Direct-Response Marketing (DRTV)</div>
+  <h1 style="margin-bottom:32px;">Verimark <span>Frontline Sales Force</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R650m</div><div class="hs-sub">private group, conservative estimate</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R28m&ndash;R48m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R2.8m&ndash;R4.8m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Verimark runs an exceptional face-to-face training operation &mdash; four trainers delivering hands-on sessions to over a thousand sales executives every second month across Johannesburg, Cape Town and Durban. But the sharpest gap opens at the worst possible time: the seasonal flexi hiring rush ahead of the festive period, precisely when many retail partners freeze in-store training altogether. Digemy doesn't replace Verimark's trainers or their in-person craft; it gives every rep a mobile, data-light way to recap product knowledge in the gaps between sessions, no store visit required.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;The busiest six weeks of the year arrive with the least-trained hands on the floor &mdash; and the stores that need reinforcement most are the ones that ban it.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy's browser-based, data-light recap tool works around retail partners' phone restrictions by living in the quiet minutes before a shift or during a break, not mid-sale on the shop floor. Layered onto Verimark's existing biannual training, it compresses the flexi ramp curve, keeps objection-handling sharp between sessions, and gives the four-person training team live visibility into exactly which knowledge gaps to close next &mdash; without adding a single trainer to the road schedule.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Sales Executives (in-store, nationwide)</td><td>Product objection-handling &amp; retention decay between sessions</td></tr>
+        <tr><td>Flexi / Seasonal Sales Staff (Oct&ndash;Jan peak)</td><td>Rushed onboarding during the highest-value selling period</td></tr>
+        <tr><td>Sales Reps / Regional Supervisors</td><td>Inconsistent in-store coaching quality across regions</td></tr>
+        <tr><td>Training &amp; Recruitment Team</td><td>Four trainers stretched thin covering the full frontline face-to-face</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Verimark's frontline runs on roughly 1,000+ sales executives across owned stores and 2,000+ retail chain placements nationwide, managed by around 65 regional sales reps and supported by a four-person training team split between Johannesburg, Cape Town and Durban.</div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Seasonal Flexi Ramp-Up Gap</td><td>1.5%&ndash;2% of peak-season (Oct&ndash;Jan) floor sales revenue (~R156m)</td><td>R2.34m</td><td>R3.12m</td><td class="rec">R234k&ndash;R312k</td></tr>
+        <tr><td>New Product Launch Adoption Lag</td><td>20%&ndash;35% shortfall of NPD revenue potential (~R78m)</td><td>R15.6m</td><td>R27.3m</td><td class="rec">R1.56m&ndash;R2.73m</td></tr>
+        <tr><td>Cross-Regional Execution Variance</td><td>1%&ndash;2% of floor sales revenue (~R390m)</td><td>R3.9m</td><td>R7.8m</td><td class="rec">R390k&ndash;R780k</td></tr>
+        <tr><td>Objection-Handling &amp; Retention Decay</td><td>1%&ndash;1.5% of floor sales revenue (~R390m)</td><td>R3.9m</td><td>R5.85m</td><td class="rec">R390k&ndash;R585k</td></tr>
+        <tr><td>Manual Feedback &amp; Knowledge-Gap Blindspot</td><td>0.5%&ndash;1% of floor sales revenue (~R390m)</td><td>R1.95m</td><td>R3.9m</td><td class="rec">R195k&ndash;R390k</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R27.69m</td><td>R47.97m</td><td class="rec">R2.77m&ndash;R4.8m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Seasonal Flexi Ramp-Up Gap</div>
+        <div class="lc-body">Verimark brings on a wave of flexi sales staff ahead of the festive season, exactly when its four trainers are stretched thinnest across the country. New hires often reach the floor with only a fraction of the product knowledge veteran reps carry.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.5%&ndash;2%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R2.34m&ndash;R3.12m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R234k&ndash;R312k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Flexi reps miss upsell cues and mishandle objections during the highest-traffic weeks of the year. Conversion on peak-season floor traffic runs below what a fully-ramped team would deliver.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">New flexi hires get a mobile onboarding recap they can work through before their first shift and revisit in quiet moments on the floor. Ramp time compresses without adding a single trainer to the road schedule.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">New Product Launch Adoption Lag</div>
+        <div class="lc-body">When Verimark's marketing team briefs a new product line, the training team builds and rolls out the pitch in person, region by region. Retail partners' seasonal training freezes mean some stores don't get the refresh until well after launch.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">20%&ndash;35%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R15.6m&ndash;R27.3m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.56m&ndash;R2.73m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Reps in stores caught mid-freeze sell new lines without the pitch, the pros and cons, or the against-competitor positioning the training team built. Early sales momentum on new launches is left on the table in exactly the stores that need it most.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">The moment product training is uploaded, every rep can access it the same day &mdash; freeze or no freeze &mdash; through a low-data browser login that doesn't need a store visit. Launch-week readiness stops depending on trainer travel schedules.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Cross-Regional Execution Variance</div>
+        <div class="lc-body">Four trainers cover Johannesburg, Cape Town, Durban and the regions between, running groups of thirty to forty reps through identical content week by week. Some regions naturally get more frequent refreshers than others simply based on trainer routing.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;2%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R3.9m&ndash;R7.8m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R390k&ndash;R780k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Reps in less-visited regions and outlet types drift further from the current pitch between visits. Customers get a different Verimark experience depending on which store they walk into.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Every rep, regardless of region, gets the same white-labelled content on the same day it's published, closing the gap between what Johannesburg hears this week and what an outlying outlet hears next month.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Objection-Handling &amp; Retention Decay</div>
+        <div class="lc-body">Reps are trained thoroughly every second month, but people forget the majority of new information within a day without deliberate reinforcement. Between sessions, sharp objection-handling on specific products fades before the next training touchpoint.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R3.9m&ndash;R5.85m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R390k&ndash;R585k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">A rep who nailed a pitch two months ago may fumble the same objection today. Sales lost to hesitation or a forgotten feature don't show up in any report Verimark currently has.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Bite-size recaps and quizzes between sessions push knowledge into long-term memory instead of letting it decay. A rep who logs in during a quiet ten minutes on shift walks into the next customer conversation sharper than the last.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Manual Feedback &amp; Knowledge-Gap Blindspot</div>
+        <div class="lc-body">Today, Verimark hears about a knowledge gap when a rep calls in from a store with a specific problem, or when a regional manager happens to visit. There's no dashboard flagging where accuracy is low before it costs a sale.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.95m&ndash;R3.9m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R195k&ndash;R390k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Gaps get found reactively, often after several missed sales, rather than the moment quiz accuracy on a topic starts slipping. The training team can't easily prioritise where a store visit or refresher will do the most good.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Real-time accuracy data by region, store and product line tells the training team exactly where to focus the next in-person session, before it shows up as a lost sale on the floor.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R28m&ndash;R48m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R2.8m&ndash;R4.8m per year</span></div>
+  </div>
+  <p>Across five leakage areas tied directly to Verimark's seasonal hiring cycle, product launch cadence, and the natural limits of covering 1,000+ reps with four trainers, an estimated <strong>R28m&ndash;R48m</strong> in annual revenue sits unrecovered. Recovering even 10% of that &mdash; without adding a single trainer &mdash; represents <strong>R2.8m&ndash;R4.8m</strong> a year back into the business, alongside faster flexi ramp and a training team that can finally see where the gaps are before they cost a sale.</p>
+</div>
+
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The matrix below traces how a single leakage area &mdash; the seasonal flexi ramp-up gap &mdash; breaks down into specific, addressable knowledge gaps for Verimark's sales executives.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Sales Executives &nbsp;&middot;&nbsp; Leakage 01 &mdash; Seasonal Flexi Ramp-Up Gap</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Sales Executives</td></tr>
+        <tr><td>New flexi hires can't recall product mechanisms or pricing under floor pressure</td><td>Hesitant pitches and missed upsells during Verimark's highest-traffic weeks</td><td>Pre-shift mobile recap builds recall before the first customer interaction</td></tr>
+        <tr><td>Reps forget objection-handling for specific products between biannual sessions</td><td>Lost sales to comparison shopping in stores with competing brands on shelf</td><td>Spaced recap quizzes keep objection responses sharp between visits</td></tr>
+        <tr><td>New product pitches reach some stores weeks after launch due to training freezes</td><td>Early launch revenue lost in exactly the stores training couldn't reach in time</td><td>Same-day mobile rollout of new product training, freeze-proof</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Digemy's skills matrix would track Verimark's frontline against every product category, from housewares to fitness to DIY, showing the training team precisely which sales executives, regions and outlet types have mastered a pitch to full knowledge level and which still need a refresher before the next in-person session.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Verimark &mdash; Operational Optimisation Report</div>
+</body>
+</html>
