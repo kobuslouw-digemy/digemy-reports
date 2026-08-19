@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BON Hotels — Frontline Skills Intelligence Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Frontline Skills Intelligence Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Hospitality &amp; Hotel Management</div>
+  <h1 style="margin-bottom:32px;">BON Hotels <span>Skills Matrix</span></h1>
+  <div class="hero-stats">
+    <div class="hs">
+      <div class="hs-label">Frontline Roles Mapped</div>
+      <div class="hs-val">8</div>
+      <div class="hs-sub">across hotel operations</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Skills Identified</div>
+      <div class="hs-val p">59</div>
+      <div class="hs-sub">requiring active reinforcement</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Portfolio Scale</div>
+      <div class="hs-val g">40+</div>
+      <div class="hs-sub">managed properties across Africa</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ABOUT THIS REPORT -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">About This Report</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>This Frontline Skills Intelligence Report maps every operational role across the BON Hotels portfolio to the skills that directly drive guest satisfaction, revenue performance and brand consistency. For each skill, it identifies the operational gap that emerges when that skill is absent or inconsistently applied — and the Digemy microlearning solution that closes it at scale.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;Consistent guest experience at 40 properties isn't a policy problem. It's a knowledge problem.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; The Digemy Proof Point</h4>
+      <p>FLM Academy (Food Lover's Market) achieved a <strong>154% improvement in knowledge retention</strong>, <strong>70% faster ramp time</strong> and a <strong>60&times; increase in frontline engagement</strong> — delivered through the same spaced microlearning engine proposed for BON Hotels. Behaviour change at this scale is not accidental: it is the direct result of structured, role-specific reinforcement delivered at the moment it matters.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FRONTLINE POSITIONS SUMMARY -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Positions Summary</div></div>
+  <div class="biz-grid" style="grid-template-columns:repeat(4,1fr);">
+    <div class="biz-card">
+      <div class="biz-title">01 &mdash; Front Desk Agents</div>
+      <p>First and last brand touchpoint. Responsible for upgrades, loyalty enrolment, package sales and first-contact complaint resolution.</p>
+    </div>
+    <div class="biz-card">
+      <div class="biz-title">02 &mdash; F&amp;B Servers</div>
+      <p>Restaurant and in-room dining. Drive average spend per cover through menu knowledge, pairing confidence and suggestive selling.</p>
+    </div>
+    <div class="biz-card">
+      <div class="biz-title">03 &mdash; Bartenders</div>
+      <p>Bar and lounge revenue. Premium pour upsells, cocktail execution, responsible service compliance and stock control.</p>
+    </div>
+    <div class="biz-card">
+      <div class="biz-title">04 &mdash; Housekeeping Staff</div>
+      <p>Room experience quality. SOP adherence, standard consistency, preventive fault reporting and guest privacy protocol.</p>
+    </div>
+    <div class="biz-card">
+      <div class="biz-title">05 &mdash; Porters / Bellboys</div>
+      <p>Arrival and departure experience. Local knowledge, facilities orientation, luggage handling and first-impression delivery.</p>
+    </div>
+    <div class="biz-card">
+      <div class="biz-title">06 &mdash; Conference Coordinators</div>
+      <p>Events and conferencing revenue. Brief interpretation, AV operation, F&amp;B timing and client expectation management.</p>
+    </div>
+    <div class="biz-card">
+      <div class="biz-title">07 &mdash; Kitchen Staff</div>
+      <p>Food production quality and safety. Recipe adherence, HACCP compliance, allergen management and inter-team communication.</p>
+    </div>
+    <div class="biz-card">
+      <div class="biz-title">08 &mdash; Duty Managers</div>
+      <p>Frontline leadership. Shift briefing, complaint escalation, team coaching, revenue oversight and crisis management.</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- end .page -->
+
+<!-- VS OUTSIDE .page -->
+<div class="vs" style="max-width:1000px;margin:0 auto 44px;">
+  <div class="vs-ey">How to Read This Matrix</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Column 1: Skill Required</span><span class="vsp-v">What the role must know and do</span></div>
+    <div class="vsp"><span class="vsp-l">Column 2: Operational Gap</span><span class="vsp-v">What breaks when the skill is absent</span></div>
+    <div class="vsp"><span class="vsp-l">Column 3: Digemy Solution</span><span class="vsp-v">How Digemy closes the gap through microlearning</span></div>
+  </div>
+  <p>Each row represents a discrete, teachable skill — and a discrete, measurable risk when that skill is missing. Across 40+ properties, a single skill gap replicated across hundreds of frontline staff compounds into significant revenue loss, guest satisfaction decline and brand inconsistency. <strong>Digemy closes each gap with a targeted microlearning module, delivered mobile-first, reinforced through spaced repetition, and tracked in real time by managers.</strong></p>
+</div>
+
+<!-- SKILLS MATRIX TABLE -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Frontline Skills Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">All 8 frontline roles mapped across 59 skills — each with the operational consequence of the gap and the Digemy solution that closes it.</p>
+
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead>
+        <tr>
+          <th style="width:26%;">Skill Required</th>
+          <th style="width:37%;">Operational Gap</th>
+          <th style="width:37%;">Digemy Solution</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- ── FRONT DESK AGENTS ── -->
+        <tr class="role-hdr"><td colspan="3">Role 01 &mdash; Front Desk Agents / Receptionists</td></tr>
+        <tr>
+          <td>Room categories &amp; upgrade pitch</td>
+          <td>Upgrade revenue missed at check-in — the highest commercial-intent moment in the guest journey. Agents default to the booked rate without attempting an upsell.</td>
+          <td>Room category knowledge cards with upgrade conversation scripts and trigger-moment cues, refreshed per property and season.</td>
+        </tr>
+        <tr>
+          <td>Loyalty programme benefits &amp; enrolment conversation</td>
+          <td>Low enrolment rates increase OTA dependency, reduce direct repeat booking revenue and erode lifetime guest value.</td>
+          <td>Loyalty programme micro-modules with enrolment conversation scripts, benefit summaries and objection-handling guides.</td>
+        </tr>
+        <tr>
+          <td>Complaint handling — LEARN framework</td>
+          <td>Immediate escalation overloads management, guests leave with unresolved experiences and post negative online reviews.</td>
+          <td>LEARN (Listen, Empathise, Apologise, Resolve, Notify) scenario-based roleplay modules with de-escalation and recovery scripts.</td>
+        </tr>
+        <tr>
+          <td>PMS accuracy &amp; check-in/check-out procedure</td>
+          <td>Billing errors, queue build-up during peak arrivals and guest frustration from avoidable system mistakes.</td>
+          <td>PMS procedure micro-modules with step-by-step guides, common-error prevention checklists and accuracy reinforcement drills.</td>
+        </tr>
+        <tr>
+          <td>Arrival personalisation &amp; branded welcome scripting</td>
+          <td>Transactional check-in creates no emotional connection — review scores and loyalty are directly impacted by this first moment.</td>
+          <td>Arrival experience modules with personalisation cue training, branded greeting language and name-use habit formation.</td>
+        </tr>
+        <tr>
+          <td>Rate, package &amp; promotional knowledge</td>
+          <td>Wrong quotes, missed package upsells at point of enquiry and booking errors — revenue left on the desk at every shift.</td>
+          <td>Rate and package knowledge cards refreshed seasonally with scenario-based pricing confidence modules and quote accuracy drills.</td>
+        </tr>
+        <tr>
+          <td>Emergency procedure &amp; evacuation protocol</td>
+          <td>Inconsistent response during emergencies creates safety risk for guests and staff, and liability exposure for the property.</td>
+          <td>Emergency response micro-learning with property-specific scenario drills, role clarity guides and regular reinforcement cycles.</td>
+        </tr>
+        <tr>
+          <td>Cross-selling hotel facilities (F&amp;B, conferencing, spa)</td>
+          <td>Guests remain unaware of ancillary facilities — in-house F&amp;B, spa and event spend not captured at check-in.</td>
+          <td>Facilities cross-sell modules with conversation trigger guides, revenue-moment awareness training and natural handoff scripts.</td>
+        </tr>
+
+        <!-- ── F&B SERVERS ── -->
+        <tr class="role-hdr"><td colspan="3">Role 02 &mdash; F&amp;B Servers / Waitrons</td></tr>
+        <tr>
+          <td>Full menu knowledge (food &amp; beverage)</td>
+          <td>Poor dish descriptions, incorrect orders and inability to answer ingredient questions drive guest dissatisfaction, re-fires and wasted covers.</td>
+          <td>Menu knowledge cards updated per seasonal change with dish description scripts, ingredient breakdowns and allergen flags built in.</td>
+        </tr>
+        <tr>
+          <td>Upselling &amp; suggestive selling technique</td>
+          <td>Low average spend per cover — starters, desserts and beverage add-ons are consistently missed without a structured prompt.</td>
+          <td>Upsell technique micro-modules with scripted trigger moments for starters, sides, desserts and pairings across each service occasion.</td>
+        </tr>
+        <tr>
+          <td>Wine &amp; beverage pairing knowledge</td>
+          <td>No pairing recommendations made — premium beverage sales missed and the guest experience falls short of hospitality-standard expectations.</td>
+          <td>Beverage pairing micro-modules tied to the current menu, with pairing rationale, confidence-building drills and premium option awareness.</td>
+        </tr>
+        <tr>
+          <td>Allergy awareness &amp; dietary requirement handling</td>
+          <td>Safety risk and liability exposure — allergic reactions can cause serious guest harm, brand damage and potential legal action.</td>
+          <td>Allergy protocol modules with decision-tree guides, kitchen communication scripts and clear escalation procedures for uncertain orders.</td>
+        </tr>
+        <tr>
+          <td>Table management &amp; service sequencing</td>
+          <td>Guest wait times extend, table turns are missed and revenue per seat per session declines across busy service periods.</td>
+          <td>Service flow micro-modules with timing frameworks, multi-table management drills and table turn awareness guides for peak service.</td>
+        </tr>
+        <tr>
+          <td>Frontline complaint handling at table</td>
+          <td>Immediate escalation, negative reviews and management pulled from operational focus — recoverable moments become lost guests.</td>
+          <td>Table complaint scripts with de-escalation frameworks, empathy language guides and resolution confidence modules for in-service moments.</td>
+        </tr>
+        <tr>
+          <td>Hygiene &amp; food safety at service</td>
+          <td>Failed health inspections, brand damage and potential guest illness claims resulting from inconsistent service hygiene practices.</td>
+          <td>Food safety SOP modules with hygiene compliance checklists, pre-shift reinforcement tools and personal hygiene habit formation.</td>
+        </tr>
+        <tr>
+          <td>POS accuracy &amp; billing procedure</td>
+          <td>Billing errors drive refunds, guest frustration and revenue leakage through unrecorded or incorrectly entered orders.</td>
+          <td>POS micro-training with error-prevention checklists, common billing mistake awareness and order confirmation habit reinforcement.</td>
+        </tr>
+
+        <!-- ── BARTENDERS ── -->
+        <tr class="role-hdr"><td colspan="3">Role 03 &mdash; Bartenders</td></tr>
+        <tr>
+          <td>Cocktail &amp; beverage menu knowledge</td>
+          <td>Slow service, incorrect drinks and guest disappointment at a high-margin revenue point that should reinforce the brand.</td>
+          <td>Cocktail recipe and technique micro-modules with visual guides, service speed confidence drills and menu refresh cycles.</td>
+        </tr>
+        <tr>
+          <td>Premium spirits &amp; upsell opportunity recognition</td>
+          <td>Missed premium pour revenue — guests default to house pours when no premium alternative is proactively offered.</td>
+          <td>Premium spirits knowledge cards with upsell cue training, conversation trigger guides and premium brand awareness modules.</td>
+        </tr>
+        <tr>
+          <td>Responsible alcohol service &amp; legislative compliance</td>
+          <td>Liability risk, legal non-compliance and potential liquor licence jeopardy under SA Liquor Act requirements.</td>
+          <td>Responsible service micro-modules with scenario-based refusal decisions, legal compliance reinforcement and duty-of-care training.</td>
+        </tr>
+        <tr>
+          <td>Bar hygiene &amp; equipment cleaning standards</td>
+          <td>Failed health inspections, equipment damage and guest illness risk from inconsistent bar cleaning and hygiene practices.</td>
+          <td>Bar hygiene SOP modules with daily cleaning checklists, equipment care procedure reinforcement and inspection-readiness training.</td>
+        </tr>
+        <tr>
+          <td>Speed &amp; accuracy under high-volume service</td>
+          <td>Long wait times during peak periods — guests abandon the bar and revenue opportunities are permanently lost per session.</td>
+          <td>Service sequencing micro-training with efficiency drills, order prioritisation frameworks and high-volume service preparation guides.</td>
+        </tr>
+        <tr>
+          <td>Stock control &amp; over-pour awareness</td>
+          <td>Over-pouring and spoilage silently erode bar margin — losses are rarely quantified but consistently material across a portfolio.</td>
+          <td>Stock control awareness modules with pour guide reinforcement, standard measure habit formation and wastage-tracking tools.</td>
+        </tr>
+        <tr>
+          <td>Guest engagement &amp; brand experience delivery</td>
+          <td>Transactional bar interactions build no relationship — no return visit is motivated and no loyalty is anchored to the property.</td>
+          <td>Guest experience modules with conversation frameworks, brand storytelling guides and loyalty trigger training for bar staff.</td>
+        </tr>
+
+        <!-- ── HOUSEKEEPING ── -->
+        <tr class="role-hdr"><td colspan="3">Role 04 &mdash; Housekeeping Staff / Room Attendants</td></tr>
+        <tr>
+          <td>Room make-up &amp; bed-making to SOP standard</td>
+          <td>Guest complaints, review score decline and re-cleaning costs — the highest volume of guest-facing quality failures originate here.</td>
+          <td>SOP visual micro-modules with photo-referenced checklists and room-type standard comparison guides for consistent execution.</td>
+        </tr>
+        <tr>
+          <td>Bathroom &amp; amenities presentation</td>
+          <td>Untidy bathrooms and inconsistent amenity placement generate the most frequent and damaging online review comments.</td>
+          <td>Bathroom presentation standards modules with visual before/after guides and amenity placement checklists by property tier.</td>
+        </tr>
+        <tr>
+          <td>Lost property handling procedure</td>
+          <td>Guest trust eroded by inconsistent handling, management time absorbed by disputes and liability risk on high-value items.</td>
+          <td>Lost property SOP modules with reporting procedure guides, secure storage protocol and handover documentation training.</td>
+        </tr>
+        <tr>
+          <td>Room prioritisation by occupancy status</td>
+          <td>Check-out rooms not cleared on time — guests cannot access clean rooms and front desk is inundated with complaints and holding requests.</td>
+          <td>Room prioritisation decision-tree micro-modules with status-based sequencing guides and front-desk communication protocol.</td>
+        </tr>
+        <tr>
+          <td>Chemical usage &amp; COSHH compliance</td>
+          <td>Safety incidents, surface damage and occupational health compliance risk from incorrect chemical use or dilution.</td>
+          <td>Chemical safety SOP modules with hazard recognition training, correct dilution guides and COSHH compliance reinforcement.</td>
+        </tr>
+        <tr>
+          <td>Do Not Disturb &amp; guest privacy protocol</td>
+          <td>Protocol breach causes guest complaint, potential security incident and brand trust damage that disproportionately impacts reviews.</td>
+          <td>Privacy and DND protocol micro-learning with policy reinforcement, correct DND response guides and scenario-based training.</td>
+        </tr>
+        <tr>
+          <td>Minibar stock check &amp; replenishment accuracy</td>
+          <td>Revenue missed through unchecked or under-reported consumption, and guest disputes at checkout from inaccurate records.</td>
+          <td>Minibar procedure modules with replenishment checklists, consumption recording guides and common discrepancy prevention training.</td>
+        </tr>
+        <tr>
+          <td>Preventive maintenance fault reporting</td>
+          <td>Faults go unreported and unresolved — guest experience deteriorates, repair costs escalate and rooms are pulled from inventory.</td>
+          <td>Fault-reporting micro-modules with photo-submission guides, common fault recognition training and escalation procedure reinforcement.</td>
+        </tr>
+        <tr>
+          <td>Guest interaction &amp; professional corridor communication</td>
+          <td>Awkward corridor interactions and inability to handle basic guest queries undermine brand consistency at the room level.</td>
+          <td>Guest communication modules with professional language guides, greeting scripts and query-referral procedure training for housekeeping staff.</td>
+        </tr>
+
+        <!-- ── PORTERS ── -->
+        <tr class="role-hdr"><td colspan="3">Role 05 &mdash; Porters / Bellboys</td></tr>
+        <tr>
+          <td>Luggage handling &amp; secure storage procedure</td>
+          <td>Damage claims, delayed access and guest frustration — luggage is a high-trust touchpoint and errors create lasting negative impressions.</td>
+          <td>Luggage handling SOP modules with damage-prevention guides, secure storage protocol and claim documentation procedure training.</td>
+        </tr>
+        <tr>
+          <td>Local knowledge (dining, attractions, transport)</td>
+          <td>Unable to assist guests with orientation or recommendations — a missed opportunity to build trust and differentiate the brand from competitors.</td>
+          <td>Local knowledge modules updated per property and city, covering dining, attractions, transport options and concierge-level guidance.</td>
+        </tr>
+        <tr>
+          <td>Arrival greeting &amp; brand welcome experience</td>
+          <td>Poor first impression — the porter is often the guest's very first physical brand contact, setting the tone for the entire stay.</td>
+          <td>Arrival experience scripting modules with brand voice guides, greeting standards and first-impression training anchored to property values.</td>
+        </tr>
+        <tr>
+          <td>Room orientation &amp; facilities explanation</td>
+          <td>Guests miss key facility features — restaurant, gym, spa and conferencing go unvisited and ancillary revenue is not captured.</td>
+          <td>Room orientation scripts with facility highlight cues, in-room feature guides and natural cross-sell moment identification training.</td>
+        </tr>
+        <tr>
+          <td>Emergency &amp; evacuation procedure</td>
+          <td>Inconsistent response during emergencies creates safety risk for guests and staff, and liability exposure for the property owner.</td>
+          <td>Emergency procedure micro-learning with role-specific scenario drills and property-specific evacuation plan reinforcement each quarter.</td>
+        </tr>
+        <tr>
+          <td>Valet parking safety &amp; vehicle handling</td>
+          <td>Vehicle damage, liability exposure and guest trust breakdown — high-value vehicle incidents are irreversible and can trigger legal action.</td>
+          <td>Valet handling SOP modules with manoeuvring guides, key handover procedures and vehicle damage documentation protocol training.</td>
+        </tr>
+        <tr>
+          <td>Internal coordination with front desk &amp; housekeeping</td>
+          <td>Coordination failures result in guest requests missed, delays in room availability updates and duplication of effort across departments.</td>
+          <td>Internal communication protocol modules with handover scripts, radio and messaging etiquette guides and escalation procedure training.</td>
+        </tr>
+
+        <!-- ── CONFERENCE COORDINATORS ── -->
+        <tr class="role-hdr"><td colspan="3">Role 06 &mdash; Conference &amp; Events Coordinators</td></tr>
+        <tr>
+          <td>Event brief interpretation &amp; setup execution</td>
+          <td>Setup errors require costly re-dos, delay event start times and damage client confidence in the property's operational capability.</td>
+          <td>Event brief micro-modules with setup checklist tools, layout interpretation guides and client sign-off confirmation protocols.</td>
+        </tr>
+        <tr>
+          <td>AV equipment operation &amp; basic troubleshooting</td>
+          <td>Technical failures at critical client moments stall presentations, destroy credibility and directly threaten repeat conference bookings.</td>
+          <td>AV operation micro-modules with equipment-specific guides, troubleshooting decision trees and mandatory pre-event test checklists.</td>
+        </tr>
+        <tr>
+          <td>F&amp;B coordination &amp; service timing for events</td>
+          <td>Food served at wrong times, in incorrect quantities or at the wrong temperature — client experience and F&amp;B margins both suffer.</td>
+          <td>Event F&amp;B coordination modules with service timing frameworks, quantity guide templates and kitchen briefing communication scripts.</td>
+        </tr>
+        <tr>
+          <td>Client expectation management &amp; communication</td>
+          <td>Misaligned expectations generate complaints, compensation demands and the loss of repeat event business at the portfolio's highest-margin revenue line.</td>
+          <td>Client communication modules with expectation-setting scripts, brief-confirmation guides and change-request management procedures.</td>
+        </tr>
+        <tr>
+          <td>Venue layout &amp; capacity knowledge</td>
+          <td>Incorrect layout configurations require re-setup — time is lost, client confidence is shaken and the event start is delayed.</td>
+          <td>Venue knowledge modules with layout configuration guides, capacity maps, equipment placement checklists and change turnaround training.</td>
+        </tr>
+        <tr>
+          <td>Health &amp; safety compliance during events</td>
+          <td>Safety incidents during events create liability exposure, reputational risk and potential regulatory consequence for the property.</td>
+          <td>H&amp;S compliance micro-learning with event-specific safety checklists, fire and evacuation procedure reinforcement and crowd management guides.</td>
+        </tr>
+        <tr>
+          <td>Upselling event add-ons (AV, décor, F&amp;B packages)</td>
+          <td>Revenue missed from premium event packages — coordinators hold the highest upsell leverage in conferencing and rarely use it consistently.</td>
+          <td>Upsell technique modules with trigger-based conversation scripts, add-on package knowledge guides and confidence-building scenario training.</td>
+        </tr>
+
+        <!-- ── KITCHEN STAFF ── -->
+        <tr class="role-hdr"><td colspan="3">Role 07 &mdash; Kitchen Staff / Cooks</td></tr>
+        <tr>
+          <td>Menu recipe adherence &amp; portion control</td>
+          <td>Inconsistent food quality erodes guest trust and OTA review scores; over-portioning inflates food cost without visibility.</td>
+          <td>Recipe adherence micro-modules with portioning guides, photo-referenced plating standards and consistency drills per dish category.</td>
+        </tr>
+        <tr>
+          <td>HACCP compliance &amp; food safety protocols</td>
+          <td>Failed health inspections, potential guest illness and reputational damage — regulatory risk is non-negotiable in a managed hotel group.</td>
+          <td>HACCP micro-learning with temperature logging reinforcement, hazard identification training and daily compliance checklists per kitchen station.</td>
+        </tr>
+        <tr>
+          <td>Allergen awareness &amp; cross-contamination prevention</td>
+          <td>Life-threatening risk for allergic guests, liability exposure and potential criminal negligence if cross-contamination procedures are not followed.</td>
+          <td>Allergen protocol modules with kitchen workflow guides, cross-contamination prevention drills and escalation procedures for uncertain orders.</td>
+        </tr>
+        <tr>
+          <td>Prep scheduling &amp; mise en place discipline</td>
+          <td>Service delays, kitchen chaos and quality shortfalls during peak windows when prep is incomplete or inconsistently executed.</td>
+          <td>Prep planning micro-modules with shift-start checklists, mise en place guides and service readiness standards per station and meal period.</td>
+        </tr>
+        <tr>
+          <td>Waste management &amp; FIFO stock rotation</td>
+          <td>Spoilage, incorrect rotation and failed inspections inflate food cost and create compliance risk in audited hotel kitchens.</td>
+          <td>Stock rotation SOP modules with FIFO reinforcement, expiry labelling guides and wastage tracking habit formation per shift.</td>
+        </tr>
+        <tr>
+          <td>Equipment operation &amp; daily cleaning protocol</td>
+          <td>Equipment downtime, hygiene failure and rising repair costs from improper use and inadequate cleaning across multiple properties.</td>
+          <td>Equipment care micro-modules with daily cleaning checklists, safe use guides and fault-reporting procedure training for kitchen staff.</td>
+        </tr>
+        <tr>
+          <td>Communication with F&amp;B floor team during service</td>
+          <td>Order errors, confusion during peak service and guest dissatisfaction from miscommunication between kitchen and floor at critical moments.</td>
+          <td>Kitchen-to-floor communication protocol modules with call-out guides, ticket-reading standards and service language training for line cooks.</td>
+        </tr>
+
+        <!-- ── DUTY MANAGERS ── -->
+        <tr class="role-hdr"><td colspan="3">Role 08 &mdash; Duty Managers / Shift Supervisors</td></tr>
+        <tr>
+          <td>Shift handover briefing &amp; information transfer</td>
+          <td>Critical operational information lost between shifts — errors repeated, guest requests missed and management decisions made without context.</td>
+          <td>Handover protocol micro-modules with structured briefing templates, information priority guides and outgoing-shift confirmation checklists.</td>
+        </tr>
+        <tr>
+          <td>Guest complaint escalation &amp; resolution authority</td>
+          <td>Inconsistent resolution quality — some guests over-compensated, others dismissed; brand trust uneven across properties and shifts.</td>
+          <td>Escalation framework modules with resolution scripts, compensation authority guides and case scenario training across complaint types.</td>
+        </tr>
+        <tr>
+          <td>Frontline team performance coaching</td>
+          <td>Knowledge gaps in the team go unidentified and uncorrected — revenue leaks and service failures persist because no one is watching the behaviours.</td>
+          <td>Team coaching micro-modules with gap-identification frameworks, real-time feedback guides and structured observation checklists per shift.</td>
+        </tr>
+        <tr>
+          <td>Revenue opportunity identification &amp; coaching</td>
+          <td>Missed upsell moments not spotted or coached in the team — leakage becomes cultural and entrenched across the portfolio.</td>
+          <td>Revenue coaching modules with daily team brief guides, commercial opportunity-spotting frameworks and upsell language training for managers.</td>
+        </tr>
+        <tr>
+          <td>Emergency &amp; crisis management</td>
+          <td>Inconsistent manager response in emergencies creates safety risk for guests and staff, and direct liability for the management group.</td>
+          <td>Crisis response micro-modules with role-specific scenario drills, escalation decision frameworks and property-specific protocol reinforcement.</td>
+        </tr>
+        <tr>
+          <td>Labour scheduling &amp; peak demand management</td>
+          <td>Understaffing at peak periods causes service quality failure — directly visible in guest satisfaction scores and online review sentiment.</td>
+          <td>Scheduling awareness modules with peak demand pattern guides, real-time coverage decision frameworks and shift adjustment protocols.</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- HOW DIGEMY CLOSES THE GAP -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128161;</div><div class="sec-title">How Digemy Closes the Gap</div></div>
+  <div class="mx-narrative">
+    <strong>Spaced Reinforcement — Not Once-Off Training</strong><br><br>
+    Every skill in this matrix shares one critical vulnerability: it is taught once and forgotten quickly without consistent reinforcement. Induction programmes, printed SOPs and annual workshops do not change behaviour at scale — repeated, contextual microlearning does. Digemy's spaced repetition engine delivers 3-to-5-minute modules to staff phones on a schedule designed to maximise retention at the precise frequency the science supports. The skill required in the service moment is the skill the team actually has.
+    <br><br>
+    <strong>Role-Specific, Property-Aware Learning Pathways</strong><br><br>
+    Digemy maps every role across the BON Hotels portfolio to a dedicated learning pathway — built from this skills matrix and updated as menus, procedures and properties change. Performance data is visible in real time: general managers and department heads see which teams are engaging, which gaps are closing and which properties need attention. The result is a learning programme driven by data, not instinct — and a guest experience that is consistent at property 40 as it is at property one.
+  </div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; BON Hotels South Africa &mdash; Frontline Skills Intelligence Report &middot; 2026</div>
+</body>
+</html>
