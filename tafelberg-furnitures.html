@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Tafelberg Furnitures — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Furniture &amp; Home Retail</div>
+  <h1 style="margin-bottom:32px;">Tafelberg <span>Furnitures</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R800m</div><div class="hs-sub">inferred — Western Cape retail group</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R55.8m&ndash;R90.6m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R5.6m&ndash;R9.1m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- SECTION 1: WHY DIGEMY -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Tafelberg Furnitures competes on value in a market where the buying decision often comes down to whether a sales consultant can explain product features, financing options, and delivery timelines with confidence. When floor staff struggle to answer basic questions about fabric grades, warranty terms, or lay-by rules, customers walk across the street to a competitor. Digemy eliminates that knowledge gap with spaced microlearning that fits into the flow of a busy shop floor shift.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;If your floor staff can&#8217;t explain the difference between your two best couches, the customer will find someone who can.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy&#8217;s spaced-reinforcement platform delivers product knowledge, lay-by compliance, and sales technique in 3&ndash;5 minute daily bursts — measurable against conversion rate, lay-by activation, and average basket size. At FLM Academy (Food Lover&#8217;s Market), Digemy delivered <strong>154% improvement in knowledge retention</strong> and <strong>70% faster staff ramp time</strong> — the same mechanics apply directly to furniture retail.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: FRONTLINE WORKFORCE -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Sales Consultant / Floor Staff</td><td>Product knowledge gaps reduce conversion on high-ticket items</td></tr>
+        <tr><td>Lay-by &amp; Credit Administrator</td><td>Process errors drive cancellations and compliance exposure</td></tr>
+        <tr><td>Store Manager / Team Leader</td><td>Inconsistent coaching leads to team performance variance</td></tr>
+        <tr><td>Delivery &amp; Assembly Team</td><td>Poor customer handoff drives returns and complaints</td></tr>
+        <tr><td>Visual Merchandiser / Floor Dresser</td><td>Non-compliance with planogram reduces showroom conversion</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Tafelberg Furnitures operates an estimated 40&ndash;55 stores across the Western Cape, with an estimated frontline headcount of <strong>900&ndash;1,600 employees</strong>. Store sizes vary from smaller township-format outlets to larger flagship showrooms, creating significant variance in team size and training consistency across the estate. All figures inferred from store footprint data.</div>
+</div>
+
+<!-- SECTION 3: WHERE LOSS HAPPENS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Sales Floor Conversion Loss</td><td>1%&ndash;2% of ~R600m in-store floor sales</td><td>R6.0m</td><td>R12.0m</td><td class="rec">R0.6m&ndash;R1.2m</td></tr>
+        <tr><td>New Seasonal Range Launch Failure</td><td>25%&ndash;35% adoption shortfall on ~R160m seasonal range revenue</td><td>R40.0m</td><td>R56.0m</td><td class="rec">R4.0m&ndash;R5.6m</td></tr>
+        <tr><td>Showroom Standards &amp; Visual Merchandising</td><td>0.5%&ndash;1% of ~R800m total revenue</td><td>R4.0m</td><td>R8.0m</td><td class="rec">R0.4m&ndash;R0.8m</td></tr>
+        <tr><td>Lay-by &amp; Credit Facilitation Loss</td><td>1%&ndash;2% of ~R280m lay-by &amp; credit portfolio</td><td>R2.8m</td><td>R5.6m</td><td class="rec">R0.28m&ndash;R0.56m</td></tr>
+        <tr><td>After-Sales &amp; Returns Handling</td><td>0.5%&ndash;1.5% of ~R600m in-store floor sales</td><td>R3.0m</td><td>R9.0m</td><td class="rec">R0.3m&ndash;R0.9m</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R55.8m</td><td>R90.6m</td><td class="rec">R5.58m&ndash;R9.06m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SECTION 4: TOP 5 LEAKAGE CARDS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- Card 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Sales Floor Conversion Loss</div>
+        <div class="lc-body">Tafelberg floor consultants handle customers across furniture, appliances, and bedding simultaneously — with limited depth on any single range. Without structured product training, the consultation becomes transactional rather than advisory, and high-ticket items walk out the door.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;2%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R6.0m&ndash;R12.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.6m&ndash;R1.2m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Customers who don&#8217;t get confident answers go to competitors or buy online. Average basket size shrinks and the consultant&#8217;s ability to upsell protective covers, warranties, and accessories is lost entirely.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Spaced microlearning delivers product range training in daily 3-minute modules — building the depth consultants need to guide customers confidently, driving higher conversion and bigger baskets.</div>
+  </div>
+
+  <!-- Card 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">New Seasonal Range Launch Failure</div>
+        <div class="lc-body">Tafelberg releases seasonal ranges year-round — summer outdoor furniture, winter lounge sets, back-to-school dormitory packages. Without formal launch training, staff sell from familiarity (last season&#8217;s stock) rather than actively promoting new arrivals, leaving new range revenue unrealised in the critical first weeks.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">25%&ndash;35% shortfall</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R40.0m&ndash;R56.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R4.0m&ndash;R5.6m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">New range sell-through is slow, seasonal stock ages into markdown territory faster than necessary, and the full margin potential of each launch window is never captured.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Automated launch journeys push range briefings and key selling points to every consultant before the range hits the floor — the team is ready to actively promote new stock from day one.</div>
+  </div>
+
+  <!-- Card 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Showroom Standards &amp; Visual Merchandising</div>
+        <div class="lc-body">Tafelberg&#8217;s store experience depends on correctly assembled displays, live price tags, and promotional layouts executed per planogram. When floor staff aren&#8217;t trained on visual standards and daily audit protocols, showrooms drift out of compliance and the premium feel that justifies price points erodes.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R4.0m&ndash;R8.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.4m&ndash;R0.8m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Non-compliant showrooms reduce perceived product value and increase price objections. Promotional displays that aren&#8217;t executed correctly mean marketing investment doesn&#8217;t translate into sales lift.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Daily visual standards checklists and planogram microlearning ensure every team member knows what &#8220;right looks like&#8221; before the store opens — with completion tracked for regional oversight.</div>
+  </div>
+
+  <!-- Card 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Lay-by &amp; Credit Facilitation Loss</div>
+        <div class="lc-body">A significant portion of Tafelberg&#8217;s revenue is facilitated through lay-by agreements and credit products. When consultants misexplain terms, fail to collect correct documentation, or allow accounts to lapse, cancellation rates climb and credit applications are declined unnecessarily.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;2%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R2.8m&ndash;R5.6m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.28m&ndash;R0.56m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Cancelled lay-bys represent lost revenue that is difficult to recover — the customer rarely returns once they&#8217;ve cancelled. Compliance failures on credit documentation also create regulatory exposure under the NCA.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Short compliance modules on lay-by administration, NCA terms, and credit process steps ensure consultants handle facilitation correctly every time — protecting revenue and reducing regulatory risk.</div>
+  </div>
+
+  <!-- Card 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">After-Sales Service &amp; Returns Handling</div>
+        <div class="lc-body">Delivery, assembly, and returns are the most visible moments of the customer journey after the sale. When delivery teams and floor staff aren&#8217;t trained on complaint handling, warranty terms, and expectation management, the experience that should build loyalty drives churn instead.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R3.0m&ndash;R9.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.3m&ndash;R0.9m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Poor after-sales experiences translate directly into negative word-of-mouth in tight Western Cape communities. A customer who requests a return is unlikely to repurchase, and brand trust erodes over time.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Scenario-based training on complaint resolution, delivery handoff protocols, and warranty communication ensures every post-purchase interaction reinforces the Tafelberg brand rather than damaging it.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- VALUE SUMMARY — OUTSIDE .page -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R55.8m&ndash;R90.6m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R5.6m&ndash;R9.1m per year</span></div>
+  </div>
+  <p>Tafelberg Furnitures&#8217; single largest leakage driver is <strong>new seasonal range adoption failure</strong> — accounting for up to R56m in unrealised annual revenue as floor consultants default to familiar stock rather than actively selling new arrivals. Combined with conversion losses from product knowledge gaps and after-sales churn, the total addressable leakage across five areas sits between <strong>R55.8m and R90.6m</strong> annually. A conservative 10% recovery through targeted microlearning on product knowledge, launch readiness, and compliance yields <strong>R5.6m&ndash;R9.1m per year</strong> — a return that scales with every store and every new range Tafelberg brings to market.</p>
+</div>
+
+<!-- KG MATRIX + SKILLS MATRIX — second .page block -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The matrix below maps the most critical knowledge gaps in Tafelberg Furnitures&#8217; frontline to their commercial impact and Digemy&#8217;s targeted intervention. The focus is on the Sales Consultant role — the primary revenue driver across every store in the estate.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Sales Consultant &nbsp;&middot;&nbsp; Leakage 01 &mdash; Sales Floor Conversion Loss</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Sales Consultant / Floor Staff</td></tr>
+        <tr>
+          <td>Insufficient product depth across furniture, appliance, and bedding categories</td>
+          <td>Consultants default to broad claims rather than specific features, reducing customer confidence and close rates on high-ticket items</td>
+          <td>Weekly category-specific product modules build and continuously reinforce range knowledge — consultants carry it naturally into every customer conversation</td>
+        </tr>
+        <tr>
+          <td>Weak closing technique and objection handling on price and finance</td>
+          <td>Hesitation at the close stage costs sales — customers leave to &#8220;think about it&#8221; and rarely return</td>
+          <td>Role-play scenarios and objection-handling frameworks in bite-sized sessions build the confidence consultants need to close on the day</td>
+        </tr>
+        <tr>
+          <td>Limited awareness of upsell and add-on protocols (warranties, covers, accessories)</td>
+          <td>Add-on revenue is left on the floor when consultants don&#8217;t proactively introduce relevant accessories during the sale</td>
+          <td>Structured upsell flows embedded in Digemy&#8217;s microlearning make add-ons a natural part of every consultation, not an afterthought</td>
+        </tr>
+        <tr class="role-hdr"><td colspan="3">Role: Lay-by &amp; Credit Administrator</td></tr>
+        <tr>
+          <td>Incomplete knowledge of lay-by terms and NCA credit facilitation requirements</td>
+          <td>Incorrect documentation leads to application declines, customer frustration, and cancellations that are difficult to recover</td>
+          <td>Compliance microlearning on lay-by procedures and NCA requirements ensures administrators handle every transaction correctly, reducing cancellation rates</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Tafelberg Furnitures&#8217; frontline capability rests on three interlocking skill sets: <strong>product fluency</strong> (knowing the range deeply enough to guide customer decisions with confidence), <strong>commercial behaviour</strong> (actively consulting, upselling, and closing rather than waiting for the customer to decide alone), and <strong>operational compliance</strong> (lay-by administration, visual standards, and post-sale handling that protect revenue and reputation). Digemy maps each of these skill sets to role-specific learning journeys — ensuring every Sales Consultant, Lay-by Administrator, and Store Manager across Tafelberg&#8217;s Western Cape estate is continuously reinforced on the behaviours that drive conversion, protect margin, and build the loyalty that keeps customers coming back.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Tafelberg Furnitures &mdash; Operational Optimisation Report</div>
+</body>
+</html>
