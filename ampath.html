@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ampath Laboratories — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Pathology &amp; Diagnostic Laboratory Services</div>
+  <h1 style="margin-bottom:32px;">Ampath <span>Laboratories</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R3.3bn</div><div class="hs-sub">estimated; privately held</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R65m&ndash;R158m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R6.5m&ndash;R15.8m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- SECTION 1: WHY DIGEMY -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Ampath processes 75,000 clinical analyses every day across 300+ facilities — a scale that makes frontline knowledge consistency the most critical quality variable in the business. When phlebotomists mislabel tubes, couriers break cold chains, or lab technologists misread QC rules, the diagnostic promise Ampath has built over 50 years quietly erodes. Digemy's spaced-reinforcement microlearning platform closes those gaps at the bench, the collection chair, and the dispatch bay — before errors reach the clinician.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;In diagnostics, the error doesn&#8217;t happen in the machine &mdash; it happens in the person collecting the sample, labelling the tube, or missing the critical value alert.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Ampath&#8217;s reputation with referring doctors depends on two things: turnaround time and result accuracy. Both live or die on frontline protocol adherence across thousands of staff who rotate shifts and work across geographically dispersed sites. Digemy delivers targeted, bite-sized reinforcement that drives measurable retention of critical procedures &mdash; protecting Ampath&#8217;s 40% private market share and reducing the costly cascade of specimen rejection, re-collection, and re-analysis.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: FRONTLINE WORKFORCE -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Phlebotomist / Phlebotomy Technician</td><td>Specimen quality errors — haemolysis, mislabelling, wrong tube or order-of-draw failures</td></tr>
+        <tr><td>Medical Technologist</td><td>Quality control protocol deviations, critical value escalation failures, instrument calibration gaps</td></tr>
+        <tr><td>Medical Laboratory Scientist (MLS)</td><td>Analytical procedure adherence, method validation, result authorisation errors</td></tr>
+        <tr><td>Medical Technician / Lab Assistant</td><td>Pre-analytical processing errors, specimen preparation and storage non-compliance</td></tr>
+        <tr><td>Branch Administrator</td><td>Billing capture gaps, ICD-10 code errors, incomplete patient registration and test panel selection</td></tr>
+        <tr><td>Driver / Specimen Courier</td><td>Cold-chain integrity failures, specimen stability window breaches, biohazard handling non-compliance</td></tr>
+        <tr><td>Customer Service / Call Centre Agent</td><td>Critical result notification errors, result dispatch failures, doctor query mishandling</td></tr>
+        <tr><td>Histology Technician</td><td>Tissue specimen processing errors, embedding and sectioning technique deviations</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Ampath&#8217;s South African frontline workforce is estimated at 3,000&ndash;6,000 employees across 300+ Care Centre and laboratory facilities. Phlebotomists and specimen couriers form the highest-volume patient-facing cohort, while medical technologists and lab scientists anchor analytical quality in reference and regional laboratories operating around the clock, seven days a week.</div>
+</div>
+
+<!-- SECTION 3: WHERE LOSS HAPPENS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Phlebotomy Errors &amp; Patient CX</td><td>0.5&ndash;1.5% of doctor-referred revenue (est. R2.2bn)</td><td>R11.0m</td><td>R33.0m</td><td class="rec">R1.1m&ndash;R3.3m</td></tr>
+        <tr><td>Specimen Transport Chain Integrity</td><td>0.5&ndash;1.0% of total testing revenue (est. R3.3bn)</td><td>R16.5m</td><td>R33.0m</td><td class="rec">R1.65m&ndash;R3.3m</td></tr>
+        <tr><td>Branch Admin Billing &amp; Charge Capture</td><td>0.5&ndash;1.5% of total revenue (est. R3.3bn)</td><td>R16.5m</td><td>R49.5m</td><td class="rec">R1.65m&ndash;R4.95m</td></tr>
+        <tr><td>Corporate &amp; Occupational Health Protocols</td><td>1.0&ndash;2.0% of corporate revenue (est. R495m)</td><td>R4.95m</td><td>R9.9m</td><td class="rec">R495k&ndash;R990k</td></tr>
+        <tr><td>Lab Quality &amp; Critical Value Protocols</td><td>0.5&ndash;1.0% of total revenue (est. R3.3bn)</td><td>R16.5m</td><td>R33.0m</td><td class="rec">R1.65m&ndash;R3.3m</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R65.45m</td><td>R158.4m</td><td class="rec">R6.5m&ndash;R15.8m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SECTION 4: TOP 5 LEAKAGE CARDS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- CARD 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Phlebotomy Errors &amp; Patient Experience Failure</div>
+        <div class="lc-body">Haemolysis from poor venepuncture technique, wrong order-of-draw, and mislabelled tubes drive specimen rejection and costly re-collections across 300+ Care Centres. Each failed draw damages the patient relationship and erodes the referring doctor&#8217;s confidence in Ampath as a quality partner.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R11.0m&ndash;R33.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.1m&ndash;R3.3m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Specimen rejection triggers repeat blood draws, delays results, and consumes lab technologist time on re-processing. Doctors who experience chronic turnaround failures migrate referrals to competing labs, compounding the revenue impact beyond the cost of re-collection.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Spaced microlearning keeps Ampath&#8217;s phlebotomists sharp on venepuncture protocol, tube sequencing, and patient communication &mdash; reducing re-draw rates and protecting the referral relationships that anchor Ampath&#8217;s market share.</div>
+  </div>
+
+  <!-- CARD 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Specimen Transport Chain Integrity</div>
+        <div class="lc-body">Drivers and couriers who lack sufficient knowledge of temperature stability windows, specimen transport timeframes, and biohazard packaging requirements cause sample degradation and test rejection before specimens reach the reference lab. This silent failure generates invisible rework costs and delayed results.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R16.5m&ndash;R33.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.65m&ndash;R3.3m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Degraded specimens require patient recalls, repeat phlebotomy appointments, and re-analysis &mdash; all at Ampath&#8217;s cost. Repeat occurrences at specific sites flag systemic knowledge gaps that are currently invisible to management.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Targeted microlearning on cold-chain requirements, specimen stability by test type, and biohazard handling converts courier staff from the last point of failure into a quality assurance asset embedded across Ampath&#8217;s logistics network.</div>
+  </div>
+
+  <!-- CARD 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Branch Admin Billing &amp; Charge Capture Gaps</div>
+        <div class="lc-body">Incorrect ICD-10 coding, unbilled add-on tests, and incomplete patient medical aid information result in revenue that is processed but never collected. Across 300+ Care Centres processing thousands of patient visits daily, even marginal per-visit leakage aggregates into material annual loss.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R16.5m&ndash;R49.5m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.65m&ndash;R4.95m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Under-billed tests and claim rejections from incorrect coding create write-offs that accumulate undetected at branch level. Medical aid clawbacks and billing disputes further erode net revenue and consume administrative bandwidth.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Ongoing reinforcement of billing protocols, test panel codes, and medical aid submission rules ensures branch administrators capture every billable item &mdash; turning billing compliance from a compliance risk into a revenue recovery lever.</div>
+  </div>
+
+  <!-- CARD 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Corporate &amp; Occupational Health Protocol Knowledge</div>
+        <div class="lc-body">Ampath&#8217;s corporate services division &mdash; occupational health screening, life insurance medicals, drug-of-abuse testing, and clinical trials &mdash; demands strict protocol compliance. Knowledge gaps in chain-of-custody procedures, screening panel sequences, or employer-specific requirements trigger repeat collections and expose corporate client contracts to risk.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.0%&ndash;2.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R4.95m&ndash;R9.9m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R495k&ndash;R990k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Non-compliant occupational health collections invalidate drug screening results and trigger medicolegal exposure for corporate clients. A single chain-of-custody failure in life insurance testing can derail a client relationship that took years to build.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Role-specific microlearning for occupational health staff embeds client-specific protocols, custody procedures, and compliance requirements &mdash; protecting the corporate contract value that underpins Ampath&#8217;s diversified revenue base.</div>
+  </div>
+
+  <!-- CARD 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Lab Quality &amp; Critical Value Protocol Adherence</div>
+        <div class="lc-body">Medical technologists and lab scientists uncertain on Westgard QC rules, delta check thresholds, or critical value escalation chains introduce analytical errors and notification delays. For a laboratory underpinned by ISO 15189 accreditation, protocol drift at the bench is both a quality and an accreditation risk.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R16.5m&ndash;R33.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.65m&ndash;R3.3m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">QC failures that escape detection result in erroneous results reaching clinicians, triggering repeat analyses, physician complaints, and potential medicolegal liability. Delayed critical value notification in life-threatening cases compounds reputational risk into regulatory exposure.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy&#8217;s spaced reinforcement delivers short daily bursts that keep lab staff current on QC rules, critical value thresholds, and SOP updates &mdash; without pulling them off the bench or requiring formal training days.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- VALUE SUMMARY — OUTSIDE .page -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R65m&ndash;R158m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R6.5m&ndash;R15.8m per year</span></div>
+  </div>
+  <p>Ampath&#8217;s diagnostic precision is its brand promise &mdash; but when that promise depends on thousands of frontline staff across 300+ facilities, <strong>knowledge consistency becomes the margin between market leadership and customer defection.</strong> Digemy&#8217;s spaced-reinforcement platform targets the human variable in Ampath&#8217;s quality chain, embedding critical protocols at the phlebotomy chair, the courier van, and the lab bench &mdash; converting consistent knowledge into consistent revenue protection across every shift, every site, every day.</p>
+</div>
+
+<!-- KG MATRIX + SKILLS MATRIX — second .page block -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">Ampath&#8217;s operational risk is concentrated at the pre-analytical and analytical interfaces &mdash; where phlebotomists, couriers, and lab scientists each hold a single point of failure in the diagnostic chain. The matrix below maps the critical knowledge gaps in the two highest-volume frontline roles against their business impact and the Digemy solution.</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Phlebotomist / Phlebotomy Technician</td></tr>
+        <tr><td>Incorrect venepuncture technique for paediatric, geriatric, or difficult-vein patients</td><td>Elevated haemolysis rate triggers specimen rejection, patient recall, and repeat blood draws at Ampath&#8217;s cost</td><td>Technique refreshers with visual reinforcement, spaced across shift patterns and triggered by rejection data from the LIS</td></tr>
+        <tr><td>Order-of-draw errors when collecting multiple tube types in a single session</td><td>Additive cross-contamination invalidates affected tests, requiring full re-collection and causing result delays for referring doctors</td><td>Spaced daily micro-quizzes on tube sequencing by test panel, reinforcing HPCSA-aligned collection protocols</td></tr>
+        <tr><td>Patient identity verification and consent capture procedures</td><td>Mislabelled or switched samples create medicolegal exposure, patient privacy violations, and invalidated results</td><td>Scenario-based modules on ID verification, consent documentation, and digital patient registration in Ampath&#8217;s systems</td></tr>
+        <tr><td>Handling and documentation of non-blood specimens (urine, swabs, CSF)</td><td>Incorrect container selection, inadequate labelling, or missed transport conditions degrade specimen integrity before analysis</td><td>Specimen-type-specific modules with image-based identification and stability requirement reinforcement</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Medical Technologist / Medical Laboratory Scientist</td></tr>
+        <tr><td>Critical value thresholds and escalation chain for life-threatening results</td><td>Delayed or incorrect physician notification creates patient safety risk, regulatory exposure, and potential medicolegal liability</td><td>Protocol-specific modules on critical limits by test type, integrated into shift handover routines with tracked completion</td></tr>
+        <tr><td>Westgard QC rule application and corrective action decision trees</td><td>QC failures that escape detection release erroneous results into clinical reporting, damaging doctor trust and triggering repeat analyses</td><td>Scenario-based QC modules with digital competency tracking and automated refresh cycles linked to accreditation calendars</td></tr>
+        <tr><td>SOP adherence for newly introduced or updated analytical methods</td><td>Protocol drift during method transitions generates result inconsistency, peer comparison failures, and ISO 15189 non-compliance risk</td><td>Just-in-time SOP reinforcement deployed at method launch, with spaced follow-up to confirm retention across all shift patterns</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Ampath&#8217;s operational risk lives at the intersection of clinical precision and human reliability &mdash; phlebotomists drawing 75,000 samples per day, couriers managing cold chains across 300+ facilities, and lab technologists running QC on thousands of simultaneous tests. <strong>Digemy&#8217;s Skills Matrix maps every critical competency across these roles</strong> &mdash; from HPCSA-required phlebotomy protocols to ISO 15189 quality procedures and ICD-10 billing compliance &mdash; and surfaces individual knowledge gaps before they become laboratory errors. With spaced reinforcement and mobile-first delivery, Ampath can ensure that the quality standard applied in its Centurion reference laboratory is replicated consistently at every satellite Care Centre, every regional hub, and every courier handover across its national network.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Ampath Laboratories &mdash; Operational Optimisation Report</div>
+</body>
+</html>
