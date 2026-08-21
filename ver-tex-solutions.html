@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ver-tex Solutions — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">SOUTH AFRICA &middot; DEBT COLLECTION</div>
+  <h1 style="margin-bottom:32px;">Ver-tex <span>Solutions</span></h1>
+  <div class="hero-stats">
+    <div class="hs">
+      <div class="hs-label">Revenue Base</div>
+      <div class="hs-val">~R120m</div>
+      <div class="hs-sub">estimated commission revenue, 2026</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Total Addressable Leakage</div>
+      <div class="hs-val p">R26m&ndash;R45m</div>
+      <div class="hs-sub">estimated annually</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Recovery @ 10%</div>
+      <div class="hs-val g">R2.6m&ndash;R4.5m</div>
+      <div class="hs-sub">potential per year</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ═══ SECTION 1: WHY DIGEMY ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Ver-tex runs 1,000 agents on a commission model where every percentage point in PTP conversion is directly billable revenue — yet inconsistent negotiation skills, regulatory blind spots, and relentless attrition create a compounding performance gap that erodes recovery rates before management can see it. Digemy's spaced-reinforcement platform continuously embeds the right knowledge at the right moment, keeping negotiation skills sharp, compliance anchors current, and new-hire ramp time short. For a high-volume, call-centre-led operation like Ver-tex, this isn&#8217;t training — it&#8217;s a recovery engine.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;In debt collection, your greatest asset isn&#8217;t the debt book — it&#8217;s how reliably your agent knows exactly what to say next.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy delivered a <strong>70% faster ramp time</strong> and <strong>154% knowledge retention improvement</strong> for FLM Academy — directly comparable outcomes to what Ver-tex needs across 1,000 agents. A 1% improvement in PTP conversion at Ver-tex&#8217;s commission scale translates to R1.2m in additional annual recovery, and shorter ramp windows mean each new hire starts earning commission weeks faster.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 2: FRONTLINE WORKFORCE ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Debt Collection Agent (Soft Collections)</td><td>PTP conversion gap; inconsistent negotiation technique; NCA script compliance</td></tr>
+        <tr><td>Collections Team Lead / Supervisor</td><td>Inconsistent QA standards; inability to identify agent skill gaps in real time</td></tr>
+        <tr><td>Soft Trace Agent</td><td>Contact data accuracy; trace pack quality; debtor skip risk</td></tr>
+        <tr><td>Legal Collections Coordinator</td><td>Litigation documentation compliance; NCA and Magistrates Court procedural accuracy</td></tr>
+        <tr><td>Customer Service / Query Resolution Agent</td><td>POPIA compliance on data handling; dispute resolution accuracy; debtor communication standards</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Ver-tex operates approximately <strong>1,000 frontline agents</strong> across inbound and outbound call centre functions, split across offices in Lynnwood Glen, Pretoria and Cape Town CBD. The operation is concentrated in soft collections (high-volume unsecured debt) with supporting trace and legal escalation teams. All workforce and revenue figures in this report are estimated; Ver-tex does not publish audited financials.</div>
+</div>
+
+<!-- ═══ SECTION 3: WHERE LOSS HAPPENS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead>
+        <tr>
+          <th>Leakage Area</th>
+          <th>Assumption</th>
+          <th>Annual Low</th>
+          <th>Annual High</th>
+          <th>Recovery @10%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Agent Negotiation &amp; PTP Conversion Gap</td>
+          <td>6%&ndash;10% commission shortfall vs. optimal PTP conversion; base: ~R120m est. commission</td>
+          <td>R7.0m</td>
+          <td>R12.0m</td>
+          <td class="rec">R700k&ndash;R1.2m</td>
+        </tr>
+        <tr>
+          <td>Regulatory Compliance Breach (NCA / POPIA / Debt Collectors Act)</td>
+          <td>1%&ndash;2% revenue exposure through Council sanctions, client penalties, and POPIA fines; base: ~R120m est. commission</td>
+          <td>R1.2m</td>
+          <td>R2.4m</td>
+          <td class="rec">R120k&ndash;R240k</td>
+        </tr>
+        <tr>
+          <td>Agent Attrition &amp; New-Hire Ramp Gap</td>
+          <td>35%&ndash;50% estimated annual churn across 1,000 agents; recruitment cost + 4-month productivity deficit per replacement</td>
+          <td>R8.0m</td>
+          <td>R14.0m</td>
+          <td class="rec">R800k&ndash;R1.4m</td>
+        </tr>
+        <tr>
+          <td>Right-Party Contact &amp; Data Quality</td>
+          <td>15%&ndash;25% of calling capacity wasted on non-RPC; 4%&ndash;7% of commission opportunity foregone; base: ~R120m est. commission</td>
+          <td>R5.0m</td>
+          <td>R8.0m</td>
+          <td class="rec">R500k&ndash;R800k</td>
+        </tr>
+        <tr>
+          <td>PTP Arrangement Default (Kept-Rate Gap)</td>
+          <td>8%&ndash;15% of secured payment arrangements lapsing; 4%&ndash;7% of commission base at risk; base: ~R120m est. commission</td>
+          <td>R5.0m</td>
+          <td>R9.0m</td>
+          <td class="rec">R500k&ndash;R900k</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL</td>
+          <td>&mdash;</td>
+          <td>R26.2m</td>
+          <td>R45.4m</td>
+          <td class="rec">R2.6m&ndash;R4.5m</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ SECTION 4: TOP 5 LEAKAGE CARDS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- LC 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Agent Negotiation &amp; PTP Conversion Gap</div>
+        <div class="lc-body">Across 1,000 commission-model agents handling high-volume unsecured debt, negotiation skill variance is the single largest driver of revenue performance. Without continuous reinforcement, agents default to passive scripts — missing the affordability probing, objection-handling, and commitment-anchoring techniques that separate a secured PTP from a hung-up call.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">6%&ndash;10% of commission</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R7.0m&ndash;R12.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R700k&ndash;R1.2m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Lower PTP conversion rates directly reduce commission earned per agent; unresolved accounts roll to expensive legal stages, cutting client margins. Industry data shows mean PTP rates at 29%, with best-in-class operations exceeding 50% — the gap is almost entirely a training and reinforcement problem.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy&#8217;s spaced-reinforcement platform delivers bite-sized negotiation modules — objection handling, affordability probing, commitment anchoring — on a schedule that prevents knowledge decay and keeps technique consistent across every agent, every shift.</div>
+  </div>
+
+  <!-- LC 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Regulatory Compliance Breach (NCA / POPIA / Debt Collectors Act)</div>
+        <div class="lc-body">Ver-tex operates in one of South Africa&#8217;s most regulated sectors — the National Credit Act, POPIA data obligations, and the Debt Collectors Act govern every agent interaction. A single non-compliant call can trigger a Council for Debt Collectors inquiry, client-directed penalty clauses, or a formal POPIA complaint to the Information Regulator.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;2% of commission</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.2m&ndash;R2.4m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R120k&ndash;R240k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Council registration risk, client contract loss and POPIA Information Regulator fines of up to R10m create existential exposure beyond the direct revenue figure. Compliance drift is invisible until it becomes a crisis — by which point the cost is orders of magnitude higher than prevention.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy deploys compliance modules as auditable, completion-tracked micro-bursts — giving management evidence of regulatory readiness and giving agents a continuous, non-disruptive reminder of exactly what they can and cannot say on each call type.</div>
+  </div>
+
+  <!-- LC 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Agent Attrition &amp; New-Hire Ramp Gap</div>
+        <div class="lc-body">South African call centres run annual attrition well above 30%; debt collection environments, with their performance pressure and compliance demands, trend considerably higher. At 1,000 agents, this means 350–500 exits per year — each position replaced by someone spending three to five months at sub-optimal productivity while the next agent learns the ropes from scratch.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">35%&ndash;50% annual churn</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R8.0m&ndash;R14.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R800k&ndash;R1.4m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Escalating recruitment, onboarding and training costs combine with a prolonged productivity gap that directly suppresses commission revenue. The revolving door also dilutes team culture and erodes supervisor bandwidth — supervisors spend time babysitting new hires instead of coaching performers.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy&#8217;s proof point is a <strong>70% reduction in ramp time</strong> for FLM Academy&#8217;s frontline workforce — at Ver-tex scale, this directly shortens the productivity gap for hundreds of annual new hires and begins generating commission-contributing output weeks sooner.</div>
+  </div>
+
+  <!-- LC 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Right-Party Contact &amp; Data Quality Gap</div>
+        <div class="lc-body">Industry benchmarks place average Right-Party Contact (RPC) rates at around 26%, meaning roughly three in four outbound calls never reach the person who can actually resolve the debt. Poor trace pack quality, stale contact data, and inconsistent multi-channel strategy drive this figure lower — consuming agent capacity that should be generating commission.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">15%&ndash;25% capacity wasted</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R5.0m&ndash;R8.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R500k&ndash;R800k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Wasted call minutes erode commission throughput and drive agent frustration — itself a contributor to attrition. Clients who measure SLA recovery rates start questioning agency value when RPC weakness is opaque and unaddressed.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy reinforces trace accuracy standards, multi-channel contact sequencing, and data quality disciplines as operational micro-modules — translating training into higher RPC rates and more productive calling minutes across the floor.</div>
+  </div>
+
+  <!-- LC 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">PTP Arrangement Default (Payment Promise Kept-Rate Gap)</div>
+        <div class="lc-body">Securing a promise to pay is only half the collection. Industry data shows mean PTP rates at 29%, with a significant portion of those arrangements defaulting before completion — often because agents set up commitments that are unaffordable or fail to use reinforcement language that makes the arrangement feel binding. Accounts that re-enter the queue do so in a deteriorated, harder-to-collect state.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">8%&ndash;15% of secured PTPs</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R5.0m&ndash;R9.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R500k&ndash;R900k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Arrangement defaults push accounts toward litigation — the most expensive recovery channel. Client recovery targets are missed; agent commission on lapsed accounts is forfeited; account queue ages and collectability declines with every cycle.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy trains agents on affordability-anchored arrangement structuring, commitment language and post-PTP follow-through technique — reducing lapse rates and keeping hard-won promises on track to convert into collected commission.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- ═══ VALUE SUMMARY — OUTSIDE .page ═══ -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R26.2m&ndash;R45.4m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R2.6m&ndash;R4.5m per year</span></div>
+  </div>
+  <p>Ver-tex&#8217;s performance ceiling is set almost entirely by what happens inside 1,000 individual agent conversations every day. <strong>Negotiation skill decay, compliance drift, ramp inefficiency, RPC waste, and arrangement default</strong> are not structural problems — they are knowledge problems, and knowledge problems are exactly what Digemy is built to solve. At a 10% recovery rate, Digemy&#8217;s intervention generates R2.6m to R4.5m in annual uplift; at the scale of improvement Digemy delivered for FLM Academy, the return is considerably higher.</p>
+</div>
+
+<!-- ═══ KNOWLEDGE GAP MATRIX + SKILLS MATRIX ═══ -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">Ver-tex&#8217;s primary revenue driver is agent negotiation quality — specifically, how reliably each collector converts a right-party contact into a secured, kept payment arrangement. The matrix below maps the critical knowledge gaps in this function to their business impact, and to the Digemy module designed to close each one.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Debt Collection Agent &nbsp;&middot;&nbsp; Leakage 01 &mdash; Agent Negotiation &amp; PTP Conversion Gap</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead>
+        <tr>
+          <th style="width:34%">Knowledge Gap</th>
+          <th style="width:33%">Business Impact</th>
+          <th style="width:33%">Digemy Solution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Debt Collection Agent (Soft Collections)</td></tr>
+        <tr>
+          <td>Inconsistent application of structured negotiation frameworks — agents improvise instead of using proven objection-handling sequences</td>
+          <td>PTP conversion variance of 15–20% between top and bottom performers; direct commission gap that compounds at 1,000-agent scale</td>
+          <td>Spaced-reinforcement negotiation modules — objection sequences, commitment anchors, de-escalation tactics — refreshed on a rolling schedule until technique is automatic</td>
+        </tr>
+        <tr>
+          <td>Weak affordability assessment skills — agents propose arrangements based on what debtors say they can pay, not what the affordability assessment reveals</td>
+          <td>Commercially unviable arrangements with a high lapse rate; commissions forfeited when accounts re-enter the queue in a deteriorated state</td>
+          <td>Embedded affordability probing frameworks delivered as pull-notification micro-lessons before shift or following low kept-rate flags from supervisors</td>
+        </tr>
+        <tr>
+          <td>Gaps in NCA and Debt Collectors Act compliance knowledge — agents diverge from required scripts under pressure, particularly on s.129 notices and repayment wording</td>
+          <td>Council for Debt Collectors complaints, client SLA penalties, and Information Regulator exposure; cumulative reputational and financial risk</td>
+          <td>Compliance micro-modules with completion tracking provide management with auditable evidence of regulatory readiness across every registered agent</td>
+        </tr>
+        <tr>
+          <td>Limited ability to identify and adapt to debtor financial distress signals — agents apply standard scripts regardless of debtor emotional state or capacity</td>
+          <td>Abrasive or tone-deaf interactions trigger complaints and early call terminations, reducing RPC effectiveness and driving debtor-side escalation</td>
+          <td>Scenario-based learning trains agents to read distress signals and flex communication style — protecting the relationship while keeping the account on a recovery path</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Ver-tex&#8217;s performance advantage lives entirely inside 1,000 individual agent conversations — commission-model work where skill variance is revenue variance. <strong>A Digemy Skills Matrix for Ver-tex</strong> would anchor four core competency pillars: <strong>negotiation mechanics</strong> (PTP conversion and objection handling), <strong>compliance anchors</strong> (NCA, POPIA, and Debt Collectors Act obligations per interaction type), <strong>trace and data accuracy</strong> (RPC-enabling data quality and multi-channel contact sequencing), and <strong>arrangement management</strong> (affordability-based structuring and commitment reinforcement technique). Each pillar is delivered through spaced micro-modules on a reinforcement schedule that prevents knowledge decay — ensuring that what was trained last month is still performing this month. Paired with Digemy&#8217;s real-time completion visibility, team leads can identify agent skill gaps before they become recovery gaps, and management can demonstrate regulatory readiness to the Council for Debt Collectors with a full audit trail.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Ver-tex Solutions &mdash; Operational Optimisation Report</div>
+</body>
+</html>
