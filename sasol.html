@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sasol — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">SOUTH AFRICA &middot; PETROCHEMICALS &amp; ENERGY</div>
+  <h1 style="margin-bottom:32px;">Sasol <span>Operations</span></h1>
+  <div class="hero-stats">
+    <div class="hs">
+      <div class="hs-label">Revenue Base</div>
+      <div class="hs-val">~R250bn</div>
+      <div class="hs-sub">FY2025 group turnover</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Total Addressable Leakage</div>
+      <div class="hs-val p">R1.6bn&ndash;R3.1bn</div>
+      <div class="hs-sub">estimated annually</div>
+    </div>
+    <div class="hs">
+      <div class="hs-label">Recovery @ 10%</div>
+      <div class="hs-val g">R155m&ndash;R305m</div>
+      <div class="hs-sub">potential per year</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ═══ SECTION 1: WHY DIGEMY ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Sasol&#8217;s frontline is the engine of one of the world&#8217;s most technically complex industrial operations &mdash; and every knowledge gap in that engine costs production tonnes, safety seconds, and compliance currency. The acknowledged 9% production volume gap at Secunda is not purely a hardware problem; it is, in significant part, a knowledge-retention failure playing out daily across thousands of operators, artisans, and colliery teams. Digemy embeds procedural knowledge into the flow of frontline work through spaced reinforcement, ensuring critical competencies are recalled at the moment they matter &mdash; before a gasifier trips, not after.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;In a CTL operation where one misread parameter can cascade into a gasifier trip, knowledge isn&#8217;t a training-room concern &mdash; it&#8217;s an operational performance lever worth hundreds of millions of rands per year.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy targets Sasol&#8217;s highest-risk frontline knowledge domains &mdash; process control, SHE adherence, artisan maintenance execution, and environmental compliance &mdash; delivering an estimated R155m&ndash;R305m per year in recoverable value at just a 10% operational improvement rate. At FLM Academy, Digemy achieved a 154% knowledge retention improvement and 70% faster ramp time &mdash; proof that spaced reinforcement moves the operational needle at scale.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 2: FRONTLINE WORKFORCE ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Process Operator / Control Room Operator</td><td>Gasifier parameter management, process deviation response, synfuels throughput</td></tr>
+        <tr><td>Underground Miner / Colliery Operator</td><td>Coal quality management, geological hazard recognition, safe production targeting</td></tr>
+        <tr><td>Artisan &mdash; Mechanical / Electrical / Instrumentation</td><td>Job pack execution, isolation procedures, post-maintenance integrity</td></tr>
+        <tr><td>SHE Representative / Safety Officer</td><td>Hazard identification, permit-to-work compliance, emergency response adherence</td></tr>
+        <tr><td>Environmental Compliance Coordinator</td><td>Emissions threshold monitoring, regulatory deviation reporting, licence condition adherence</td></tr>
+        <tr><td>Laboratory Technician / Quality Analyst</td><td>Product specification adherence, off-spec detection, sample integrity</td></tr>
+        <tr><td>Logistics Coordinator / Tanker Driver</td><td>Fuels handling compliance, load verification, transport safety protocols</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Sasol employs approximately 28,500 people globally, with an estimated 18,000&ndash;20,000 direct employees across South African operations &mdash; Secunda, Sasolburg, Natref, and the Secunda Collieries. When permanent on-site contractor personnel are included, the frontline operational workforce directly relevant to this report is estimated at 24,000&ndash;28,000 individuals.</div>
+</div>
+
+<!-- ═══ SECTION 3: WHERE LOSS HAPPENS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Process Operator Efficiency (Gasifier / Synfuels Throughput)</td>
+          <td>0.5%&ndash;1% of SA Fuels sub-base (~R100bn)</td>
+          <td>R500m</td><td>R1,000m</td><td class="rec">R50m&ndash;R100m</td>
+        </tr>
+        <tr>
+          <td>Artisan Maintenance Execution Gaps</td>
+          <td>0.5%&ndash;1% of Chemicals Africa sub-base (~R60bn)</td>
+          <td>R300m</td><td>R600m</td><td class="rec">R30m&ndash;R60m</td>
+        </tr>
+        <tr>
+          <td>SHE Procedural Knowledge Gaps</td>
+          <td>0.8%&ndash;1.5% of production-at-risk from section stoppages (~R50bn)</td>
+          <td>R400m</td><td>R750m</td><td class="rec">R40m&ndash;R75m</td>
+        </tr>
+        <tr>
+          <td>Environmental Compliance Knowledge Gaps</td>
+          <td>1%&ndash;2% of compliance-exposed production value (~R20bn)</td>
+          <td>R200m</td><td>R400m</td><td class="rec">R20m&ndash;R40m</td>
+        </tr>
+        <tr>
+          <td>Colliery &amp; Coal Quality Management</td>
+          <td>1%&ndash;2% of coal-feed-dependent production value (~R15bn)</td>
+          <td>R150m</td><td>R300m</td><td class="rec">R15m&ndash;R30m</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL</td><td>&mdash;</td>
+          <td>R1,550m</td><td>R3,050m</td><td class="rec">R155m&ndash;R305m</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══ SECTION 4: TOP 5 LEAKAGE CARDS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- LEAKAGE 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Process Operator Efficiency &mdash; Gasifier &amp; Synfuels Throughput</div>
+        <div class="lc-body">Secunda Operations runs at an acknowledged 9% deficit below target production volumes &mdash; a gap directly linked to operator knowledge of parameter management, process deviation response, and startup sequencing. When control room and field operators miss critical thresholds across interdependent gasifier units, instability propagates rapidly through the synfuels chain, converting planned downtime into costly unplanned outages.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R500m&ndash;R1,000m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R50m&ndash;R100m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Undetected process deviations escalate from a single unit into cascading gasifier instability, extending plant downtime from days into weeks. At Secunda&#8217;s scale, each percentage point of avoidable throughput loss translates directly into hundreds of millions of rands in foregone production value.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy deploys daily 3-minute reinforcement modules for Secunda&#8217;s control room and field operators, embedding Fischer-Tropsch parameter thresholds, deviation response protocols, and startup sequencing into the daily rhythm of every shift. Competency becomes continuous &mdash; not an annual sign-off event.</div>
+  </div>
+
+  <!-- LEAKAGE 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Artisan Skill Gaps &mdash; Maintenance Failures &amp; Unplanned Plant Downtime</div>
+        <div class="lc-body">Secunda and Sasolburg&#8217;s maintenance workforce &mdash; spanning boilermakers, electricians, instrumentation technicians, and pipefitters &mdash; must execute precisely on job packs, isolations, and torque specifications inside one of the world&#8217;s most complex industrial plants. Knowledge gaps at the artisan level translate directly into rework, warranty failures, and equipment-driven stoppages that cascade upstream through gasifier feed and downstream through production schedules.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R300m&ndash;R600m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R30m&ndash;R60m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Incomplete isolation procedures or missed torque specifications post-shutdown can trigger equipment failure within days of recommission, forcing repeat section shutdowns during peak production cycles. Rework costs and contractor time both compound on a plant of Secunda&#8217;s scale and complexity.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy reinforces critical maintenance procedures &mdash; job pack adherence, isolation protocols, torque specifications, and post-maintenance checks &mdash; through bite-sized daily modules accessible on any device, without pulling artisans off plant. Procedural knowledge stays embedded, not filed away in a training folder.</div>
+  </div>
+
+  <!-- LEAKAGE 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">SHE Procedural Knowledge &mdash; Safety Incidents &amp; Section Shutdowns</div>
+        <div class="lc-body">Sasol has reported recurring fatalities and section shutdowns across Secunda Operations and its collieries, with each incident triggering production stoppages that compound across interdependent plant units. SHE knowledge erosion &mdash; in hazard identification, permit-to-work compliance, and emergency response protocols &mdash; is the frontline driver of the incidents that make these shutdowns inevitable.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.8%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R400m&ndash;R750m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R40m&ndash;R75m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">A single safety incident at a mine section or Secunda plant unit triggers shutdowns measured in days to weeks, with investigation standdowns and remediation requirements affecting multiple interdependent production units simultaneously. The human cost is immeasurable &mdash; making knowledge-driven prevention the only acceptable outcome.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy reinforces critical SHE procedures &mdash; hazard recognition, PTW compliance, and emergency response decision trees &mdash; through spaced repetition, building active working memory of safety knowledge in every frontline employee before risk presents. Safety compliance becomes a daily habit, not a recertification cycle.</div>
+  </div>
+
+  <!-- LEAKAGE 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Environmental Compliance Knowledge &mdash; Regulatory Exposure &amp; Licence Risk</div>
+        <div class="lc-body">Sasol operates under the world&#8217;s most scrutinised environmental licence conditions as the largest single point-source CO&#8322; emitter globally, with 12a appeal obligations adding further regulatory exposure. Operators without active knowledge of emission trigger thresholds, monitoring protocols, and deviation reporting procedures create real risk of licence exceedances that dwarf the cost of any training investment.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;2%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R200m&ndash;R400m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R20m&ndash;R40m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Emissions threshold breaches driven by operator knowledge gaps can trigger regulatory action, production curtailments, and reputational exposure at a company already under intense environmental scrutiny. Compliance failures are especially costly while Sasol is mid-way through its multi-billion-rand Emission Reduction Roadmap investment programme.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy embeds Sasol&#8217;s environmental compliance obligations into daily operator learning &mdash; linking emission thresholds, monitoring protocols, and deviation-reporting triggers to role-specific reinforcement pathways that keep regulatory knowledge current, consistent, and fully auditable. Compliance readiness becomes a measurable, manageable metric.</div>
+  </div>
+
+  <!-- LEAKAGE 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Colliery &amp; Coal Quality Management &mdash; Feed Disruption &amp; Gasifier Impact</div>
+        <div class="lc-body">Coal quality is Secunda&#8217;s most critical upstream variable &mdash; poor coal drives sinks accumulation, reduces gasifier yield, and compounds the throughput gap that Sasol is actively targeting with its destoning programme. Colliery operators&#8217; knowledge of geological hazard management, production targeting, and coal preparation directly determines feed quality at the gasifier, making mine-level competency a direct financial lever at plant level.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;2%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R150m&ndash;R300m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R15m&ndash;R30m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Colliery knowledge gaps translate into coal quality variances that reach the gasifiers 24 hours later, triggering reactive rather than planned operational adjustments and compounding the throughput deficit. Section closures following mine safety incidents further constrain coal supply, pushing Sasol toward costlier purchased coal purchases.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy delivers contextualised microlearning for underground operators and mine supervisors &mdash; reinforcing geological hazard recognition, coal quality management protocols, and equipment operation standards through daily reinforcement. Mine-level knowledge performance becomes as visible and manageable as any other operational KPI.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- ═══ VALUE SUMMARY — OUTSIDE .page ═══ -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R1.6bn&ndash;R3.1bn</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R155m&ndash;R305m per year</span></div>
+  </div>
+  <p>Across Sasol&#8217;s South African operations, the most significant knowledge-driven revenue leakage originates in process operator efficiency at Secunda, where a confirmed 9% production gap signals systemic competency exposure at scale. <strong>A conservative 10% improvement in frontline knowledge performance</strong> &mdash; across operators, artisans, SHE officers, environmental coordinators, and colliery teams &mdash; represents R155m to R305m in recoverable value annually. Digemy&#8217;s spaced-reinforcement platform is purpose-built for exactly this operating environment: high-complexity, safety-critical, and deeply dependent on the precision of every frontline decision.</p>
+</div>
+
+<!-- ═══ KG MATRIX + SKILLS MATRIX — second .page block ═══ -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The matrix below maps the highest-priority knowledge gaps facing Sasol&#8217;s Secunda Operations process operators &mdash; the frontline role with the greatest direct leverage on gasifier performance, synfuels throughput, and the confirmed 9% production volume gap. These gaps are drawn from Sasol&#8217;s publicly reported operational challenges and the inherent complexity of Fischer-Tropsch process management at industrial scale.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Process Operator / Control Room Operator &nbsp;&middot;&nbsp; Leakage 01 &mdash; Process Operator Efficiency (Gasifier / Synfuels Throughput)</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead>
+        <tr>
+          <th style="width:34%">Knowledge Gap</th>
+          <th style="width:33%">Business Impact</th>
+          <th style="width:33%">Digemy Solution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Process Operator / Control Room Operator &mdash; Secunda Operations</td></tr>
+        <tr>
+          <td>Fischer-Tropsch process deviation response protocols</td>
+          <td>Delayed or incorrect response to process excursions causes cascading gasifier instability and compounds unplanned downtime across linked units</td>
+          <td>Embedded SOP and deviation-response pathways delivered via spaced microlearning, ensuring recall at the point of need rather than during classroom review</td>
+        </tr>
+        <tr>
+          <td>Coal quality impact on gasifier feed parameters</td>
+          <td>Inability to proactively adjust parameters to compensate for variable coal quality leads to sinks accumulation, gasifier outages, and reduced syngas yields</td>
+          <td>Daily 3-minute reinforcement modules build active competency in coal-gasifier parameter relationships, converting reactive adjustment into proactive control</td>
+        </tr>
+        <tr>
+          <td>Emergency shutdown (ESD) and safe startup sequencing</td>
+          <td>Incomplete ESD knowledge increases the risk of extended shutdowns and escalating incidents when process anomalies occur in time-critical windows</td>
+          <td>Scenario-based microlearning simulates ESD decision trees, building operator confidence and procedural compliance without lengthy classroom disruption to shift rosters</td>
+        </tr>
+        <tr>
+          <td>Emission parameter monitoring and exceedance thresholds</td>
+          <td>Gaps in understanding SO&#8322;, NO&#8339; and particulate trigger limits lead to unplanned exceedances, risking 12a licence conditions and regulatory sanctions</td>
+          <td>Role-specific reinforcement modules link environmental parameter thresholds directly to daily operator checklists and process responsibilities, making compliance knowledge current and auditable</td>
+        </tr>
+        <tr class="role-hdr"><td colspan="3">Role: Artisan &mdash; Mechanical / Electrical / Instrumentation</td></tr>
+        <tr>
+          <td>Isolation and lock-out / tag-out (LOTO) procedure compliance</td>
+          <td>Incorrect or incomplete isolations before maintenance on live plant equipment create both safety incident risk and costly recommission failures post-work</td>
+          <td>Digemy reinforces LOTO sequences, isolation hierarchy, and verification steps through daily microlearning, ensuring procedural accuracy is habitual rather than recalled under pressure</td>
+        </tr>
+        <tr>
+          <td>Torque specification and fastener integrity standards</td>
+          <td>Missed torque specifications on high-pressure pipework or rotating equipment result in premature failure within days of recommission, forcing repeat section shutdowns</td>
+          <td>Short reinforcement modules embed torque tables and inspection checklists into artisan daily learning, reducing dependence on job card recall alone during live maintenance execution</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Sasol&#8217;s operational excellence depends on hundreds of distinct role-specific competencies across process operators, artisans, SHE officers, colliery teams, and environmental coordinators &mdash; all of which degrade without structured reinforcement. <strong>Digemy&#8217;s Skills Matrix maps each frontline role to its critical knowledge domains</strong>, then deploys targeted reinforcement pathways calibrated to the complexity and risk profile of every competency. For a facility where a single knowledge gap in process control can cascade into a multi-million-rand unplanned outage, the Digemy Skills Matrix transforms competency management from an annual compliance exercise into a live operational performance instrument.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Sasol &mdash; Operational Optimisation Report</div>
+</body>
+</html>
