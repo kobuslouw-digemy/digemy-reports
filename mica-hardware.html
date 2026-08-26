@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Mica Hardware — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; DIY &amp; Hardware Franchise Retail</div>
+  <h1 style="margin-bottom:32px;">Mica <span>Hardware</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R2.5bn</div><div class="hs-sub">estimated network turnover, 160+ stores</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R57m&ndash;R82m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R5.7m&ndash;R8.2m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- SECTION 1: WHY DIGEMY -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Mica's 160+ member stores trade on a single brand promise &mdash; knowledgeable, helpful hardware expertise delivered at the counter. But across a voluntary franchise network, knowledge depth varies dramatically from store to store, driving inconsistent customer experiences, basket under-capture, and avoidable product returns. Digemy closes that gap systematically: standardising product knowledge across the network, reinforcing it through spaced repetition, and making compliance and capability visible at store and individual level in real time.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;In a franchise network, every unanswered product question at your counter is a sale your nearest competitor just made.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy builds durable product expertise through scientifically-backed spaced reinforcement, ensuring technical knowledge acquired in training is retained on the shop floor where it drives margin. Management dashboards give the Mica franchise support team real-time visibility into knowledge gaps by store, by role and by product category &mdash; identifying your weakest links before they cost you customers. Evaluation scorecards at individual, store and network level create the accountability structures that translate improved knowledge into measurable revenue recovery across every member of the Mica network.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: FRONTLINE WORKFORCE -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Counter Sales Advisor</td><td>Technical query failure &mdash; lost sales, basket abandonment, wrong product guidance</td></tr>
+        <tr><td>Paint Counter Specialist</td><td>Mixing errors, incorrect colour or product recommendations, costly returns</td></tr>
+        <tr><td>Garden &amp; Pool Care Advisor</td><td>Incorrect chemical dosing advice, plant care errors, product liability</td></tr>
+        <tr><td>Power Tools Advisor</td><td>Wrong application matching, safety compliance gaps, customer injury risk</td></tr>
+        <tr><td>Stock &amp; Receiving Clerk</td><td>Over/short receiving errors, damaged goods, inventory discrepancies</td></tr>
+        <tr><td>Store Manager / Assistant Manager</td><td>Inconsistent brand standards enforcement, insufficient frontline coaching</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Across Mica's 160+ franchise network, an estimated <strong>1,500&ndash;2,000+ operational staff</strong> work in per-store teams of 8&ndash;12 frontline personnel covering counter sales, specialist counters (paint, garden, pool), receiving and store management. Because members operate independently, training consistency and product knowledge depth vary significantly between stores &mdash; the central opportunity for Digemy to create uniform excellence at scale.</div>
+</div>
+
+<!-- SECTION 3: WHERE LOSS HAPPENS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Technical Sales Conversion Gap</td><td>1.0&ndash;1.5% of ~R1.5bn counter-relevant sales base</td><td>R15,000,000</td><td>R22,500,000</td><td class="rec">R1,500,000&ndash;R2,250,000</td></tr>
+        <tr><td>Paint Counter Errors &amp; Returns</td><td>1.5&ndash;2.0% of ~R600m estimated paint category revenue</td><td>R9,000,000</td><td>R12,000,000</td><td class="rec">R900,000&ndash;R1,200,000</td></tr>
+        <tr><td>Basket Under-capture (Upsell Failure)</td><td>0.8&ndash;1.2% of ~R1.25bn upsell-relevant sales base</td><td>R10,000,000</td><td>R15,000,000</td><td class="rec">R1,000,000&ndash;R1,500,000</td></tr>
+        <tr><td>Franchise Standards Non-Compliance</td><td>0.6&ndash;0.8% of ~R2.5bn estimated network turnover</td><td>R15,000,000</td><td>R20,000,000</td><td class="rec">R1,500,000&ndash;R2,000,000</td></tr>
+        <tr><td>Seasonal Activation Failure</td><td>2.0&ndash;3.0% of ~R400m seasonal categories (garden, pool, braai)</td><td>R8,000,000</td><td>R12,000,000</td><td class="rec">R800,000&ndash;R1,200,000</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R57,000,000</td><td>R81,500,000</td><td class="rec">R5,700,000&ndash;R8,150,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SECTION 4: TOP 5 LEAKAGE CARDS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- LEAKAGE 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Technical Sales Conversion Gap</div>
+        <div class="lc-body">Mica's competitive advantage is expert advice &mdash; but when counter staff can't confidently answer technical product questions, customers walk out empty-handed or choose a cheaper, lower-margin product rather than the right one. Across 160+ stores, even a modest conversion shortfall compounds into millions of rands of lost network revenue annually.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.0%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R15.0m&ndash;R22.5m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.5m&ndash;R2.3m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Customers leave without purchasing, switch to competitors, or buy an inferior product &mdash; reducing basket value and eroding the brand's "DIY Experts" positioning. Repeat visits decline as trust in staff expertise falters.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy delivers bite-sized product knowledge modules &mdash; material compatibility, application techniques, safety specs &mdash; reinforced through spaced repetition so counter staff retain what they learn and convert more technical queries into confident sales.</div>
+  </div>
+
+  <!-- LEAKAGE 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Paint Counter Errors &amp; Returns</div>
+        <div class="lc-body">The paint counter is one of Mica's highest-margin and most technically demanding service points. Incorrect colour matching, wrong primer-substrate pairings and poor sheen-level guidance result in costly returns, rework and customer frustration that directly erodes the paint category's contribution margin.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.5%&ndash;2.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R9.0m&ndash;R12.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R900k&ndash;R1.2m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Returned and re-mixed paint stock, customer complaints and replacement costs accumulate quietly but significantly across a network carrying major paint brands like Plascon, Dulux and Duram. Supplier relationships and brand reputation are both at risk.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy's scenario-based microlearning trains paint specialists on mixing ratios, substrate compatibility and colour science &mdash; with retention quizzes and scorecards that ensure accuracy is maintained long after the initial training day.</div>
+  </div>
+
+  <!-- LEAKAGE 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Basket Under-capture (Upsell Failure)</div>
+        <div class="lc-body">A customer buying a drill doesn't automatically think to add drill bits, cutting discs, safety goggles and a carry case &mdash; but a knowledgeable Mica advisor should. Across the network, the failure to systematically offer complementary products leaves significant basket value on the counter every single day.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.8%&ndash;1.2%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R10.0m&ndash;R15.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.0m&ndash;R1.5m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Revenue per transaction stays at entry-level while margin-accretive accessories and consumables go unpromoted. The network's average basket value underperforms its potential, compressing profitability per customer visit across all 160+ stores.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy embeds contextual upselling frameworks into staff training &mdash; product pairings, project-based bundles and natural conversation prompts that staff can apply confidently at the counter without feeling like they're selling.</div>
+  </div>
+
+  <!-- LEAKAGE 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Franchise Standards Non-Compliance</div>
+        <div class="lc-body">Mica's voluntary trading model empowers franchisees with autonomy &mdash; but it also creates variation in how brand standards, merchandising layouts, promotional execution and product training are applied. Stores that don't consistently implement network programmes dilute the Mica brand and leave revenue on the shelf.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.6%&ndash;0.8%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R15.0m&ndash;R20.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.5m&ndash;R2.0m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Inconsistent in-store experience erodes the brand's "DIY Experts" promise at the store level, and poor promotional execution means supplier co-op funding and promotional stock fail to convert into planned sales uplifts across the member base.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy's management dashboards give the Mica franchise support team real-time visibility into compliance adherence and knowledge levels by store &mdash; enabling targeted coaching interventions before non-compliance becomes a revenue problem.</div>
+  </div>
+
+  <!-- LEAKAGE 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Seasonal Activation Failure</div>
+        <div class="lc-body">Mica's categories are acutely seasonal &mdash; garden and lawn in spring, pool care in summer, braai and outdoor living year-round, heating and waterproofing in winter. When staff aren't fluent in seasonal product ranges, promotional mechanics and activation timing, peak revenue windows close without being fully captured.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">2.0%&ndash;3.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R8.0m&ndash;R12.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R800k&ndash;R1.2m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Seasonal stock sits longer than planned, promotional mechanics go unexplained at point of sale, and markdown pressure builds as windows close. Garden, pool and outdoor categories &mdash; structurally high-margin &mdash; underperform their seasonal revenue potential.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy delivers push-notification microlearning ahead of every seasonal cycle &mdash; product refreshers, promotional briefs and activation scripts that ensure every Mica store activates its seasonal ranges at the same standard, on time, every time.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- VALUE SUMMARY — OUTSIDE .page -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R57.0m&ndash;R81.5m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R5.7m&ndash;R8.2m per year</span></div>
+  </div>
+  <p>Across Mica Hardware's 160+ franchise network, <strong>R57&ndash;R82 million in annual revenue leakage</strong> flows from five operationally addressable knowledge gaps &mdash; at the counter, at the paint desk, in the basket, across the franchise and through the seasonal calendar. A <strong>10% recovery through Digemy's microlearning platform</strong> represents R5.7&ndash;R8.2 million recovered annually: a compelling and conservative return on a network-wide investment in structured, measurable knowledge retention. Every store that closes its knowledge gap becomes a stronger ambassador for the Mica brand and a more profitable member of the network.</p>
+</div>
+
+<!-- KG MATRIX + SKILLS MATRIX — second .page block -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The knowledge gap matrix maps the specific competency failures that drive revenue leakage across Mica's frontline workforce. Each gap identified below represents a measurable point of failure in the customer experience &mdash; one that Digemy's microlearning framework is specifically designed to close at scale across the franchise network.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Counter Sales Advisor &nbsp;&middot;&nbsp; Leakage 01 &mdash; Technical Sales Conversion Gap</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Counter Sales Advisor</td></tr>
+        <tr><td>Cannot explain material compatibility across paints, primers and substrates</td><td>Customers buy wrong products, return them, and lose confidence in Mica's expertise positioning</td><td>Spaced-reinforcement module on coating compatibility by substrate type, with weekly retention checks</td></tr>
+        <tr><td>Limited specification knowledge for power tools (torque, RPM, chuck size, battery platform)</td><td>Incorrect tool recommendations lead to returns, customer dissatisfaction and potential safety incidents</td><td>Brand-by-brand product spec microlearning, reinforced with scenario quizzes on application matching</td></tr>
+        <tr><td>No structured upselling framework for accessories and consumables</td><td>Basket value remains at entry level; high-margin accessories and consumables go unsold at every transaction</td><td>Digemy embeds context-triggered upselling prompts and bundle logic into counter-staff training paths</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Paint Counter Specialist</td></tr>
+        <tr><td>Inconsistent understanding of tinting ratios, base paint selection and colour formula application</td><td>Mixing errors generate returns, rework and wasted stock across Mica's major paint brands</td><td>Hands-on-aligned microlearning on mixing science with accuracy scorecards tracked at store level</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Garden &amp; Pool Care Advisor</td></tr>
+        <tr><td>Insufficient knowledge of pool chemical sequencing and dosing by pool volume and type</td><td>Incorrect advice causes customer pool problems, product returns and brand reputation damage</td><td>Scenario-based pool care learning paths with visual guides and retention quizzes delivered seasonally</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Digemy maps a full operational competency framework across every Mica frontline role &mdash; from counter sales product expertise and paint counter accuracy through to pool care safety and seasonal activation readiness. <strong>Skills are mapped to role and to leakage risk, ensuring training investment targets the knowledge gaps that cost the network most.</strong> Spaced reinforcement ensures that knowledge acquired doesn't decay between visits from the franchise support team. <strong>Management dashboards</strong> give the Mica head office team live visibility into which stores, which roles and which product categories carry the highest gap scores &mdash; enabling precise, data-driven coaching interventions rather than blanket retraining. <strong>Evaluation scorecards</strong> at individual staff, store and network level drive accountability at every tier: counter advisors know what they're expected to know, store managers can see who needs support, and the Mica franchise team can benchmark performance across all 160+ member stores. The result is a network that doesn't just train &mdash; it builds verifiable, sustained operational excellence that translates directly into sales conversion, basket value and brand consistency.
+  </div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Mica Hardware &mdash; Operational Optimisation Report</div>
+</body>
+</html>
