@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>BON Hotels — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:32px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--coral); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.wf-note { background:rgba(155,140,245,0.08); border:1px solid rgba(155,140,245,0.2); border-radius:10px; padding:14px 20px; margin-top:16px; font-size:13px; color:var(--muted); font-weight:500; }
+.wf-note strong { color:var(--navy); font-weight:800; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Hospitality &amp; Hotel Management</div>
+  <h1>BON <span>Hotels</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R1.4bn</div><div class="hs-sub">estimated annual (SA portfolio)</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R42m&ndash;R112m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R4.2m&ndash;R11.2m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">BON Hotels has built one of South Africa's most ambitious hotel management platforms — 40+ properties, a growing management contract pipeline, and a brand built on the promise of consistent, warm African hospitality. The challenge is one every multi-site hospitality operator knows but rarely solves: when your product is delivered by thousands of frontline staff across dozens of properties, every inconsistency in service behaviour, product knowledge or complaint handling becomes a leakage event. A server who can't describe the menu, a front desk agent who doesn't offer an upgrade, a housekeeper who misses an amenity — these aren't one-off incidents. They're compounding daily across every property in the portfolio, suppressing RevPAR, eroding review scores and converting potential repeat guests into one-time visitors.</p>
+
+    <p style="font-size:16px;line-height:1.8;color:var(--text);font-weight:500;margin-bottom:24px;">Digemy exists to solve exactly this problem. Our microlearning platform doesn't replace BON's operational leadership — it amplifies it. By converting your brand standards, SOPs and service frameworks into bite-sized, spaced-repetition micro-modules deployed directly to frontline staff on their phones, Digemy builds the knowledge retention and behavioural consistency that traditional face-to-face training cannot sustain at scale. The result is a portfolio-wide uplift in service quality, commercial behaviour and guest experience — measurable at the property level, actionable by management, and sustained far beyond the initial training event.</div>
+    <div class="killer">&#8220;In a hotel, your brand isn&#8217;t the lobby or the linen — it&#8217;s the 22-year-old at the front desk who decides in three seconds whether a guest becomes a loyal repeat visitor or a one-star review.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy targets the behaviour-driven leakages that compound silently across every BON Hotels property: F&amp;B upselling gaps, front desk conversion failures, housekeeping standard inconsistencies, complaint handling breakdowns and conference execution errors — using microlearning deployed at the property level to build consistent, measurable frontline behaviours across the full portfolio, fast.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Front Desk / Reception Agents</td><td>Check-in quality, complaint handling, upsell to upgraded rooms, loyalty enrolment</td></tr>
+        <tr><td>Housekeeping Attendants</td><td>Room standard compliance, turnaround speed, lost-and-found protocols, guest privacy</td></tr>
+        <tr><td>F&amp;B Servers &amp; Waitrons</td><td>Menu knowledge, upselling beverages and premium dishes, allergy and dietary accuracy</td></tr>
+        <tr><td>Bartenders</td><td>Cocktail knowledge, responsible service of alcohol, upselling premium pours</td></tr>
+        <tr><td>Porters &amp; Concierge</td><td>Guest first impression, local knowledge delivery, luggage security protocols</td></tr>
+        <tr><td>Conference &amp; Events Coordinators</td><td>Setup compliance, AV readiness, dietary briefing handoffs, delegate experience</td></tr>
+        <tr><td>Kitchen &amp; Back-of-House Staff</td><td>Food safety compliance, allergen protocols, order accuracy, prep consistency</td></tr>
+        <tr><td>Property Supervisors &amp; Duty Managers</td><td>Brand standard enforcement, complaint escalation, shift-level coaching</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="wf-note"><strong>Frontline headcount estimate:</strong> With 40+ managed properties averaging 40–80 frontline staff per hotel, BON Hotels' operational workforce is estimated at <strong>1,600–3,200 frontline employees</strong> across the SA portfolio — each requiring consistent brand-standard knowledge that currently has no scalable delivery mechanism.</div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>F&amp;B Upselling &amp; Menu Knowledge Failure</td><td>1.0%&ndash;2.5%</td><td>R14m</td><td>R35m</td><td class="rec">R1.4m&ndash;R3.5m</td></tr>
+        <tr><td>Front Desk Conversion &amp; Loyalty Enrolment Failure</td><td>0.8%&ndash;2.0%</td><td>R11.2m</td><td>R28m</td><td class="rec">R1.1m&ndash;R2.8m</td></tr>
+        <tr><td>Housekeeping Standard &amp; Guest Satisfaction Failure</td><td>0.5%&ndash;1.5%</td><td>R7m</td><td>R21m</td><td class="rec">R700k&ndash;R2.1m</td></tr>
+        <tr><td>Complaint Handling &amp; Service Recovery Failure</td><td>0.5%&ndash;1.5%</td><td>R7m</td><td>R21m</td><td class="rec">R700k&ndash;R2.1m</td></tr>
+        <tr><td>Conference &amp; Events Execution Failure</td><td>0.2%&ndash;0.5%</td><td>R2.8m</td><td>R7m</td><td class="rec">R280k&ndash;R700k</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R42m</td><td>R112m</td><td class="rec">R4.2m&ndash;R11.2m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">F&amp;B Upselling &amp; Menu Knowledge Failure</div>
+        <div class="lc-body">When restaurant and bar staff cannot confidently describe dishes, recommend wine pairings, or suggest premium spirits and add-ons, guests default to the cheapest option or skip items entirely. F&amp;B margins are thin — every upsell missed is margin left on the table.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.0%&ndash;2.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R14m&ndash;R35m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.4m&ndash;R3.5m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Low average spend per cover; Missed premium pour sales; Slow wine and cocktail attach rate; F&amp;B revenue underperforms vs. capacity; Poor review scores linked to "staff didn't know the menu"</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Delivers seasonal menu knowledge cards, wine and pairing micro-modules, cocktail confidence builders and upsell-script reinforcement — so every server and bartender is confident, product-fluent and commercially active on every shift.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Front Desk Conversion &amp; Loyalty Enrolment Failure</div>
+        <div class="lc-body">Check-in is the highest-value interaction in a hotel stay. When front desk agents cannot upsell room upgrades, fail to enrol guests into the loyalty programme, or don't resolve complaints on the spot, the property loses both immediate revenue and the long-term relationship that drives direct repeat bookings.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.8%&ndash;2.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R11.2m&ndash;R28m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.1m&ndash;R2.8m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Missed upgrade revenue; Low loyalty programme enrolment; OTA dependency and high commission cost; Guest complaints not resolved at point of contact; Poor check-in review scores</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Builds upgrade pitch confidence, loyalty enrolment habit and first-contact complaint resolution scripts — reducing OTA dependency and turning every check-in into a commercial and retention moment.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Housekeeping Standard &amp; Guest Satisfaction Failure</div>
+        <div class="lc-body">Housekeeping is the invisible engine of a hotel's guest satisfaction score. When rooms are turned to inconsistent standards — missed amenities, incorrect linen, slow turnaround or poor presentation — guests leave negative reviews that suppress future occupancy and ADR (average daily rate). One bad room can override an otherwise excellent stay.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R7m&ndash;R21m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R700k&ndash;R2.1m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Lower TripAdvisor and OTA review scores; Reduced occupancy over time; ADR pressure due to perception gap; Supervisor rework and re-cleans; Guest complaints at reception</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Embeds SOPs for room checklist discipline, amenity placement standards, linen protocols and turnaround timing — building the daily habits that keep review scores high and repeat guests confident in the product.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Complaint Handling &amp; Service Recovery Failure</div>
+        <div class="lc-body">In hospitality, a well-handled complaint creates a more loyal guest than an issue-free stay. When frontline staff don't know how to acknowledge, empathise, resolve and follow up on complaints — or escalate without first attempting resolution — the property loses the guest permanently and gains a public negative review.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R7m&ndash;R21m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R700k&ndash;R2.1m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Public negative reviews; Repeat stay cancellations; Management escalation burden; Compensation costs on unresolved complaints; Guest churn to competitor properties</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Builds the LEARN (Listen, Empathise, Apologise, Resolve, Notify) micro-habit through realistic scenario-based micro-learning — so every frontline staff member is equipped to resolve complaints confidently and convert dissatisfied guests into advocates.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Conference &amp; Events Execution Failure</div>
+        <div class="lc-body">Conference and events business is high-margin and high-stakes. When staff don't brief correctly, miss dietary requirements, configure rooms inaccurately or fail on AV setup, the client doesn't return — and neither does the R50k–R500k booking. One poorly executed event can cost the property its conference reputation in the corporate market.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.2%&ndash;0.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R2.8m&ndash;R7m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R280k&ndash;R700k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Lost repeat conference bookings; Corporate client churn; Dietary and AV failures in high-visibility settings; Reputational damage in the events market; Revenue concentrated in rooms with events upside unrealised</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Delivers pre-event briefing checklists, dietary and allergy protocols, room configuration standards and AV readiness micro-modules — so every event runs to spec, on time, every time.</div>
+  </div>
+
+</div>
+
+</div>
+
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R42m&ndash;R112m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R4.2m&ndash;R11.2m per year</span></div>
+  </div>
+  <p>Using a ~R1.4bn revenue base across the BON Hotels SA portfolio, the five identified leakage areas could represent approximately <strong>R42m&ndash;R112m</strong> in annual revenue and margin lost to frontline knowledge and behaviour gaps. If Digemy helps recover just 10% through consistent microlearning-driven behaviour change, the potential recovered value is approximately <strong>R4.2m&ndash;R11.2m per year</strong> — across the same 40+ properties, without adding a single room.</p>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">By identifying the exact skills gap relating to each leakage area, <strong style="color:var(--navy);font-weight:800;">Digemy creates skills matrices that map each operational gap to the business impact</strong>, with a clear roadmap of how to solve it — using data-led knowledge management to solve the problems costing BON Hotels millions every year.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: F&amp;B Servers / Front Desk Agents &nbsp;&middot;&nbsp; Leakage 01 &mdash; F&amp;B Upselling &amp; Menu Knowledge Failure</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: F&amp;B Servers &amp; Bartenders</td></tr>
+        <tr><td>Cannot describe dishes, ingredients or preparation method</td><td>Guest orders default items — average spend per cover stays low</td><td>Seasonal menu knowledge cards delivered weekly with dish descriptions and highlight pairings</td></tr>
+        <tr><td>No wine or pairing knowledge — can't recommend confidently</td><td>Wine attach rate underperforms — missed high-margin per-cover revenue</td><td>Wine and pairing micro-modules with sensory language and food-match rules</td></tr>
+        <tr><td>No cocktail or premium spirit upsell behaviour</td><td>Bar revenue at house-pour level — premium margins unrealised</td><td>Cocktail confidence micro-learning and premium pour suggestion scripts</td></tr>
+        <tr><td>Doesn't know how to handle dietary or allergy enquiries</td><td>Guest dissatisfaction, potential liability, poor review scores</td><td>Allergen awareness micro-SOPs with escalation pathway and safe-response scripts</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Front Desk Agents</td></tr>
+        <tr><td>No upgrade pitch — doesn't know room categories or differences</td><td>Upgrade revenue missed at check-in — highest-intent commercial moment lost</td><td>Room category knowledge cards with upgrade pitch scripts and trigger moments</td></tr>
+        <tr><td>Loyalty programme benefits not known or actively offered</td><td>Low enrolment — OTA dependency increases and repeat booking rate suffers</td><td>Loyalty programme benefits micro-learning with enrolment conversation scripts</td></tr>
+        <tr><td>No complaint resolution framework — escalates immediately</td><td>Management overloaded; guest leaves with unresolved experience; negative review</td><td>LEARN complaint handling framework with scenario-based micro-learning roleplay</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative">
+    <strong>Digemy Skills Matrix — BON Hotels Portfolio</strong><br><br>
+    Digemy's approach for BON Hotels begins by mapping every frontline role across the portfolio to its highest-impact knowledge gap. For F&amp;B teams, this means menu fluency, pairing confidence and upsell behaviour — built through weekly micro-modules that sync with seasonal menu changes and are pushed directly to staff phones before each shift. For front desk agents, the skills matrix anchors on three commercial moments: the upgrade conversation at check-in, the loyalty enrolment offer, and the first-contact complaint resolution — each reinforced through scenario-based micro-learning that builds habit through repetition, not once-off classroom sessions.<br><br>
+    For housekeeping and events teams, Digemy builds SOP compliance through visual checklist micro-modules and pre-shift briefing tools that ensure no step is missed regardless of staff experience level. The result across the BON Hotels portfolio is a consistent, measurable uplift in the behaviours that drive RevPAR, guest satisfaction scores, repeat bookings and F&amp;B margin — delivered at the speed of a managed hotel network growing its brand one property at a time.
+  </div>
+</div>
+
+<div class="footer">digemy.com &mdash; BON Hotels South Africa &mdash; Operational Optimisation Report</div>
+</body>
+</html>
