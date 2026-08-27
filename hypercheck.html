@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Hypercheck — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Automotive Parts &amp; General Retail</div>
+  <h1 style="margin-bottom:32px;">Hypercheck <span>Knowledge Gap Report</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R500m</div><div class="hs-sub">estimated annual revenue</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R14m&ndash;R26m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R1.4m&ndash;R2.6m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- SECTION 1: WHY DIGEMY -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>In automotive parts distribution, the counter is everything — the moment a parts advisor hesitates, guesses wrong, or misses the upsell, a customer phones a competitor and takes their workshop account with them. Hypercheck's growth depends on frontline teams who know the catalogue cold, convert every enquiry, and build lasting trade relationships — and right now, knowledge gaps across the counter, warehouse, and sales floor are quietly bleeding margin on a ~R500m revenue base.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;Every wrong part, every missed upsell, every workshop account that quietly shifts its spend — it all starts with a knowledge gap at the counter.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy goes beyond training delivery to close the full loop: <strong>knowledge is mapped</strong> to every role in the business, <strong>retention is reinforced</strong> through spaced microlearning that keeps product knowledge sharp under daily trading pressure, and <strong>management dashboards</strong> surface exactly where gaps exist — by person, by branch, by product category. <strong>Evaluation scorecards</strong> at individual, counter, depot, and team level create genuine accountability and a measurable path from knowledge to operational excellence and revenue recovery.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: FRONTLINE WORKFORCE -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Parts Counter Sales Representatives</td><td>Wrong part identification, missed conversions, lost counter sales</td></tr>
+        <tr><td>Trade / Workshop Sales Representatives</td><td>Insufficient product range knowledge, wallet share erosion to competitors</td></tr>
+        <tr><td>Warehouse Pickers &amp; Stock Controllers</td><td>Incorrect parts fulfilment, pick errors, returns and re-delivery costs</td></tr>
+        <tr><td>Delivery Drivers</td><td>Customer-facing knowledge gaps, incorrect delivery acceptance, returns handling</td></tr>
+        <tr><td>Branch Supervisors</td><td>Inability to coach counter staff, inconsistent compliance with returns and claims procedures</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Based on 201&ndash;500 employees across Hypercheck&rsquo;s Durban operations, the frontline workforce is estimated at 150&ndash;380 staff in counter sales, trade rep, warehouse, and distribution roles. These are the roles where product knowledge directly drives revenue conversion and margin protection — making them Digemy&rsquo;s primary engagement target.</div>
+</div>
+
+<!-- SECTION 3: WHERE LOSS HAPPENS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Counter Sales Conversion Loss</td><td>1.5&ndash;3% of ~R300m counter sales base lost to misidentification &amp; knowledge gaps</td><td>R4.5m</td><td>R9.0m</td><td class="rec">R450K&ndash;R900K</td></tr>
+        <tr><td>Upsell &amp; Cross-sell Failure</td><td>0.8&ndash;1.5% of R500m total revenue in unrealised complementary sales</td><td>R4.0m</td><td>R7.5m</td><td class="rec">R400K&ndash;R750K</td></tr>
+        <tr><td>Trade Account Wallet Share Erosion</td><td>1.5&ndash;2.5% of ~R175m trade accounts base lost to competitor due to rep knowledge gaps</td><td>R2.6m</td><td>R4.4m</td><td class="rec">R262K&ndash;R438K</td></tr>
+        <tr><td>Returns &amp; Claims Processing Errors</td><td>15&ndash;25% of ~R15m returns base incorrectly processed (wrong credit, delayed supplier claim)</td><td>R2.2m</td><td>R3.8m</td><td class="rec">R225K&ndash;R375K</td></tr>
+        <tr><td>Warehouse Fulfilment Errors</td><td>2&ndash;4% pick error rate on ~60K orders/year; ~R350 cost per error (return + re-delivery + admin)</td><td>R630K</td><td>R1.1m</td><td class="rec">R63K&ndash;R108K</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R14.0m</td><td>R25.7m</td><td class="rec">R1.4m&ndash;R2.6m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SECTION 4: TOP 5 LEAKAGE CARDS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- LEAKAGE 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Counter Sales Conversion Loss</div>
+        <div class="lc-body">When a parts advisor can&rsquo;t quickly identify the correct component, confirm fitment, or speak to a product with confidence, customers walk — or worse, they stay but leave with doubt about ever coming back. On a ~R300m counter sales base, even a 1.5% conversion failure adds up fast.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.5%&ndash;3%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R4.5m&ndash;R9.0m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R450K&ndash;R900K</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Lost sales flow directly to competitors who can answer the question faster. Workshops record these experiences and shift their preferred supplier — a single lost transaction can represent months of trade revenue.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy maps the full parts catalogue to counter staff roles and reinforces product knowledge daily — so every advisor can identify, confirm fitment, and close with confidence. Gap dashboards show management exactly which staff and which categories need attention before the next customer walks out.</div>
+  </div>
+
+  <!-- LEAKAGE 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Upsell &amp; Cross-sell Failure</div>
+        <div class="lc-body">A customer buying brake pads should also be offered brake fluid and rotors. A workshop ordering an alternator belt should be offered the tensioner. Staff who don&rsquo;t know the product relationships miss these conversations — and 0.8&ndash;1.5% of R500m revenue slips through untouched.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.8%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R4.0m&ndash;R7.5m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R400K&ndash;R750K</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Unrealised basket value goes straight to competitors or is simply not purchased — reducing both revenue per transaction and the perceived expertise of Hypercheck&rsquo;s counter team. Margin on complementary items is often higher than on the primary part.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy trains staff on product bundling logic and complementary item relationships, then tests retention so management knows who can actually apply it. Scorecards track upsell behaviour at store level, turning a random skill into a measurable team capability.</div>
+  </div>
+
+  <!-- LEAKAGE 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Trade Account Wallet Share Erosion</div>
+        <div class="lc-body">Workshop and fleet accounts are Hypercheck&rsquo;s most valuable revenue stream — but trade reps who can&rsquo;t speak authoritatively about the full product range, current promotions, or technical fitment lose credibility fast. An estimated 1.5&ndash;2.5% of the R175m trade base quietly shifts to better-briefed competitors each year.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.5%&ndash;2.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R2.6m&ndash;R4.4m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R262K&ndash;R438K</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Wallet share erosion is the quietest form of revenue loss — existing accounts don&rsquo;t cancel, they just reduce their spend. By the time it&rsquo;s visible in the numbers, months of margin have already gone. New product launches are the highest-risk moment.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy keeps trade reps current on new parts lines, promotions, and technical specs through spaced reinforcement — so every account visit is credible and consultative. Management dashboards show which reps are retention risks before accounts go quiet.</div>
+  </div>
+
+  <!-- LEAKAGE 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Returns &amp; Claims Processing Errors</div>
+        <div class="lc-body">Automotive parts have complex return and warranty claim procedures — wrong part numbers, incorrect supplier documentation, missed credit windows. When staff don&rsquo;t know the process, 15&ndash;25% of the ~R15m annual returns base gets mishandled, costing Hypercheck real recoverable margin.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">15%&ndash;25% of returns</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R2.2m&ndash;R3.8m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R225K&ndash;R375K</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Incorrect returns processing creates write-offs that sit on the books, credit notes that never get raised, and supplier claims that expire. It also generates customer frustration that erodes account loyalty and trust in the brand.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy embeds returns and claims procedures into role-specific learning paths with scenario-based reinforcement — so counter staff and supervisors consistently follow correct process. Knowledge gap dashboards flag where errors are most likely occurring before they become costly write-offs.</div>
+  </div>
+
+  <!-- LEAKAGE 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Warehouse Fulfilment Errors</div>
+        <div class="lc-body">A pick error in the warehouse costs far more than the wrong part — it triggers a return, a re-delivery, a delayed repair job, and a frustrated workshop account. At a 2&ndash;4% error rate across ~60,000 annual orders, Hypercheck absorbs an estimated R630K&ndash;R1.1m in avoidable operational cost.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">2%&ndash;4% pick error</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R630K&ndash;R1.1m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R63K&ndash;R108K</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Each fulfilment error generates a cascade of cost: return freight, re-pick, re-delivery, and admin time. Workshops who experience repeated errors begin sourcing elsewhere — turning an operational issue into a long-term revenue problem.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy trains warehouse staff on part number literacy, bin location discipline, and quality check procedures through bite-sized reinforcement. Scorecards at team and individual level hold pickers accountable for accuracy and create a culture of operational precision.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- VALUE SUMMARY — OUTSIDE .page -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R14m&ndash;R26m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R1.4m&ndash;R2.6m per year</span></div>
+  </div>
+  <p>On an estimated ~R500m revenue base, <strong>Hypercheck is absorbing R14m&ndash;R26m in annual leakage</strong> driven by knowledge gaps across the counter, trade team, warehouse, and returns function. A 10% recovery through structured, role-specific knowledge reinforcement translates to <strong>R1.4m&ndash;R2.6m in recovered revenue per year</strong> — at a fraction of the cost of additional headcount or margin discounting. The biggest single opportunity lies at the counter: confident, well-trained parts advisors convert more, upsell more, and keep workshops loyal longer. That&rsquo;s the Digemy proposition.</p>
+</div>
+
+<!-- KG MATRIX + SKILLS MATRIX -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">Hypercheck&rsquo;s largest single leakage area — counter sales conversion — sits at the intersection of product knowledge, fitment confidence, and customer handling. The matrix below maps the critical knowledge gaps for counter staff against the business impact and Digemy&rsquo;s targeted solution, illustrating exactly where structured reinforcement delivers measurable ROI.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Parts Counter Sales Representative &nbsp;&middot;&nbsp; Leakage 01 &mdash; Counter Sales Conversion Loss</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Parts Counter Sales Representative</td></tr>
+        <tr><td>Incomplete parts catalogue knowledge across vehicle makes and models</td><td>Failed part identification drives customers to competitors; lost counter sales and workshop loyalty</td><td>Spaced microlearning maps the full catalogue by vehicle category, reinforcing identification until automatic</td></tr>
+        <tr><td>Inability to confirm part fitment with confidence</td><td>Customer hesitates, seeks second opinion elsewhere, or returns the wrong part — increasing cost and eroding trust</td><td>Fitment decision trees embedded in role learning paths; retention tested via scenario quizzes before customer-facing shifts</td></tr>
+        <tr><td>Limited knowledge of complementary parts and consumables</td><td>Missed upsells reduce basket value and leave revenue on the counter; competitors capture the add-on sale</td><td>Digemy trains bundling logic and cross-sell prompts with scorecards that track upsell behaviour at individual and store level</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Trade / Workshop Sales Representative</td></tr>
+        <tr><td>Insufficient knowledge of new product lines and current promotions</td><td>Trade reps cannot credibly present Hypercheck&rsquo;s full offering; workshops source new lines from better-briefed suppliers</td><td>Product launch modules deployed at point of introduction; reinforcement ensures reps retain and apply new range knowledge in account visits</td></tr>
+        <tr><td>Gaps in technical fitment and specification knowledge</td><td>Consultative selling breaks down when reps can&rsquo;t answer technical questions; perceived as order takers rather than trusted advisors</td><td>Technical specification modules with retention tracking ensure reps can have meaningful technical conversations that protect and grow wallet share</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">For Hypercheck, Digemy builds a <strong>role-specific skills framework</strong> that maps every critical knowledge domain — from parts catalogue and fitment logic to returns procedures and trade selling skills — against each frontline role in the business. From there, <strong>spaced reinforcement</strong> keeps knowledge sharp under real trading conditions, so counter staff and trade reps don&rsquo;t just learn once and forget. <strong>Management dashboards</strong> make gaps visible in real time — by person, by branch, by product category — so supervisors know exactly where coaching effort is needed and can act before revenue walks out the door. <strong>Evaluation scorecards</strong> at individual, counter, depot, and team level close the loop: measuring not just whether staff completed learning, but whether they can apply it under pressure. The result is a measurable shift from inconsistent, knowledge-dependent performance to a culture of operational precision and confident customer service — across every counter in every Hypercheck location.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Hypercheck &mdash; Operational Optimisation Report</div>
+</body>
+</html>
