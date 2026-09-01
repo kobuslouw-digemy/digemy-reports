@@ -99,6 +99,7 @@ tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font
 .roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
 .roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
 .footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+.scroll-fade { display: none; }
 @media (max-width: 640px) {
   .hero { padding: 32px 24px 28px; }
   .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
@@ -126,7 +127,32 @@ tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font
   .sp-l { font-size: 11px; }
   .sp-v { font-size: 12px; }
   .wf-note { font-size: 12.5px; padding: 12px 16px; }
-  .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tbl-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background:
+      linear-gradient(to right, white 20%, rgba(255,255,255,0)),
+      linear-gradient(to left,  white 20%, rgba(255,255,255,0)) 100% 0,
+      radial-gradient(farthest-side at 0 50%,    rgba(22,32,64,0.10), transparent),
+      radial-gradient(farthest-side at 100% 50%, rgba(22,32,64,0.10), transparent) 100% 0;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: 44px 100%, 44px 100%, 14px 100%, 14px 100%;
+    background-attachment: local, local, scroll, scroll;
+  }
+  .scroll-fade {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    padding: 7px 0 2px;
+    opacity: 0.55;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
   .r-tbl { min-width: 560px; }
   .mx-table { min-width: 500px; }
 }
@@ -199,6 +225,7 @@ tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font
       </tbody>
     </table>
   </div>
+  <div class="scroll-fade">&#8592;&nbsp;Swipe to see all columns&nbsp;&#8594;</div>
 </div>
 
 <!-- SECTION 4: TOP 5 LEAKAGE CARDS -->
@@ -339,6 +366,7 @@ tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font
       </tbody>
     </table>
   </div>
+  <div class="scroll-fade">&#8592;&nbsp;Swipe to see all columns&nbsp;&#8594;</div>
 </div>
 
 <div class="section">
