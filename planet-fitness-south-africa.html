@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Planet Fitness South Africa — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Health &amp; Fitness</div>
+  <h1 style="margin-bottom:32px;">Planet Fitness <span>South Africa</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R1.1bn</div><div class="hs-sub">51 clubs nationwide</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R33.5m&ndash;R61m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R3.4m&ndash;R6.1m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Planet Fitness is opening five new clubs a year on its way to 90 locations by 2030, which means the tour script, PT upsell and member onboarding that convert in an established Gauteng club need to convert just as reliably in a brand-new Western Cape one. Right now, that consistency depends on how well each new hire happens to be shown the ropes, not on a repeatable system that travels with the brand. Digemy closes that gap by embedding the same standards in every pocket, at every club, from day one.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;A five-club-a-year expansion plan is only as strong as the newest hire&#8217;s first week.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy reinforces tour scripts, PT and biokineticist upsell prompts, and new-club onboarding standards through daily, five-minute mobile nudges &mdash; no floor time lost, no classroom scheduling, and the same consistency whether a club opened in 1998 or last month.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Sales Consultants</td><td>Tour-to-membership conversion consistency</td></tr>
+        <tr><td>Personal Trainers</td><td>Session upsell &amp; member retention coaching</td></tr>
+        <tr><td>Biokineticists</td><td>Referral conversion &amp; scope-of-practice compliance</td></tr>
+        <tr><td>Fitness Instructors</td><td>Class engagement &amp; injury-risk management</td></tr>
+        <tr><td>Reception / Front of House</td><td>First-impression consistency &amp; member onboarding</td></tr>
+        <tr><td>Club &amp; General Managers</td><td>New-club ramp execution &amp; team onboarding</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Over 1,000 frontline staff across 51 clubs nationwide (~20 per club on average), a base growing by roughly 100 people a year as Planet Fitness adds five new clubs annually through 2030.</div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Tour-to-Membership Conversion</td><td>0.5%&ndash;1.0% of total membership revenue (R930m)</td><td>R4.5m</td><td>R9.5m</td><td class="rec">R0.45m&ndash;R0.95m</td></tr>
+        <tr><td>Early-Tenure Member Churn</td><td>1.0%&ndash;2.0% of total membership revenue (R930m)</td><td>R9m</td><td>R19m</td><td class="rec">R0.9m&ndash;R1.9m</td></tr>
+        <tr><td>PT &amp; Biokineticist Attach</td><td>1.5%&ndash;2.0% of PT/biokinetics &amp; ancillary revenue (R170m)</td><td>R2.5m</td><td>R3.5m</td><td class="rec">R0.25m&ndash;R0.35m</td></tr>
+        <tr><td>New Club Launch Ramp</td><td>20%&ndash;30% of new-club launch-year revenue potential (R65m, 5 clubs/yr)</td><td>R13m</td><td>R19.5m</td><td class="rec">R1.3m&ndash;R1.95m</td></tr>
+        <tr><td>Compliance &amp; Risk Exposure</td><td>0.5%&ndash;1.0% of total membership revenue (R930m)</td><td>R4.5m</td><td>R9.5m</td><td class="rec">R0.45m&ndash;R0.95m</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R33.5m</td><td>R61m</td><td class="rec">R3.4m&ndash;R6.1m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Tour-to-Membership Conversion Gaps</div>
+        <div class="lc-body">Sales consultants run the same gym tour with wide variance in objection handling, pricing conversations and close technique from club to club. Where tour-to-signup conversion lags even slightly, it compounds every month against a membership base adding roughly 12,000 new members monthly.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R4.5m&ndash;R9.5m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.45m&ndash;R0.95m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Inconsistent closes lose winnable prospects to competitors offering similar pricing with a stronger pitch. Underperforming clubs convert materially fewer walk-ins than top-performing sister clubs running the same national promotions.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy reinforces a proven tour-and-close framework through short, repeatable prompts sales consultants can apply between walk-ins, standardising performance across all 51 clubs without a training room.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Early-Tenure Member Churn</div>
+        <div class="lc-body">New members who don&rsquo;t form a training habit in their first 60&ndash;90 days are the most likely to cancel, and that habit depends heavily on how well reception, PTs and instructors onboard them in week one. With over 220,000 members and heavy monthly turnover through the funnel, small onboarding gaps translate into meaningful annual churn.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.0%&ndash;2.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R9m&ndash;R19m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.9m&ndash;R1.9m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Members who never get a proper induction or first PT touchpoint disengage quietly and cancel within a few billing cycles. Front-line teams under time pressure often skip the habit-forming steps that keep a new member training past month three.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy keeps onboarding standards top of mind for reception and floor staff through quick, spaced reinforcement, so the induction that keeps a member training happens the same way in every club, every time.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">PT &amp; Biokineticist Attach Gaps</div>
+        <div class="lc-body">Personal trainers and biokineticists are best positioned to convert members into paid sessions and rehab referrals, but attach rates vary widely depending on how confidently each professional pitches ongoing value. This ancillary revenue is a smaller slice of the business but among the most profitable per member.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.5%&ndash;2.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R2.5m&ndash;R3.5m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.25m&ndash;R0.35m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Members who would benefit from PT support or a biokinetic referral often never receive the pitch, or receive an inconsistent one that undersells the value of ongoing sessions.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy reinforces confident, consistent upsell conversations for PTs and biokineticists, keeping the pitch sharp without adding a formal training session to their week.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">New Club Launch Ramp Shortfall</div>
+        <div class="lc-body">Each new club opening needs a fully competent team from day one across sales, PT, reception and management, but five launches a year means constantly onboarding new staff to the same standard as established clubs. A slow ramp delays a new club reaching the membership and revenue levels of its sister sites.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">20%&ndash;30%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R13m&ndash;R19.5m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.3m&ndash;R1.95m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">New clubs frequently take longer than planned to reach mature-club performance, particularly on sales conversion and retention, because new hires pick up the Planet Fitness standard informally rather than systematically.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy gives every new-club hire the same structured, bite-sized onboarding regardless of location or manager, compressing the ramp curve as Planet Fitness scales toward 90 clubs by 2030.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Compliance &amp; Risk Exposure</div>
+        <div class="lc-body">Health screening protocols, PT and biokineticist scope-of-practice boundaries, and injury-response procedures protect both members and the brand, but consistency across 51 clubs and 1,000+ staff is hard to guarantee through occasional refreshers alone. Gaps here show up as injury-related complaints, churn and liability exposure rather than a clean line item.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R4.5m&ndash;R9.5m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.45m&ndash;R0.95m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Inconsistent screening or scope-of-practice awareness raises injury risk and the reputational and legal exposure that follows, while members who feel unsafe or under-supervised are quick to cancel.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy keeps compliance and safety protocols continuously reinforced across every club and every shift, closing the gap between what&rsquo;s in the policy manual and what happens on the gym floor.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R33.5m&ndash;R61m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R3.4m&ndash;R6.1m per year</span></div>
+  </div>
+  <p>Across sales conversion, member retention, ancillary upsell, new-club ramp and compliance, Planet Fitness&rsquo;s frontline knowledge gaps represent an estimated <strong>R33.5m&ndash;R61m</strong> in annual leakage. A conservative 10% recovery &mdash; <strong>R3.4m&ndash;R6.1m per year</strong> &mdash; is achievable through consistent, always-on reinforcement of the standards Planet Fitness has already built, without adding classroom hours to an already lean frontline team.</p>
+</div>
+
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The table below breaks down where knowledge gaps show up for Planet Fitness&rsquo;s frontline roles, the business impact of each gap, and how Digemy closes it without pulling staff off the floor.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Sales Consultants &nbsp;&middot;&nbsp; Leakage 01 &mdash; Tour-to-Membership Conversion Gaps</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Sales Consultants</td></tr>
+        <tr><td>Inconsistent objection handling on price and contract terms</td><td>Winnable prospects walk away to a competitor gym</td><td>Spaced reinforcement of proven objection-handling scripts</td></tr>
+        <tr><td>Weak link between tour experience and close</td><td>Lower conversion on high-intent walk-ins</td><td>Bite-sized tour-to-close technique refreshers</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Personal Trainers &amp; Biokineticists</td></tr>
+        <tr><td>Under-confident session upsell pitch</td><td>Missed ancillary revenue per active member</td><td>Daily prompts reinforcing value-led upsell conversations</td></tr>
+        <tr><td>Inconsistent scope-of-practice awareness</td><td>Injury and liability exposure</td><td>Ongoing scope-of-practice and safety reinforcement</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Club &amp; General Managers</td></tr>
+        <tr><td>New-club onboarding relies on individual manager style</td><td>Slower ramp to mature-club performance</td><td>Standardised, repeatable new-hire onboarding sequence</td></tr>
+        <tr><td>Uneven reinforcement of brand and service standards</td><td>Inconsistent member experience across clubs</td><td>Continuous manager-led standard reinforcement</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Digemy&rsquo;s skills matrix maps each frontline role &mdash; sales, PT, biokinetics, instruction, reception and management &mdash; against the specific behaviours that drive conversion, retention and safety at Planet Fitness, then reinforces them through short, spaced nudges that fit around live gym-floor shifts rather than competing with them.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Planet Fitness South Africa &mdash; Operational Optimisation Report</div>
+</body>
+</html>
