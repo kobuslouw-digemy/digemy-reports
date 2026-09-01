@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Pepkor Logistics — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Retail Logistics &amp; Distribution</div>
+  <h1 style="margin-bottom:32px;">Pepkor <span>Logistics</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">R95bn</div><div class="hs-sub">Pepkor Group, FY2025</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R655m&ndash;R1,553m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R66m&ndash;R155m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Pepkor Logistics moves stock through 19 distribution centres to more than 5,000 stores a week, at a speed and scale where a small drop in frontline consistency compounds fast. Pick errors, dock delays and route inefficiency rarely show up as a single line item — they surface as returns, stockouts and rising cost-to-serve. Digemy closes the knowledge gaps at the point where they actually happen: on the pick line, at the dock, and behind the wheel.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;In a network moving half a billion units a year, a knowledge gap isn&rsquo;t a training issue &mdash; it&rsquo;s a margin issue.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy converts DC and fleet SOPs into short, role-specific microlearning delivered where frontline teams already are &mdash; on the floor, on shift, in the cab. Faster time-to-competency for seasonal intake, fewer repeat errors, and measurable accuracy gains translate directly into recovered rand, not just improved training scores.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Warehouse &amp; Order Pickers</td><td>Mis-picks and scan-verification lapses under peak volume</td></tr>
+        <tr><td>Forklift &amp; Reach-Truck Operators</td><td>Stock damage, unsafe handling, avoidable downtime</td></tr>
+        <tr><td>Dispatch &amp; Despatch Clerks</td><td>Loading errors and dock turnaround delays</td></tr>
+        <tr><td>Route Planners &amp; Fleet Coordinators</td><td>Route inefficiency, fuel and time wastage</td></tr>
+        <tr><td>Stock &amp; Inventory Controllers</td><td>Shrinkage and stock-record inaccuracy</td></tr>
+        <tr><td>PAXI Counter &amp; Parcel Handlers</td><td>Mis-sorts, lost or delayed parcels</td></tr>
+        <tr><td>DC Team Leaders &amp; Supervisors</td><td>Inconsistent SOP enforcement across shifts</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Across 19 distribution centres plus PAXI counter operations, Pepkor Logistics' frontline headcount is estimated at 4,000&ndash;6,000, drawn from Pepkor Group's ~49,700-strong workforce and DC scale disclosed for the Hammarsdale facility alone.</div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Pick &amp; Dispatch Accuracy Errors</td><td>0.3%&ndash;0.6% of CGM segment revenue (~R69bn)</td><td>R207m</td><td>R414m</td><td class="rec">R21m&ndash;R41m</td></tr>
+        <tr><td>Stock Damage &amp; Shrinkage in DC Handling</td><td>0.2%&ndash;0.5% of CGM segment revenue (~R69bn)</td><td>R138m</td><td>R345m</td><td class="rec">R14m&ndash;R35m</td></tr>
+        <tr><td>Dock &amp; Turnaround Delays</td><td>0.15%&ndash;0.4% of CGM segment revenue (~R69bn)</td><td>R103m</td><td>R276m</td><td class="rec">R10m&ndash;R28m</td></tr>
+        <tr><td>Fleet &amp; Route Inefficiency</td><td>0.2%&ndash;0.45% of CGM segment revenue (~R69bn)</td><td>R138m</td><td>R311m</td><td class="rec">R14m&ndash;R31m</td></tr>
+        <tr><td>PAXI &amp; Parcel Service Failures</td><td>0.1%&ndash;0.3% of CGM segment revenue (~R69bn)</td><td>R69m</td><td>R207m</td><td class="rec">R7m&ndash;R21m</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R655m</td><td>R1,553m</td><td class="rec">R66m&ndash;R155m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Pick &amp; Dispatch Accuracy Errors</div>
+        <div class="lc-body">Wrong-SKU picks and incomplete scan-verification at peak throughput drive returns, re-delivery runs and store-level stockouts. The cost multiplies when an error reaches a store 200km from the DC.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.3%&ndash;0.6%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R207m&ndash;R414m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R21m&ndash;R41m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Mis-picks trigger costly reverse-logistics runs and erode store trust in DC replenishment. New and seasonal pickers account for a disproportionate share of errors in their first weeks.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy embeds scan-verification microlearning directly at the pick station and compresses time-to-competency for seasonal intake, so accuracy holds even as volume peaks.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Stock Damage &amp; Shrinkage in DC Handling</div>
+        <div class="lc-body">Inconsistent handling technique on forklifts, reach-trucks and conveyor interfaces damages stock before it ever reaches a store. Unrecorded shrinkage further distorts inventory accuracy.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.2%&ndash;0.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R138m&ndash;R345m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R14m&ndash;R35m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Damaged stock is written off or discounted, and shrinkage gaps undermine the accuracy of replenishment planning across the CGM store base.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Role-specific handling and equipment modules, refreshed on a cycle tied to actual damage data, target the exact behaviours driving loss on each DC floor.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Dock &amp; Turnaround Delays</div>
+        <div class="lc-body">Inconsistent loading sequencing and documentation at the dock slow truck turnaround, pushing back delivery windows to stores that depend on tight weekly schedules.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.15%&ndash;0.4%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R103m&ndash;R276m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R10m&ndash;R28m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Slow turnaround ripples through the whole route plan, delaying downstream store deliveries and increasing overtime and standing-truck costs.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Standardised, checklist-driven dock training shortens loading sequences and reduces documentation rework, keeping trucks moving on schedule.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Fleet &amp; Route Inefficiency</div>
+        <div class="lc-body">Despite route-optimisation tools already in place, inconsistent driver behaviour and adherence still leave fuel and time savings on the table across third-party fleet partners.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.2%&ndash;0.45%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R138m&ndash;R311m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R14m&ndash;R31m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Excess fuel burn, idling and empty running erode the savings the route-optimisation system was designed to capture, adding avoidable cost per delivery.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Driver-behaviour coaching content tied to telematics data reinforces the optimised routes with the habits needed to actually realise the planned savings.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">PAXI &amp; Parcel Service Failures</div>
+        <div class="lc-body">As the largest counter-to-counter parcel service in South Africa, PAXI's reputation rests on frontline counter accuracy; mis-sorts and delays at high-volume counters translate directly into customer complaints.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.1%&ndash;0.3%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R69m&ndash;R207m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R7m&ndash;R21m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Lost or mis-sorted parcels damage customer trust in a service built on convenience and cost, and drive avoidable re-sends and counter-side escalations.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Counter-staff microlearning on sort-verification and escalation protocol closes the gap fastest at the highest-volume, highest-risk counters.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R655m&ndash;R1,553m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R66m&ndash;R155m per year</span></div>
+  </div>
+  <p>Across pick accuracy, DC handling, dock turnaround, fleet behaviour and parcel service, Pepkor Logistics carries an estimated <strong>R655m&ndash;R1,553m</strong> in addressable annual leakage. Recovering even <strong>10%</strong> of that gap through targeted frontline capability building represents <strong>R66m&ndash;R155m</strong> a year &mdash; without a single change to the network's physical infrastructure.</p>
+</div>
+
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The highest-value leakage area &mdash; pick and dispatch accuracy &mdash; traces back to specific, closeable knowledge gaps on the DC floor. The matrix below maps those gaps to their operational impact and the Digemy intervention that closes each one.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Warehouse &amp; Order Pickers &nbsp;&middot;&nbsp; Leakage 01 &mdash; Pick &amp; Dispatch Accuracy Errors</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Warehouse &amp; Order Pickers</td></tr>
+        <tr><td>Limited scan-verification discipline under peak pick rates</td><td>Mis-picks trigger returns, re-delivery runs and store-level stockouts</td><td>Microlearning module on scan-verification protocol, refreshed each peak cycle</td></tr>
+        <tr><td>Inconsistent onboarding for seasonal pickers before high-volume periods</td><td>New starters drive a disproportionate share of pick errors in their first 30 days</td><td>Rapid-onboarding pathway compressing time-to-competency for seasonal intake</td></tr>
+        <tr><td>Low visibility of individual and team accuracy on the floor</td><td>Errors go uncorrected for weeks and become habitual</td><td>Real-time coaching nudges tied to live pick-accuracy dashboards</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Digemy maps each frontline role &mdash; picker, forklift operator, dispatch clerk, driver, counter staff &mdash; to a role-specific skills pathway, delivered in short bursts on the floor and on shift rather than as once-off classroom training. Progress is tracked against the same operational metrics leadership already monitors &mdash; accuracy rates, dock turnaround, damage incidents &mdash; so capability building shows up directly in the numbers, not just in completion certificates.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Pepkor Logistics &mdash; Operational Optimisation Report</div>
+</body>
+</html>
