@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Hungry Lion Group — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+  .tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .r-tbl { min-width: 560px; }
+  .mx-table { min-width: 500px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">Sub-Saharan Africa &amp; Middle East &middot; Quick-Service Restaurants</div>
+  <h1 style="margin-bottom:32px;">Hungry Lion <span>Group</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R2bn</div><div class="hs-sub">group-wide, 550+ outlets, 20+ countries</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R37m&ndash;R108m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R3.7m&ndash;R10.8m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- SECTION 1: WHY DIGEMY -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Hungry Lion operates 550+ outlets across 20+ countries, relying on a frontline workforce that must execute consistently on upsell protocols, portioning standards, food safety requirements, and new product launches &mdash; without a reliable mechanism to verify that knowledge has actually landed. Turnover is high, onboarding timelines are stretched across markets with different languages and franchise structures, yet every outlet is benchmarked against the same operational and financial standards. Digemy closes that gap by baseline-mapping knowledge by role, reinforcing it through spaced microlearning, and surfacing real-time performance gaps by outlet, market, and team before they become revenue leakage.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;In QSR, the counter is your highest-leverage revenue moment &mdash; and most chains are training for speed, not for selling.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy baseline-maps knowledge across every frontline role &mdash; from counter crew to franchise operators &mdash; and delivers spaced reinforcement to lock in upsell scripts, portioning standards, and SOP adherence across all markets. Management dashboards surface knowledge gaps by outlet and country in real time, while evaluation scorecards hold individual crew, shift supervisors, and regional managers accountable to the same standard. The result: every Hungry Lion outlet executing at full potential, every day, regardless of geography.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: FRONTLINE WORKFORCE -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Counter Crew / Cashiers</td><td>Upsell failure, combo promotion knowledge gaps, order accuracy under pressure</td></tr>
+        <tr><td>Kitchen Staff / Grillers</td><td>Portioning errors, food safety protocol deviations, product build consistency</td></tr>
+        <tr><td>Shift Supervisors / Team Leaders</td><td>Coaching effectiveness, real-time compliance monitoring, food safety oversight</td></tr>
+        <tr><td>Franchise Store Managers</td><td>SOP adherence, new product launch execution, brand standard compliance</td></tr>
+        <tr><td>International Market Trainers</td><td>Cross-border onboarding consistency, SOP localisation, training lag in new markets</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Approximately 8,000&ndash;10,000 frontline staff across 550+ outlets in sub-Saharan Africa and the Middle East. Frontline turnover of 25&ndash;35% per year means Hungry Lion is continuously onboarding new crew &mdash; making structured, verifiable reinforcement a structural necessity, not a nice-to-have.</div>
+</div>
+
+<!-- SECTION 3: WHERE LOSS HAPPENS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Counter Upsell &amp; Combo Conversion</td><td>0.5%&ndash;2% of R1.4bn counter revenue (70% of group)</td><td>R7.0m</td><td>R28.0m</td><td class="rec">R0.7m&ndash;R2.8m</td></tr>
+        <tr><td>Food Waste from Portioning Errors</td><td>1%&ndash;2.5% of R700m food cost base (35% of revenue)</td><td>R7.0m</td><td>R17.5m</td><td class="rec">R0.7m&ndash;R1.8m</td></tr>
+        <tr><td>Food Safety Non-Compliance Costs</td><td>44&ndash;83 compliance events p.a. (8&ndash;15% of outlets); R100k&ndash;R250k per event</td><td>R4.4m</td><td>R20.8m</td><td class="rec">R0.4m&ndash;R2.1m</td></tr>
+        <tr><td>New Hire Productivity Gap</td><td>~2,380 new hires/yr (28% turnover &times; 8,500 staff); R5k&ndash;R12k productivity gap per hire</td><td>R11.9m</td><td>R28.6m</td><td class="rec">R1.2m&ndash;R2.9m</td></tr>
+        <tr><td>Cross-Border SOP &amp; LTO Execution</td><td>1%&ndash;2% of R600m international revenue (30% of group)</td><td>R6.0m</td><td>R12.0m</td><td class="rec">R0.6m&ndash;R1.2m</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R36.3m</td><td>R106.9m</td><td class="rec">R3.6m&ndash;R10.7m</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SECTION 4: TOP 5 LEAKAGE CARDS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- LC 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Counter Upsell &amp; Combo Conversion Failure</div>
+        <div class="lc-body">When counter crew don&rsquo;t know the current combo deal &mdash; or lack the confidence to present it &mdash; Hungry Lion leaves margin on every transaction. Across 550+ outlets processing hundreds of transactions daily, even a fractional improvement in upsell conversion moves significant revenue.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;2% counter rev</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R7m&ndash;R28m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.7m&ndash;R2.8m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Basket value underperforms vs menu potential; drive-through and counter revenue misses targets without management visibility into root cause. High crew turnover means this knowledge gap resets constantly without reinforcement.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Spaced microlearning keeps upsell scripts, bundle pricing, and LTO promotions front-of-mind for every counter crew member &mdash; refreshed at each campaign cycle, with outlet-level conversion dashboards surfacing underperformers before month-end.</div>
+  </div>
+
+  <!-- LC 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Food Waste from Portioning Errors</div>
+        <div class="lc-body">Inconsistent portioning &mdash; driven by inadequate training or knowledge decay after onboarding &mdash; inflates food cost across every grill station in the group. In a low-margin QSR environment, small deviations per serve compound across millions of servings a year.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;2.5% food cost base</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R7m&ndash;R17.5m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.7m&ndash;R1.8m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Food cost variance erodes outlet profitability; franchise operators absorb losses without knowing the root cause is a training gap rather than a supplier issue. Portioning deviations also drive product inconsistency that damages brand trust.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Portion standard knowledge checks embedded in weekly reinforcement cycles ensure kitchen staff retain accuracy long after onboarding. Outlet-level dashboards flag knowledge decay before it reaches the food cost line.</div>
+  </div>
+
+  <!-- LC 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Food Safety Non-Compliance Costs</div>
+        <div class="lc-body">Across 550+ outlets in 20+ regulatory jurisdictions, food safety compliance is only as reliable as the least-trained crew member on shift. A single incident &mdash; failed inspection, temporary closure, or reputational event &mdash; costs multiples of what structured training would have prevented.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">8&ndash;15% of outlets affected</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R4.4m&ndash;R20.8m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.4m&ndash;R2.1m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Failed health inspections, remediation costs, and temporary closures create direct financial losses; reputational damage in smaller markets compounds the impact well beyond the incident. Non-compliance risk scales with every new outlet.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Food safety protocols are embedded as non-negotiable reinforcement content &mdash; not once-off orientation. Supervisor scorecards create a real-time observable layer so deviations are caught and corrected before they become incidents.</div>
+  </div>
+
+  <!-- LC 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">New Hire Productivity Gap</div>
+        <div class="lc-body">With 25&ndash;35% annual frontline turnover, Hungry Lion is continuously onboarding new crew into roles requiring consistent product knowledge, compliance awareness, and customer-facing behaviours. Extended ramp-up &mdash; common without structured reinforcement &mdash; means each new hire cohort operates below productive potential for weeks.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">R5k&ndash;R12k per new hire</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R11.9m&ndash;R28.6m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.2m&ndash;R2.9m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Underperforming new hires inflate effective training costs, drag down shift averages, and require supervisor time to compensate &mdash; reducing overall outlet efficiency across a network of 550+ sites.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Structured reinforcement cuts ramp-up time by 30&ndash;70% &mdash; as demonstrated in the FLM Academy case study (70% faster ramp time). New hires reach productive competence faster, with knowledge verified and tracked at every step.</div>
+  </div>
+
+  <!-- LC 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Cross-Border SOP &amp; LTO Execution Failure</div>
+        <div class="lc-body">Operating across 20+ countries means brand standards, promotional campaigns, and operational SOPs must land consistently in markets with different languages, franchise models, and training infrastructure. Inconsistent SOP execution and slow LTO adoption dilute the revenue potential of every group-wide campaign.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;2% intl revenue</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R6m&ndash;R12m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.6m&ndash;R1.2m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">New product launches underperform in markets where crew haven&rsquo;t been reached by training; brand standard deviations in international markets erode customer trust and franchise partner confidence. Regional management lacks visibility into which markets are knowledge-compliant.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy delivers consistent SOP and LTO training digitally across all markets simultaneously &mdash; no lag, no geography constraint. Country-level dashboards show adoption rates by role and outlet within 24 hours of any campaign launch.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- VALUE SUMMARY — OUTSIDE .page -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R36.3m&ndash;R106.9m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R3.6m&ndash;R10.7m per year</span></div>
+  </div>
+  <p>Hungry Lion&rsquo;s group-wide leakage is not a structural problem &mdash; it&rsquo;s a knowledge problem. <strong>From a cashier who doesn&rsquo;t know the combo deal to a kitchen team two training cycles behind on portioning standards</strong>, the gap between what every frontline employee should know and what they actually retain is costing the group between R36m and R107m per year. At 10% recovery, Digemy&rsquo;s methodology returns R3.6m to R10.7m annually &mdash; and builds the measurement infrastructure to grow that number as the knowledge baseline rises across every market.</p>
+</div>
+
+<!-- KG MATRIX + SKILLS MATRIX — second .page block -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The matrix below maps the specific knowledge gaps in Hungry Lion&rsquo;s two highest-leverage frontline roles against the primary leakage areas they drive. For each gap, we identify the direct business impact and the targeted Digemy intervention that closes it.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Roles: Counter Crew &amp; Shift Supervisors &nbsp;&middot;&nbsp; Leakage 01 &mdash; Counter Upsell &amp; Combo Conversion Failure</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Counter Crew / Cashiers</td></tr>
+        <tr><td>Doesn&rsquo;t know current combo promotions or LTO bundle pricing</td><td>Every uninformed transaction is a missed upsell; avg basket value underperforms systematically</td><td>Campaign-cycle microlearning pushes combo and LTO knowledge to all counter crew before launch date</td></tr>
+        <tr><td>Lacks confidence presenting the &ldquo;Go Large&rdquo; upsell at point of sale</td><td>Drive-through and counter revenue misses potential; crew defaults to passive order-taking</td><td>Scenario-based upsell script practice with reinforcement until fluency is verified by knowledge check</td></tr>
+        <tr><td>No awareness of highest-margin item pairings or bundle logic</td><td>Promotional targets unmet; management can&rsquo;t tell if it&rsquo;s a sales problem or a knowledge problem</td><td>Outlet-level upsell conversion dashboards tied to individual knowledge check scores</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Shift Supervisors / Team Leaders</td></tr>
+        <tr><td>Doesn&rsquo;t monitor upsell behaviours during live service</td><td>Counter underperformance continues undetected &mdash; no real-time coaching mechanism in place</td><td>Supervisor coaching micro-content: what to observe, what to say, how to reinforce in the moment</td></tr>
+        <tr><td>Cannot identify or correct portioning deviations at the grill station</td><td>Food cost variance accumulates across shifts without visible root cause for management</td><td>Portioning standard knowledge checks embedded in weekly reinforcement cycle for all kitchen supervisors</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">For Hungry Lion, Digemy begins by <strong>mapping and baselining the specific skills and knowledge required for every frontline role</strong> &mdash; from counter crew upsell capability to grill station portioning standards to franchise manager SOP accountability across every operating market. <strong>Spaced reinforcement</strong> then ensures that what was covered in onboarding is retained and applied under the real operating pressures of a busy shift, not lost within days of training completion. Gaps in knowledge retention are <strong>visualised in real-time dashboards by outlet, country, and role</strong> &mdash; so regional managers and franchise partners see exactly where the knowledge baseline is falling short before it registers as a food cost or revenue variance. <strong>Individual scorecards at crew, supervisor, and management level</strong> close the loop between training completion and on-the-job performance &mdash; making knowledge accountability visible and actionable at every level of the Hungry Lion operation, across all 20+ markets.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Hungry Lion Group &mdash; Operational Optimisation Report</div>
+</body>
+</html>
