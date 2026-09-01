@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Gelmar &mdash; Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+.scroll-fade { display: none; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+  .tbl-wrap {
+    background: linear-gradient(to right, white 20%, rgba(255,255,255,0)),
+                linear-gradient(to left, white 20%, rgba(255,255,255,0)) 100% 0,
+                radial-gradient(farthest-side at 0 50%, rgba(22,32,64,0.10), transparent),
+                radial-gradient(farthest-side at 100% 50%, rgba(22,32,64,0.10), transparent) 100% 0;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: 44px 100%, 44px 100%, 14px 100%, 14px 100%;
+    background-attachment: local, local, scroll, scroll;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .r-tbl { min-width: 560px; }
+  .mx-table { min-width: 500px; }
+  .scroll-fade { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 11px; font-weight: 700; color: var(--muted); padding: 7px 0 2px; opacity: 0.55; letter-spacing: 0.5px; text-transform: uppercase; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Home Improvement &amp; Hardware Retail</div>
+  <h1 style="margin-bottom:32px;">Gelmar <span>Pty Ltd</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R450m</div><div class="hs-sub">indicative &mdash; private company</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R25m&ndash;R40m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R2.5m&ndash;R4.0m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- WHY DIGEMY -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Gelmar&#8217;s frontline sales staff are the single most important variable between a customer&#8217;s renovation vision and the right product leaving the shelf &mdash; yet with 50 stores, 300+ handle styles, and a fast-expanding house-brand range, knowledge consistency across branches is structurally impossible without a reinforcement platform. When an internal sales assistant can&#8217;t confidently guide a contractor or DIYer from question to solution, the sale walks. Digemy turns product knowledge into a measurable, branch-level competitive advantage &mdash; reinforced daily, tracked in real time, and applied where it counts.</p>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;In a store where every handle has a twin and every customer has a deadline, the staff who know the range sell the range.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy maps and baselines product knowledge across every Gelmar store role &mdash; from internal sales assistants to merchandise controllers. Spaced reinforcement keeps house-brand advocacy, new-range specifications, and upsell techniques sharp across all 50 branches, while real-time dashboards surface knowledge gaps by store and role. Individual- and site-level scorecards give branch managers and Gelmar leadership the accountability tools to drive consistent conversion, reduce returns, and grow basket size with confidence.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FRONTLINE WORKFORCE -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Internal Sales Assistant</td><td>Product knowledge gaps, failed conversion, wrong-product advice</td></tr>
+        <tr><td>Merchandise Controller</td><td>Planogram non-compliance, poor house-brand placement, aisle inaccuracy</td></tr>
+        <tr><td>Branch / Store Manager</td><td>Inconsistent coaching, shrinkage tolerance, upsell culture gaps</td></tr>
+        <tr><td>Receiving Clerk</td><td>Stock receiving errors, mislabelling, high-SKU picking mistakes</td></tr>
+        <tr><td>Online Order Fulfilment Associate</td><td>Incorrect picks, dispatch errors, customer dissatisfaction on delivery</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Gelmar employs 600+ staff across 50 stores nationally, averaging approximately 12 frontline staff per branch. The majority are internal sales assistants responsible for product advice, invoicing, and aisle maintenance &mdash; roles where knowledge retention directly determines revenue outcome.</div>
+</div>
+
+<!-- WHERE LOSS HAPPENS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>House Brand &amp; New Range Advocacy Gap</td><td>20&ndash;30% shortfall of ~R67.5m house-brand potential (est. 15% of revenue)</td><td>R13.5m</td><td>R20.2m</td><td class="rec">R1.4m&ndash;R2.0m</td></tr>
+        <tr><td>Sales Conversion Failure</td><td>1&ndash;1.5% of R450m retail revenue base</td><td>R4.5m</td><td>R6.8m</td><td class="rec">R0.5m&ndash;R0.7m</td></tr>
+        <tr><td>Cross-sell &amp; Basket Underperformance</td><td>0.8&ndash;1.2% of R450m retail revenue base</td><td>R3.6m</td><td>R5.4m</td><td class="rec">R0.4m&ndash;R0.5m</td></tr>
+        <tr><td>Returns &amp; Wrong-Product Advisory</td><td>0.5&ndash;1% of R450m retail revenue base</td><td>R2.3m</td><td>R4.5m</td><td class="rec">R0.2m&ndash;R0.5m</td></tr>
+        <tr><td>Merchandise &amp; Stock Accuracy Losses</td><td>0.5&ndash;1% of est. COGS (R270m, ~60% of revenue)</td><td>R1.4m</td><td>R2.7m</td><td class="rec">R0.1m&ndash;R0.3m</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R25.3m</td><td>R39.6m</td><td class="rec">R2.5m&ndash;R4.0m</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="scroll-fade">&#8592;&nbsp;Swipe to see all columns&nbsp;&#8594;</div>
+</div>
+
+<!-- TOP 5 LEAKAGE CARDS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- LC 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">House Brand &amp; New Range Advocacy Gap</div>
+        <div class="lc-body">Gelmar&#8217;s growing house-brand range offers the highest margin per unit &mdash; yet staff who don&#8217;t know the product can&#8217;t recommend it. Without structured reinforcement, new range launches land on the shelf but not in the sales conversation, leaving the highest-value revenue stream chronically underleveraged.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">20%&ndash;30%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R13.5m&ndash;R20.2m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.4m&ndash;R2.0m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Customers leave with branded competitor products or delay purchase entirely. House-brand margin potential goes unrealised and new launches fail to gain floor-level traction despite availability.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy deploys product-specific reinforcement modules at new range launch, with scorecards that measure advocacy at store and individual level &mdash; ensuring every sales assistant can articulate the house-brand value proposition on day one of availability.</div>
+  </div>
+
+  <!-- LC 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Sales Conversion Failure</div>
+        <div class="lc-body">Gelmar is a destination store &mdash; customers arrive with a project in mind but leave without converting when staff can&#8217;t bridge the gap between the product and the project. In a high-SKU specialty environment, that advisory gap is the difference between a sale and a lost basket.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R4.5m&ndash;R6.8m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.5m&ndash;R0.7m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Walk-in traffic converts at below-potential rates. Customers default to online or competitor purchases when in-store guidance is uncertain or inconsistent across branches.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy&#8217;s knowledge-retention modules ensure every internal sales assistant is fluent in product application, technical specs, and customer use-case scenarios &mdash; turning advisory capability into a branch-level conversion driver.</div>
+  </div>
+
+  <!-- LC 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Cross-sell &amp; Basket Underperformance</div>
+        <div class="lc-body">A customer buying drawer runners needs hinges, handles, and mounting hardware &mdash; but only gets them if the staff member knows to suggest them. With a product range spanning thousands of SKUs across kitchen, bathroom, and furniture fittings, cross-sell knowledge is the engine of basket growth.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.8%&ndash;1.2%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R3.6m&ndash;R5.4m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.4m&ndash;R0.5m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Average transaction values remain flat. Complementary products sit unsold in adjacent aisles while customers make multiple trips or source them elsewhere &mdash; shrinking share-of-wallet per visit.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy embeds cross-category product linkages into reinforcement modules, creating an instinctive upsell habit in frontline staff &mdash; with dashboards that track basket-size improvements by store and team.</div>
+  </div>
+
+  <!-- LC 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Returns &amp; Wrong-Product Advisory</div>
+        <div class="lc-body">Incorrect product recommendations are the hidden cost multiplier in hardware retail: the return, the restock, the exchange labour, the shipping cost for online orders, and the customer who doesn&#8217;t come back. In a product category defined by exact specifications and compatibility, advisory errors are expensive.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R2.3m&ndash;R4.5m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.2m&ndash;R0.5m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Return rates inflate operational cost and erode margin. Customers who receive wrong advice experience project delays, lose trust in the brand, and default to self-research rather than in-store consultation on future visits.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy reinforces technical specifications, compatibility requirements, and application guidance at the role level &mdash; reducing wrong-product advice at source and turning knowledge confidence into a measurable returns-reduction metric.</div>
+  </div>
+
+  <!-- LC 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Merchandise &amp; Stock Accuracy Losses</div>
+        <div class="lc-body">Gelmar&#8217;s high-SKU environment &mdash; with hundreds of handle styles, finishes, and size variants &mdash; creates significant exposure to stock-take errors, mislabelling, and incorrect receiving. These losses compound silently across 50 branches, representing both direct shrinkage and invisible margin erosion.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.4m&ndash;R2.7m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R0.1m&ndash;R0.3m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Inventory inaccuracies result in phantom stockouts, over-ordering, and write-offs. Planogram non-compliance means high-margin products are invisible to customers, further suppressing conversion.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy trains and reinforces receiving protocols, planogram standards, and stock-take procedures by role &mdash; with branch-level scorecards that make merchandise compliance a tracked, accountable metric rather than a periodic audit event.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- VALUE SUMMARY — OUTSIDE .page -->
+<div class="vs" style="max-width:1000px;margin-left:auto;margin-right:auto;margin-bottom:44px;">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R25m&ndash;R40m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R2.5m&ndash;R4.0m per year</span></div>
+  </div>
+  <p>Gelmar&#8217;s 90-year heritage and 50-store national footprint represent a formidable retail platform &mdash; but <strong>without consistent, measurable knowledge across the frontline, that scale amplifies revenue leakage rather than containing it.</strong> The R25m&ndash;R40m in estimated annual leakage is driven by a single, solvable root cause: staff who know the product sell it; staff who don&#8217;t, don&#8217;t. Digemy&#8217;s full operational methodology &mdash; reinforcement, dashboards, and scorecards &mdash; gives Gelmar leadership the tools to make knowledge a branch-level performance metric, recovering R2.5m&ndash;R4.0m annually at just a 10% intervention rate.</p>
+</div>
+
+<!-- KG MATRIX + SKILLS MATRIX -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The matrix below maps the most critical knowledge gaps for Gelmar&#8217;s Internal Sales Assistants against the top leakage driver &mdash; House Brand &amp; New Range Advocacy. These are the gaps that, left unaddressed, directly translate to missed margin, lost conversions, and customer churn across all 50 branches.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Internal Sales Assistant &nbsp;&middot;&nbsp; Leakage 01 &mdash; House Brand &amp; New Range Advocacy Gap</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Internal Sales Assistant</td></tr>
+        <tr><td>Unable to differentiate house-brand vs. branded equivalent on value and margin</td><td>Customers default to familiar branded products; house-brand margin opportunity lost at point of sale</td><td>Reinforced product-comparison modules with house-brand value proposition embedded in daily microlearning</td></tr>
+        <tr><td>Unaware of new range specifications, finishes, and compatibility requirements at launch</td><td>New stock sits on shelf unsold; customers receive uncertain or incorrect guidance in launch weeks</td><td>Role-specific launch modules deployed pre-floor with knowledge checks before staff engage customers</td></tr>
+        <tr><td>Lack of cross-category product linkage knowledge (e.g. handle &rarr; hinge &rarr; runner system)</td><td>Basket size remains at single-item level; project-completion sales opportunities missed consistently</td><td>Cross-sell scenario training reinforced through spaced repetition; basket-growth tracked by store scorecard</td></tr>
+        <tr><td>Inconsistent knowledge of compatibility specs (size, finish, fixing type) by product category</td><td>Wrong-product advice leads to returns, customer frustration, and repeat visits that erode NPS</td><td>Technical specification modules with scenario-based assessments tied to the live Gelmar product catalogue</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Branch / Store Manager</td></tr>
+        <tr><td>No visibility into which staff members are knowledge-ready for new range engagement</td><td>Launch performance is uneven across the branch; top performers carry the team without structural support</td><td>Real-time knowledge dashboards surface readiness by staff member, enabling targeted pre-launch coaching</td></tr>
+        <tr><td>No structured mechanism to link house-brand advocacy training to sales conversion outcomes</td><td>Coaching conversations are reactive and anecdotal rather than data-driven and preventive</td><td>Individual and store-level scorecards link knowledge completion rates to house-brand conversion metrics</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="scroll-fade">&#8592;&nbsp;Swipe to see all columns&nbsp;&#8594;</div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Digemy&#8217;s Skills Matrix gives Gelmar a structured, branch-level view of frontline capability across every critical role. <strong>Skills are mapped and baselined</strong> by role &mdash; internal sales assistant, merchandise controller, branch manager, and receiving clerk &mdash; against Gelmar&#8217;s product categories, house-brand range, and operational protocols. <strong>Knowledge is retained through spaced reinforcement</strong>, ensuring product specifications, cross-sell sequences, and compliance standards don&#8217;t decay between seasonal range updates or training events. <strong>Gaps are visualised in real-time dashboards</strong> at the individual, store, and national level, giving Gelmar leadership instant sight of where knowledge risk is highest across the 50-branch network. <strong>Knowledge is applied through scorecards</strong> that measure advisory accuracy, house-brand conversion rates, and merchandise compliance &mdash; creating an accountability culture where operational excellence is not aspirational, but measurable.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Gelmar &mdash; Operational Optimisation Report</div>
+</body>
+</html>
