@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SCC Flour Mill — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+.scroll-fade { display: none; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+  .r-tbl, .mx-table { min-width: 600px; }
+  .tbl-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background-image:
+      linear-gradient(to right, white, white),
+      linear-gradient(to right, white, white),
+      linear-gradient(to right, rgba(22,32,64,0.18), rgba(22,32,64,0)),
+      linear-gradient(to left, rgba(22,32,64,0.18), rgba(22,32,64,0));
+    background-position: left center, right center, left center, right center;
+    background-repeat: no-repeat;
+    background-color: white;
+    background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+    background-attachment: local, local, scroll, scroll;
+  }
+  .scroll-fade { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 11px; font-weight: 700; color: var(--muted); padding: 7px 0 2px; opacity: 0.55; letter-spacing: 0.5px; text-transform: uppercase; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">CAMEROON &middot; AGRIBUSINESS &middot; FLOUR MILLING</div>
+  <h1 style="margin-bottom:32px;">SCC <span>Flour Mill</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~FCFA 75bn</div><div class="hs-sub">estimated, Bonab&eacute;ri operations</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">FCFA 1.3bn&ndash;2.9bn</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">FCFA 130m&ndash;293m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- SECTION 1: WHY DIGEMY -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>SCC Flour Mill's promise to bakeries, distributors and households across Cameroon and the CEMAC sub-region is consistent, quality flour &mdash; delivered on time, to spec, every batch. That promise is executed not by the milling equipment, but by the frontline operators, technicians, dispatchers and sales reps who run each shift, approve each batch and close each delivery.</p>
+    </div>
+
+    <p style="font-size:14px;color:var(--navy);font-weight:700;margin-bottom:10px;">
+      Where the loss happens &mdash; an estimated <span style="color:var(--coral);">FCFA 1.3bn&ndash;2.9bn</span> a year:
+    </p>
+    <div class="pill-row" style="margin-bottom:24px;">
+      <span class="pill">Milling Yield Loss</span>
+      <span class="pill">Quality Rejection</span>
+      <span class="pill">CEMAC Distribution</span>
+      <span class="pill">QHSE Compliance</span>
+      <span class="pill">Product Mix Activation</span>
+    </div>
+
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;You can invest in the finest milling equipment in Central Africa &mdash; but if your operators don&#8217;t know the protocols, your yield leaves through the dust collector.&#8221;</div>
+
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy maps and baselines knowledge across every SCC Flour Mill frontline role &mdash; Mill Operator, QC Lab Technician, Distribution Dispatcher and Sales Representative. Spaced-reinforcement microlearning drives retention of milling extraction protocols, ANOR quality standards and CEMAC distribution procedures. Real-time dashboards surface knowledge gaps by production shift and distribution route, pinpointing exactly where SCC Flour Mill&#8217;s FCFA 1.3bn&ndash;2.9bn in annual leakage is concentrating. Evaluation scorecards at individual, shift, and plant level create accountability &mdash; turning that leakage into FCFA 130m&ndash;293m of recovered performance across SCC Flour Mill&#8217;s Douala operations.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: FRONTLINE WORKFORCE -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Mill Operator</td><td>Extraction yield, roller calibration, wheat blend adherence</td></tr>
+        <tr><td>QC Lab Technician</td><td>ANOR compliance, batch testing accuracy, rejection decisions</td></tr>
+        <tr><td>Packaging Line Worker</td><td>Weight compliance, seal integrity, SKU accuracy</td></tr>
+        <tr><td>Distribution Dispatcher</td><td>Order accuracy, CEMAC export documentation, route management</td></tr>
+        <tr><td>Sales Representative</td><td>Product differentiation, distributor activation, SKU premiumisation</td></tr>
+        <tr><td>Silo Operator</td><td>Grain FIFO management, moisture monitoring, pest control protocol</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> SCC Flour Mill operates an estimated 100&ndash;200 frontline workers across milling, quality, logistics and commercial functions at its Bonab&eacute;ri, Douala facility. Headcount is estimated based on mill throughput capacity (550t/day wheat flour) and sub-regional milling industry norms; exact figures are not publicly disclosed.</div>
+</div>
+
+<!-- SECTION 3: WHERE LOSS HAPPENS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Milling Yield &amp; Extraction Loss</td><td>0.5%&ndash;1.0% of total production value (FCFA 75bn base)</td><td>FCFA 375m</td><td>FCFA 750m</td><td class="rec">FCFA 37.5m&ndash;75m</td></tr>
+        <tr><td>Quality Rejection &amp; Downgrading</td><td>0.5%&ndash;1.5% of wheat flour revenue (FCFA 65bn sub-base)</td><td>FCFA 300m</td><td>FCFA 900m</td><td class="rec">FCFA 30m&ndash;90m</td></tr>
+        <tr><td>CEMAC Distribution Errors</td><td>0.5%&ndash;1.0% of export revenue (CEMAC &asymp;30% of revenue, FCFA 22.5bn sub-base)</td><td>FCFA 110m</td><td>FCFA 225m</td><td class="rec">FCFA 11m&ndash;22.5m</td></tr>
+        <tr><td>QHSE &amp; Safety Compliance Failures</td><td>Estimated 1&ndash;2 unplanned production days lost + regulatory compliance costs</td><td>FCFA 250m</td><td>FCFA 530m</td><td class="rec">FCFA 25m&ndash;53m</td></tr>
+        <tr><td>Sales &amp; Product Mix Activation</td><td>0.5%&ndash;1.0% of domestic sales (domestic &asymp;70% of revenue, FCFA 52.5bn sub-base)</td><td>FCFA 263m</td><td>FCFA 525m</td><td class="rec">FCFA 26.3m&ndash;52.5m</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>FCFA 1,298m</td><td>FCFA 2,930m</td><td class="rec">FCFA 129.8m&ndash;293m</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="scroll-fade">&#8592;&nbsp;Swipe to see all columns&nbsp;&#8594;</div>
+</div>
+
+<!-- SECTION 4: TOP 5 LEAKAGE CARDS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- LC 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Milling Yield &amp; Extraction Loss</div>
+        <div class="lc-body">Every percentage point of extraction yield lost represents flour that&#8217;s paid for in wheat but never sold. At SCC&#8217;s throughput scale, protocol deviation at any of the three production units compounds silently across hundreds of thousands of tonnes of annual input.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">FCFA 375m&ndash;750m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">FCFA 37.5m&ndash;75m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Suboptimal roller settings and incorrect wheat blend ratios reduce recoverable flour yield &mdash; more raw wheat input is required per tonne of output, directly compressing margin on every production run.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy reinforces extraction protocols per flour grade (K-Bread, K-Pain Dor&eacute;, K-Makala) with shift-level dashboards that flag knowledge decay before it becomes yield variance on the production report.</div>
+  </div>
+
+  <!-- LC 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Quality Rejection &amp; Downgrading</div>
+        <div class="lc-body">ANOR certification is SCC&#8217;s licence to operate at premium pricing. When QC lab technicians or mill operators miss testing checkpoints, batches fail inspection &mdash; sold at a discount or written off entirely, eroding revenue per tonne.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">FCFA 300m&ndash;900m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">FCFA 30m&ndash;90m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Rejected or downgraded flour batches shrink realised revenue per tonne and damage trust with bakery clients. Repeat incidents risk ANOR certification status, jeopardising SCC&#8217;s entire market position.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy keeps QC protocols and batch-approval procedures in active memory through spaced reinforcement, with individual scorecard tracking surfacing which technicians need intervention &mdash; before the next batch fails.</div>
+  </div>
+
+  <!-- LC 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">CEMAC Distribution Errors</div>
+        <div class="lc-body">SCC&#8217;s export network spans Chad, CAR, Republic of Congo, Equatorial Guinea and Gabon &mdash; each with distinct documentation requirements and logistics complexity. Undertrained dispatchers create costly errors across every corridor.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">FCFA 110m&ndash;225m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">FCFA 11m&ndash;22.5m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Incorrect dispatch documentation, wrong SKU loading and poor route knowledge generate claims, returns and strained distributor relationships across SCC&#8217;s sub-regional export markets.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy delivers destination-specific training modules for each CEMAC corridor, with dashboard visibility into dispatcher knowledge gaps by export route &mdash; turning the sub-region into a knowledge-confident distribution network.</div>
+  </div>
+
+  <!-- LC 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">QHSE &amp; Safety Compliance Failures</div>
+        <div class="lc-body">A wheat flour milling facility carries significant dust-explosion, food-safety and industrial hygiene risk. Unplanned production stoppages from safety incidents or compliance failures can erase a full production day &mdash; and far more in regulatory consequences.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.3%&ndash;0.7%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">FCFA 250m&ndash;530m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">FCFA 25m&ndash;53m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">A single unplanned production shutdown costs FCFA 250m+ in lost output. Non-compliance with ANOR food-safety standards can trigger audits, fines or suspension &mdash; jeopardising both domestic and sub-regional certification.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy reinforces QHSE protocols &mdash; dust management, equipment lock-out procedures, hygiene standards &mdash; via microlearning tied to maintenance sign-offs, with safety knowledge gaps surfaced on the plant manager&#8217;s dashboard before incidents occur.</div>
+  </div>
+
+  <!-- LC 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Sales &amp; Product Mix Activation</div>
+        <div class="lc-body">K-Bread, K-Pain Dor&eacute; and K-Makala serve fundamentally different applications and price points. When reps and distributors don&#8217;t understand the distinction, they default to price &mdash; undercutting premium SKUs and leaving margin on every sale.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">FCFA 263m&ndash;525m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">FCFA 26.3m&ndash;52.5m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Poor product knowledge pushes bakery clients toward lower-margin SKUs, suppresses K-Bread premiumisation, and leaves SCC exposed on price in a competitive domestic and sub-regional market.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Digemy equips every sales rep with a reinforced product knowledge base &mdash; flour application science, SKU differentiation and bakery client needs &mdash; with scorecard tracking showing management exactly which reps are driving premiumisation and which aren&#8217;t.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- VALUE SUMMARY — OUTSIDE .page -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">FCFA 1.3bn&ndash;2.9bn</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">FCFA 130m&ndash;293m per year</span></div>
+  </div>
+  <p>SCC Flour Mill&#8217;s investment in state-of-the-art milling infrastructure creates the capacity for quality &mdash; but <strong>FCFA 1.3bn&ndash;2.9bn of that capacity is quietly eroding through frontline knowledge gaps every year.</strong> From extraction yield lost at the rollers to export shipments misfired through undertrained dispatchers, the losses compound across every shift and every distribution corridor. Digemy identifies exactly where knowledge is failing, reinforces it through spaced microlearning, and creates measurable accountability via dashboards and scorecards &mdash; turning operational leakage into recoverable performance across SCC Flour Mill&#8217;s Douala operations and CEMAC export network.</p>
+</div>
+
+<!-- KG MATRIX + SKILLS MATRIX -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">SCC Flour Mill&#8217;s operational performance depends on precise knowledge execution across every shift &mdash; from wheat intake at the silos to batch approval in the QC lab. The matrix below maps the critical knowledge gaps driving Leakage 01 (Milling Yield &amp; Extraction Loss) for the Mill Operator role, showing how each gap creates measurable operational impact and how Digemy closes it.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Mill Operator &nbsp;&middot;&nbsp; Leakage 01 &mdash; Milling Yield &amp; Extraction Loss</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Mill Operator</td></tr>
+        <tr><td>Wheat blend ratios (hard vs soft) per flour grade</td><td>Incorrect blends reduce extraction yield and generate off-spec flour sold at a discount</td><td>Reinforcement modules on K-Bread, K-Pain Dor&eacute; and K-Makala blend protocols, tested at each shift handover</td></tr>
+        <tr><td>Moisture content targets by wheat variety</td><td>Excess feed moisture increases energy cost and reduces usable flour yield per tonne processed</td><td>Spaced assessments on moisture testing standards; dashboard alerts when operator scores drop below threshold</td></tr>
+        <tr><td>Roller gap calibration procedure</td><td>Incorrect roller settings increase bran contamination in flour output, triggering ANOR quality rejection</td><td>Competency scorecards verifying roller calibration knowledge per operator per shift</td></tr>
+        <tr><td>Sifter screen inspection and maintenance intervals</td><td>Damaged or blocked sifters allow oversized particles through, degrading flour grade and recoverable yield</td><td>Knowledge checks tied to maintenance sign-offs; gaps immediately visible on the plant manager dashboard</td></tr>
+        <tr><td>Grade changeover and clean-out protocol</td><td>Cross-contamination between K-Bread and K-Makala batches causes batch failure and blending losses</td><td>Step-by-step reinforcement for grade changeover procedures, with individual completion tracking per operator</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="scroll-fade">&#8592;&nbsp;Swipe to see all columns&nbsp;&#8594;</div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Digemy begins by <strong>mapping and baselining knowledge</strong> across every SCC Flour Mill frontline role &mdash; Mill Operator, QC Lab Technician, Packaging Line Worker, Distribution Dispatcher, Sales Representative and Silo Operator &mdash; establishing a clear performance starting point across milling, quality, logistics and commercial functions. <strong>Spaced-reinforcement microlearning</strong> ensures that critical protocols &mdash; extraction procedures, ANOR compliance checks, CEMAC distribution documentation standards &mdash; are retained in operational memory, not lost after a single training session. <strong>Real-time dashboards</strong> give management visibility into knowledge gaps by role, shift and function: when extraction yield dips or a batch fails QC, the knowledge root cause is immediately traceable rather than invisible. <strong>Evaluation scorecards</strong> at individual and shift level close the accountability loop &mdash; turning protocol knowledge into measurable operational performance across SCC Flour Mill&#8217;s Douala operations and CEMAC export network.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; SCC Flour Mill &mdash; Operational Optimisation Report</div>
+</body>
+</html>
