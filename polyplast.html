@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Polyplast — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+.scroll-fade { display: none; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+  .r-tbl, .mx-table { min-width: 600px; }
+  .tbl-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background-image:
+      linear-gradient(to right, white, white),
+      linear-gradient(to right, white, white),
+      linear-gradient(to right, rgba(22,32,64,0.18), rgba(22,32,64,0)),
+      linear-gradient(to left, rgba(22,32,64,0.18), rgba(22,32,64,0));
+    background-position: left center, right center, left center, right center;
+    background-repeat: no-repeat;
+    background-color: white;
+    background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+    background-attachment: local, local, scroll, scroll;
+  }
+  .scroll-fade { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 11px; font-weight: 700; color: var(--muted); padding: 7px 0 2px; opacity: 0.55; letter-spacing: 0.5px; text-transform: uppercase; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">Cameroon &middot; Plastics Manufacturing</div>
+  <h1 style="margin-bottom:32px;">Polyplast <span>Leaks Profit</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~$15m</div><div class="hs-sub">estimated, private Cameroon operations</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">$690K&ndash;$950K</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">$69K&ndash;$95K</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- SECTION 1: WHY DIGEMY -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Polyplast's promise is precision-engineered plastic — every beer crate, basin and bucket leaving Douala must meet exact dimensional and structural spec. That promise is made or broken on the production floor, by operators who calibrate the machines, manage the moulds and catch defects before they ship.</p>
+    </div>
+    <p style="font-size:14px;color:var(--navy);font-weight:700;margin-bottom:10px;">Where the loss happens &mdash; an estimated <span style="color:var(--coral);">$690K&ndash;$950K</span> a year:</p>
+    <div class="pill-row" style="margin-bottom:24px;">
+      <span class="pill">Resin Waste</span>
+      <span class="pill">Goods Rejects</span>
+      <span class="pill">Equipment Downtime</span>
+      <span class="pill">Safety &amp; Compliance</span>
+      <span class="pill">Capacity Shortfall</span>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;Every misaligned extruder setting doesn&#8217;t just waste resin &mdash; it ships a defect that erodes the trust Polyplast has taken sixty years to earn.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy maps and baselines knowledge across every Polyplast frontline role &mdash; Machine Operator, Mould Technician, Quality Inspector and Shift Supervisor. Spaced-reinforcement microlearning drives retention of extruder calibration protocol, mould changeover procedure and quality inspection standards. Real-time dashboards surface knowledge gaps by production line and shift, pinpointing exactly where Polyplast&#8217;s $690K&ndash;$950K in annual leakage is concentrating. Evaluation scorecards at individual, line and factory level create accountability &mdash; turning that leakage into $69K&ndash;$95K of recovered performance across the full production operation.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: FRONTLINE WORKFORCE -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Machine Operator</td><td>Extruder settings, temperature profiling, material blend ratios</td></tr>
+        <tr><td>Mould Technician</td><td>Die changeover, cooling calibration, dimensional tolerance</td></tr>
+        <tr><td>Quality Control Inspector</td><td>Defect detection, spec compliance, customer return prevention</td></tr>
+        <tr><td>Shift Supervisor</td><td>Production throughput oversight, safety enforcement, yield monitoring</td></tr>
+        <tr><td>Maintenance Technician</td><td>Preventive vs reactive maintenance, fault identification, downtime reduction</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Polyplast operates an estimated 100–150 production floor workers across multi-shift extrusion and moulding operations in Douala. As a subsidiary of the Kadji Group (which employs ~1,500 people across all entities), Polyplast's workforce is primarily factory-floor and operationally focused &mdash; the roles most exposed to knowledge-gap-driven performance leakage.</div>
+</div>
+
+<!-- SECTION 3: WHERE LOSS HAPPENS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead>
+        <tr>
+          <th>Leakage Area</th>
+          <th>Assumption</th>
+          <th>Annual Low</th>
+          <th>Annual High</th>
+          <th>Recovery @10%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Resin &amp; Material Waste</td>
+          <td>1.5–2% of $10M material cost base</td>
+          <td>$150K</td>
+          <td>$200K</td>
+          <td class="rec">$15K&ndash;$20K</td>
+        </tr>
+        <tr>
+          <td>Finished Goods Rejects</td>
+          <td>1–1.5% of $15M revenue</td>
+          <td>$150K</td>
+          <td>$225K</td>
+          <td class="rec">$15K&ndash;$22.5K</td>
+        </tr>
+        <tr>
+          <td>Unplanned Equipment Downtime</td>
+          <td>0.5–0.75% of $12M production output value</td>
+          <td>$60K</td>
+          <td>$90K</td>
+          <td class="rec">$6K&ndash;$9K</td>
+        </tr>
+        <tr>
+          <td>Safety &amp; Regulatory Incidents</td>
+          <td>2–4% of ~$1.5M estimated annual payroll</td>
+          <td>$30K</td>
+          <td>$60K</td>
+          <td class="rec">$3K&ndash;$6K</td>
+        </tr>
+        <tr>
+          <td>New Line Capacity Shortfall</td>
+          <td>20–25% shortfall on $1.5M new capacity revenue potential</td>
+          <td>$300K</td>
+          <td>$375K</td>
+          <td class="rec">$30K&ndash;$37.5K</td>
+        </tr>
+        <tr class="total-row">
+          <td>TOTAL</td>
+          <td>&mdash;</td>
+          <td>$690K</td>
+          <td>$950K</td>
+          <td class="rec">$69K&ndash;$95K</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="scroll-fade">&#8592;&nbsp;Swipe to see all columns&nbsp;&#8594;</div>
+</div>
+
+<!-- SECTION 4: TOP 5 LEAKAGE CARDS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- Card 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Resin &amp; Material Waste</div>
+        <div class="lc-body">Extruder operators without reinforced knowledge of temperature profiles, material blend ratios and die settings consume 2–3% more resin than optimised production requires. At Polyplast's scale, that invisible overspend compounds to hundreds of thousands of dollars annually before it ever shows up on a report.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.5%&ndash;2%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$150K&ndash;$200K</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$15K&ndash;$20K</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Resin cost inflation of 2–3% compresses margins on every production run; melt inconsistency produces brittle or out-of-spec products that either fail QC or reach customers as substandard. Scrap volumes rise and raw material purchasing pressure intensifies.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Microlearning modules on extruder calibration, material ratio protocols and blend sequencing — reinforced by role-specific dashboards that flag waste deviation by shift and operator, so supervisors catch drift before it becomes a batch loss.</div>
+  </div>
+
+  <!-- Card 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Finished Goods Rejects</div>
+        <div class="lc-body">Mould tolerance, cooling time and surface inspection are precision skills. Operators without reinforced knowledge miss dimensional deviations and structural weaknesses before products ship — triggering returns, rework and credit notes, particularly from anchor customer UCB Brewery where a single defective crate batch carries significant commercial cost.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$150K&ndash;$225K</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$15K&ndash;$22.5K</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Customer returns and replacement costs; rework labour and material expense; reputational exposure with UCB Brewery and other key accounts that drives long-term volume risk well beyond the immediate financial hit.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Quality inspection scorecards and mould-setting protocols trained and tracked by operator and production line — with individual accountability for defect rates visible to supervisors in real time, not surfaced weeks later in a quality audit.</div>
+  </div>
+
+  <!-- Card 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Unplanned Equipment Downtime</div>
+        <div class="lc-body">Plastic extrusion equipment is sensitive to operator procedure. Incorrect start-up sequences, failure to identify early warning signs and reactive maintenance habits cause unplanned stoppages that idle production lines worth thousands of dollars per shift.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;0.75%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$60K&ndash;$90K</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$6K&ndash;$9K</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Lost throughput on high-capacity extrusion lines; emergency maintenance costs that dwarf what planned maintenance would have cost; order fulfilment delays that strain customer relationships.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Machine operator knowledge baselines covering correct start-up, shutdown and fault identification — with dashboard visibility of knowledge gaps by operator and shift, so maintenance investment targets the highest-risk individuals before the next stoppage.</div>
+  </div>
+
+  <!-- Card 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Safety &amp; Regulatory Incidents</div>
+        <div class="lc-body">Plastics extrusion involves high heat, pressurised equipment and chemical exposure. Operators without reinforced safety knowledge incur higher rates of lost-time injuries — creating CNPS liability, lost production capacity and the compounding cost of reactive safety management rather than prevention.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">2%&ndash;4% of payroll</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$30K&ndash;$60K</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$3K&ndash;$6K</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Lost-time injuries and CNPS penalty exposure; elevated insurance premiums; regulatory scrutiny that creates business continuity risk and management distraction that compounds production inefficiency.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Safety protocol microlearning with CNPS-aligned compliance tracking and individual scorecard accountability — shifting Polyplast from reactive incident response to proactive, measurable safety performance.</div>
+  </div>
+
+  <!-- Card 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">New Line Capacity Shortfall</div>
+        <div class="lc-body">Polyplast's investment in new machinery is a growth bet — but new equipment only delivers its capacity promise when operators can run it at full spec. Knowledge gaps in new machine procedures, throughput optimisation and quality standards delay payback on that capital investment, month after month.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">20%&ndash;25%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">$300K&ndash;$375K</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">$30K&ndash;$37.5K</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Extended ramp-up periods on newly installed machinery; sub-optimal yield from equipment running below rated capacity; delayed return on capital investment that undermines the financial case for continued expansion.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Role-specific onboarding for new equipment with spaced reinforcement of machine specs, SOPs and throughput targets — building the operator competency needed to hit full capacity within 90 days of line commissioning, not 12 months.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- VALUE SUMMARY — OUTSIDE .page -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">$690K&ndash;$950K</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">$69K&ndash;$95K per year</span></div>
+  </div>
+  <p>Polyplast&#8217;s exposure to resin waste, customer returns, equipment downtime, safety incidents and new machinery underperformance represents an estimated <strong>$690K&ndash;$950K in annual value that never reaches the bottom line</strong> &mdash; all traceable to a production floor where critical operational knowledge exists in pockets but is not consistently applied, measured by individual or shift, or systematically reinforced to prevent decay. Digemy solves this structurally: mapping skills to every frontline role, delivering microlearning that sticks, surfacing gaps in real time by operator and line, and driving accountability through scorecards. The measurable result is <strong>$69K&ndash;$95K in recovered operational performance per year</strong> &mdash; from a single, scalable training investment that grows with Polyplast&#8217;s capacity.</p>
+</div>
+
+<!-- KG MATRIX + SKILLS MATRIX — second .page block -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The matrix below maps critical knowledge gaps at the operator level to their direct business impact and the Digemy intervention that closes them. Across Polyplast&#8217;s two highest-value leakage areas, the pattern is consistent: gaps are not in awareness but in the consistent application of precise technical knowledge under production pressure &mdash; exactly the failure mode that spaced reinforcement and scorecard accountability is designed to fix.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Roles: Machine Operator &nbsp;&middot;&nbsp; Quality Inspector &nbsp;&middot;&nbsp; Leakage 01 &amp; 02</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead>
+        <tr>
+          <th style="width:34%">Knowledge Gap</th>
+          <th style="width:33%">Business Impact</th>
+          <th style="width:33%">Digemy Solution</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Machine Operator &mdash; Leakage 01: Resin &amp; Material Waste</td></tr>
+        <tr>
+          <td>Incorrect extruder temperature profiling by material grade</td>
+          <td>Melt inconsistency drives 2–3% excess resin usage and brittle product output</td>
+          <td>Microlearning module: temperature calibration by product line, reinforced at shift start</td>
+        </tr>
+        <tr>
+          <td>Wrong material blend ratios and regrind limits</td>
+          <td>Excess virgin resin usage; product brittleness increasing downstream reject rates</td>
+          <td>Spaced quiz: blend ratios and regrind limits per SKU, tracked by operator</td>
+        </tr>
+        <tr>
+          <td>Die head misalignment procedure gaps</td>
+          <td>Dimensional non-conformance; batch-level scrap output on high-volume lines</td>
+          <td>Visual SOP reinforcement: die setup, alignment verification and sign-off steps</td>
+        </tr>
+        <tr>
+          <td>Missed purging procedures between material changeovers</td>
+          <td>Cross-contamination and degraded product quality; rework or full batch scrapping</td>
+          <td>Scorecard: purge compliance tracked by operator and shift, flagged in supervisor dashboard</td>
+        </tr>
+        <tr class="role-hdr"><td colspan="3">Role: Quality Control Inspector &mdash; Leakage 02: Finished Goods Rejects</td></tr>
+        <tr>
+          <td>Inconsistent application of dimensional tolerance specs by SKU</td>
+          <td>Out-of-spec crates and basins passing inspection and reaching UCB Brewery, triggering returns</td>
+          <td>Microlearning: tolerance ranges per product line with visual reference, assessed monthly</td>
+        </tr>
+        <tr>
+          <td>Failure to identify early-stage structural defects (sink marks, weld lines)</td>
+          <td>Structurally compromised beer crates shipped; customer return volumes and credit exposure rise</td>
+          <td>Defect recognition training with image-based microassessments; scorecard tracking per inspector</td>
+        </tr>
+        <tr>
+          <td>Incorrect cooling time judgement before mould ejection</td>
+          <td>Warped or distorted finished product requiring rework or scrapping post-ejection</td>
+          <td>Cooling curve reinforcement: product-specific minimum hold times, tested by role in Digemy</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="scroll-fade">&#8592;&nbsp;Swipe to see all columns&nbsp;&#8594;</div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Polyplast&#8217;s operational performance depends on a production-floor workforce running precision extrusion and moulding equipment across multi-shift operations &mdash; where technical knowledge gaps compound quietly into yield losses, defect batches and machinery underperformance. <strong>Digemy&#8217;s Skills Matrix maps and baselines knowledge</strong> for every frontline role &mdash; Machine Operator, Mould Technician, Quality Inspector, Shift Supervisor and Maintenance Technician &mdash; against the protocols that determine output quality, equipment reliability and safety outcomes. <strong>Spaced-reinforcement microlearning</strong> drives retention of extruder calibration, defect detection standards and CNPS-aligned safety compliance. <strong>Real-time dashboards</strong> give factory management instant visibility of knowledge gaps by operator, line and shift &mdash; so underperformance is identified and addressed before it becomes a customer complaint, a safety incident or a machine stoppage. <strong>Evaluation scorecards</strong> at individual, line and factory level close the accountability loop &mdash; turning operational knowledge into a measurable manufacturing asset that protects Polyplast&#8217;s quality promise and accelerates the return on its new machinery investment.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<div class="footer">digemy.com &mdash; Polyplast &mdash; Operational Optimisation Report</div>
+</body>
+</html>
