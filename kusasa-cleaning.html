@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kusasa Cleaning — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+.scroll-fade { display: none; }
+.deliver-wrap { background: var(--navy); padding: 52px 0 48px; }
+.deliver-inner { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
+.deliver-eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 2.5px; color: rgba(255,255,255,0.35); font-weight: 800; margin-bottom: 10px; }
+.deliver-title { font-size: 30px; font-weight: 900; color: white; letter-spacing: -0.5px; margin-bottom: 32px; }
+.deliver-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.dc { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 22px 20px 20px; }
+.dc-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px; }
+.dc-icon { font-size: 20px; line-height: 1; }
+.dc-name { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+.dc ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
+.dc li { display: flex; gap: 7px; align-items: flex-start; font-size: 12.5px; color: rgba(255,255,255,0.6); font-weight: 500; line-height: 1.5; }
+.dc-arrow { color: var(--coral); flex-shrink: 0; margin-top: 2px; font-size: 10px; }
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+  .r-tbl, .mx-table { min-width: 600px; }
+  .tbl-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background-image:
+      linear-gradient(to right, white, white),
+      linear-gradient(to right, white, white),
+      linear-gradient(to right, rgba(22,32,64,0.18), rgba(22,32,64,0)),
+      linear-gradient(to left, rgba(22,32,64,0.18), rgba(22,32,64,0));
+    background-position: left center, right center, left center, right center;
+    background-repeat: no-repeat;
+    background-color: white;
+    background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+    background-attachment: local, local, scroll, scroll;
+  }
+  .scroll-fade { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 11px; font-weight: 700; color: var(--muted); padding: 7px 0 2px; opacity: 0.55; letter-spacing: 0.5px; text-transform: uppercase; }
+  .deliver-wrap { padding: 36px 0 32px; }
+  .deliver-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .deliver-title { font-size: 22px; margin-bottom: 22px; }
+  .dc { padding: 16px 14px; }
+  .dc li { font-size: 11.5px; }
+}
+@media (max-width: 400px) {
+  .deliver-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Commercial &amp; Contract Cleaning</div>
+  <h1 style="margin-bottom:32px;">Kusasa Cleaning</h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R95m</div><div class="hs-sub">estimated, SA multi-province network</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R4.56m&ndash;R7.41m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R456k&ndash;R741k</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- SECTION 1: WHY DIGEMY -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>Kusasa's promise to every client is a spotless, safe, consistently-serviced site — every shift, on every contract, across Gauteng, KwaZulu-Natal and the Western Cape. That promise is made or broken entirely at the frontline, by cleaning operatives and technicians working largely unsupervised, far from head office.</p>
+    </div>
+    <p style="font-size:14px;color:var(--navy);font-weight:700;margin-bottom:10px;">
+      Where the loss happens &mdash; an estimated
+      <span style="color:var(--coral);">R4.56m&ndash;R7.41m</span> a year:
+    </p>
+    <div class="pill-row" style="margin-bottom:24px;">
+      <span class="pill">SLA Consistency</span>
+      <span class="pill">H&amp;S Compliance</span>
+      <span class="pill">Specialised Services</span>
+      <span class="pill">Contract Onboarding</span>
+      <span class="pill">Chemical Dosing</span>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;Nobody phones to say the bins were emptied on time. They only phone when they weren&rsquo;t.&#8221;</div>
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy maps and baselines knowledge across every Kusasa frontline role &mdash; Cleaning Operative, Site Supervisor, Pest Control Technician and High-Access Window Cleaning Technician. Spaced-reinforcement microlearning drives retention of SLA checklist execution, chemical handling protocol and site-specific onboarding standards. Real-time dashboards surface knowledge gaps by site and role, pinpointing exactly where Kusasa's R4.56m&ndash;R7.41m in annual leakage is concentrating. Evaluation scorecards at individual, site and regional level create accountability &mdash; turning that leakage into R456k&ndash;R741k of recovered performance across Kusasa's contract base in Gauteng, KwaZulu-Natal and the Western Cape.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: FRONTLINE WORKFORCE -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Cleaning Operative / Contract Cleaner</td><td>Task &amp; SLA checklist consistency</td></tr>
+        <tr><td>Site Supervisor</td><td>H&amp;S compliance &amp; chemical handling oversight</td></tr>
+        <tr><td>Hygiene &amp; Washroom Services Technician</td><td>Consumable dosing &amp; service consistency</td></tr>
+        <tr><td>Pest Control Technician</td><td>Chemical application &amp; regulatory compliance</td></tr>
+        <tr><td>High-Access / Window Cleaning Technician</td><td>Fall-protection &amp; technical certification</td></tr>
+        <tr><td>Strip &amp; Seal / Floor Care Technician</td><td>Chemical dosing &amp; surface-specific technique</td></tr>
+        <tr><td>Area / Regional Manager</td><td>New-site mobilisation &amp; induction oversight</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> 400+ frontline employees across contract cleaning, hygiene, pest management, specialised and high-access teams, operating in Gauteng, KwaZulu-Natal and the Western Cape (source: company website).</div>
+</div>
+
+<!-- SECTION 3: WHERE LOSS HAPPENS + ROI DRIVERS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>Site Quality &amp; SLA Failures</td><td>1.2%&ndash;2.0% of total revenue</td><td>R1.14m</td><td>R1.90m</td><td class="rec">R114k&ndash;R190k</td></tr>
+        <tr><td>H&amp;S &amp; Compliance Gaps</td><td>0.8%&ndash;1.5% of total revenue</td><td>R760k</td><td>R1.425m</td><td class="rec">R76k&ndash;R142.5k</td></tr>
+        <tr><td>Specialised Services Errors</td><td>1.0%&ndash;2.0% of specialised revenue (~25% of total)</td><td>R237.5k</td><td>R475k</td><td class="rec">R23.75k&ndash;R47.5k</td></tr>
+        <tr><td>Contract Onboarding Shortfall</td><td>20%&ndash;30% of new/mobilised contract revenue (~12% of total)</td><td>R2.28m</td><td>R3.42m</td><td class="rec">R228k&ndash;R342k</td></tr>
+        <tr><td>Consumables &amp; Equipment Wastage</td><td>1.5%&ndash;2.0% of consumables/equipment cost base (~10% of total)</td><td>R142.5k</td><td>R190k</td><td class="rec">R14.25k&ndash;R19k</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R4.56m</td><td>R7.41m</td><td class="rec">R456k&ndash;R741k</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="scroll-fade">&#8592;&nbsp;Swipe to see all columns&nbsp;&#8594;</div>
+</div>
+
+<!-- SECTION 4: TOP 5 LEAKAGE CARDS -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">Site Quality &amp; SLA Consistency Gaps</div>
+        <div class="lc-body">Multi-site cleaning quality depends entirely on whether each on-site team executes the client's exact SLA checklist, every shift, without a supervisor present to catch drift. Where knowledge of a specific client's standards fades between induction and daily practice, checklist items get skipped and complaints follow.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.2%&ndash;2.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.14m&ndash;R1.9m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R114k&ndash;R190k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Recurring client complaints erode the account relationship long before a formal contract review, and unbilled rework visits absorb labour hours. Persistent SLA drift is one of the most common root causes of non-renewal in contract cleaning.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Spaced-repetition refreshers keep each site team's exact SLA checklist top-of-mind between supervisor visits, not just at induction. Managers get visibility into which sites are drifting before the client notices.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">H&amp;S &amp; Chemical Handling Compliance Gaps</div>
+        <div class="lc-body">Contract cleaning teams handle industrial-strength chemicals and work under the OHS Act and COID framework daily, often with safety training delivered once at onboarding and rarely reinforced. When protocol knowledge decays, incidents, near-misses and compliance exposure follow.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.8%&ndash;1.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R760k&ndash;R1.425m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R76k&ndash;R142.5k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Safety incidents trigger COID claims, site downtime and client-side audits that can pause or terminate a contract. Chemical misuse also damages client property, creating liability the company absorbs directly.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Ongoing micro-refreshers on chemical handling, PPE and incident protocol keep safety knowledge current across a mobile, multi-site workforce head office can't supervise every shift.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Specialised Services Technical Errors</div>
+        <div class="lc-body">Pest control, high-access window cleaning and strip/seal floor work are higher-margin, higher-skill services where a technical error is costly to fix and can damage trust in the wider contract. These roles depend on certification-level knowledge that standard induction alone doesn't sustain over time.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.0%&ndash;2.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R237.5k&ndash;R475k</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R23.75k&ndash;R47.5k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">A single high-access or pest-control error can mean a redo visit, a damage claim, or — in the worst case — a safety incident that puts the entire specialised contract at risk.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Role-specific spaced learning keeps technical protocols and certification knowledge sharp for smaller, specialised technician teams where one knowledge gap has an outsized cost.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">New Contract Mobilisation &amp; Onboarding Shortfall</div>
+        <div class="lc-body">Every new site win — and every integration such as the 2025 Metro Sanitary Solutions acquisition — requires rapidly onboarding teams to a new client's specific standards and layout. Slow, inconsistent onboarding is a leading driver of early-contract dissatisfaction, right when the relationship is most fragile.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">20%&ndash;30%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R2.28m&ndash;R3.42m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R228k&ndash;R342k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">A shaky first 90 days on a new contract sets the tone for the entire relationship and is a leading cause of early churn, undermining the sales effort that won the contract.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">A structured onboarding learning pathway gets new and transferred teams to full site-specific competence faster, protecting the critical early-contract period on every mobilisation.</div>
+  </div>
+
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Consumables &amp; Chemical Dosing Wastage</div>
+        <div class="lc-body">Over- or under-dosing cleaning chemicals and mishandling equipment quietly inflates the cost of every contract, without ever showing up as a single visible failure. Left unchecked, this knowledge gap erodes margin on every site, every month.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.5%&ndash;2.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R142.5k&ndash;R190k</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R14.25k&ndash;R19k</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Chemical wastage and equipment misuse raise the direct cost of service delivery on every contract, compressing margin that's already thin in a competitive, labour-intensive industry.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Reinforced dosing and equipment-care protocols reduce wastage at the point of use, protecting margin without adding a single extra supervisory visit.</div>
+  </div>
+
+</div>
+</div><!-- end .page -->
+
+<!-- VALUE SUMMARY -->
+<div class="vs">
+  <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+  <div class="vs-pills">
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R4.56m&ndash;R7.41m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R456k&ndash;R741k per year</span></div>
+  </div>
+  <p>Across site quality, safety compliance, specialised services, new-contract onboarding and consumable dosing, Kusasa's frontline knowledge gaps represent an estimated <strong>R4.56m&ndash;R7.41m</strong> in annual leakage. A conservative 10% recovery — closing the gap between what teams are trained on once and what they actually retain and apply on site — is worth <strong>R456k&ndash;R741k</strong> a year, without adding a single extra supervisor.</p>
+</div>
+
+<!-- KG MATRIX + SKILLS MATRIX -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The matrix below illustrates how a single unreinforced knowledge gap on the frontline translates directly into business impact — and how Digemy closes it.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Cleaning Operative &nbsp;&middot;&nbsp; Leakage 01 &mdash; Site Quality &amp; SLA Consistency Gaps</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: Cleaning Operative</td></tr>
+        <tr><td>Inconsistent understanding of client-specific SLA checklist items across shifts and rotating staff.</td><td>Skipped or rushed tasks trigger client complaints, rework visits and put contract renewal at risk.</td><td>Spaced micro-refreshers reinforce the exact SLA checklist per site, keeping standards consistent regardless of which shift or team is on site.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="scroll-fade">&#8592;&nbsp;Swipe to see all columns&nbsp;&#8594;</div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Digemy's platform maps the full skills matrix for every Kusasa frontline role, tracks retention of that knowledge over time, visualises gaps by site and role through real-time dashboards, and confirms knowledge is actually applied on site through evaluation scorecards — closing the loop from training delivered to standards met.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<!-- WHAT WE DELIVER -->
+<div class="deliver-wrap">
+  <div class="deliver-inner">
+    <div class="deliver-eyebrow">The Digemy Platform</div>
+    <div class="deliver-title">What We Deliver</div>
+    <div class="deliver-grid">
+
+      <div class="dc">
+        <div class="dc-head">
+          <span class="dc-icon">&#128241;</span>
+          <span class="dc-name" style="color:var(--purple);">Access</span>
+        </div>
+        <ul>
+          <li><span class="dc-arrow">&#9658;</span>Mobile-first microlearning</li>
+          <li><span class="dc-arrow">&#9658;</span>Data-light or reverse-billed</li>
+          <li><span class="dc-arrow">&#9658;</span>Integrated with WhatsApp</li>
+          <li><span class="dc-arrow">&#9658;</span>Always-on 24/7 training access</li>
+          <li><span class="dc-arrow">&#9658;</span>Personalised reinforcement for lasting retention</li>
+        </ul>
+      </div>
+
+      <div class="dc">
+        <div class="dc-head">
+          <span class="dc-icon">&#128202;</span>
+          <span class="dc-name" style="color:var(--coral);">Performance</span>
+        </div>
+        <ul>
+          <li><span class="dc-arrow">&#9658;</span>Long-term retention post-training</li>
+          <li><span class="dc-arrow">&#9658;</span>Dashboards identify knowledge gaps driving operational pain</li>
+          <li><span class="dc-arrow">&#9658;</span>Evaluation scorecards ensure training application is measured</li>
+        </ul>
+      </div>
+
+      <div class="dc">
+        <div class="dc-head">
+          <span class="dc-icon">&#127942;</span>
+          <span class="dc-name" style="color:#4ADE80;">Culture &amp; Engagement</span>
+        </div>
+        <ul>
+          <li><span class="dc-arrow">&#9658;</span>Daily 1-min bite-sized learning culture</li>
+          <li><span class="dc-arrow">&#9658;</span>Gamification and real-time mobile rewards</li>
+          <li><span class="dc-arrow">&#9658;</span>Broadcast important company info on social feed</li>
+          <li><span class="dc-arrow">&#9658;</span>Inspire and engage the entire workforce</li>
+        </ul>
+      </div>
+
+      <div class="dc">
+        <div class="dc-head">
+          <span class="dc-icon">&#9889;</span>
+          <span class="dc-name" style="color:var(--coral);">Delivery</span>
+        </div>
+        <ul>
+          <li><span class="dc-arrow">&#9658;</span>AI-driven content in minutes, not months</li>
+          <li><span class="dc-arrow">&#9658;</span>Reach all employees in real time, all the time</li>
+          <li><span class="dc-arrow">&#9658;</span>95% training application rate</li>
+          <li><span class="dc-arrow">&#9658;</span>Personalised reinforcement &mdash; no relearning</li>
+          <li><span class="dc-arrow">&#9658;</span>Role profiles that adjust as employees move</li>
+          <li><span class="dc-arrow">&#9658;</span>Learning pipelines to the next career level</li>
+        </ul>
+      </div>
+
+      <div class="dc">
+        <div class="dc-head">
+          <span class="dc-icon">&#128203;</span>
+          <span class="dc-name" style="color:var(--purple);">Reporting</span>
+        </div>
+        <ul>
+          <li><span class="dc-arrow">&#9658;</span>Managers have direct dashboard access to their teams</li>
+          <li><span class="dc-arrow">&#9658;</span>Automated WTR reports</li>
+          <li><span class="dc-arrow">&#9658;</span>Integration into any reporting environment</li>
+        </ul>
+      </div>
+
+      <div class="dc">
+        <div class="dc-head">
+          <span class="dc-icon">&#127919;</span>
+          <span class="dc-name" style="color:#4ADE80;">Strategy</span>
+        </div>
+        <ul>
+          <li><span class="dc-arrow">&#9658;</span>Identify biggest operational risks</li>
+          <li><span class="dc-arrow">&#9658;</span>Knowledge gap and skills matrices per role</li>
+          <li><span class="dc-arrow">&#9658;</span>Reduce time to performance by up to 75%</li>
+          <li><span class="dc-arrow">&#9658;</span>Optimise operational efficiency, sales and CX</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="footer">digemy.com &mdash; Kusasa Cleaning &mdash; Operational Optimisation Report</div>
+</body>
+</html>
