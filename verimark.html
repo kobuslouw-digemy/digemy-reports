@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Verimark — Digemy Operational Optimisation Report</title>
+<title>Verimark Holdings — Digemy Operational Optimisation Report</title>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,9 +24,8 @@ body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(-
 .wordmark span { color:var(--purple); }
 .hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
 .eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
-.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; color:white; letter-spacing:-1px; }
 .hero h1 span { color:var(--purple); }
-.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
 .hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
 .hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
 .hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
@@ -44,11 +43,6 @@ body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(-
 .card p strong { color:var(--navy); font-weight:700; }
 .pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
 .pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
-.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
-.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
-.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
-.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
-.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
 .tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
 table { width:100%; border-collapse:collapse; font-size:14px; }
 thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
@@ -99,6 +93,19 @@ tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font
 .roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
 .roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
 .footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+.scroll-fade { display: none; }
+.deliver-wrap { background: var(--navy); padding: 52px 0 48px; }
+.deliver-inner { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
+.deliver-eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 2.5px; color: rgba(255,255,255,0.35); font-weight: 800; margin-bottom: 10px; }
+.deliver-title { font-size: 30px; font-weight: 900; color: white; letter-spacing: -0.5px; margin-bottom: 32px; }
+.deliver-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.dc { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 22px 20px 20px; }
+.dc-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px; }
+.dc-icon { font-size: 20px; line-height: 1; }
+.dc-name { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+.dc ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
+.dc li { display: flex; gap: 7px; align-items: flex-start; font-size: 12.5px; color: rgba(255,255,255,0.6); font-weight: 500; line-height: 1.5; }
+.dc-arrow { color: var(--coral); flex-shrink: 0; margin-top: 2px; font-size: 10px; }
 @media (max-width: 640px) {
   .hero { padding: 32px 24px 28px; }
   .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
@@ -116,7 +123,6 @@ tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font
   .vs { padding: 24px 20px; border-radius: 12px; }
   .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
   .vsp-v { font-size: 18px; }
-  .biz-grid { grid-template-columns: 1fr; }
   .mx-narrative { padding: 18px 18px; font-size: 14px; }
   .sec-title { font-size: 18px; }
   table { font-size: 12px; }
@@ -125,7 +131,30 @@ tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font
   .sp { padding: 8px 14px; }
   .sp-l { font-size: 11px; }
   .sp-v { font-size: 12px; }
-  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+  .r-tbl, .mx-table { min-width: 600px; }
+  .tbl-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background-image:
+      linear-gradient(to right, white, white),
+      linear-gradient(to right, white, white),
+      linear-gradient(to right, rgba(22,32,64,0.18), rgba(22,32,64,0)),
+      linear-gradient(to left, rgba(22,32,64,0.18), rgba(22,32,64,0));
+    background-position: left center, right center, left center, right center;
+    background-repeat: no-repeat;
+    background-color: white;
+    background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+    background-attachment: local, local, scroll, scroll;
+  }
+  .scroll-fade { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 11px; font-weight: 700; color: var(--muted); padding: 7px 0 2px; opacity: 0.55; letter-spacing: 0.5px; text-transform: uppercase; }
+  .deliver-wrap { padding: 36px 0 32px; }
+  .deliver-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .deliver-title { font-size: 22px; margin-bottom: 22px; }
+  .dc { padding: 16px 14px; }
+  .dc li { font-size: 11.5px; }
+}
+@media (max-width: 400px) {
+  .deliver-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -136,64 +165,78 @@ tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font
     <div class="wordmark">digemy.com</div>
     <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
   </div>
-  <div class="eyebrow">South Africa &middot; Retail &amp; Direct-Response Marketing (DRTV)</div>
-  <h1 style="margin-bottom:32px;">Verimark <span>Frontline Sales Force</span></h1>
+  <div class="eyebrow">South Africa &middot; Direct Marketing &amp; Consumer Products</div>
+  <h1 style="margin-bottom:32px;">Verimark <span>Holdings</span></h1>
   <div class="hero-stats">
-    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R650m</div><div class="hs-sub">private group, conservative estimate</div></div>
-    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R28m&ndash;R48m</div><div class="hs-sub">estimated annually</div></div>
-    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R2.8m&ndash;R4.8m</div><div class="hs-sub">potential per year</div></div>
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R550m</div><div class="hs-sub">estimated; JSE-listed</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R26.3m&ndash;R41.6m</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R2.6m&ndash;R4.2m</div><div class="hs-sub">potential per year</div></div>
   </div>
 </div>
 
 <div class="page">
 
+<!-- SECTION 1: WHY DIGEMY -->
 <div class="section">
   <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
   <div class="exec-card">
     <div class="exec-body">
-      <p>Verimark runs an exceptional face-to-face training operation &mdash; four trainers delivering hands-on sessions to over a thousand sales executives every second month across Johannesburg, Cape Town and Durban. But the sharpest gap opens at the worst possible time: the seasonal flexi hiring rush ahead of the festive period, precisely when many retail partners freeze in-store training altogether. Digemy doesn't replace Verimark's trainers or their in-person craft; it gives every rep a mobile, data-light way to recap product knowledge in the gaps between sessions, no store visit required.</p>
+      <p>Verimark's commercial engine runs on frontline performance &mdash; demonstrators who convert in-store browsers, call agents who close high-intent DRTV leads, and merchandisers who hold shelf integrity across hundreds of retail partner locations. When any of those touchpoints carries inconsistent product knowledge, sales walk out the door before they&apos;re even counted.</p>
     </div>
-    <div class="killer" style="border-left-color:var(--coral);">&#8220;The busiest six weeks of the year arrive with the least-trained hands on the floor.&#8221;</div>
+    <p style="font-size:14px;color:var(--navy);font-weight:700;margin-bottom:10px;">Where the loss happens &mdash; an estimated <span style="color:var(--coral);">R26.3m&ndash;R41.6m</span> a year:</p>
+    <div class="pill-row" style="margin-bottom:24px;">
+      <span class="pill">Demo Conversion</span>
+      <span class="pill">DRTV Call Gap</span>
+      <span class="pill">Product Returns</span>
+      <span class="pill">Launch Ramp</span>
+      <span class="pill">Merch Compliance</span>
+    </div>
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;The strongest infomercial in the world can&#8217;t close a sale your demonstrator hasn&#8217;t prepared for.&#8221;</div>
     <div class="roi-block">
       <h4>&#129504; How Digemy Optimises ROI</h4>
-      <p>Digemy's browser-based, data-light recap tool works around retail partners' phone restrictions by living in the quiet minutes before a shift or during a break, not mid-sale on the shop floor. Layered onto Verimark's existing biannual training, it compresses the flexi ramp curve, keeps objection-handling sharp between sessions, and gives the four-person training team live visibility into exactly which knowledge gaps to close next &mdash; without adding a single trainer to the road schedule.</p>
+      <p>Digemy maps and baselines knowledge across every Verimark frontline role &mdash; In-Store Demonstrator, DRTV Call Agent, Retail Merchandiser and Field Sales Representative. Spaced-reinforcement microlearning drives retention of product demonstration technique, DRTV call conversion, and merchandising compliance. Real-time dashboards surface knowledge gaps by channel and role, pinpointing exactly where Verimark&apos;s R26.3m&ndash;R41.6m in annual leakage is concentrating. Evaluation scorecards at individual, banner and network level create accountability &mdash; turning that leakage into R2.6m&ndash;R4.2m of recovered performance across Verimark&apos;s full frontline network.</p>
     </div>
   </div>
 </div>
 
+<!-- SECTION 2: FRONTLINE WORKFORCE -->
 <div class="section">
   <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
   <div class="tbl-wrap">
     <table>
       <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
       <tbody>
-        <tr><td>Sales Executives (in-store, nationwide)</td><td>Product objection-handling &amp; retention decay between sessions</td></tr>
-        <tr><td>Flexi / Seasonal Sales Staff (Oct&ndash;Jan peak)</td><td>Rushed onboarding during the highest-value selling period</td></tr>
-        <tr><td>Sales Reps / Regional Supervisors</td><td>Inconsistent in-store coaching quality across regions</td></tr>
-        <tr><td>Training &amp; Recruitment Team</td><td>Four trainers stretched thin covering the full frontline face-to-face</td></tr>
+        <tr><td>In-Store Product Demonstrators</td><td>Demo conversion failure; inability to articulate technical differentiators under pressure</td></tr>
+        <tr><td>DRTV / Inbound Call Centre Agents</td><td>Objection handling gaps; missed upsell; incorrect product specs cited on inbound calls</td></tr>
+        <tr><td>Retail Merchandisers</td><td>Shelf compliance failures; expired POS; non-functional demo units at retail partners</td></tr>
+        <tr><td>Field Sales Representatives</td><td>Inconsistent product pitch quality; inadequate knowledge of full SKU range at account level</td></tr>
+        <tr><td>E-commerce &amp; Telesales Agents</td><td>Low cross-sell conversion; poor post-purchase support leading to avoidable returns</td></tr>
       </tbody>
     </table>
   </div>
-  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Verimark's frontline runs on roughly 1,000+ sales executives across owned stores and 2,000+ retail chain placements nationwide, managed by around 65 regional sales reps and supported by a four-person training team split between Johannesburg, Cape Town and Durban.</div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> Verimark deploys an estimated 650&ndash;900 frontline staff nationally, spanning in-store demonstrators at Checkers, Pick n Pay, Makro, Game, Dis-Chem and Clicks, DRTV call centre operations, field merchandising teams, and a growing e-commerce support function. All figures are inferred from Verimark&apos;s known retail footprint, JSE disclosures, and industry benchmarks; no official headcount has been published.</div>
 </div>
 
+<!-- SECTION 3: WHERE LOSS HAPPENS -->
 <div class="section">
   <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
   <div class="tbl-wrap">
     <table class="r-tbl">
       <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
       <tbody>
-        <tr><td>Seasonal Flexi Ramp-Up Gap</td><td>1.5%&ndash;2% of peak-season (Oct&ndash;Jan) floor sales revenue (~R156m)</td><td>R2.34m</td><td>R3.12m</td><td class="rec">R234k&ndash;R312k</td></tr>
-        <tr><td>New Product Launch Adoption Lag</td><td>20%&ndash;35% shortfall of NPD revenue potential (~R78m)</td><td>R15.6m</td><td>R27.3m</td><td class="rec">R1.56m&ndash;R2.73m</td></tr>
-        <tr><td>Cross-Regional Execution Variance</td><td>1%&ndash;2% of floor sales revenue (~R390m)</td><td>R3.9m</td><td>R7.8m</td><td class="rec">R390k&ndash;R780k</td></tr>
-        <tr><td>Objection-Handling &amp; Retention Decay</td><td>1%&ndash;1.5% of floor sales revenue (~R390m)</td><td>R3.9m</td><td>R5.85m</td><td class="rec">R390k&ndash;R585k</td></tr>
-        <tr><td>Manual Feedback &amp; Knowledge-Gap Blindspot</td><td>0.5%&ndash;1% of floor sales revenue (~R390m)</td><td>R1.95m</td><td>R3.9m</td><td class="rec">R195k&ndash;R390k</td></tr>
-        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R27.69m</td><td>R47.97m</td><td class="rec">R2.77m&ndash;R4.8m</td></tr>
+        <tr><td>Demo Conversion Gap</td><td>1.0%&ndash;2.5% of demonstrator-influenced retail sales (~R150m sub-base)</td><td>R1.5m</td><td>R3.75m</td><td class="rec">R150k&ndash;R375k</td></tr>
+        <tr><td>DRTV Call Conversion</td><td>1.0%&ndash;2.0% of DRTV/telesales channel (~R120m sub-base)</td><td>R1.2m</td><td>R2.4m</td><td class="rec">R120k&ndash;R240k</td></tr>
+        <tr><td>Product Returns &amp; Avoidable Refunds</td><td>25%&ndash;35% of returns are avoidable; ~5% returns rate on revenue base</td><td>R6.9m</td><td>R9.6m</td><td class="rec">R690k&ndash;R960k</td></tr>
+        <tr><td>New Product Launch Ramp</td><td>20%&ndash;30% shortfall on NPD revenue potential (~R75m annually)</td><td>R15.0m</td><td>R22.5m</td><td class="rec">R1.5m&ndash;R2.25m</td></tr>
+        <tr><td>Retail Merchandising Compliance</td><td>0.5%&ndash;1.0% of retail sales base (~R330m)</td><td>R1.65m</td><td>R3.3m</td><td class="rec">R165k&ndash;R330k</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R26.25m</td><td>R41.55m</td><td class="rec">R2.625m&ndash;R4.155m</td></tr>
       </tbody>
     </table>
   </div>
+  <div class="scroll-fade">&#8592;&nbsp;Swipe to see all columns&nbsp;&#8594;</div>
 </div>
 
+<!-- SECTION 4: TOP 5 LEAKAGE CARDS -->
 <div class="section">
   <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
 
@@ -201,135 +244,230 @@ tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font
     <div class="lc-top">
       <div>
         <div class="lc-num">Leakage 01</div>
-        <div class="lc-title">Seasonal Flexi Ramp-Up Gap</div>
-        <div class="lc-body">Verimark brings on a wave of flexi sales staff ahead of the festive season, exactly when its four trainers are stretched thinnest across the country. New hires often reach the floor with only a fraction of the product knowledge veteran reps carry.</div>
+        <div class="lc-title">Demo Conversion Gap</div>
+        <div class="lc-body">Verimark&apos;s retail model depends on demonstrators converting in-store curiosity into sales decisions at the shelf. When demonstrators can&apos;t confidently articulate technical specs &mdash; IPL wavelength ranges, device safety certifications, warranty terms &mdash; customers walk. The sale doesn&apos;t recover elsewhere.</div>
       </div>
       <div class="lc-stats">
-        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.5%&ndash;2%</span></div>
-        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R2.34m&ndash;R3.12m</span></div>
-        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R234k&ndash;R312k</span></div>
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.0%&ndash;2.5%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.5m&ndash;R3.75m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R150k&ndash;R375k</span></div>
       </div>
     </div>
     <div class="tag t-eff"><span class="dot"></span>Effects</div>
-    <div class="eff-txt">Flexi reps miss upsell cues and mishandle objections during the highest-traffic weeks of the year. Conversion on peak-season floor traffic runs below what a fully-ramped team would deliver.</div>
+    <div class="eff-txt">Missed in-store conversions, increased browse-and-leave rates, customer complaints about uninformed demonstrators, and damaged retail partner confidence in the Verimark brand at shelf.</div>
     <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
-    <div class="dig-txt">New flexi hires get a mobile onboarding recap they can work through before their first shift and revisit in quiet moments on the floor. Ramp time compresses without adding a single trainer to the road schedule.</div>
+    <div class="dig-txt">Bite-sized product knowledge modules covering technical specs, competitor comparisons, and objection scripts are pushed to demonstrators&apos; phones with spaced repetition &mdash; so they arrive at the shelf knowing the product as well as the engineer who designed it.</div>
   </div>
 
   <div class="lc">
     <div class="lc-top">
       <div>
         <div class="lc-num">Leakage 02</div>
-        <div class="lc-title">New Product Launch Adoption Lag</div>
-        <div class="lc-body">When Verimark's marketing team briefs a new product line, the training team builds and rolls out the pitch in person, region by region. Retail partners' seasonal training freezes mean some stores don't get the refresh until well after launch.</div>
+        <div class="lc-title">DRTV Call Conversion</div>
+        <div class="lc-body">Inbound DRTV calls represent Verimark&apos;s warmest leads &mdash; customers who&apos;ve watched the ad, reached for the phone, and already made a purchase decision in principle. Agents who fumble technical questions, miss upsell windows, or quote incorrect pricing convert those warm leads into hang-ups.</div>
       </div>
       <div class="lc-stats">
-        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">20%&ndash;35%</span></div>
-        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R15.6m&ndash;R27.3m</span></div>
-        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.56m&ndash;R2.73m</span></div>
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1.0%&ndash;2.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.2m&ndash;R2.4m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R120k&ndash;R240k</span></div>
       </div>
     </div>
     <div class="tag t-eff"><span class="dot"></span>Effects</div>
-    <div class="eff-txt">Reps in stores caught mid-freeze sell new lines without the pitch, the pros and cons, or the against-competitor positioning the training team built. Early sales momentum on new launches is left on the table in exactly the stores that need it most.</div>
+    <div class="eff-txt">Abandoned calls, single-unit purchases when bundles were on offer, incorrect orders generating downstream returns, and DRTV media spend that delivers warm leads to underperforming agents.</div>
     <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
-    <div class="dig-txt">The moment product training is uploaded, every rep can access it the same day &mdash; freeze or no freeze &mdash; through a low-data browser login that doesn't need a store visit. Launch-week readiness stops depending on trainer travel schedules.</div>
+    <div class="dig-txt">Role-specific call centre modules simulate real objection scenarios with knowledge checks, and spaced repetition ensures agents retain bundle mechanics and product accuracy before their first live call &mdash; turning DRTV spend into closed revenue.</div>
   </div>
 
   <div class="lc">
     <div class="lc-top">
       <div>
         <div class="lc-num">Leakage 03</div>
-        <div class="lc-title">Cross-Regional Execution Variance</div>
-        <div class="lc-body">Four trainers cover Johannesburg, Cape Town, Durban and the regions between, running groups of thirty to forty reps through identical content week by week. Some regions naturally get more frequent refreshers than others simply based on trainer routing.</div>
+        <div class="lc-title">Product Returns &amp; Avoidable Refunds</div>
+        <div class="lc-body">Verimark&apos;s portfolio includes complex devices &mdash; IPL hair removal, air fryers, fitness equipment &mdash; that generate high returns when customers can&apos;t operate them correctly. A significant share of those returns are avoidable with better pre-sale usage explanations, but undertrained demonstrators and agents miss the window.</div>
       </div>
       <div class="lc-stats">
-        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;2%</span></div>
-        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R3.9m&ndash;R7.8m</span></div>
-        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R390k&ndash;R780k</span></div>
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">25%&ndash;35% avoidable</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R6.9m&ndash;R9.6m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R690k&ndash;R960k</span></div>
       </div>
     </div>
     <div class="tag t-eff"><span class="dot"></span>Effects</div>
-    <div class="eff-txt">Reps in less-visited regions and outlet types drift further from the current pitch between visits. Customers get a different Verimark experience depending on which store they walk into.</div>
+    <div class="eff-txt">Reverse logistics costs, retail partner chargebacks, customer lifetime value erosion, and negative online reviews on high-visibility products that damage brand equity at shelf.</div>
     <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
-    <div class="dig-txt">Every rep, regardless of region, gets the same white-labelled content on the same day it's published, closing the gap between what Johannesburg hears this week and what an outlying outlet hears next month.</div>
+    <div class="dig-txt">Usage and troubleshooting training modules are embedded in the demonstrator and call agent learning path, ensuring customers leave with both the product and the confidence to use it &mdash; dramatically reducing the &ldquo;doesn&apos;t work&rdquo; return before it hits the shelf.</div>
   </div>
 
   <div class="lc">
     <div class="lc-top">
       <div>
         <div class="lc-num">Leakage 04</div>
-        <div class="lc-title">Objection-Handling &amp; Retention Decay</div>
-        <div class="lc-body">Reps are trained thoroughly every second month, but people forget the majority of new information within a day without deliberate reinforcement. Between sessions, sharp objection-handling on specific products fades before the next training touchpoint.</div>
+        <div class="lc-title">New Product Launch Ramp</div>
+        <div class="lc-body">Verimark&apos;s growth model depends on high-momentum product launches. But when demonstrators and call agents are still learning new SKUs after launch day, the critical first-mover window closes before knowledge catches up &mdash; permanently surrendering revenue that no amount of catchup training recovers.</div>
       </div>
       <div class="lc-stats">
-        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">1%&ndash;1.5%</span></div>
-        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R3.9m&ndash;R5.85m</span></div>
-        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R390k&ndash;R585k</span></div>
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">20%&ndash;30% shortfall</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R15.0m&ndash;R22.5m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R1.5m&ndash;R2.25m</span></div>
       </div>
     </div>
     <div class="tag t-eff"><span class="dot"></span>Effects</div>
-    <div class="eff-txt">A rep who nailed a pitch two months ago may fumble the same objection today. Sales lost to hesitation or a forgotten feature don't show up in any report Verimark currently has.</div>
+    <div class="eff-txt">Slow adoption curves, DRTV media spend wasted on agents who can&apos;t close new products, demonstrators defaulting to legacy SKUs, and launch momentum that peaks below potential and never fully recovers.</div>
     <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
-    <div class="dig-txt">Bite-size recaps and quizzes between sessions push knowledge into long-term memory instead of letting it decay. A rep who logs in during a quiet ten minutes on shift walks into the next customer conversation sharper than the last.</div>
+    <div class="dig-txt">Verimark can push a fully structured launch campaign into Digemy within 48 hours &mdash; ensuring every demonstrator and call agent has completed product training, objection prep, and knowledge checks before the first ad airs. Launch day becomes a genuine commercial event.</div>
   </div>
 
   <div class="lc">
     <div class="lc-top">
       <div>
         <div class="lc-num">Leakage 05</div>
-        <div class="lc-title">Manual Feedback &amp; Knowledge-Gap Blindspot</div>
-        <div class="lc-body">Today, Verimark hears about a knowledge gap when a rep calls in from a store with a specific problem, or when a regional manager happens to visit. There's no dashboard flagging where accuracy is low before it costs a sale.</div>
+        <div class="lc-title">Retail Merchandising Compliance</div>
+        <div class="lc-body">At hundreds of retail locations across Checkers, Pick n Pay, Makro, Game, and Dis-Chem, Verimark&apos;s shelf presence is only as strong as the merchandiser who last visited. Compliance gaps &mdash; wrong placement, outdated POS, non-functional demo units &mdash; cost sales before the demonstrator even makes contact.</div>
       </div>
       <div class="lc-stats">
-        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1%</span></div>
-        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.95m&ndash;R3.9m</span></div>
-        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R195k&ndash;R390k</span></div>
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0%</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R1.65m&ndash;R3.3m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R165k&ndash;R330k</span></div>
       </div>
     </div>
     <div class="tag t-eff"><span class="dot"></span>Effects</div>
-    <div class="eff-txt">Gaps get found reactively, often after several missed sales, rather than the moment quiz accuracy on a topic starts slipping. The training team can't easily prioritise where a store visit or refresher will do the most good.</div>
+    <div class="eff-txt">Lost shelf share, incorrect pricing visible to shoppers, expired promotional material undermining brand perception, non-functional demo units that actively discourage purchase, and retail partner dissatisfaction.</div>
     <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
-    <div class="dig-txt">Real-time accuracy data by region, store and product line tells the training team exactly where to focus the next in-person session, before it shows up as a lost sale on the floor.</div>
+    <div class="dig-txt">Visual compliance training modules keep merchandisers audit-ready across all retail banners, with quick-check spaced reinforcement on planogram standards, display protocols, and retailer-specific requirements pushed directly to their mobile devices.</div>
   </div>
 
 </div>
 </div><!-- end .page -->
 
+<!-- VALUE SUMMARY — OUTSIDE .page -->
 <div class="vs">
   <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
   <div class="vs-pills">
-    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R28m&ndash;R48m</span></div>
-    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R2.8m&ndash;R4.8m per year</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R26.25m&ndash;R41.55m</span></div>
+    <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R2.625m&ndash;R4.155m per year</span></div>
   </div>
-  <p>Across five leakage areas tied directly to Verimark's seasonal hiring cycle, product launch cadence, and the natural limits of covering 1,000+ reps with four trainers, an estimated <strong>R28m&ndash;R48m</strong> in annual revenue sits unrecovered. Recovering even 10% of that &mdash; without adding a single trainer &mdash; represents <strong>R2.8m&ndash;R4.8m</strong> a year back into the business, alongside faster flexi ramp and a training team that can finally see where the gaps are before they cost a sale.</p>
+  <p>Across Verimark&apos;s five highest-impact leakage vectors, the common thread is frontline knowledge that fails to keep pace with a fast-moving product portfolio. <strong>New product launch ramp alone accounts for more than half of total estimated leakage</strong> &mdash; a direct consequence of deploying products faster than training can follow. Digemy&apos;s microlearning and spaced reinforcement platform closes that gap at the speed Verimark&apos;s commercial model demands, converting knowledge decay into a recoverable revenue lever across every frontline channel.</p>
 </div>
 
+<!-- KG MATRIX + SKILLS MATRIX -->
 <div class="page" style="padding-top:0;">
 
 <div class="section">
   <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
-  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">The matrix below traces how a single leakage area &mdash; the seasonal flexi ramp-up gap &mdash; breaks down into specific, addressable knowledge gaps for Verimark's sales executives.</p>
-  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Role: Sales Executives &nbsp;&middot;&nbsp; Leakage 01 &mdash; Seasonal Flexi Ramp-Up Gap</p>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">Verimark launches new SKUs at pace, but frontline readiness rarely keeps up. The matrix below maps the critical knowledge gaps that cost revenue during product launch windows &mdash; and the Digemy interventions that close them within days, not weeks. Focus: Product Demonstrators and DRTV Call Agents against Leakage 04 (New Product Launch Ramp), the highest-impact vector in this analysis.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Roles: Product Demonstrators &amp; DRTV Call Agents &nbsp;&middot;&nbsp; Leakage 04 &mdash; New Product Launch Ramp</p>
   <div class="tbl-wrap">
     <table class="mx-table">
       <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
       <tbody>
-        <tr class="role-hdr"><td colspan="3">Role: Sales Executives</td></tr>
-        <tr><td>New flexi hires can't recall product mechanisms or pricing under floor pressure</td><td>Hesitant pitches and missed upsells during Verimark's highest-traffic weeks</td><td>Pre-shift mobile recap builds recall before the first customer interaction</td></tr>
-        <tr><td>Reps forget objection-handling for specific products between biannual sessions</td><td>Lost sales to comparison shopping in stores with competing brands on shelf</td><td>Spaced recap quizzes keep objection responses sharp between visits</td></tr>
-        <tr><td>New product pitches reach some stores weeks after launch due to training freezes</td><td>Early launch revenue lost in exactly the stores training couldn't reach in time</td><td>Same-day mobile rollout of new product training, freeze-proof</td></tr>
+        <tr class="role-hdr"><td colspan="3">Product Demonstrators &amp; DRTV Call Agents</td></tr>
+        <tr><td>New SKU technical features not yet internalised at launch</td><td>Demonstrator defaults to legacy products; call agent quotes wrong specs; high-intent buyer walks or hangs up</td><td>Pre-launch product knowledge modules pushed 5 days before launch; completion tracked with manager visibility</td></tr>
+        <tr><td>Unable to articulate differentiators vs. existing range</td><td>Internal cannibalisation; customers opt for cheaper legacy SKU; new product fails to achieve incremental revenue</td><td>Side-by-side comparison modules with visual flashcards and rep-back confirmation before launch clearance</td></tr>
+        <tr><td>Objection handling gaps on unfamiliar brand extensions</td><td>DRTV call abandonment; in-store demo ends in &ldquo;I&apos;ll think about it&rdquo;; lost conversion on the highest-interest moment</td><td>Objection simulation modules with spaced repetition; agent unlocks launch status only when confidence score clears threshold</td></tr>
+        <tr><td>Upsell and bundle mechanics for launch promotions</td><td>Agents close single units when promotional bundles were available; average basket value remains below potential</td><td>Launch campaign briefing modules with scenario-based role plays on bundle sequencing and promotional mechanics</td></tr>
+        <tr><td>Usage instructions and troubleshooting for new device categories</td><td>Early returns from customers who can&apos;t operate the product; negative reviews spike in weeks 2&ndash;4 post-launch</td><td>Usage and troubleshooting knowledge checks embedded in pre-launch path; reinforced at 7- and 30-day post-launch intervals</td></tr>
       </tbody>
     </table>
   </div>
+  <div class="scroll-fade">&#8592;&nbsp;Swipe to see all columns&nbsp;&#8594;</div>
 </div>
 
 <div class="section">
   <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
-  <div class="mx-narrative">Digemy's skills matrix would track Verimark's frontline against every product category, from housewares to fitness to DIY, showing the training team precisely which sales executives, regions and outlet types have mastered a pitch to full knowledge level and which still need a refresher before the next in-person session.</div>
+  <div class="mx-narrative">A Verimark skills matrix within Digemy would be structured across four competency tracks: <strong>Product Knowledge</strong> (technical features, usage, differentiators, and troubleshooting by SKU category), <strong>Sales Conversion</strong> (objection handling, upsell mechanics, and bundle sequencing by channel), <strong>Compliance &amp; Presentation</strong> (shelf standards, POS execution, demo unit protocols, and retailer-specific planogram requirements), and <strong>Customer Experience</strong> (post-sale support, returns prevention, and complaint resolution). Each demonstrator, call agent, and merchandiser receives a personalised learning path based on their channel role and current knowledge score. Launch readiness scores surface to field managers in real time &mdash; so no launch window opens with an undertrained frontline, and no product ever reaches a customer through a demonstrator who doesn&apos;t yet know it.</div>
 </div>
 
 </div><!-- end second .page -->
 
-<div class="footer">digemy.com &mdash; Verimark &mdash; Operational Optimisation Report</div>
+<!-- WHAT WE DELIVER -->
+<div class="deliver-wrap">
+  <div class="deliver-inner">
+    <div class="deliver-eyebrow">The Digemy Platform</div>
+    <div class="deliver-title">What We Deliver</div>
+    <div class="deliver-grid">
+
+      <div class="dc">
+        <div class="dc-head">
+          <span class="dc-icon">&#128241;</span>
+          <span class="dc-name" style="color:var(--purple);">Access</span>
+        </div>
+        <ul>
+          <li><span class="dc-arrow">&#9658;</span>Mobile-first microlearning</li>
+          <li><span class="dc-arrow">&#9658;</span>Data-light or reverse-billed</li>
+          <li><span class="dc-arrow">&#9658;</span>Integrated with WhatsApp</li>
+          <li><span class="dc-arrow">&#9658;</span>Always-on 24/7 training access</li>
+          <li><span class="dc-arrow">&#9658;</span>Personalised reinforcement for lasting retention</li>
+        </ul>
+      </div>
+
+      <div class="dc">
+        <div class="dc-head">
+          <span class="dc-icon">&#128202;</span>
+          <span class="dc-name" style="color:var(--coral);">Performance</span>
+        </div>
+        <ul>
+          <li><span class="dc-arrow">&#9658;</span>Long-term retention post-training</li>
+          <li><span class="dc-arrow">&#9658;</span>Dashboards identify knowledge gaps driving operational pain</li>
+          <li><span class="dc-arrow">&#9658;</span>Evaluation scorecards ensure training application is measured</li>
+        </ul>
+      </div>
+
+      <div class="dc">
+        <div class="dc-head">
+          <span class="dc-icon">&#127942;</span>
+          <span class="dc-name" style="color:#4ADE80;">Culture &amp; Engagement</span>
+        </div>
+        <ul>
+          <li><span class="dc-arrow">&#9658;</span>Daily 1-min bite-sized learning culture</li>
+          <li><span class="dc-arrow">&#9658;</span>Gamification and real-time mobile rewards</li>
+          <li><span class="dc-arrow">&#9658;</span>Broadcast important company info on social feed</li>
+          <li><span class="dc-arrow">&#9658;</span>Inspire and engage the entire workforce</li>
+        </ul>
+      </div>
+
+      <div class="dc">
+        <div class="dc-head">
+          <span class="dc-icon">&#9889;</span>
+          <span class="dc-name" style="color:var(--coral);">Delivery</span>
+        </div>
+        <ul>
+          <li><span class="dc-arrow">&#9658;</span>AI-driven content in minutes, not months</li>
+          <li><span class="dc-arrow">&#9658;</span>Reach all employees in real time, all the time</li>
+          <li><span class="dc-arrow">&#9658;</span>95% training application rate</li>
+          <li><span class="dc-arrow">&#9658;</span>Personalised reinforcement &mdash; no relearning</li>
+          <li><span class="dc-arrow">&#9658;</span>Role profiles that adjust as employees move</li>
+          <li><span class="dc-arrow">&#9658;</span>Learning pipelines to the next career level</li>
+        </ul>
+      </div>
+
+      <div class="dc">
+        <div class="dc-head">
+          <span class="dc-icon">&#128203;</span>
+          <span class="dc-name" style="color:var(--purple);">Reporting</span>
+        </div>
+        <ul>
+          <li><span class="dc-arrow">&#9658;</span>Managers have direct dashboard access to their teams</li>
+          <li><span class="dc-arrow">&#9658;</span>Automated WTR reports</li>
+          <li><span class="dc-arrow">&#9658;</span>Integration into any reporting environment</li>
+        </ul>
+      </div>
+
+      <div class="dc">
+        <div class="dc-head">
+          <span class="dc-icon">&#127919;</span>
+          <span class="dc-name" style="color:#4ADE80;">Strategy</span>
+        </div>
+        <ul>
+          <li><span class="dc-arrow">&#9658;</span>Identify biggest operational risks</li>
+          <li><span class="dc-arrow">&#9658;</span>Knowledge gap and skills matrices per role</li>
+          <li><span class="dc-arrow">&#9658;</span>Reduce time to performance by up to 75%</li>
+          <li><span class="dc-arrow">&#9658;</span>Optimise operational efficiency, sales and CX</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="footer">digemy.com &mdash; Verimark Holdings &mdash; Operational Optimisation Report</div>
 </body>
 </html>
