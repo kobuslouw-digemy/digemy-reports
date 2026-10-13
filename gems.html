@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>GEMS — Digemy Operational Optimisation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #EDF0F8; --navy: #162040; --purple: #9B8CF5;
+  --text: #12183A; --muted: #4A5275; --white: #FFFFFF;
+  --border: rgba(22,32,64,0.12);
+  --coral-bg: #FEF0EC; --coral: #E8441A;
+  --green-bg: #EDFAF3; --green: #16A34A;
+}
+body { font-family: 'Work Sans', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.65; }
+.page { max-width: 1000px; margin: 0 auto; padding: 0 28px 80px; }
+.hero { background: var(--navy); color: white; padding: 52px 52px 44px; margin-bottom: 44px; border-radius: 0 0 20px 20px; position: relative; overflow: hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:320px; height:320px; border-radius:50%; background:rgba(155,140,245,0.07); pointer-events:none; }
+.hero::after  { content:''; position:absolute; bottom:-60px; right:-60px; width:280px; height:280px; border-radius:50%; background:rgba(155,140,245,0.05); pointer-events:none; }
+.hero-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+.wordmark { font-size:22px; font-weight:900; color:white; letter-spacing:-0.5px; }
+.wordmark span { color:var(--purple); }
+.hero-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); font-weight:800; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:50px; padding:4px 14px; }
+.eyebrow { font-size:11px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:10px; font-weight:700; }
+.hero h1 { font-size:54px; font-weight:900; line-height:1.0; margin-bottom:6px; color:white; letter-spacing:-1px; }
+.hero h1 span { color:var(--purple); }
+.hero-rev { font-size:20px; font-weight:600; color:rgba(255,255,255,0.55); margin-bottom:32px; }
+.hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.hs { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:16px 18px; }
+.hs-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); margin-bottom:6px; }
+.hs-val { font-size:22px; font-weight:900; color:white; }
+.hs-val.p { color:var(--purple); }
+.hs-val.g { color:#4ADE80; }
+.hs-sub { font-size:11px; color:rgba(255,255,255,0.3); margin-top:2px; }
+.section { margin-bottom:44px; }
+.sec-hd { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+.sec-icon { width:36px; height:36px; border-radius:8px; background:var(--navy); color:white; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+.sec-title { font-size:22px; font-weight:900; color:var(--navy); letter-spacing:-0.3px; }
+.card { background:var(--white); border-radius:14px; border:1px solid var(--border); padding:28px 32px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.card p { color:var(--muted); font-size:15px; margin-bottom:16px; line-height:1.7; }
+.card p:last-child { margin-bottom:0; }
+.card p strong { color:var(--navy); font-weight:700; }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; }
+.pill { background:rgba(22,32,64,0.06); border:1px solid rgba(22,32,64,0.1); border-radius:50px; padding:5px 14px; font-size:13px; font-weight:700; color:var(--navy); }
+.quote-bar { margin-top:20px; border-left:3px solid var(--purple); padding:12px 18px; background:rgba(155,140,245,0.06); border-radius:0 8px 8px 0; font-size:14px; font-weight:700; color:var(--navy); font-style:italic; }
+.biz-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.biz-card { background:var(--white); border-radius:12px; border:1px solid var(--border); padding:20px; box-shadow:0 2px 8px rgba(22,32,64,0.05); }
+.biz-title { font-size:14px; font-weight:800; color:var(--navy); margin-bottom:8px; }
+.biz-card p { font-size:13px; color:var(--muted); line-height:1.6; }
+.tbl-wrap { background:var(--white); border-radius:14px; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+table { width:100%; border-collapse:collapse; font-size:14px; }
+thead th { background:var(--navy); color:rgba(255,255,255,0.55); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; padding:12px 18px; text-align:left; }
+.r-tbl thead th:not(:first-child) { text-align:right; }
+tbody tr { border-bottom:1px solid var(--border); }
+tbody tr:last-child { border-bottom:none; }
+tbody tr:nth-child(odd) { background:rgba(22,32,64,0.02); }
+td { padding:11px 18px; color:var(--muted); vertical-align:top; }
+td:first-child { color:var(--navy); font-weight:700; }
+.r-tbl td:not(:first-child) { text-align:right; }
+.rec { color:var(--green); font-weight:800; }
+.total-row td { background:var(--navy); color:white; font-weight:800; }
+.total-row .rec { color:#4ADE80; }
+.lc { background:var(--white); border-radius:16px; border:1px solid var(--border); overflow:hidden; margin-bottom:24px; box-shadow:0 2px 16px rgba(22,32,64,0.07); }
+.lc-top { display:grid; grid-template-columns:1fr auto; gap:24px; padding:26px 28px 22px; border-bottom:1px solid var(--border); align-items:start; }
+.lc-num { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:2px; color:var(--purple); margin-bottom:6px; }
+.lc-title { font-size:20px; font-weight:900; color:var(--navy); line-height:1.2; }
+.lc-body { font-size:14px; color:var(--muted); margin-top:10px; line-height:1.7; }
+.lc-stats { display:flex; flex-direction:column; gap:7px; min-width:220px; }
+.sp { background:var(--navy); border-radius:50px; padding:9px 18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.sp-l { font-size:12px; font-weight:700; color:rgba(255,255,255,0.6); white-space:nowrap; }
+.sp-v { font-size:13px; font-weight:900; color:var(--purple); text-align:right; }
+.tag { display:inline-flex; align-items:center; gap:6px; border-radius:50px; padding:4px 12px 4px 8px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.8px; margin:16px 28px 6px; }
+.dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.t-eff { background:var(--coral-bg); color:var(--coral); }
+.t-eff .dot { background:var(--coral); }
+.t-dig { background:var(--green-bg); color:var(--green); }
+.t-dig .dot { background:var(--green); }
+.eff-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 16px; }
+.dig-txt { font-size:14px; font-weight:500; color:var(--muted); line-height:1.7; margin:0 28px 22px; }
+.vs { background:var(--navy); border-radius:16px; padding:32px 36px; color:white; margin-bottom:44px; }
+.vs-ey { font-size:11px; text-transform:uppercase; letter-spacing:2.5px; color:rgba(255,255,255,0.35); font-weight:800; margin-bottom:20px; }
+.vs-pills { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.vsp { background:rgba(255,255,255,0.06); border-radius:50px; padding:13px 24px; display:flex; justify-content:space-between; align-items:center; }
+.vsp-l { font-size:14px; font-weight:700; color:white; }
+.vsp-v { font-size:16px; font-weight:900; color:var(--purple); }
+.vs p { font-size:15px; color:rgba(255,255,255,0.65); line-height:1.75; font-weight:500; }
+.vs p strong { color:white; }
+.mx-table thead th:nth-child(2) { color:rgba(255,140,110,0.9); }
+.mx-table thead th:nth-child(3) { color:rgba(100,220,160,0.9); }
+tbody .role-hdr td { background:rgba(155,140,245,0.1); color:var(--purple); font-weight:800; font-size:12px; letter-spacing:0.5px; padding:10px 18px; }
+.mx-narrative { background:var(--white); border-radius:14px; border:1px solid var(--border); border-left:4px solid var(--purple); padding:24px 28px; margin-top:20px; box-shadow:0 2px 12px rgba(22,32,64,0.06); font-size:15px; color:var(--muted); line-height:1.8; font-weight:500; }
+.mx-narrative strong { color:var(--navy); font-weight:800; }
+.exec-card { background:var(--white); border-radius:16px; border:1px solid var(--border); padding:32px 36px; box-shadow:0 2px 12px rgba(22,32,64,0.06); }
+.exec-body { font-size:16px; line-height:1.8; color:var(--text); font-weight:500; margin-bottom:24px; }
+.killer { font-size:17px; font-weight:800; font-style:italic; color:var(--navy); line-height:1.5; border-left:4px solid var(--purple); padding-left:20px; margin-bottom:28px; }
+.roi-block { background:var(--green-bg); border:1px solid rgba(22,163,74,0.2); border-radius:12px; padding:22px 26px; }
+.roi-block h4 { font-size:13px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin-bottom:10px; }
+.roi-block p { font-size:14.5px; color:#0F4A2A; line-height:1.7; font-weight:500; }
+.footer { background:var(--navy); color:rgba(255,255,255,0.25); text-align:center; padding:20px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; }
+
+/* === SCROLL-FADE HIDDEN DEFAULT === */
+.scroll-fade { display: none; }
+
+/* === WHAT WE DELIVER CSS === */
+.deliver-wrap { background: var(--navy); padding: 52px 0 48px; }
+.deliver-inner { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
+.deliver-eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 2.5px; color: rgba(255,255,255,0.35); font-weight: 800; margin-bottom: 10px; }
+.deliver-title { font-size: 30px; font-weight: 900; color: white; letter-spacing: -0.5px; margin-bottom: 32px; }
+.deliver-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.dc { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 22px 20px 20px; }
+.dc-head { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px; }
+.dc-icon { font-size: 20px; line-height: 1; }
+.dc-name { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+.dc ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 7px; }
+.dc li { display: flex; gap: 7px; align-items: flex-start; font-size: 12.5px; color: rgba(255,255,255,0.6); font-weight: 500; line-height: 1.5; }
+.dc-arrow { color: var(--coral); flex-shrink: 0; margin-top: 2px; font-size: 10px; }
+
+/* === MOBILE MEDIA QUERY === */
+@media (max-width: 640px) {
+  .hero { padding: 32px 24px 28px; }
+  .hero h1 { font-size: 34px; margin-bottom: 24px !important; }
+  .hero-top { flex-direction: column; gap: 10px; margin-bottom: 18px; }
+  .hero-stats { grid-template-columns: 1fr; gap: 8px; }
+  .page { padding: 0 16px 60px; }
+  .exec-card { padding: 22px 20px; }
+  .exec-body { font-size: 14px; }
+  .killer { font-size: 15px; }
+  .lc-top { grid-template-columns: 1fr; gap: 16px; padding: 20px 18px 16px; }
+  .lc-stats { min-width: unset; width: 100%; }
+  .tag { margin: 12px 18px 4px; }
+  .eff-txt, .dig-txt { margin: 0 18px 14px; font-size: 13px; }
+  .lc-body { font-size: 13px; }
+  .vs { padding: 24px 20px; border-radius: 12px; }
+  .vsp { flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px 18px; }
+  .vsp-v { font-size: 18px; }
+  .biz-grid { grid-template-columns: 1fr; }
+  .mx-narrative { padding: 18px 18px; font-size: 14px; }
+  .sec-title { font-size: 18px; }
+  table { font-size: 12px; }
+  thead th { padding: 10px 12px; font-size: 9px; }
+  td { padding: 9px 12px; }
+  .sp { padding: 8px 14px; }
+  .sp-l { font-size: 11px; }
+  .sp-v { font-size: 12px; }
+  .wf-note { font-size: 12.5px; padding: 12px 16px; }
+  .r-tbl, .mx-table { min-width: 600px; }
+  .tbl-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background-image:
+      linear-gradient(to right, white, white),
+      linear-gradient(to right, white, white),
+      linear-gradient(to right, rgba(22,32,64,0.18), rgba(22,32,64,0)),
+      linear-gradient(to left, rgba(22,32,64,0.18), rgba(22,32,64,0));
+    background-position: left center, right center, left center, right center;
+    background-repeat: no-repeat;
+    background-color: white;
+    background-size: 20px 100%, 20px 100%, 10px 100%, 10px 100%;
+    background-attachment: local, local, scroll, scroll;
+  }
+  .scroll-fade { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 11px; font-weight: 700; color: var(--muted); padding: 7px 0 2px; opacity: 0.55; letter-spacing: 0.5px; text-transform: uppercase; }
+  .deliver-wrap { padding: 36px 0 32px; }
+  .deliver-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .deliver-title { font-size: 22px; margin-bottom: 22px; }
+  .dc { padding: 16px 14px; }
+  .dc li { font-size: 11.5px; }
+}
+@media (max-width: 400px) {
+  .deliver-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="wordmark">digemy.com</div>
+    <div class="hero-tag">Operational Optimisation Report &middot; 2026</div>
+  </div>
+  <div class="eyebrow">South Africa &middot; Healthcare Administration</div>
+  <h1 style="margin-bottom:32px;">GEMS <span>Operational Health</span></h1>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-label">Revenue Base</div><div class="hs-val">~R65bn</div><div class="hs-sub">gross contribution income, 2025</div></div>
+    <div class="hs"><div class="hs-label">Total Addressable Leakage</div><div class="hs-val p">R849m&ndash;R1.7bn</div><div class="hs-sub">estimated annually</div></div>
+    <div class="hs"><div class="hs-label">Recovery @ 10%</div><div class="hs-val g">R84.9m&ndash;R169.7m</div><div class="hs-sub">potential per year</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- ═══ SECTION 1: WHY DIGEMY ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#9997;</div><div class="sec-title">Why Digemy</div></div>
+  <div class="exec-card">
+    <div class="exec-body">
+      <p>GEMS provides healthcare security to 2.4 million South African public servants and their families &mdash; a mandate delivered not from head office, but through the member services agents, claims administrators and benefit advisors who process 389,000 claims every single day. With the 2025 claims bill already exceeding contribution income and solvency below the statutory floor, the cost of a knowledge-thin frontline is no longer a service quality issue &mdash; it is a financial emergency.</p>
+    </div>
+
+    <p style="font-size:14px;color:var(--navy);font-weight:700;margin-bottom:10px;">
+      Where the loss happens &mdash; an estimated <span style="color:var(--coral);">R849m&ndash;R1.7bn</span> a year:
+    </p>
+    <div class="pill-row" style="margin-bottom:24px;">
+      <span class="pill">FWA Detection Gap</span>
+      <span class="pill">Claims Adjudication Errors</span>
+      <span class="pill">Out-of-Network Defaults</span>
+      <span class="pill">Chronic Disease Leakage</span>
+      <span class="pill">Admin Re-work</span>
+    </div>
+
+    <div class="killer" style="border-left-color:var(--coral);">&#8220;In a scheme where the claims bill has already outrun premium income, a poorly trained frontline isn&#8217;t a people problem &#8212; it&#8217;s a financial breach.&#8221;</div>
+
+    <div class="roi-block">
+      <h4>&#129504; How Digemy Optimises ROI</h4>
+      <p>Digemy maps and baselines knowledge across every GEMS frontline role &#8212; Member Services Agent, Claims Administrator, Benefits Advisor and Managed Healthcare Coordinator. Spaced-reinforcement microlearning drives retention of FWA detection protocols, claims adjudication rules and network provider guidance. Real-time dashboards surface knowledge gaps by department and team, pinpointing exactly where GEMS&#8217;s R849m&#8211;R1.7bn in annual operational leakage is concentrating. Evaluation scorecards at individual, team and operational level create accountability &#8212; turning that leakage into R84.9m&#8211;R169.7m of recovered performance across the full scheme administration operation.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SECTION 2: FRONTLINE WORKFORCE ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128101;</div><div class="sec-title">Frontline Workforce</div></div>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Role</th><th>Primary Risk Area</th></tr></thead>
+      <tbody>
+        <tr><td>Member Services Agent</td><td>Incorrect benefit guidance, missed FWA triggers, repeat contacts driving avoidable re-work</td></tr>
+        <tr><td>Claims Administrator</td><td>Adjudication errors, incorrect PMB boundary classification, processing omissions</td></tr>
+        <tr><td>Benefits Advisor / Enrollment Consultant</td><td>Sub-optimal plan option selection, inadequate member onboarding, benefit mis-use</td></tr>
+        <tr><td>Managed Healthcare Coordinator</td><td>CDL adherence failures, avoidable hospitalisation referrals, formulary knowledge gaps</td></tr>
+        <tr><td>FWA Officer / Fraud Analyst</td><td>Undetected fraud, waste and abuse patterns passing claims adjudication unchallenged</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mx-narrative"><strong>Workforce Estimate:</strong> GEMS directly employs approximately 866 staff; frontline service delivery is administered through Metropolitan Health Corporate (member services, claims, correspondence and enquiries) and Medscheme Holdings (contribution collection and managed-care services) &mdash; combined operational headcount across the scheme&rsquo;s administration ecosystem estimated at 2,500&ndash;4,000.</div>
+</div>
+
+<!-- ═══ SECTION 3: WHERE LOSS HAPPENS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128680;</div><div class="sec-title">Where Loss Happens + ROI Drivers</div></div>
+  <div class="tbl-wrap">
+    <table class="r-tbl">
+      <thead><tr><th>Leakage Area</th><th>Assumption</th><th>Annual Low</th><th>Annual High</th><th>Recovery @10%</th></tr></thead>
+      <tbody>
+        <tr><td>FWA Detection Gap</td><td>0.5&ndash;1.0% of total claims base (R65.6bn)</td><td>R328m</td><td>R656m</td><td class="rec">R32.8m&ndash;R65.6m</td></tr>
+        <tr><td>Claims Adjudication Errors</td><td>0.4&ndash;0.8% of non-PMB claims sub-base (R22.3bn)</td><td>R89m</td><td>R178m</td><td class="rec">R8.9m&ndash;R17.8m</td></tr>
+        <tr><td>Out-of-Network Defaults</td><td>0.5&ndash;1.0% of non-PMB claims sub-base (R22.3bn)</td><td>R112m</td><td>R223m</td><td class="rec">R11.2m&ndash;R22.3m</td></tr>
+        <tr><td>Chronic Disease Programme Failures</td><td>0.5&ndash;1.0% of hospitalisation claims sub-base (est. R30bn)</td><td>R150m</td><td>R300m</td><td class="rec">R15.0m&ndash;R30.0m</td></tr>
+        <tr><td>Service Re-work &amp; Admin Waste</td><td>5&ndash;10% of non-healthcare costs (R3.4bn)</td><td>R170m</td><td>R340m</td><td class="rec">R17.0m&ndash;R34.0m</td></tr>
+        <tr class="total-row"><td>TOTAL</td><td>&mdash;</td><td>R849m</td><td>R1,697m</td><td class="rec">R84.9m&ndash;R169.7m</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="scroll-fade">&#8592;&nbsp;Swipe to see all columns&nbsp;&#8594;</div>
+</div>
+
+<!-- ═══ SECTION 4: TOP 5 LEAKAGE CARDS ═══ -->
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128201;</div><div class="sec-title">Top 5 Leakage Areas</div></div>
+
+  <!-- CARD 01 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 01</div>
+        <div class="lc-title">FWA Detection Gap</div>
+        <div class="lc-body">GEMS recovered R257m from fraud, waste and abuse in 2025 &mdash; down from R350m in 2024 &mdash; but global benchmarks place undetected FWA at 3&ndash;10% of medical scheme claims. With fraud analysts and claims processors relying on induction training rather than continuous knowledge reinforcement, the gap between what is detected and what slips through is compounding the scheme&rsquo;s financial distress.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0% of claims</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R328m&ndash;R656m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R32.8m&ndash;R65.6m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Fraudulent claims pass adjudication unchallenged, inflating the scheme&rsquo;s already-stressed claims bill and accelerating solvency erosion. Systematic under-detection emboldens repeat offenders and creates compounding financial exposure across the provider network.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">FWA red-flag patterns, upcoding and unbundling detection, phantom billing scenarios and escalation protocols are embedded as spaced microlearning &mdash; tested continuously and tracked to every fraud analyst and claims processor across the operation.</div>
+  </div>
+
+  <!-- CARD 02 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 02</div>
+        <div class="lc-title">Claims Adjudication Errors</div>
+        <div class="lc-body">GEMS processes 389,000 claims daily across six benefit options &mdash; Onyx, Topaz, Emerald, Sapphire, Beryl and Tanzanite &mdash; against complex PMB boundaries and clinical protocols. Processing errors on the non-PMB pool (R22.3bn annually) generate avoidable overpayments, incorrect rejections and regulatory exposure under the Medical Schemes Act.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.4%&ndash;0.8% of non-PMB</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R89m&ndash;R178m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R8.9m&ndash;R17.8m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Processing errors compound into financial overpayments, CMS compliance risk and member disputes that feed re-work loops &mdash; inflating non-healthcare costs and undermining the scheme&rsquo;s sub-5% cost ratio target.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Adjudication rules, benefit coding, PMB boundary protocols and Scheme rule updates across all six options are delivered as structured microlearning &mdash; reinforced continuously so the rules live in muscle memory, not in binders updated once a year.</div>
+  </div>
+
+  <!-- CARD 03 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 03</div>
+        <div class="lc-title">Out-of-Network Defaults</div>
+        <div class="lc-body">When benefit advisors and call agents lack complete network and provider directory knowledge, members default to non-preferred or out-of-network providers &mdash; generating claims 20&ndash;35% more expensive than equivalent in-network care. Poor counselling at the point of member contact is a direct, measurable cost driver on the non-PMB claims pool.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0% of non-PMB</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R112m&ndash;R223m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R11.2m&ndash;R22.3m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Claims costs inflate beyond what equivalent network treatment would cost, and rising co-payments fuel member dissatisfaction and scheme attrition &mdash; compounding affordability pressure on 890,000 principal members already unhappy with contribution increases.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Network provider protocols, preferred provider directories and care pathway guidance are embedded as daily microlearning &mdash; so every agent directs every member to the most cost-effective treatment setting, at every interaction.</div>
+  </div>
+
+  <!-- CARD 04 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 04</div>
+        <div class="lc-title">Chronic Disease Programme Failures</div>
+        <div class="lc-body">GEMS&rsquo;s Chronic Disease List population represents a substantial and growing share of the 2.4 million beneficiary base. Managed Healthcare Coordinators operating without current CDL protocol knowledge fail to reinforce medication adherence and preventive care &mdash; pushing members toward avoidable, high-cost hospitalisation events that accelerate solvency erosion.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">0.5%&ndash;1.0% of hosp. claims</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R150m&ndash;R300m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R15.0m&ndash;R30.0m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Avoidable hospitalisations inflate the scheme&rsquo;s largest single cost driver, accelerating the reserve drawdown that has already pushed solvency below the 25% statutory minimum and driving the contribution increases that are meeting union resistance.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">CDL management protocols, medication adherence frameworks and preventive care referral guidelines are reinforced via spaced microlearning &mdash; keeping coordinators current as clinical guidelines, formularies and disease management protocols evolve.</div>
+  </div>
+
+  <!-- CARD 05 -->
+  <div class="lc">
+    <div class="lc-top">
+      <div>
+        <div class="lc-num">Leakage 05</div>
+        <div class="lc-title">Service Re-work &amp; Admin Waste</div>
+        <div class="lc-body">Poor first-call resolution, benefit misquotations and incorrectly processed claims force GEMS&rsquo;s member services operation to absorb avoidable repeat contacts, internal corrections and compliance re-work. With non-healthcare costs running at R3.4bn, training-driven inefficiency is a direct multiplier on the very cost base GEMS is under pressure to reduce.</div>
+      </div>
+      <div class="lc-stats">
+        <div class="sp"><span class="sp-l">Loss Ratio</span><span class="sp-v">5%&ndash;10% of non-healthcare</span></div>
+        <div class="sp"><span class="sp-l">Annual Leakage</span><span class="sp-v">R170m&ndash;R340m</span></div>
+        <div class="sp"><span class="sp-l">Recovery @10%</span><span class="sp-v">R17.0m&ndash;R34.0m</span></div>
+      </div>
+    </div>
+    <div class="tag t-eff"><span class="dot"></span>Effects</div>
+    <div class="eff-txt">Re-work and repeat handling inflate administration costs, erode member satisfaction and undermine GEMS&rsquo;s CX reputation &mdash; reversing the gains that moved the scheme from fifth to second in the Ask Afrika Orange Index in 2025.</div>
+    <div class="tag t-dig"><span class="dot"></span>The Digemy Difference</div>
+    <div class="dig-txt">Role-specific benefit knowledge, query handling protocols and escalation frameworks are tested continuously &mdash; reducing repeat contacts, improving first-call resolution and tightening the non-healthcare cost ratio toward the scheme&rsquo;s operational targets.</div>
+  </div>
+
+</div>
+</div><!-- end first .page -->
+
+<!-- ═══ VALUE SUMMARY — OUTSIDE .page ═══ -->
+<div style="max-width:1000px;margin:0 auto;padding:0 28px 44px;">
+  <div class="vs">
+    <div class="vs-ey">Value Summary &mdash; Top 5 Leakage Areas</div>
+    <div class="vs-pills">
+      <div class="vsp"><span class="vsp-l">Total Estimated Annual Leakage</span><span class="vsp-v">R849m&ndash;R1,697m</span></div>
+      <div class="vsp"><span class="vsp-l">Total Estimated Recovery @10%</span><span class="vsp-v">R84.9m&ndash;R169.7m per year</span></div>
+    </div>
+    <p>GEMS is navigating one of the most financially precarious periods in its 18-year history &mdash; <strong>contributions no longer cover claims</strong>, solvency has slipped below the statutory floor, and contribution increases are meeting organised labour resistance. The leakage identified here is not theoretical: it is the accumulated cost of a frontline operation that has scaled to 2.4 million beneficiaries faster than its knowledge infrastructure. <strong>Closing just 10% of that gap through structured, role-specific microlearning and real-time knowledge dashboards</strong> represents R84.9m&ndash;R169.7m in recovered annual performance &mdash; not from cutting member benefits, but from running the operation with the precision GEMS&rsquo;s financial position now demands.</p>
+  </div>
+</div>
+
+<!-- ═══ KG MATRIX + SKILLS MATRIX — second .page block ═══ -->
+<div class="page" style="padding-top:0;">
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#128203;</div><div class="sec-title">Operational Knowledge Gap Matrix</div></div>
+  <p style="font-size:15px;color:var(--muted);line-height:1.8;font-weight:500;margin-bottom:20px;">Across all five frontline roles, knowledge gaps translate directly into claims leakage, undetected FWA and member service failures. The matrix below illustrates how specific knowledge deficiencies in the highest-risk roles and highest-impact leakage areas create measurable operational and financial consequences &mdash; and how Digemy closes those gaps systematically.</p>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px;">Primary Focus: FWA Officer &amp; Claims Administrator &nbsp;&middot;&nbsp; Leakage 01 &mdash; FWA Detection Gap</p>
+  <div class="tbl-wrap">
+    <table class="mx-table">
+      <thead><tr><th style="width:34%">Knowledge Gap</th><th style="width:33%">Business Impact</th><th style="width:33%">Digemy Solution</th></tr></thead>
+      <tbody>
+        <tr class="role-hdr"><td colspan="3">Role: FWA Officer / Fraud Analyst</td></tr>
+        <tr><td>FWA red-flag patterns (upcoding, unbundling, phantom billing)</td><td>Fraudulent claims pass adjudication unchallenged, directly inflating the scheme&rsquo;s claims bill</td><td>Spaced microlearning on FWA detection patterns, scenario-tested and tracked per analyst</td></tr>
+        <tr><td>Escalation thresholds and referral protocols to HPCSA and professional councils</td><td>Suspicious provider activity goes unreported, enabling repeat offences across the network</td><td>Escalation protocol modules with scenario-based testing and manager-level scorecards</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Claims Administrator</td></tr>
+        <tr><td>PMB vs non-PMB benefit boundary rules and classification logic</td><td>Incorrect classifications generate overpayments, underpayments and member disputes</td><td>Benefit classification modules reinforced quarterly and aligned to live Medical Schemes Act rule updates</td></tr>
+        <tr><td>Option-specific rules across Onyx, Topaz, Emerald, Sapphire, Beryl and Tanzanite</td><td>Wrong benefit applied to wrong option &mdash; avoidable financial error and CMS regulatory exposure</td><td>Option benefit rules embedded as daily quiz reinforcement, role-mapped per administrator</td></tr>
+        <tr class="role-hdr"><td colspan="3">Role: Member Services Agent</td></tr>
+        <tr><td>Network provider directory and preferred provider protocols</td><td>Members directed to out-of-network providers inflate claims costs and member co-payments</td><td>Provider network microlearning with weekly reinforcement and dashboard-tracked proficiency</td></tr>
+        <tr><td>Benefit counselling accuracy across all six plan options</td><td>Incorrect guidance drives repeat contacts, re-work loops and member dissatisfaction scores</td><td>Option benefit knowledge tested continuously &mdash; dashboards flag agents falling below proficiency thresholds</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="scroll-fade">&#8592;&nbsp;Swipe to see all columns&nbsp;&#8594;</div>
+</div>
+
+<div class="section">
+  <div class="sec-hd"><div class="sec-icon">&#127775;</div><div class="sec-title">Digemy Skills Matrix</div></div>
+  <div class="mx-narrative">Across all five frontline roles &mdash; <strong>Member Services Agent, Claims Administrator, Benefits Advisor, Managed Healthcare Coordinator and FWA Officer</strong> &mdash; Digemy builds a living skills matrix that maps every critical knowledge domain to role and seniority level. Knowledge is baselined on day one, reinforced through daily bite-sized microlearning and tested continuously so gaps surface before they become claims losses or compliance breaches. Operational dashboards give team leads and department heads a real-time view of knowledge proficiency by individual, team and functional area across the full administration ecosystem &mdash; and evaluation scorecards hold each role accountable for applying what they know in every member interaction, claims decision and fraud assessment. For a scheme under financial and regulatory pressure, the Digemy skills matrix is not an L&amp;D deliverable &mdash; it is an operational risk management tool.</div>
+</div>
+
+</div><!-- end second .page -->
+
+<!-- ═══ WHAT WE DELIVER ═══ -->
+<div class="deliver-wrap">
+  <div class="deliver-inner">
+    <div class="deliver-eyebrow">The Digemy Platform</div>
+    <div class="deliver-title">What We Deliver</div>
+    <div class="deliver-grid">
+
+      <div class="dc">
+        <div class="dc-head">
+          <span class="dc-icon">&#128241;</span>
+          <span class="dc-name" style="color:var(--purple);">Access</span>
+        </div>
+        <ul>
+          <li><span class="dc-arrow">&#9658;</span>Mobile-first microlearning</li>
+          <li><span class="dc-arrow">&#9658;</span>Data-light or reverse-billed</li>
+          <li><span class="dc-arrow">&#9658;</span>Integrated with WhatsApp</li>
+          <li><span class="dc-arrow">&#9658;</span>Always-on 24/7 training access</li>
+          <li><span class="dc-arrow">&#9658;</span>Personalised reinforcement for lasting retention</li>
+        </ul>
+      </div>
+
+      <div class="dc">
+        <div class="dc-head">
+          <span class="dc-icon">&#128202;</span>
+          <span class="dc-name" style="color:var(--coral);">Performance</span>
+        </div>
+        <ul>
+          <li><span class="dc-arrow">&#9658;</span>Long-term retention post-training</li>
+          <li><span class="dc-arrow">&#9658;</span>Dashboards identify knowledge gaps driving operational pain</li>
+          <li><span class="dc-arrow">&#9658;</span>Evaluation scorecards ensure training application is measured</li>
+        </ul>
+      </div>
+
+      <div class="dc">
+        <div class="dc-head">
+          <span class="dc-icon">&#127942;</span>
+          <span class="dc-name" style="color:#4ADE80;">Culture &amp; Engagement</span>
+        </div>
+        <ul>
+          <li><span class="dc-arrow">&#9658;</span>Daily 1-min bite-sized learning culture</li>
+          <li><span class="dc-arrow">&#9658;</span>Gamification and real-time mobile rewards</li>
+          <li><span class="dc-arrow">&#9658;</span>Broadcast important company info on social feed</li>
+          <li><span class="dc-arrow">&#9658;</span>Inspire and engage the entire workforce</li>
+        </ul>
+      </div>
+
+      <div class="dc">
+        <div class="dc-head">
+          <span class="dc-icon">&#9889;</span>
+          <span class="dc-name" style="color:var(--coral);">Delivery</span>
+        </div>
+        <ul>
+          <li><span class="dc-arrow">&#9658;</span>AI-driven content in minutes, not months</li>
+          <li><span class="dc-arrow">&#9658;</span>Reach all employees in real time, all the time</li>
+          <li><span class="dc-arrow">&#9658;</span>95% training application rate</li>
+          <li><span class="dc-arrow">&#9658;</span>Personalised reinforcement &mdash; no relearning</li>
+          <li><span class="dc-arrow">&#9658;</span>Role profiles that adjust as employees move</li>
+          <li><span class="dc-arrow">&#9658;</span>Learning pipelines to the next career level</li>
+        </ul>
+      </div>
+
+      <div class="dc">
+        <div class="dc-head">
+          <span class="dc-icon">&#128203;</span>
+          <span class="dc-name" style="color:var(--purple);">Reporting</span>
+        </div>
+        <ul>
+          <li><span class="dc-arrow">&#9658;</span>Managers have direct dashboard access to their teams</li>
+          <li><span class="dc-arrow">&#9658;</span>Automated WTR reports</li>
+          <li><span class="dc-arrow">&#9658;</span>Integration into any reporting environment</li>
+        </ul>
+      </div>
+
+      <div class="dc">
+        <div class="dc-head">
+          <span class="dc-icon">&#127919;</span>
+          <span class="dc-name" style="color:#4ADE80;">Strategy</span>
+        </div>
+        <ul>
+          <li><span class="dc-arrow">&#9658;</span>Identify biggest operational risks</li>
+          <li><span class="dc-arrow">&#9658;</span>Knowledge gap and skills matrices per role</li>
+          <li><span class="dc-arrow">&#9658;</span>Reduce time to performance by up to 75%</li>
+          <li><span class="dc-arrow">&#9658;</span>Optimise operational efficiency, sales and CX</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="footer">digemy.com &mdash; GEMS &mdash; Operational Optimisation Report</div>
+</body>
+</html>
